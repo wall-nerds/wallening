@@ -11,16 +11,16 @@ Slimecrossing Mobs
 	action_icon_state = "transformslime"
 	cooldown_min = 0
 	charge_max = 0
-	invocation_type = "none"
+	invocation_type = INVOCATION_NONE
 	shapeshift_type = /mob/living/simple_animal/slime/transformedslime
 	convert_damage = TRUE
 	convert_damage_type = CLONE
 	var/remove_on_restore = FALSE
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/slimeform/Restore(mob/living/M)
+/obj/effect/proc_holder/spell/targeted/shapeshift/slimeform/restore_form(mob/living/shape)
 	if(remove_on_restore)
-		if(M.mind)
-			M.mind.RemoveSpell(src)
+		if(shape.mind)
+			shape.mind.RemoveSpell(src)
 	return ..()
 
 //Transformed slime - Burning Black

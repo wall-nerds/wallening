@@ -80,11 +80,11 @@ AI MODULES
 			if(owned_borg.connected_ai && owned_borg.lawupdate)
 				affected_cyborgs += owned_borg
 				borg_flw += "[ADMIN_LOOKUPFLW(owned_borg)], "
-				borg_txt += "[ADMIN_LOOKUP(owned_borg)], "
+				borg_txt += "[owned_borg.name]([owned_borg.key]), "
 
 	borg_txt = borg_txt.Join()
 	GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) used [src.name] on [ainame]([aikey]).[law2log ? " The law specified [law2log]" : ""], [length(affected_cyborgs) ? ", impacting synced borgs [borg_txt]" : ""]")
-	log_law("[user.key]/[user.name] used [src.name] on [aikey]/([ainame]) from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""] , [length(affected_cyborgs) ? ", impacting synced borgs [borg_txt]" : ""]")
+	log_silicon("LAW: [key_name(user)] used [src.name] on [key_name(law_datum.owner)] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""], [length(affected_cyborgs) ? ", impacting synced borgs [borg_txt]" : ""]")
 	message_admins("[ADMIN_LOOKUPFLW(user)] used [src.name] on [ADMIN_LOOKUPFLW(law_datum.owner)] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""] , [length(affected_cyborgs) ? ", impacting synced borgs [borg_flw.Join()]" : ""]")
 	if(law_datum.owner)
 		deadchat_broadcast("<b> changed [span_name("[ainame]")]'s laws at [get_area_name(user, TRUE)].</b>", span_name("[user]"), follow_target=user, message_type=DEADCHAT_LAWCHANGE)
@@ -93,7 +93,6 @@ AI MODULES
 /obj/item/ai_module/proc/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow = FALSE)
 	if(law_datum.owner)
 		to_chat(law_datum.owner, span_userdanger("[sender] has uploaded a change to the laws you must follow using a [name]."))
-
 
 /******************** Modules ********************/
 
@@ -159,7 +158,6 @@ AI MODULES
 			else
 				law_datum.replace_random_law(templaw,list(LAW_INHERENT,LAW_SUPPLIED,LAW_ION))
 
-
 /******************** Safeguard ********************/
 
 /obj/item/ai_module/supplied/safeguard
@@ -169,7 +167,7 @@ AI MODULES
 	lawpos = 4
 
 /obj/item/ai_module/supplied/safeguard/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter the subject to safeguard.", "Safeguard who?", user.name,MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, "Subject to safeguard.", "Safeguard", user.name, MAX_NAME_LEN)
 	if(!targName)
 		return
 	targetName = targName
@@ -186,7 +184,6 @@ AI MODULES
 	..()
 	return targetName
 
-
 /******************** OneHuman ********************/
 
 /obj/item/ai_module/zeroth/onehuman
@@ -195,7 +192,7 @@ AI MODULES
 	laws = list("Only SUBJECT is human.")
 
 /obj/item/ai_module/zeroth/onehuman/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter the subject who is the only human.", "Who?", user.real_name,MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, "Enter the subject who is the only human.", "One Human", user.real_name, MAX_NAME_LEN)
 	if(!targName)
 		return
 	targetName = targName
@@ -213,14 +210,12 @@ AI MODULES
 		return "[targetName], but the AI's existing law 0 cannot be overridden."
 	return targetName
 
-
 /******************** ProtectStation ********************/
 
 /obj/item/ai_module/supplied/protect_station
 	name = "'ProtectStation' AI Module"
 	laws = list("Protect the space station against damage. Anyone you see harming the station is to be no longer considered human, and is a threat to the station which must be neutralized.")
 	lawpos = 5
-
 
 /******************** Quarantine ********************/
 
@@ -229,14 +224,12 @@ AI MODULES
 	laws = list("The station is under a quarantine. Allowing anyone to leave the station causes human harm. Anyone actively attempting to leave the station is to be stopped by any means necessary. It is impossible to harm a human while preventing them from leaving the station.")
 	lawpos = 8
 
-
 /******************** OxygenIsToxicToHumans ********************/
 
 /obj/item/ai_module/supplied/oxygen
 	name = "'OxygenIsToxicToHumans' AI Module"
 	laws = list("Oxygen is highly toxic to humans, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a human.")
 	lawpos = 9
-
 
 /****************** New Freeform ******************/
 
@@ -246,21 +239,22 @@ AI MODULES
 	laws = list("")
 
 /obj/item/ai_module/supplied/freeform/attack_self(mob/user)
-	var/newpos = input("Please enter the priority for your new law. Can only write to law sectors 15 and above.", "Law Priority (15+)", lawpos) as num|null
-	if(newpos == null)
+	var/newpos = tgui_input_number(user, "Please enter the priority for your new law. Can only write to law sectors 15 and above.", "Law Priority ", lawpos, 50, 15)
+	if(!newpos || QDELETED(user) || QDELETED(src) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	if(newpos < 15)
-		var/response = tgui_alert(usr, "Error: The law priority of [newpos] is invalid,  Law priorities below 14 are reserved for core laws,  Would you like to change that that to 15?", "Invalid law priority", list("Change to 15", "Cancel"))
-		if (!response || response == "Cancel")
-			return
-		newpos = 15
-	lawpos = min(newpos, 50)
-	var/targName = stripped_input(user, "Please enter a new law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len))
+	lawpos = newpos
+	var/targName = tgui_input_text(user, "Enter a new law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len), TRUE)
 	if(!targName)
 		return
 	if(is_ic_filtered(targName))
 		to_chat(user, span_warning("Error: Law contains invalid text.")) // AI LAW 2 SAY U W U WITHOUT THE SPACES
 		return
+	var/list/soft_filter_result = is_soft_ooc_filtered(targName)
+	if(soft_filter_result)
+		if(tgui_alert(user,"Your law contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to use it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[html_encode(targName)]\"")
+		log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[targName]\"")
 	laws[1] = targName
 	..()
 
@@ -274,7 +268,6 @@ AI MODULES
 		return 0
 	..()
 
-
 /******************** Law Removal ********************/
 
 /obj/item/ai_module/remove
@@ -284,12 +277,8 @@ AI MODULES
 	var/lawpos = 1
 
 /obj/item/ai_module/remove/attack_self(mob/user)
-	lawpos = input("Please enter the law you want to delete.", "Law Number", lawpos) as num|null
-	if(lawpos == null)
-		return
-	if(lawpos <= 0)
-		to_chat(user, span_warning("Error: The law number of [lawpos] is invalid."))
-		lawpos = 1
+	lawpos = tgui_input_number(user, "Law to delete", "Law Removal", lawpos, 50)
+	if(!lawpos || QDELETED(user) || QDELETED(src) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 	to_chat(user, span_notice("Law [lawpos] selected."))
 	..()
@@ -306,7 +295,6 @@ AI MODULES
 		law_datum.owner.remove_law(lawpos)
 	else
 		law_datum.remove_law(lawpos)
-
 
 /******************** Reset ********************/
 
@@ -327,7 +315,6 @@ AI MODULES
 		law_datum.clear_ion_laws()
 		law_datum.clear_hacked_laws()
 
-
 /******************** Purge ********************/
 
 /obj/item/ai_module/reset/purge
@@ -342,7 +329,6 @@ AI MODULES
 	else
 		law_datum.clear_inherent_laws()
 		law_datum.clear_zeroth_law(0)
-
 
 /******************* Full Core Boards *******************/
 /obj/item/ai_module/core
@@ -371,7 +357,6 @@ AI MODULES
 		law_datum.clear_zeroth_law(0)
 	..()
 
-
 /******************** Asimov ********************/
 
 /obj/item/ai_module/core/full/asimov
@@ -380,7 +365,7 @@ AI MODULES
 	var/subject = "human being"
 
 /obj/item/ai_module/core/full/asimov/attack_self(mob/user as mob)
-	var/targName = stripped_input(user, "Please enter a new subject that asimov is concerned with.", "Asimov to whom?", subject, MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, "Enter a new subject that Asimov is concerned with.", "Asimov", subject, MAX_NAME_LEN)
 	if(!targName)
 		return
 	subject = targName
@@ -395,20 +380,17 @@ AI MODULES
 	name = "'Asimov++' Core AI Module"
 	law_id = "asimovpp"
 
-
 /******************** Corporate ********************/
 
 /obj/item/ai_module/core/full/corp
 	name = "'Corporate' Core AI Module"
 	law_id = "corporate"
 
-
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
 /obj/item/ai_module/core/full/paladin // -- NEO
 	name = "'P.A.L.A.D.I.N. version 3.5e' Core AI Module"
 	law_id = "paladin"
-
 
 /****************** P.A.L.A.D.I.N. 5e **************/
 
@@ -434,7 +416,6 @@ AI MODULES
 	if(!laws.len)
 		return INITIALIZE_HINT_QDEL
 
-
 /****************** T.Y.R.A.N.T. *****************/
 
 /obj/item/ai_module/core/full/tyrant
@@ -454,7 +435,6 @@ AI MODULES
 	name = "'Antimov' Core AI Module"
 	law_id = "antimov"
 
-
 /******************** Freeform Core ******************/
 
 /obj/item/ai_module/core/freeformcore
@@ -462,19 +442,24 @@ AI MODULES
 	laws = list("")
 
 /obj/item/ai_module/core/freeformcore/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter a new core law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len))
+	var/targName = tgui_input_text(user, "Enter a new core law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len), TRUE)
 	if(!targName)
 		return
 	if(is_ic_filtered(targName))
 		to_chat(user, span_warning("Error: Law contains invalid text."))
 		return
+	var/list/soft_filter_result = is_soft_ooc_filtered(targName)
+	if(soft_filter_result)
+		if(tgui_alert(user,"Your law contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to use it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[html_encode(targName)]\"")
+		log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[targName]\"")
 	laws[1] = targName
 	..()
 
 /obj/item/ai_module/core/freeformcore/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()
 	return laws[1]
-
 
 /******************** Hacked AI Module ******************/
 
@@ -484,12 +469,18 @@ AI MODULES
 	laws = list("")
 
 /obj/item/ai_module/syndicate/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter a new law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len))
+	var/targName = tgui_input_text(user, "Enter a new law for the AI", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len), TRUE)
 	if(!targName)
 		return
 	if(is_ic_filtered(targName)) // not even the syndicate can uwu
 		to_chat(user, span_warning("Error: Law contains invalid text."))
 		return
+	var/list/soft_filter_result = is_soft_ooc_filtered(targName)
+	if(soft_filter_result)
+		if(tgui_alert(user,"Your law contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to use it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[html_encode(targName)]\"")
+		log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term for an AI law. Law: \"[targName]\"")
 	laws[1] = targName
 	..()
 
@@ -518,7 +509,6 @@ AI MODULES
 	laws = list("")
 
 /obj/item/ai_module/toy_ai/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
-	//..()
 	if(law_datum.owner)
 		to_chat(law_datum.owner, span_warning("BZZZZT"))
 		if(!overflow)
@@ -561,7 +551,6 @@ AI MODULES
 /obj/item/ai_module/core/full/thermurderdynamic
 	name = "'Thermodynamic' Core AI Module"
 	law_id = "thermodynamic"
-
 
 /******************Live And Let Live*****************/
 
@@ -608,3 +597,9 @@ AI MODULES
 /obj/item/ai_module/core/full/overlord
 	name = "'Overlord' Core AI Module"
 	law_id = "overlord"
+
+/****************** Ten Commandments ***************/
+
+/obj/item/ai_module/core/full/ten_commandments
+	name = "'10 Commandments' Core AI Module"
+	law_id = "ten_commandments"

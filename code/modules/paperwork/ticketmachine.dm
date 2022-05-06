@@ -18,21 +18,17 @@
 	var/list/ticket_holders = list()
 	var/list/obj/item/ticket_machine_ticket/tickets = list()
 
-/obj/machinery/ticket_machine/directional/north
-	dir = SOUTH
-	pixel_y = 32
+/obj/machinery/ticket_machine/Initialize(mapload)
+	. = ..()
+	update_appearance()
 
-/obj/machinery/ticket_machine/directional/south
-	dir = NORTH
-	pixel_y = -32
+/obj/machinery/ticket_machine/Destroy()
+	for(var/obj/item/ticket_machine_ticket/ticket in tickets)
+		ticket.source = null
+	tickets.Cut()
+	return ..()
 
-/obj/machinery/ticket_machine/directional/east
-	dir = WEST
-	pixel_x = 32
-
-/obj/machinery/ticket_machine/directional/west
-	dir = EAST
-	pixel_x = -32
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine, 32)
 
 /obj/machinery/ticket_machine/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I)) //make sure it has a data buffer
@@ -54,10 +50,6 @@
 			ticket.audible_message(span_notice("\the [ticket] disperses!"))
 			qdel(ticket)
 		tickets.Cut()
-	update_appearance()
-
-/obj/machinery/ticket_machine/Initialize(mapload)
-	. = ..()
 	update_appearance()
 
 /obj/machinery/ticket_machine/proc/increment()
@@ -150,7 +142,7 @@
 	var/startX = 12 - (2*textLen)
 
 	for(var/i=1; i <= textLen, i++)
-		var/mutable_appearance/number_overlay = mutable_appearance('icons/Font_Minimal.dmi', number_string[i])
+		var/mutable_appearance/number_overlay = mutable_appearance('icons/misc/Font_Minimal.dmi', number_string[i])
 		number_overlay.blend_mode = BLEND_SUBTRACT
 		number_overlay.pixel_x = startX
 		number_overlay.pixel_y = -14
@@ -189,21 +181,21 @@
 	if(ticket_number >= max_number)
 		to_chat(user,span_warning("Ticket supply depleted, please refill this unit with a hand labeller refill cartridge!"))
 		return
-	if((user in ticket_holders) && !(obj_flags & EMAGGED))
+	var/user_ref = REF(user)
+	if((user_ref in ticket_holders) && !(obj_flags & EMAGGED))
 		to_chat(user, span_warning("You already have a ticket!"))
 		return
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, FALSE)
-	ticket_number ++
+	ticket_number++
 	to_chat(user, span_notice("You take a ticket from [src], looks like you're ticket number #[ticket_number]..."))
 	var/obj/item/ticket_machine_ticket/theirticket = new /obj/item/ticket_machine_ticket(get_turf(src))
 	theirticket.name = "Ticket #[ticket_number]"
 	theirticket.maptext = MAPTEXT(ticket_number)
 	theirticket.saved_maptext = MAPTEXT(ticket_number)
-	theirticket.ticket_number = ticket_number
 	theirticket.source = src
-	theirticket.owner = user
+	theirticket.owner_ref = user_ref
 	user.put_in_hands(theirticket)
-	ticket_holders += user
+	ticket_holders += user_ref
 	tickets += theirticket
 	if(obj_flags & EMAGGED) //Emag the machine to destroy the HOP's life.
 		ready = FALSE
@@ -211,7 +203,7 @@
 		theirticket.fire_act()
 		user.dropItemToGround(theirticket)
 		user.adjust_fire_stacks(1)
-		user.IgniteMob()
+		user.ignite_mob()
 		return
 
 /obj/item/ticket_machine_ticket
@@ -225,9 +217,8 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
 	var/saved_maptext = null
-	var/mob/living/carbon/owner
+	var/owner_ref // A ref to our owner. Doesn't need to be weak because mobs have unique refs
 	var/obj/machinery/ticket_machine/source
-	var/ticket_number
 
 /obj/item/ticket_machine_ticket/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -244,9 +235,8 @@
 	update_appearance()
 
 /obj/item/ticket_machine_ticket/Destroy()
-	if(owner && source)
-		source.ticket_holders -= owner
-		source.tickets[ticket_number] = null
-		owner = null
+	if(source)
+		source.ticket_holders -= owner_ref
+		source.tickets -= src
 		source = null
 	return ..()

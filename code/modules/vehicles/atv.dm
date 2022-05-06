@@ -4,7 +4,7 @@
 	desc = "An all-terrain vehicle built for traversing rough terrain with ease. One of the few old-Earth technologies that are still relevant on most planet-bound outposts."
 	icon_state = "atv"
 	max_integrity = 150
-	armor = list(MELEE = 50, BULLET = 25, LASER = 20, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)
+	armor = list(MELEE = 50, BULLET = 25, LASER = 20, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 60, ACID = 60)
 	key_type = /obj/item/key/atv
 	integrity_failure = 0.5
 	var/static/mutable_appearance/atvcover
@@ -51,18 +51,22 @@
 			turret.pixel_x = base_pixel_x
 			turret.pixel_y = base_pixel_y + 4
 			turret.layer = ABOVE_MOB_LAYER
+			turret.plane = GAME_PLANE_UPPER
 		if(EAST)
 			turret.pixel_x = base_pixel_x - 12
 			turret.pixel_y = base_pixel_y + 4
 			turret.layer = OBJ_LAYER
+			turret.plane = GAME_PLANE
 		if(SOUTH)
 			turret.pixel_x = base_pixel_x
 			turret.pixel_y = base_pixel_y + 4
 			turret.layer = OBJ_LAYER
+			turret.plane = GAME_PLANE
 		if(WEST)
 			turret.pixel_x = base_pixel_x + 12
 			turret.pixel_y = base_pixel_y + 4
 			turret.layer = OBJ_LAYER
+			turret.plane = GAME_PLANE
 
 /obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/I)
 	if(atom_integrity >= max_integrity)

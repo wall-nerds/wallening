@@ -9,7 +9,7 @@
 /obj/item/clothing/shoes/sneakers/black
 	name = "black shoes"
 	desc = "A pair of black shoes."
-	custom_price = PAYCHECK_ASSISTANT
+	custom_price = PAYCHECK_CREW
 
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
@@ -117,7 +117,7 @@
 	equip_delay_other = 50
 	permeability_coefficient = 0.9
 	can_be_tied = FALSE
-	resistance_flags = FIRE_PROOF |  ACID_PROOF
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/sneakers/cyborg
 	name = "cyborg boots"

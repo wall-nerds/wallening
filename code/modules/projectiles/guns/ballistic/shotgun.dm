@@ -15,7 +15,7 @@
 	load_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
-	flags_1 =  CONDUCT_1
+	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/shot
 	semi_auto = FALSE
@@ -47,7 +47,7 @@
 	fire_delay = 8
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
-	can_be_sawn_off  = TRUE
+	can_be_sawn_off = TRUE
 
 // Automatic Shotguns//
 
@@ -72,11 +72,20 @@
 	icon_state = "cycler"
 	inhand_icon_state = "bulldog"
 	worn_icon_state = "cshotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
 	w_class = WEIGHT_CLASS_HUGE
-	var/toggled = FALSE
-	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
 	semi_auto = TRUE
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
+	/// If defined, the secondary tube is this type, if you want different shell loads
+	var/alt_mag_type
+	/// If TRUE, we're drawing from the alternate_magazine
+	var/toggled = FALSE
+	/// The B tube
+	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
+
+/obj/item/gun/ballistic/shotgun/automatic/dual_tube/bounty
+	name = "bounty cycler shotgun"
+	desc = "An advanced shotgun with two separate magazine tubes. This one shows signs of bounty hunting customization, meaning it likely has a dual rubbershot/fire slug load."
+	alt_mag_type = /obj/item/ammo_box/magazine/internal/shot/tube/fire
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()
@@ -84,8 +93,8 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize(mapload)
 	. = ..()
-	if (!alternate_magazine)
-		alternate_magazine = new mag_type(src)
+	alt_mag_type = alt_mag_type || mag_type
+	alternate_magazine = new alt_mag_type(src)
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/attack_self(mob/living/user)
 	if(!chambered && magazine.contents.len)
@@ -168,7 +177,7 @@
 						)
 	semi_auto = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
-	can_be_sawn_off  = TRUE
+	can_be_sawn_off = TRUE
 	pb_knockback = 3 // it's a super shotgun!
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/AltClick(mob/user)
@@ -180,6 +189,12 @@
 	. = ..()
 	if(.)
 		weapon_weight = WEAPON_MEDIUM
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/slugs
+	name = "hunting shotgun"
+	desc = "A hunting shotgun used by the wealthy to hunt \"game\"."
+	sawn_desc = "A sawn-off hunting shotgun. In its new state, it's remarkably less effective at hunting... anything."
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual/slugs
 
 /obj/item/gun/ballistic/shotgun/hook
 	name = "hook modified sawn-off shotgun"

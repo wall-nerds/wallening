@@ -173,7 +173,7 @@
 		heirloom_type = pick(holder_species.family_heirlooms)
 	else
 		// Our quirk holder's job
-		var/datum/job/holder_job = human_holder.mind?.assigned_role
+		var/datum/job/holder_job = human_holder.last_mind?.assigned_role
 		if(holder_job && LAZYLEN(holder_job.family_heirlooms))
 			heirloom_type = pick(holder_job.family_heirlooms)
 
@@ -203,7 +203,6 @@
 	if(!family_heirloom)
 		to_chat(quirk_holder, "<span class='boldnotice'>A wave of existential dread runs over you as you realise your precious family heirloom is missing. Perhaps the Gods will show mercy on your cursed soul?</span>")
 		return
-
 	family_heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
 
 	return ..()
@@ -328,7 +327,7 @@
 /datum/quirk/nyctophobia/proc/on_holder_moved(mob/living/source, atom/old_loc, dir, forced)
 	SIGNAL_HANDLER
 
-	if(quirk_holder.stat == DEAD)
+	if(quirk_holder.stat != CONSCIOUS || quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
 		return
 
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -336,11 +335,14 @@
 	if(human_holder.dna?.species.id in list(SPECIES_SHADOW, SPECIES_NIGHTMARE))
 		return
 
+	if((human_holder.sight & SEE_TURFS) == SEE_TURFS)
+		return
+
 	var/turf/holder_turf = get_turf(quirk_holder)
 
 	var/lums = holder_turf.get_lumcount()
 
-	if(lums > 0.2)
+	if(lums > LIGHTING_TILE_IS_DARK)
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "nyctophobia")
 		return
 
@@ -479,7 +481,7 @@
 	processing_quirk = TRUE
 
 /datum/quirk/insanity/process(delta_time)
-	if(quirk_holder.stat == DEAD)
+	if(quirk_holder.stat != CONSCIOUS || quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
 		return
 
 	if(DT_PROB(2, delta_time))
@@ -540,26 +542,13 @@
 					to_chat(quirker, span_danger("You feel self-conscious and stop talking. You need a moment to recover!"))
 					break
 			if(prob(max(5,(nearby_people*12.5*moodmod)))) //Minimum 1/20 chance of stutter
-				word = html_decode(word)
-				var/leng = length(word)
-				var/stuttered = ""
-				var/newletter = ""
-				var/rawchar = ""
-				var/static/regex/nostutter = regex(@@[aeiouAEIOU ""''()[\]{}.!?,:;_`~-]@)
-				for(var/i = 1, i <= leng, i += length(rawchar))
-					rawchar = newletter = word[i]
-					if(prob(80) && !nostutter.Find(rawchar))
-						if(prob(10))
-							newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
-						else if(prob(20))
-							newletter = "[newletter]-[newletter]-[newletter]"
-						else
-							newletter = "[newletter]-[newletter]"
-					stuttered += newletter
-				sanitize(stuttered)
-				new_message += stuttered
+				// Add a short stutter, THEN treat our word
+				quirker.adjust_timed_status_effect(0.5 SECONDS, /datum/status_effect/speech/stutter)
+				new_message += quirker.treat_message(word)
+
 			else
 				new_message += word
+
 		message = jointext(new_message, " ")
 	var/mob/living/carbon/human/quirker = quirk_holder
 	if(prob(min(50,(0.50*(nearby_people*12.5)*moodmod)))) //Max 50% chance of not talking
@@ -603,7 +592,7 @@
 			quirk_holder.Jitter(10)
 			msg += "causing you to start fidgeting!"
 		if(2)
-			quirk_holder.stuttering = max(3, quirk_holder.stuttering)
+			quirk_holder.set_timed_status_effect(6 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			msg += "causing you to start stuttering!"
 		if(3)
 			quirk_holder.Stun(2 SECONDS)
@@ -614,7 +603,7 @@
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact
-	description = "<span class='warning'>Sometimes eye contact makes me so nervous...</span>\n"
+	description = "Sometimes eye contact makes me so nervous..."
 	mood_change = -5
 	timeout = 3 MINUTES
 
@@ -647,7 +636,7 @@
 	reagent_instance = new reagent_type()
 
 	for(var/addiction in reagent_instance.addiction_types)
-		human_holder.mind.add_addiction_points(addiction, 1000)
+		human_holder.last_mind?.add_addiction_points(addiction, 1000)
 
 	var/current_turf = get_turf(quirk_holder)
 
@@ -698,14 +687,14 @@
 		var/deleted = QDELETED(reagent_instance)
 		var/missing_addiction = FALSE
 		for(var/addiction_type in reagent_instance.addiction_types)
-			if(!LAZYACCESS(human_holder.mind.active_addictions, addiction_type))
+			if(!LAZYACCESS(human_holder.last_mind?.active_addictions, addiction_type))
 				missing_addiction = TRUE
 		if(deleted || missing_addiction)
 			if(deleted)
 				reagent_instance = new reagent_type()
 			to_chat(quirk_holder, span_danger("You thought you kicked it, but you feel like you're falling back onto bad habits.."))
 			for(var/addiction in reagent_instance.addiction_types)
-				human_holder.mind.add_addiction_points(addiction, 1000) ///Max that shit out
+				human_holder.last_mind?.add_addiction_points(addiction, 1000) ///Max that shit out
 
 /datum/quirk/item_quirk/junkie/smoker
 	name = "Smoker"
@@ -716,6 +705,7 @@
 	medical_record_text = "Patient is a current smoker."
 	reagent_type = /datum/reagent/drug/nicotine
 	accessory_type = /obj/item/lighter/greyscale
+	mob_trait = TRAIT_SMOKER
 	hardcore_value = 1
 	drug_flavour_text = "Make sure you get your favorite brand when you run out."
 
@@ -733,6 +723,11 @@
 	. = ..()
 	var/brand = initial(drug_container_type.name)
 	quirk_holder.mind.add_memory(MEMORY_QUIRK_DRUG, list(DETAIL_FAV_BRAND = brand), memory_flags = MEMORY_FLAG_NOLOCATION | MEMORY_FLAG_NOPERSISTENCE, story_value = STORY_VALUE_SHIT)
+	// smoker lungs have 25% less health and healing
+	var/obj/item/organ/lungs/smoker_lungs = quirk_holder.getorganslot(ORGAN_SLOT_LUNGS)
+	if (smoker_lungs && !(smoker_lungs.organ_flags & ORGAN_SYNTHETIC)) // robotic lungs aren't affected
+		smoker_lungs.maxHealth = smoker_lungs.maxHealth * 0.75
+		smoker_lungs.healing_factor = smoker_lungs.healing_factor * 0.75
 
 /datum/quirk/item_quirk/junkie/smoker/process(delta_time)
 	. = ..()
@@ -799,6 +794,9 @@
 	if(IS_IN_STASIS(quirk_holder))
 		return
 
+	if(quirk_holder.stat == DEAD)
+		return
+
 	var/mob/living/carbon/carbon_quirk_holder = quirk_holder
 	for(var/allergy in allergies)
 		var/datum/reagent/instantiated_med = carbon_quirk_holder.reagents.has_reagent(allergy)
@@ -828,13 +826,16 @@
 	hardcore_value = 1
 
 /datum/quirk/bad_touch/add()
-	RegisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT), .proc/uncomfortable_touch)
+	RegisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED), .proc/uncomfortable_touch)
 
 /datum/quirk/bad_touch/remove()
-	UnregisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT))
+	UnregisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED))
 
 /datum/quirk/bad_touch/proc/uncomfortable_touch()
 	SIGNAL_HANDLER
+
+	if(quirk_holder.stat == DEAD)
+		return
 
 	new /obj/effect/temp_visual/annoyed(quirk_holder.loc)
 	var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
@@ -842,3 +843,54 @@
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/very_bad_touch)
 	else
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/bad_touch)
+
+/datum/quirk/claustrophobia
+	name = "Claustrophobia"
+	desc = "You are terrified of small spaces and certain jolly figures. If you are placed inside any container, locker, or machinery, a panic attack sets in and you struggle to breathe."
+	icon = "box-open"
+	value = -4
+	medical_record_text = "Patient demonstrates a fear of tight spaces."
+	hardcore_value = 5
+	processing_quirk = TRUE
+
+/datum/quirk/claustrophobia/remove()
+	SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "claustrophobia")
+
+/datum/quirk/claustrophobia/process(delta_time)
+	if(quirk_holder.stat != CONSCIOUS || quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
+		return
+
+	var/nick_spotted = FALSE
+
+	for(var/mob/living/carbon/human/possible_claus in view(5, quirk_holder))
+		if(evaluate_jolly_levels(possible_claus))
+			nick_spotted = TRUE
+			break
+
+	if(!nick_spotted && isturf(quirk_holder.loc))
+		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "claustrophobia", /datum/mood_event/claustrophobia)
+		return
+
+	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "claustrophobia")
+	quirk_holder.losebreath += 0.25 // miss a breath one in four times
+	if(DT_PROB(25, delta_time))
+		if(nick_spotted)
+			to_chat(quirk_holder, span_warning("Santa Claus is here! I gotta get out of here!"))
+		else
+			to_chat(quirk_holder, span_warning("You feel trapped!  Must escape... can't breathe..."))
+
+///investigates whether possible_saint_nick possesses a high level of christmas cheer
+/datum/quirk/claustrophobia/proc/evaluate_jolly_levels(mob/living/carbon/human/possible_saint_nick)
+	if(!istype(possible_saint_nick))
+		return FALSE
+
+	if(istype(possible_saint_nick.back, /obj/item/storage/backpack/santabag))
+		return TRUE
+
+	if(istype(possible_saint_nick.head, /obj/item/clothing/head/santa))
+		return TRUE
+
+	if(istype(possible_saint_nick.wear_suit, /obj/item/clothing/suit/space/santa))
+		return TRUE
+
+	return FALSE

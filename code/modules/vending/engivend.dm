@@ -3,6 +3,7 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
+	panel_type = "panel10"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	products = list(
 		/obj/item/clothing/glasses/meson/engine = 2,
@@ -26,7 +27,7 @@
 		/obj/item/storage/box/smart_metal_foam = 1
 	)
 	refill_canister = /obj/item/vending_refill/engivend
-	default_price = PAYCHECK_EASY
+	default_price = PAYCHECK_CREW
 	extra_price = PAYCHECK_COMMAND * 1.5
 	payment_department = ACCOUNT_ENG
 	light_mask = "engivend-light-mask"

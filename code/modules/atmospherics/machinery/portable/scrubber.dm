@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/scrubber
 	name = "portable air scrubber"
-	icon_state = "pscrubber"
+	icon_state = "scrubber"
 	density = TRUE
 	max_integrity = 250
 	volume = 1000
@@ -23,7 +23,7 @@
 		/datum/gas/carbon_dioxide,
 		/datum/gas/nitrous_oxide,
 		/datum/gas/bz,
-		/datum/gas/nitryl,
+		/datum/gas/nitrium,
 		/datum/gas/tritium,
 		/datum/gas/hypernoblium,
 		/datum/gas/water_vapor,
@@ -41,7 +41,7 @@
 	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/update_icon_state()
-	icon_state = "[initial(icon_state)]:[on]"
+	icon_state = "[initial(icon_state)]_[on]"
 	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/update_overlays()
@@ -169,12 +169,15 @@
 			. = TRUE
 	update_appearance()
 
+/obj/machinery/portable_atmospherics/scrubber/unregister_holding()
+	on = FALSE
+	return ..()
+
 /obj/machinery/portable_atmospherics/scrubber/huge
 	name = "huge air scrubber"
-	icon_state = "scrubber"
+	icon_state = "hugescrubber"
 	anchored = TRUE
-	active_power_usage = 500
-	idle_power_usage = 10
+	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.5
 
 	overpressure_m = 200
 	volume_rate = 1500
@@ -190,7 +193,7 @@
 	anchored = FALSE
 
 /obj/machinery/portable_atmospherics/scrubber/huge/update_icon_state()
-	icon_state = "[initial(icon_state)]:[on]"
+	icon_state = "[initial(icon_state)]_[on]"
 	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/huge/process_atmos()
@@ -210,9 +213,11 @@
 
 	return ..()
 
-/obj/machinery/portable_atmospherics/scrubber/huge/attackby(obj/item/W, mob/user)
-	if(default_unfasten_wrench(user, W))
+/obj/machinery/portable_atmospherics/scrubber/huge/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(default_unfasten_wrench(user, tool))
 		if(!movable)
 			on = FALSE
-	else
-		return ..()
+		return TOOL_ACT_TOOLTYPE_SUCCESS
+	return FALSE
+

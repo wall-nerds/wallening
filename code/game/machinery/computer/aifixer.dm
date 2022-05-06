@@ -22,6 +22,7 @@
 		return ..()
 
 /obj/machinery/computer/aifixer/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AiRestorer", name)
@@ -129,6 +130,11 @@
 			to_chat(user, span_alert("ERROR: Reconstruction in progress."))
 		else if (!occupier)
 			to_chat(user, span_alert("ERROR: Unable to locate artificial intelligence."))
+
+/obj/machinery/computer/aifixer/Destroy()
+	if(occupier)
+		QDEL_NULL(occupier)
+	return ..()
 
 /obj/machinery/computer/aifixer/on_deconstruction()
 	if(occupier)

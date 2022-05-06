@@ -35,7 +35,7 @@
 	obj_damage = 40
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	see_in_dark = 8
+	see_in_dark = NIGHTVISION_FOV_RANGE
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	del_on_death = TRUE
 	deathmessage = "screams in agony as it sublimates into a sulfurous smoke."
@@ -194,7 +194,7 @@
 
 	attack_sound = 'sound/items/bikehorn.ogg'
 	attack_vis_effect = null
-	feast_sound = 'sound/spookoween/scary_horn2.ogg'
+	feast_sound = 'sound/misc/scary_horn.ogg'
 	deathsound = 'sound/misc/sadtrombone.ogg'
 
 	icon_state = "bowmon"

@@ -12,7 +12,7 @@
 
 /datum/design/board/ripley_peri
 	name = "APLU \"Ripley\" Peripherals Control module"
-	desc = "Allows for the construction of a  \"Ripley\" Peripheral Control module."
+	desc = "Allows for the construction of a \"Ripley\" Peripheral Control module."
 	id = "ripley_peri"
 	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
 	category = list("Exosuit Modules")
@@ -143,7 +143,7 @@
 
 /datum/design/board/clarke_peri
 	name = "\"Clarke\" Peripherals Control module"
-	desc = "Allows for the construction of a  \"Clarke\" Peripheral Control module."
+	desc = "Allows for the construction of a \"Clarke\" Peripheral Control module."
 	id = "clarke_peri"
 	build_path = /obj/item/circuitboard/mecha/clarke/peripherals
 	category = list("Exosuit Modules")
@@ -392,32 +392,22 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
-/datum/design/mech_energy_relay
-	name = "Exosuit Module (Tesla Energy Relay)"
-	desc = "Tesla Energy Relay"
-	id = "mech_energy_relay"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
-	materials = list(/datum/material/iron=10000,/datum/material/glass =  2000,/datum/material/gold=2000,/datum/material/silver=3000)
-	construction_time = 100
-	category = list("Exosuit Equipment")
-
 /datum/design/mech_ccw_armor
 	name = "Exosuit Module (Reactive Armor Booster Module)"
-	desc = "Exosuit-mounted armor booster."
+	desc = "Exosuit-mounted melee armor booster."
 	id = "mech_ccw_armor"
 	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster
+	build_path = /obj/item/mecha_parts/mecha_equipment/armor/anticcw_armor_booster
 	materials = list(/datum/material/iron=20000,/datum/material/silver=5000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_proj_armor
 	name = "Exosuit Module (Reflective Armor Booster Module)"
-	desc = "Exosuit-mounted armor booster."
+	desc = "Exosuit-mounted ranged armor booster."
 	id = "mech_proj_armor"
 	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
+	build_path = /obj/item/mecha_parts/mecha_equipment/armor/antiproj_armor_booster
 	materials = list(/datum/material/iron=20000,/datum/material/gold=5000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
@@ -429,16 +419,6 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill
 	materials = list(/datum/material/iron=10000,/datum/material/diamond=6500)
-	construction_time = 100
-	category = list("Exosuit Equipment")
-
-/datum/design/mech_generator_nuclear
-	name = "Exosuit Module (ExoNuclear Reactor)"
-	desc = "Compact nuclear reactor module."
-	id = "mech_generator_nuclear"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
-	materials = list(/datum/material/iron=10000,/datum/material/glass =  1000,/datum/material/silver=500)
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
@@ -489,7 +469,7 @@
 	id = "mech_sleeper"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/medical/sleeper
-	materials = list(/datum/material/iron=5000, /datum/material/glass =  10000)
+	materials = list(/datum/material/iron=5000, /datum/material/glass = 10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
 

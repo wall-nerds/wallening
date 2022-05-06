@@ -13,17 +13,6 @@
 	/// If this attacks a human with no wound armor on the affected body part, add this to the wound mod. Some attacks may be significantly worse at wounding if there's even a slight layer of armor to absorb some of it vs bare flesh
 	var/bare_wound_bonus = 0
 
-	/*
-	var/datum/armor/armor
-	VAR_PRIVATE/atom_integrity //defaults to max_integrity
-	var/max_integrity = 500
-	var/integrity_failure = 0 //0 if we have no special broken behavior, otherwise is a percentage of at what point the obj breaks. 0.5 being 50%
-	///Damage under this value will be completely ignored
-	var/damage_deflection = 0
-
-	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
-	*/
-
 	var/current_skin //Has the item been reskinned?
 	var/list/unique_reskin //List of options to reskin.
 
@@ -57,15 +46,7 @@
 	return ..()
 
 /obj/Initialize(mapload)
-	//if (islist(armor))
-	//	armor = getArmor(arglist(armor))
-	//else if (!armor)
-	//	armor = getArmor()
-	//else if (!istype(armor, /datum/armor))
-	//	stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
-	//atom_integrity = max_integrity
-
-	. = ..() //Do this after, else mat datums is mad.
+	. = ..()
 
 	if (set_obj_flags)
 		var/flagslist = splittext(set_obj_flags,";")
@@ -95,7 +76,7 @@
 		/// Needs to run before as ComponentInitialize runs after this statement...why do we have ComponentInitialize again?
 
 
-/obj/Destroy(force=FALSE)
+/obj/Destroy(force)
 	if(!ismachinery(src))
 		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
 	SStgui.close_uis(src)
@@ -160,7 +141,7 @@
 			var/mob/living/carbon/human/H = usr
 			if(!(usr in nearby))
 				if(usr.client && usr.machine==src)
-					if(H.dna.check_mutation(TK))
+					if(H.dna.check_mutation(/datum/mutation/human/telekinesis))
 						is_in_use = TRUE
 						ui_interact(usr)
 		if (is_in_use)
@@ -225,24 +206,8 @@
 	if(!anchored || current_size >= STAGE_FIVE)
 		step_towards(src,S)
 
-/obj/get_dumping_location(datum/component/storage/source,mob/user)
+/obj/get_dumping_location()
 	return get_turf(src)
-
-/**
- * This proc is used for telling whether something can pass by this object in a given direction, for use by the pathfinding system.
- *
- * Trying to generate one long path across the station will call this proc on every single object on every single tile that we're seeing if we can move through, likely
- * multiple times per tile since we're likely checking if we can access said tile from multiple directions, so keep these as lightweight as possible.
- *
- * Arguments:
- * * ID- An ID card representing what access we have (and thus if we can open things like airlocks or windows to pass through them). The ID card's physical location does not matter, just the reference
- * * to_dir- What direction we're trying to move in, relevant for things like directional windows that only block movement in certain directions
- * * caller- The movable we're checking pass flags for, if we're making any such checks
- **/
-/obj/proc/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
-	if(istype(caller) && (caller.pass_flags & pass_flags_self))
-		return TRUE
-	. = !density
 
 /obj/proc/check_uplink_validity()
 	return 1
@@ -278,11 +243,10 @@
 			                  energy = text2num(result["values"][ENERGY]),\
 			                  bomb = text2num(result["values"][BOMB]),\
 			                  bio = text2num(result["values"][BIO]),\
-			                  rad = text2num(result["values"][RAD]),\
 			                  fire = text2num(result["values"][FIRE]),\
 			                  acid = text2num(result["values"][ACID]))
-				log_admin("[key_name(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]")
-				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]"))
+				log_admin("[key_name(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]")
+				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to melee: [armor.melee], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], fire: [armor.fire], acid: [armor.acid]"))
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(check_rights(R_DEBUG|R_SERVER))
 			var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
@@ -376,8 +340,8 @@
 		return FALSE
 	return TRUE
 
-/obj/analyzer_act(mob/living/user, obj/item/I)
-	if(atmosanalyzer_scan(user, src))
+/obj/analyzer_act(mob/living/user, obj/item/analyzer/tool)
+	if(atmos_scan(user=user, target=src, tool=tool, silent=FALSE))
 		return TRUE
 	return ..()
 
@@ -391,7 +355,7 @@
 /obj/handle_ricochet(obj/projectile/P)
 	. = ..()
 	if(. && receive_ricochet_damage_coeff)
-		take_damage(P.damage * receive_ricochet_damage_coeff, P.damage_type, P.flag, 0, turn(P.dir, 180), P.armour_penetration) // pass along receive_ricochet_damage_coeff damage to the structure for the ricochet
+		take_damage(P.damage * receive_ricochet_damage_coeff, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration) // pass along receive_ricochet_damage_coeff damage to the structure for the ricochet
 
 /obj/update_overlays()
 	. = ..()

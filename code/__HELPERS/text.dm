@@ -23,7 +23,7 @@
 
 ///returns nothing with an alert instead of the message if it contains something in the ic filter, and sanitizes normally if the name is fine. It returns nothing so it backs out of the input the same way as if you had entered nothing.
 /proc/sanitize_name(t,allow_numbers=FALSE)
-	if(is_ic_filtered(t))
+	if(is_ic_filtered(t) || is_soft_ic_filtered(t))
 		tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
 		return ""
 	var/r = reject_bad_name(t,allow_numbers=allow_numbers,strict=TRUE)
@@ -221,7 +221,7 @@
 			return //(not case sensitive)
 
 	// Protects against names containing IC chat prohibited words.
-	if(is_ic_filtered(t_out))
+	if(is_ic_filtered(t_out) || is_soft_ic_filtered(t_out))
 		return
 
 	return t_out
@@ -373,12 +373,12 @@ GLOBAL_LIST_INIT(space, list(" "))
 GLOBAL_LIST_INIT(binary, list("0","1"))
 /proc/random_string(length, list/characters)
 	. = ""
-	for(var/i=1, i<=length, i++)
+	for(var/i in 1 to length)
 		. += pick(characters)
 
 /proc/repeat_string(times, string="")
 	. = ""
-	for(var/i=1, i<=times, i++)
+	for(var/i in 1 to times)
 		. += string
 
 /proc/random_short_color()
@@ -480,7 +480,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		var/tlistlen = tlist.len
 		var/listlevel = -1
 		var/singlespace = -1 // if 0, double spaces are used before asterisks, if 1, single are
-		for(var/i = 1, i <= tlistlen, i++)
+		for(var/i in 1 to tlistlen)
 			var/line = tlist[i]
 			var/count_asterisk = length(replacetext(line, regex("\[^\\*\]+", "g"), ""))
 			if(count_asterisk % 2 == 1 && findtext(line, regex("^\\s*\\*", "g"))) // there is an extra asterisk in the beggining
@@ -513,7 +513,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		// end for
 
 		t = tlist[1]
-		for(var/i = 2, i <= tlistlen, i++)
+		for(var/i in 2 to tlistlen)
 			t += "\n" + tlist[i]
 
 		while(listlevel >= 0)
@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		var/punctbuffer = ""
 		var/cutoff = 0
 		lentext = length_char(buffer)
-		for(var/pos = 1, pos <= lentext, pos++)
+		for(var/pos in 1 to lentext)
 			let = copytext_char(buffer, -pos, -pos + 1)
 			if(!findtext(let, GLOB.is_punctuation)) //This won't handle things like Nyaaaa!~ but that's fine
 				break
@@ -809,6 +809,113 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		else
 			return "[number]\th"
 
+/**
+ * Takes a 1, 2 or 3 digit number and returns it in words. Don't call this directly, use convert_integer_to_words() instead.
+ *
+ * Arguments:
+ * * number - 1, 2 or 3 digit number to convert.
+ * * carried_string - Text to append after number is converted to words, e.g. "million", as in "eighty million".
+ * * capitalise - Whether the number it returns should be capitalised or not, e.g. "Eighty-Eight" vs. "eighty-eight".
+ */
+/proc/int_to_words(number, carried_string, capitalise = FALSE)
+	var/static/list/tens = list("", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety")
+	var/static/list/ones = list("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen")
+	number = round(number)
+
+	if(number > 999)
+		return
+
+	if(number <= 0)
+		return
+
+	var/list/string = list()
+
+	if(number >= 100)
+		string += int_to_words(number / 100, "hundred")
+		number = round(number % 100)
+		if(!number)
+			return string + carried_string
+		string += "and"
+
+	//if number is more than 19, divide it
+	if(number > 19)
+		var/temp_num = tens[number / 10]
+		if(number % 10)
+			temp_num += "-"
+			if(capitalise)
+				temp_num += capitalize(ones[number % 10])
+			else
+				temp_num += ones[number % 10]
+		string += temp_num
+	else
+		string += ones[number]
+
+	if(carried_string)
+		string += carried_string
+
+	return string
+
+/**
+ * Takes an integer up to 999,999,999 and returns it in words. Works with negative numbers and 0.
+ *
+ * Arguments:
+ * * number - Integer up to 999,999,999 to convert.
+ * * capitalise - Whether the number it returns should be capitalised or not, e.g. "Eighty Million" vs. "eighty million".
+ */
+/proc/convert_integer_to_words(number, capitalise = FALSE)
+
+	if(!isnum(number))
+		return
+
+	var/negative = FALSE
+	if(number < 0)
+		number = abs(number)
+		negative = TRUE
+
+	number = round(number)
+
+	if(number > 999999999)
+		return negative ? -number : number
+
+	if(number == 0)
+		return capitalise ? "Zero" : "zero"
+
+	//stores word representation of given number
+	var/list/output = list()
+
+	//handles millions
+	var/millions = int_to_words(((number / 1000000) % 1000), "million", capitalise)
+	if(length(millions))
+		output += millions
+
+	///handles thousands
+	var/thousands = int_to_words(((number / 1000) % 1000), "thousand", capitalise)
+	if(length(thousands))
+		output += thousands
+
+	if(length(output) && number % 1000 && (number % 1000) < 100) //e.g. One Thousand And Ninety-Nine, instead of One Thousand Ninety-Nine
+		output += "and"
+
+	//handles digits at ones, tens and hundreds places (if any)
+	output += int_to_words((number % 1000), "", capitalise)
+
+	for(var/index in 1 to length(output))
+		if(isnull(output[index]))
+			output -= output[index]
+			continue
+		if(capitalise)
+			output[index] = capitalize(output[index])
+
+	if(!length(output))
+		return negative ? -number : number
+
+	var/number_in_words
+	if(negative)
+		number_in_words += capitalise ? "Negative " : "negative "
+
+	number_in_words += output.Join(" ")
+
+	return number_in_words
 
 /proc/random_capital_letter()
 	return uppertext(pick(GLOB.alphabet))
@@ -1035,3 +1142,8 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 			. = "gigantic"
 		else
 			. = ""
+
+/// Removes all non-alphanumerics from the text, keep in mind this can lead to id conflicts
+/proc/sanitize_css_class_name(name)
+	var/static/regex/regex = new(@"[^a-zA-Z0-9]","g")
+	return replacetext(name, regex, "")

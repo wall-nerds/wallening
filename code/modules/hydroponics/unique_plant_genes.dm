@@ -14,28 +14,22 @@
 		return
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	shield_uses = round(our_seed.potency / 20)
-	our_plant.AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, ITEM_SLOT_HANDS, shield_uses, TRUE, CALLBACK(src, .proc/block_magic), CALLBACK(src, .proc/expire)) //deliver us from evil o melon god
+	//deliver us from evil o melon god
+	our_plant.AddComponent(/datum/component/anti_magic, \
+		antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, \
+		inventory_flags = ITEM_SLOT_HANDS, \
+		charges = shield_uses, \
+		drain_antimagic = CALLBACK(src, .proc/drain_antimagic), \
+		expiration = CALLBACK(src, .proc/expire), \
+	)
 
-/*
- * The proc called when the holymelon successfully blocks a spell.
- *
- * user - the mob who's using the melon
- * major - whether the spell was 'major' or not
- * our_plant - our plant, who's eating the magic spell
- */
-/datum/plant_gene/trait/anti_magic/proc/block_magic(mob/user, major, obj/item/our_plant)
-	if(major)
-		to_chat(user, "<span class='warning'>[our_plant] hums slightly, and seems to decay a bit.</span>")
+/// When the plant our gene is hosted in is drained of an anti-magic charge.
+/datum/plant_gene/trait/anti_magic/proc/drain_antimagic(mob/user, obj/item/our_plant)
+	to_chat(user, span_warning("[our_plant] hums slightly, and seems to decay a bit."))
 
-/*
- * The proc called when the holymelon uses up all of its anti-magic charges.
- *
- * user - the mob who's using the melon
- * major - whether the spell was 'major' or not
- * our_plant - our plant, who tragically melted protecting us from magics
- */
+/// When the plant our gene is hosted in is drained of all of its anti-magic charges.
 /datum/plant_gene/trait/anti_magic/proc/expire(mob/user, obj/item/our_plant)
-	to_chat(user, "<span class='warning'>[our_plant] rapidly turns into ash!</span>")
+	to_chat(user, span_warning("[our_plant] rapidly turns into ash!"))
 	new /obj/effect/decal/cleanable/ash(our_plant.drop_location())
 	qdel(our_plant)
 
@@ -87,7 +81,7 @@
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	to_chat(target, "<span class='danger'>You are lit on fire from the intense heat of [our_plant]!</span>")
 	target.adjust_fire_stacks(our_seed.potency / 20)
-	if(target.IgniteMob())
+	if(target.ignite_mob())
 		message_admins("[ADMIN_LOOKUPFLW(user)] set [ADMIN_LOOKUPFLW(target)] on fire with [our_plant] at [AREACOORD(user)]")
 		log_game("[key_name(user)] set [key_name(target)] on fire with [our_plant] at [AREACOORD(user)]")
 	our_plant.investigate_log("was used by [key_name(user)] to burn [key_name(target)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
@@ -296,7 +290,7 @@
 
 /// Traits for plants that can be activated to turn into a mob.
 /datum/plant_gene/trait/mob_transformation
-	name = "Dormat Ferocity"
+	name = "Dormant Ferocity"
 	trait_ids = ATTACK_SELF_ID
 	/// Whether mobs spawned by this trait are dangerous or not.
 	var/dangerous = FALSE
@@ -362,7 +356,7 @@
 
 	to_chat(user, "<span class='notice'>You begin to awaken [our_plant]...</span>")
 	begin_awaken(our_plant, 3 SECONDS)
-	log_game("[key_name(user)] awakened a [our_plant] at [AREACOORD(user)].")
+	our_plant.investigate_log("was awakened by [key_name(user)] at [AREACOORD(user)].", INVESTIGATE_BOTANY)
 
 /*
  * Called when a user accidentally activates the plant via backfire effect.
@@ -376,6 +370,7 @@
 	if(!awakening && !isspaceturf(user.loc) && prob(25))
 		to_chat(user, "<span class='danger'>[our_plant] begins to growl and shake!</span>")
 		begin_awaken(our_plant, 1 SECONDS)
+		our_plant.investigate_log("was awakened (via plant backfire) by [key_name(user)] at [AREACOORD(user)].", INVESTIGATE_BOTANY)
 
 /*
  * Actually begin the process of awakening the plant.
@@ -644,20 +639,25 @@
 /datum/plant_gene/trait/carnivory/jupitercup
 	mutability_flags = PLANT_GENE_GRAFTABLE
 
+/// Preset plant reagent genes that are unremovable from a plant.
+/datum/plant_gene/reagent/preset
+	mutability_flags = PLANT_GENE_GRAFTABLE
+
+/datum/plant_gene/reagent/preset/New(new_reagent_id, new_reagent_rate = 0.04)
+	. = ..()
+	set_reagent(reagent_id)
+
 /// Spaceman's Trumpet fragile Polypyrylium Oligomers
-/datum/plant_gene/reagent/polypyr
+/datum/plant_gene/reagent/preset/polypyr
 	reagent_id = /datum/reagent/medicine/polypyr
 	rate = 0.15
-	mutability_flags = PLANT_GENE_GRAFTABLE
 
 /// Jupitercup's fragile Liquid Electricity
-/datum/plant_gene/reagent/liquidelectricity
+/datum/plant_gene/reagent/preset/liquidelectricity
 	reagent_id = /datum/reagent/consumable/liquidelectricity/enriched
 	rate = 0.1
-	mutability_flags = PLANT_GENE_GRAFTABLE
 
 /// Carbon Roses's fragile Carbon
-/datum/plant_gene/reagent/carbon
+/datum/plant_gene/reagent/preset/carbon
 	reagent_id = /datum/reagent/carbon
 	rate = 0.1
-	mutability_flags = PLANT_GENE_GRAFTABLE

@@ -13,7 +13,7 @@
 	icon_state = "vest_stealth"
 	inhand_icon_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 25, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
+	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 25, BOMB = 15, BIO = 15, FIRE = 70, ACID = 70)
 	actions_types = list(/datum/action/item_action/hands_free/activate)
 	allowed = list(
 		/obj/item/abductor,
@@ -26,8 +26,8 @@
 	/// Cooldown in seconds
 	var/combat_cooldown = 20
 	var/datum/icon_snapshot/disguise
-	var/stealth_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 25, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
-	var/combat_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 90, ACID = 90)
+	var/stealth_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 25, BOMB = 15, BIO = 15, FIRE = 70, ACID = 70)
+	var/combat_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/abductor/vest/Initialize(mapload)
 	. = ..()
@@ -167,7 +167,7 @@
 	icon_state = "gizmo_scan"
 	inhand_icon_state = "silencer"
 	var/mode = GIZMO_SCAN
-	var/mob/living/marked = null
+	var/datum/weakref/marked_target_weakref
 	var/obj/machinery/abductor/console/console
 
 /obj/item/abductor/gizmo/attack_self(mob/user)
@@ -221,11 +221,12 @@
 		to_chat(user, span_notice("You scan [target] and add [target.p_them()] to the database."))
 
 /obj/item/abductor/gizmo/proc/mark(atom/target, mob/living/user)
+	var/mob/living/marked = marked_target_weakref?.resolve()
 	if(marked == target)
 		to_chat(user, span_warning("This specimen is already marked!"))
 		return
 	if(isabductor(target) || iscow(target))
-		marked = target
+		marked_target_weakref = WEAKREF(target)
 		to_chat(user, span_notice("You mark [target] for future retrieval."))
 	else
 		prepare(target,user)
@@ -236,12 +237,13 @@
 		return
 	to_chat(user, span_notice("You begin preparing [target] for transport..."))
 	if(do_after(user, 100, target = target))
-		marked = target
+		marked_target_weakref = WEAKREF(target)
 		to_chat(user, span_notice("You finish preparing [target] for transport."))
 
 /obj/item/abductor/gizmo/Destroy()
 	if(console)
 		console.gizmo = null
+		console = null
 	. = ..()
 
 
@@ -280,12 +282,10 @@
 /obj/item/abductor/silencer/proc/radio_off_mob(mob/living/carbon/human/M)
 	var/list/all_items = M.get_all_contents()
 
-	for(var/obj/I in all_items)
-		if(istype(I, /obj/item/radio/))
-			var/obj/item/radio/r = I
-			r.listening = 0
-			if(!istype(I, /obj/item/radio/headset))
-				r.broadcasting = 0 //goddamned headset hacks
+	for(var/obj/item/radio/radio in all_items)
+		radio.set_listening(FALSE)
+		if(!istype(radio, /obj/item/radio/headset))
+			radio.set_broadcasting(FALSE) //goddamned headset hacks
 
 /obj/item/abductor/mind_device
 	name = "mental interface device"
@@ -332,8 +332,8 @@
 			to_chat(user, span_warning("Your target is already under a mind-controlling influence!"))
 			return
 
-		var/command = stripped_input(user, "Enter the command for your target to follow.\
-											Uses Left: [G.mind_control_uses], Duration: [DisplayTimeText(G.mind_control_duration)]","Enter command")
+		var/command = tgui_input_text(user, "Enter the command for your target to follow.\
+											Uses Left: [G.mind_control_uses], Duration: [DisplayTimeText(G.mind_control_duration)]", "Enter command")
 
 		if(!command)
 			return
@@ -344,8 +344,8 @@
 		if(QDELETED(G))
 			return
 
-		if(C.anti_magic_check(FALSE, FALSE, TRUE, 0))
-			to_chat(user, span_warning("Your target seems to have some sort of tinfoil protection on, blocking the message from being sent!"))
+		if(C.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
+			to_chat(user, span_warning("Your target seems to have some sort of mental blockage, preventing the message from being sent! It seems you've been foiled."))
 			return
 
 		G.mind_control(command, user)
@@ -357,7 +357,7 @@
 		if(L.stat == DEAD)
 			to_chat(user, span_warning("Your target is dead!"))
 			return
-		var/message = stripped_input(user, "Write a message to send to your target's brain.","Enter message")
+		var/message = tgui_input_text(user, "Message to send to your target's brain", "Enter message")
 		if(!message)
 			return
 		if(QDELETED(L) || L.stat == DEAD)
@@ -514,7 +514,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 				span_userdanger("[user] stuns you with [src]!"))
 			target.Jitter(20)
 			target.set_confusion(max(10, target.get_confusion()))
-			target.stuttering = max(8, target.stuttering)
+			target.set_timed_status_effect(16 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
 			target.Paralyze(knockdown_time * (HAS_TRAIT(target, TRAIT_STUNRESISTANCE) ? 0.1 : 1))
 		if(BATON_SLEEP)
@@ -536,22 +536,22 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 
 /obj/item/melee/baton/abductor/proc/SleepAttack(mob/living/L,mob/living/user)
 	playsound(src, on_stun_sound, 50, TRUE, -1)
-	if(L.incapacitated(TRUE, TRUE))
-		if(L.anti_magic_check(FALSE, FALSE, TRUE))
-			to_chat(user, span_warning("The specimen's tinfoil protection is interfering with the sleep inducement!"))
-			L.visible_message(span_danger("[user] tried to induced sleep in [L] with [src], but [L.p_their()] tinfoil protection [L.p_them()]!"), \
-								span_userdanger("You feel a strange wave of heavy drowsiness wash over you, but your tinfoil protection deflects most of it!"))
+	if(L.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
+		if(L.can_block_magic(MAGIC_RESISTANCE_MIND))
+			to_chat(user, span_warning("The specimen has some kind of mental protection that is interfering with the sleep inducement! It seems you've been foiled."))
+			L.visible_message(span_danger("[user] tried to induced sleep in [L] with [src], but is unsuccessful!"), \
+			span_userdanger("You feel a strange wave of heavy drowsiness wash over you!"))
 			L.adjust_drowsyness(2)
 			return
 		L.visible_message(span_danger("[user] induces sleep in [L] with [src]!"), \
-							span_userdanger("You suddenly feel very drowsy!"))
+		span_userdanger("You suddenly feel very drowsy!"))
 		L.Sleeping(sleep_time)
 		log_combat(user, L, "put to sleep")
 	else
-		if(L.anti_magic_check(FALSE, FALSE, TRUE, 0))
-			to_chat(user, span_warning("The specimen's tinfoil protection is completely blocking our sleep inducement methods!"))
-			L.visible_message(span_danger("[user] tried to induce sleep in [L] with [src], but [L.p_their()] tinfoil protection completely protected [L.p_them()]!"), \
-								span_userdanger("Any sense of drowsiness is quickly diminished as your tinfoil protection deflects the effects!"))
+		if(L.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
+			to_chat(user, span_warning("The specimen has some kind of mental protection that is completely blocking our sleep inducement methods! It seems you've been foiled."))
+			L.visible_message(span_danger("[user] tried to induce sleep in [L] with [src], but is unsuccessful!"), \
+			span_userdanger("Any sense of drowsiness is quickly diminished!"))
 			return
 		L.adjust_drowsyness(1)
 		to_chat(user, span_warning("Sleep inducement works fully only on stunned specimens! "))
@@ -652,10 +652,9 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
-/obj/item/radio/headset/abductor/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
-		return // Stops humans from disassembling abductor headsets.
-	return ..()
+// Stops humans from disassembling abductor headsets.
+/obj/item/radio/headset/abductor/screwdriver_act(mob/living/user, obj/item/tool)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/item/abductor_machine_beacon
 	name = "machine beacon"
@@ -759,7 +758,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 30))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-			for(var/i = 1, i <= framestackamount, i++)
+			for(var/i in 0 to framestackamount)
 				new framestack(get_turf(src))
 			qdel(src)
 			return
@@ -866,5 +865,5 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	icon_state = "abductor"
 	inhand_icon_state = "bl_suit"
 	worn_icon = 'icons/mob/clothing/under/syndicate.dmi'
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 10, bio = 10, rad = 0, fire = 0, acid = 0)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 10, bio = 10, fire = 0, acid = 0)
 	can_adjust = FALSE

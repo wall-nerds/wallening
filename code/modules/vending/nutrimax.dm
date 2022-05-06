@@ -5,6 +5,7 @@
 	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
+	panel_type = "panel2"
 	light_mask = "nutri-light-mask"
 	products = list(
 		/obj/item/reagent_containers/glass/bottle/nutrient/ez = 30,
@@ -23,8 +24,8 @@
 		/obj/item/reagent_containers/glass/bottle/diethylamine = 5
 	)
 	refill_canister = /obj/item/vending_refill/hydronutrients
-	default_price = PAYCHECK_ASSISTANT * 0.8
-	extra_price = PAYCHECK_HARD * 0.8
+	default_price = PAYCHECK_CREW * 0.8
+	extra_price = PAYCHECK_COMMAND * 0.8
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/hydronutrients

@@ -154,37 +154,37 @@ SUBSYSTEM_DEF(id_access)
 	sub_department_managers_tgui = list(
 		"[ACCESS_CAPTAIN]" = list(
 			"regions" = list(REGION_COMMAND),
-			"head" = "Captain",
+			"head" = JOB_CAPTAIN,
 			"templates" = list(),
 			"pdas" = list(),
 		),
 		"[ACCESS_HOP]" = list(
 			"regions" = list(REGION_GENERAL, REGION_SUPPLY),
-			"head" = "Head of Personnel",
+			"head" = JOB_HEAD_OF_PERSONNEL,
 			"templates" = list(),
 			"pdas" = list(),
 		),
 		"[ACCESS_HOS]" = list(
 			"regions" = list(REGION_SECURITY),
-			"head" = "Head of Security",
+			"head" = JOB_HEAD_OF_SECURITY,
 			"templates" = list(),
 			"pdas" = list(),
 		),
 		"[ACCESS_CMO]" = list(
 			"regions" = list(REGION_MEDBAY),
-			"head" = "Chief Medical Officer",
+			"head" = JOB_CHIEF_MEDICAL_OFFICER,
 			"templates" = list(),
 			"pdas" = list(),
 		),
 		"[ACCESS_RD]" = list(
 			"regions" = list(REGION_RESEARCH),
-			"head" = "Research Director",
+			"head" = JOB_RESEARCH_DIRECTOR,
 			"templates" = list(),
 			"pdas" = list(),
 		),
 		"[ACCESS_CE]" = list(
 			"regions" = list(REGION_ENGINEERING),
-			"head" = "Chief Engineer",
+			"head" = JOB_CHIEF_ENGINEER,
 			"templates" = list(),
 			"pdas" = list(),
 		),
@@ -211,7 +211,7 @@ SUBSYSTEM_DEF(id_access)
 		var/datum/id_trim/trim = trim_singletons_by_path[trim_path]
 		centcom_job_templates[trim_path] = trim.assignment
 
-	var/list/all_pda_paths = typesof(/obj/item/pda)
+	var/list/all_pda_paths = typesof(/obj/item/modular_computer/tablet/pda)
 	var/list/pda_regions = PDA_PAINTING_REGIONS
 	for(var/pda_path in all_pda_paths)
 		if(!(pda_path in pda_regions))
@@ -225,7 +225,7 @@ SUBSYSTEM_DEF(id_access)
 				if(!(whitelisted_region in manager_regions))
 					continue
 				var/list/manager_pdas = manager_info["pdas"]
-				var/obj/item/pda/fake_pda = pda_path
+				var/obj/item/modular_computer/tablet/pda/fake_pda = pda_path
 				manager_pdas[pda_path] = initial(fake_pda.name)
 				station_pda_templates[pda_path] = initial(fake_pda.name)
 
@@ -248,7 +248,7 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access["[ACCESS_SECURITY]"] = "Security"
 	desc_by_access["[ACCESS_BRIG]"] = "Holding Cells"
 	desc_by_access["[ACCESS_COURT]"] = "Courtroom"
-	desc_by_access["[ACCESS_FORENSICS_LOCKERS]"] = "Forensics"
+	desc_by_access["[ACCESS_FORENSICS]"] = "Forensics"
 	desc_by_access["[ACCESS_MEDICAL]"] = "Medical"
 	desc_by_access["[ACCESS_GENETICS]"] = "Genetics Lab"
 	desc_by_access["[ACCESS_MORGUE]"] = "Morgue"
@@ -301,7 +301,7 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access["[ACCESS_KEYCARD_AUTH]"] = "Keycode Auth."
 	desc_by_access["[ACCESS_TCOMSAT]"] = "Telecommunications"
 	desc_by_access["[ACCESS_GATEWAY]"] = "Gateway"
-	desc_by_access["[ACCESS_SEC_DOORS]"] = "Brig"
+	desc_by_access["[ACCESS_BRIG_ENTRANCE]"] = "Brig"
 	desc_by_access["[ACCESS_MINERAL_STOREROOM]"] = "Mineral Storage"
 	desc_by_access["[ACCESS_MINISAT]"] = "AI Satellite"
 	desc_by_access["[ACCESS_WEAPONS]"] = "Weapon Permit"
@@ -312,6 +312,7 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access["[ACCESS_MECH_SCIENCE]"] = "Science Mech Access"
 	desc_by_access["[ACCESS_MECH_ENGINE]"] = "Engineering Mech Access"
 	desc_by_access["[ACCESS_AUX_BASE]"] = "Auxiliary Base"
+	desc_by_access["[ACCESS_SERVICE]"] = "Service Hallway"
 	desc_by_access["[ACCESS_CENT_GENERAL]"] = "Code Grey"
 	desc_by_access["[ACCESS_CENT_THUNDER]"] = "Code Yellow"
 	desc_by_access["[ACCESS_CENT_STORAGE]"] = "Code Orange"
@@ -428,6 +429,7 @@ SUBSYSTEM_DEF(id_access)
 	id_card.trim_icon_override = trim.trim_icon
 	id_card.trim_state_override = trim.trim_state
 	id_card.trim_assignment_override = trim.assignment
+	id_card.sechud_icon_state_override = trim.sechud_icon_state
 
 	if(!check_forged || !id_card.forged)
 		id_card.assignment = trim.assignment
@@ -444,6 +446,7 @@ SUBSYSTEM_DEF(id_access)
 	id_card.trim_icon_override = null
 	id_card.trim_state_override = null
 	id_card.trim_assignment_override = null
+	id_card.sechud_icon_state_override = null
 
 /**
  * Adds the accesses associated with a trim to an ID card.

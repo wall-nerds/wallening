@@ -118,7 +118,7 @@
 		/obj/item/food/grown/garlic = 1,
 		/obj/item/food/meatball = 1
 	)
-	result =  /obj/item/food/rawkhinkali
+	result = /obj/item/food/rawkhinkali
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/meatbun
@@ -193,7 +193,7 @@
 	reqs = list(
 		/obj/item/food/meat/cutlet = 2,
 		/obj/item/food/grown/tomato = 1,
-		/obj/item/food/cheese = 2,
+		/obj/item/food/cheese/wedge = 2,
 		/obj/item/food/spaghetti/raw = 1
 	)
 	result = /obj/item/food/lasagna

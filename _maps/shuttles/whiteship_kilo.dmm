@@ -32,15 +32,16 @@
 	callTime = 250;
 	can_move_docking_ports = 1;
 	dir = 8;
-	dwidth = 11;
-	height = 17;
+	dwidth = 14;
+	height = 23;
 	id = "whiteship";
 	launch_status = 0;
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Salvage Ship";
 	port_direction = 8;
 	preferred_direction = 4;
-	width = 33
+	width = 16;
+	dheight = 18
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/abandoned/cargo)
@@ -89,7 +90,6 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 1;
 	pixel_y = -24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -145,7 +145,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium/yellow,
@@ -159,8 +159,6 @@
 	pixel_y = 8
 	},
 /obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000;
 	pixel_x = 3;
 	pixel_y = -1
 	},
@@ -330,7 +328,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -24
 	},
 /obj/machinery/button/door/directional/north{
@@ -448,7 +446,7 @@
 	pixel_y = 32
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/plating,
@@ -698,7 +696,6 @@
 	pixel_x = -32
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 1;
 	pixel_y = -24
 	},
 /obj/machinery/light/small/directional/south,
@@ -741,7 +738,6 @@
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/airalarm/all_access{
-	dir = 1;
 	pixel_y = -24
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -863,7 +859,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
@@ -941,10 +937,6 @@
 "bK" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/crew)
-"bL" = (
-/obj/structure/sign/poster/contraband/random,
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/abandoned/crew)
 "bM" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/mineral/titanium/nodiagonal,
@@ -990,7 +982,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned/bridge)
 "bS" = (
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -1021,15 +1013,20 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/abandoned/bar)
 "bX" = (
-/obj/structure/bed,
+/obj/structure/bed{
+	dir = 4
+	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -24
 	},
 /obj/machinery/light/small/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/item/bedsheet/brown,
+/obj/item/bedsheet/brown{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random/directional/north,
 /turf/open/floor/wood,
 /area/shuttle/abandoned/crew)
 "bY" = (
@@ -1040,13 +1037,14 @@
 /obj/structure/bed,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /obj/machinery/light/small/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/item/bedsheet/brown,
 /obj/effect/decal/cleanable/greenglow,
+/obj/structure/sign/poster/contraband/random/directional/north,
 /turf/open/floor/wood,
 /area/shuttle/abandoned/crew)
 "ca" = (
@@ -1060,6 +1058,7 @@
 	pixel_y = 8
 	},
 /obj/machinery/airalarm/all_access{
+	dir = 1;
 	pixel_y = 22
 	},
 /turf/open/floor/carpet,
@@ -1103,7 +1102,7 @@
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/bot,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -24
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -1157,9 +1156,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/light/small/directional/west,
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
+/obj/structure/sign/poster/contraband/random/directional/west,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -1402,7 +1399,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 1
 	},
@@ -1590,7 +1587,6 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 1;
 	pixel_y = -24
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -1656,7 +1652,7 @@
 /obj/machinery/microwave{
 	pixel_y = 5
 	},
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/abandoned/bar)
@@ -1680,7 +1676,6 @@
 	pixel_y = 6
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 1;
 	pixel_y = -24
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -1728,9 +1723,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm/directional/south,
 /obj/effect/spawner/random/maintenance/two,
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
+/obj/structure/sign/poster/contraband/random/directional/west,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/cargo)
 "NF" = (
@@ -1995,7 +1988,7 @@ ah
 aJ
 be
 bx
-bL
+bK
 bX
 co
 cF
@@ -2031,7 +2024,7 @@ at
 aL
 bg
 by
-bL
+bK
 bZ
 cp
 cH

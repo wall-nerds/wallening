@@ -140,7 +140,7 @@
 				to_chat(C, span_userdanger("The divine explosion sears you!"))
 				C.Paralyze(40)
 				C.adjust_fire_stacks(5)
-				C.IgniteMob()
+				C.ignite_mob()
 	..()
 
 /datum/chemical_reaction/gunpowder
@@ -153,10 +153,10 @@
 	required_temp = 474
 	strengthdiv = 10
 	modifier = 5
-	mix_message = "<span class='boldannounce'>Sparks start flying around the gunpowder!</span>"
+	mix_message = "<span class='boldnotice'>Sparks start flying around the gunpowder!</span>"
 
 /datum/chemical_reaction/reagent_explosion/gunpowder_explosion/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
-	addtimer(CALLBACK(src, .proc/default_explode, holder, created_volume), rand(5,10) SECONDS)
+	addtimer(CALLBACK(src, .proc/default_explode, holder, created_volume, modifier, strengthdiv), rand(5,10) SECONDS)
 
 /datum/chemical_reaction/thermite
 	results = list(/datum/reagent/thermite = 3)
@@ -430,7 +430,7 @@
 /datum/chemical_reaction/cryostylane/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	var/datum/reagent/oxygen = holder.has_reagent(/datum/reagent/oxygen) //If we have oxygen, bring in the old cooling effect
 	if(oxygen)
-		holder.chem_temp =  max(holder.chem_temp - (10 * oxygen.volume * 2),0)
+		holder.chem_temp = max(holder.chem_temp - (10 * oxygen.volume * 2),0)
 		holder.remove_reagent(/datum/reagent/oxygen, oxygen.volume) // halves the temperature - tried to bring in some of the old effects at least!
 	return
 
@@ -555,7 +555,7 @@
 		added_delay += 1.5 SECONDS
 	if(created_volume >= 10) //10 units minimum for lightning, 40 units for secondary blast, 75 units for tertiary blast.
 		addtimer(CALLBACK(src, .proc/zappy_zappy, holder, T3), added_delay)
-	addtimer(CALLBACK(src, .proc/default_explode, holder, created_volume), added_delay)
+	addtimer(CALLBACK(src, .proc/default_explode, holder, created_volume, modifier, strengthdiv), added_delay)
 
 /datum/chemical_reaction/reagent_explosion/teslium_lightning/proc/zappy_zappy(datum/reagents/holder, power)
 	if(QDELETED(holder.my_atom))

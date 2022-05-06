@@ -2,6 +2,7 @@
 	name = BODY_ZONE_PRECISE_EYES
 	icon_state = "eyeballs"
 	desc = "I see you!"
+	visual = TRUE
 	zone = BODY_ZONE_PRECISE_EYES
 	slot = ORGAN_SLOT_EYES
 	gender = PLURAL
@@ -41,7 +42,6 @@
 		old_eye_color = human_owner.eye_color
 		if(eye_color)
 			human_owner.eye_color = eye_color
-			human_owner.regenerate_icons()
 		else
 			eye_color = human_owner.eye_color
 		if(HAS_TRAIT(human_owner, TRAIT_NIGHT_VISION) && !lighting_alpha)
@@ -57,7 +57,6 @@
 		old_eye_color = affected_human.eye_color
 		if(eye_color)
 			affected_human.eye_color = eye_color
-			affected_human.regenerate_icons()
 		else
 			eye_color = affected_human.eye_color
 		if(HAS_TRAIT(affected_human, TRAIT_NIGHT_VISION) && !lighting_alpha)
@@ -74,7 +73,7 @@
 	if(ishuman(eye_owner) && eye_color)
 		var/mob/living/carbon/human/human_owner = eye_owner
 		human_owner.eye_color = old_eye_color
-		human_owner.regenerate_icons()
+		human_owner.update_body()
 	eye_owner.cure_blind(EYE_DAMAGE)
 	eye_owner.cure_nearsighted(EYE_DAMAGE)
 	eye_owner.set_blindness(0)
@@ -82,6 +81,10 @@
 	eye_owner.clear_fullscreen("eye_damage", 0)
 	eye_owner.update_sight()
 
+//Gotta reset the eye color, because that persists
+/obj/item/organ/eyes/enter_wardrobe()
+	. = ..()
+	eye_color = initial(eye_color)
 
 /obj/item/organ/eyes/on_life(delta_time, times_fired)
 	. = ..()
@@ -91,21 +94,28 @@
 		damaged = TRUE
 		if((organ_flags & ORGAN_FAILING))
 			eye_owner.become_blind(EYE_DAMAGE)
-		else if(damage > 30)
-			eye_owner.overlay_fullscreen("eye_damage", /atom/movable/screen/fullscreen/impaired, 2)
-		else
-			eye_owner.overlay_fullscreen("eye_damage", /atom/movable/screen/fullscreen/impaired, 1)
+			return
+
+		var/obj/item/clothing/glasses/eyewear = eye_owner.glasses
+		var/has_prescription_glasses = istype(eyewear) && eyewear.vision_correction
+
+		if(has_prescription_glasses)
+			return
+
+		var/severity = damage > 30 ? 2 : 1
+		eye_owner.overlay_fullscreen("eye_damage", /atom/movable/screen/fullscreen/impaired, severity)
+		return
+
 	//called once since we don't want to keep clearing the screen of eye damage for people who are below 20 damage
-	else if(damaged)
+	if(damaged)
 		damaged = FALSE
 		eye_owner.clear_fullscreen("eye_damage")
 		eye_owner.cure_blind(EYE_DAMAGE)
-	return
 
 /obj/item/organ/eyes/night_vision
 	name = "shadow eyes"
 	desc = "A spooky set of eyes that can see in the dark."
-	see_in_dark = 8
+	see_in_dark = NIGHTVISION_FOV_RANGE
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/night_vision = TRUE
@@ -171,7 +181,7 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(prob(10 * severity))
-		damage += 20 * severity
+		applyOrganDamage(20 * severity)
 		to_chat(owner, span_warning("Your eyes start to fizzle in their sockets!"))
 		do_sparks(2, TRUE, owner)
 		owner.emote("scream")
@@ -180,8 +190,16 @@
 	name = "\improper X-ray eyes"
 	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
 	eye_color = "000"
-	see_in_dark = 8
+	see_in_dark = NIGHTVISION_FOV_RANGE
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
+
+/obj/item/organ/eyes/robotic/xray/Insert(mob/living/carbon/eye_owner, special = FALSE)
+	. = ..()
+	ADD_TRAIT(eye_owner, TRAIT_XRAY_VISION, ORGAN_TRAIT)
+
+/obj/item/organ/eyes/robotic/xray/Remove(mob/living/carbon/eye_owner, special = FALSE)
+	REMOVE_TRAIT(eye_owner, TRAIT_XRAY_VISION, ORGAN_TRAIT)
+	return ..()
 
 /obj/item/organ/eyes/robotic/thermals
 	name = "thermal eyes"
@@ -190,7 +208,7 @@
 	sight_flags = SEE_MOBS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	flash_protect = FLASH_PROTECTION_SENSITIVE
-	see_in_dark = 8
+	see_in_dark = NIGHTVISION_FOV_RANGE
 
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
@@ -381,6 +399,7 @@
 
 /obj/item/organ/eyes/robotic/glow/proc/start_visuals()
 	if(!islist(eye_lighting))
+		eye_lighting = list()
 		regenerate_light_effects()
 	if((eye_lighting.len < light_beam_distance) || !on_mob)
 		regenerate_light_effects()

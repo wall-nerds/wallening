@@ -1,6 +1,6 @@
 /obj/item/food/drug
 	name = "generic drug"
-	desc =  "I am error"
+	desc = "I am error"
 	icon = 'icons/obj/drugs.dmi'
 	foodtypes = GROSS
 	food_flags = FOOD_FINGER_FOOD
@@ -64,7 +64,7 @@
 	if(QDELING(src) || !hit_atom)	//Invalid loc
 		return
 	var/obj/item/shard/ampoule_shard = new(drop_location())
-	playsound(src, "shatter", 40, TRUE)
+	playsound(src, SFX_SHATTER, 40, TRUE)
 	transfer_fingerprints_to(ampoule_shard)
 	spillable = TRUE
 	SplashReagents(hit_atom, TRUE)

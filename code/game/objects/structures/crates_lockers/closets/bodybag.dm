@@ -14,12 +14,14 @@
 	material_drop = /obj/item/stack/sheet/cloth
 	delivery_icon = null //unwrappable
 	anchorable = FALSE
+	cutting_tool = null // Bodybags are not deconstructed by cutting
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	drag_slowdown = 0
 	has_closed_overlay = FALSE
 	var/foldedbag_path = /obj/item/bodybag
 	var/obj/item/bodybag/foldedbag_instance = null
 	var/tagged = FALSE // so closet code knows to put the tag overlay back
+	can_install_electronics = FALSE
 
 /obj/structure/closet/body_bag/Destroy()
 	// If we have a stored bag, and it's in nullspace (not in someone's hand), delete it.
@@ -29,10 +31,9 @@
 
 /obj/structure/closet/body_bag/attackby(obj/item/interact_tool, mob/user, params)
 	if (istype(interact_tool, /obj/item/pen) || istype(interact_tool, /obj/item/toy/crayon))
-		if(!user.is_literate())
-			to_chat(user, span_notice("You scribble illegibly on [src]!"))
+		if(!user.can_write(interact_tool))
 			return
-		var/t = stripped_input(user, "What would you like the label to be?", name, null, 53)
+		var/t = tgui_input_text(user, "What would you like the label to be?", name, max_length = 53)
 		if(user.get_active_held_item() != interact_tool)
 			return
 		if(!user.canUseTopic(src, BE_CLOSE))
@@ -140,6 +141,11 @@
 		content.forceMove(B)
 		if(isliving(content))
 			to_chat(content, span_userdanger("You're suddenly forced into a tiny, compressed space!"))
+		if(iscarbon(content))
+			var/mob/living/carbon/mob = content
+			if (mob.dna.get_mutation(/datum/mutation/human/dwarfism))
+				max_weight_of_contents = max(WEIGHT_CLASS_NORMAL, max_weight_of_contents)
+				continue
 		if(!isitem(content))
 			max_weight_of_contents = max(WEIGHT_CLASS_BULKY, max_weight_of_contents)
 			continue

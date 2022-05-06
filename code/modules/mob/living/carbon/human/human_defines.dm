@@ -17,10 +17,10 @@
 	var/hair_color = "#000000"
 	var/hairstyle = "Bald"
 
-	///Colour used for the hair gradient.
-	var/grad_color = "#000000"
-	///Style used for the hair gradient.
-	var/grad_style
+	///Colours used for hair and facial hair gradients.
+	var/list/grad_color
+	///Styles used for hair and facial hair gradients.
+	var/list/grad_style
 
 	//Facial hair colour and style
 	var/facial_hair_color = "#000000"
@@ -64,12 +64,11 @@
 	/// What types of mobs are allowed to ride/buckle to this mob
 	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/slime, /mob/living/simple_animal/parrot))
 	var/lastpuke = 0
-	var/last_fire_update
 	var/account_id
 
 	var/hardcore_survival_score = 0
-	/// For agendered spessmen, which body type to use
-	var/body_type = MALE
+	/// Which body type to use
+	var/physique = MALE
 
 	/// How many "units of blood" we have on our hands
 	var/blood_in_hands = 0

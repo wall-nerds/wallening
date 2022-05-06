@@ -8,6 +8,7 @@
 #define GIRDER_REINF 2
 #define GIRDER_DISPLACED 3
 #define GIRDER_DISASSEMBLED 4
+#define GIRDER_TRAM 5
 
 //rwall construction states
 #define INTACT 0
@@ -101,6 +102,7 @@
 #define CAT_SEAFOOD "Seafood"
 #define CAT_MISCFOOD "Misc. Food"
 #define CAT_MEXICAN "Mexican Food"
+#define CAT_MOTH "Mothic Food"
 #define CAT_PASTRY "Pastries"
 #define CAT_PIE "Pies"
 #define CAT_PIZZA "Pizzas"
@@ -111,6 +113,7 @@
 #define CAT_ICE "Frozen"
 #define CAT_DRINK "Drinks"
 #define CAT_CHEMISTRY "Chemistry"
+#define CAT_ATMOSPHERIC "Atmospheric"
 
 //rcd modes
 #define RCD_FLOORWALL 0

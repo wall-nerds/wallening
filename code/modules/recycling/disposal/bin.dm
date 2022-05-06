@@ -5,12 +5,11 @@
 /obj/machinery/disposal
 	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
 	density = TRUE
-	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 90, ACID = 30)
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	obj_flags = CAN_BE_HIT | USES_TGUI
-	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 
 	var/datum/gas_mixture/air_contents // internal reservoir
 	var/full_pressure = FALSE
@@ -42,7 +41,10 @@
 	//gas.volume = 1.05 * CELLSTANDARD
 	update_appearance()
 	RegisterSignal(src, COMSIG_RAT_INTERACT, .proc/on_rat_rummage)
-
+	var/static/list/loc_connections = list(
+		COMSIG_CARBON_DISARM_COLLIDE = .proc/trash_carbon,
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	return INITIALIZE_HINT_LATELOAD //we need turfs to have air
 
 /obj/machinery/disposal/proc/trunk_check()
@@ -119,9 +121,9 @@
 				for(var/i = 1 to rand(1,3))
 					new pickedcoin(get_turf(king))
 			if(6 to 33)
-				say(pick("Treasure!","Our precious!","Cheese!"))
+				king.say(pick("Treasure!","Our precious!","Cheese!"))
 				to_chat(king, span_notice("Score! You find some cheese!"))
-				new /obj/item/food/cheese(get_turf(king))
+				new /obj/item/food/cheese/wedge(get_turf(king))
 			else
 				var/pickedtrash = pick(GLOB.ratking_trash)
 				to_chat(king, span_notice("You just find more garbage and dirt. Lovely, but beneath you now."))
@@ -222,7 +224,7 @@
 	flush = FALSE
 
 /obj/machinery/disposal/proc/newHolderDestination(obj/structure/disposalholder/H)
-	for(var/obj/item/small_delivery/O in src)
+	for(var/obj/item/delivery/O in src)
 		H.tomail = TRUE
 		return
 
@@ -253,7 +255,7 @@
 		AM.forceMove(T)
 	..()
 
-/obj/machinery/disposal/get_dumping_location(obj/item/storage/source,mob/user)
+/obj/machinery/disposal/get_dumping_location()
 	return src
 
 //How disposal handles getting a storage dump from a storage object
@@ -414,21 +416,19 @@
 				do_flush()
 		flush_count = 0
 
-	updateDialog()
-
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE) // flush can happen even without power
 		do_flush()
 
 	if(machine_stat & NOPOWER) // won't charge if no power
 		return
 
-	use_power(100) // base power usage
+	use_power(idle_power_usage) // base power usage
 
 	if(!pressure_charging) // if off or ready, no need to charge
 		return
 
 	// otherwise charge
-	use_power(500) // charging power usage
+	use_power(idle_power_usage) // charging power usage
 
 	var/atom/L = loc //recharging from loc turf
 
@@ -527,3 +527,14 @@
 
 	INVOKE_ASYNC(src, /obj/machinery/disposal/.proc/rat_rummage, king)
 
+/obj/machinery/disposal/proc/trash_carbon(datum/source, mob/living/carbon/shover, mob/living/carbon/target, shove_blocked)
+	SIGNAL_HANDLER
+	if(!shove_blocked)
+		return
+	target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
+	target.forceMove(src)
+	target.visible_message(span_danger("[shover.name] shoves [target.name] into \the [src]!"),
+		span_userdanger("You're shoved into \the [src] by [target.name]!"), span_hear("You hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, src)
+	to_chat(src, span_danger("You shove [target.name] into \the [src]!"))
+	log_combat(src, target, "shoved", "into [src] (disposal bin)")
+	return COMSIG_CARBON_SHOVE_HANDLED

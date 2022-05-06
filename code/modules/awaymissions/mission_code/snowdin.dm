@@ -5,6 +5,7 @@
 	icon_state = "awaycontent1"
 	requires_power = FALSE
 	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 /area/awaymission/snowdin/outside
 	name = "Snowdin Tundra Plains"
@@ -15,6 +16,7 @@
 	icon_state = "awaycontent2"
 	requires_power = TRUE
 	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/post/medbay
 	name = "Snowdin Outpost - Medbay"
@@ -97,11 +99,13 @@
 	name = "Snowdin Igloos"
 	icon_state = "awaycontent14"
 	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/cave
 	name = "Snowdin Caves"
 	icon_state = "awaycontent15"
 	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/cave/cavern
 	name = "Snowdin Depths"
@@ -116,17 +120,20 @@
 	name = "Snowdin Main Base"
 	icon_state = "awaycontent16"
 	static_lighting = TRUE
+	base_lighting_alpha = 0
 	requires_power = TRUE
 
 /area/awaymission/snowdin/dungeon1
 	name = "Snowdin Depths"
 	icon_state = "awaycontent17"
 	static_lighting = TRUE
+	base_lighting_alpha = 0
 
 /area/awaymission/snowdin/sekret
 	name = "Snowdin Operations"
 	icon_state = "awaycontent18"
 	static_lighting = TRUE
+	base_lighting_alpha = 0
 	requires_power = TRUE
 
 /area/shuttle/snowdin/elevator1
@@ -190,15 +197,15 @@
 		return
 	var/mob/living/carbon/human/burn_human = burn_living
 	var/datum/species/burn_species = burn_human.dna.species
-	if(istype(burn_species, /datum/species/plasmaman) || istype(burn_species, /datum/species/android) || istype(burn_species, /datum/species/synth)) //ignore plasmamen/robotic species
+	if(istype(burn_species, /datum/species/plasmaman) || istype(burn_species, /datum/species/android)) //ignore plasmamen/robotic species
 		return
 
 	var/list/plasma_parts = list()//a list of the organic parts to be turned into plasma limbs
 	var/list/robo_parts = list()//keep a reference of robotic parts so we know if we can turn them into a plasmaman
 	for(var/obj/item/bodypart/burn_limb as anything in burn_human.bodyparts)
-		if(burn_limb.status == BODYPART_ORGANIC && burn_limb.species_id != SPECIES_PLASMAMAN) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
+		if(IS_ORGANIC_LIMB(burn_limb) && burn_limb.limb_id != SPECIES_PLASMAMAN) //getting every organic, non-plasmaman limb (augments/androids are immune to this)
 			plasma_parts += burn_limb
-		if(burn_limb.status == BODYPART_ROBOTIC)
+		if(!IS_ORGANIC_LIMB(burn_limb))
 			robo_parts += burn_limb
 
 	burn_human.adjustToxLoss(15)
@@ -208,10 +215,11 @@
 		burn_human.emote("scream")
 		ADD_TRAIT(burn_limb, TRAIT_PLASMABURNT, src)
 		burn_human.update_body_parts()
-		burn_human.visible_message(span_warning("[burn_human] screams in pain as [burn_human.p_their()] [burn_limb] melts down to the bone!"), \
-			span_userdanger("You scream out in pain as your [burn_limb] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
+		burn_human.emote("scream")
+		burn_human.visible_message(span_warning("[burn_human]'s [burn_limb.name] melts down to the bone!"), \
+			span_userdanger("You scream out in pain as your [burn_limb.name] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
 	if(!plasma_parts.len && !robo_parts.len) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
-		burn_human.IgniteMob()
+		burn_human.ignite_mob()
 		burn_human.set_species(/datum/species/plasmaman)
 		burn_human.visible_message(span_warning("[burn_human] bursts into a brilliant purple flame as [burn_human.p_their()] entire body is that of a skeleton!"), \
 			span_userdanger("Your senses numb as all of your remaining flesh is turned into a purple slurry, sloshing off your body and leaving only your bones to show in a vibrant purple!"))
@@ -440,7 +448,7 @@
 /obj/item/clothing/under/syndicate/coldres
 	name = "insulated tactical turtleneck"
 	desc = "A nondescript and slightly suspicious-looking turtleneck with digital camouflage cargo pants. The interior has been padded with special insulation for both warmth and protection."
-	armor = list(MELEE = 20, BULLET = 10, LASER = 0,ENERGY = 5, BOMB = 0, BIO = 0, RAD = 0, FIRE = 25, ACID = 25)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 0,ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 25, ACID = 25)
 	cold_protection = CHEST|GROIN|ARMS|LEGS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
@@ -458,40 +466,6 @@
 	name = "weakened wand of healing"
 	desc = "This wand uses healing magics to heal and revive. The years of the cold have weakened the magic inside the wand."
 	max_charges = 5
-
-/obj/effect/mob_spawn/human/syndicatesoldier/coldres
-	name = "Syndicate Snow Operative"
-	outfit = /datum/outfit/snowsyndie/corpse
-
-/datum/outfit/snowsyndie/corpse
-	name = "Syndicate Snow Operative Corpse"
-	implants = null
-
-/obj/effect/mob_spawn/human/syndicatesoldier/coldres/alive
-	name = "sleeper"
-	mob_name = "Syndicate Snow Operative"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	roundstart = FALSE
-	death = FALSE
-	faction = list(ROLE_SYNDICATE)
-	outfit = /datum/outfit/snowsyndie
-	short_desc = "You are a syndicate operative recently awoken from cryostasis in an underground outpost."
-	flavour_text = "You are a syndicate operative recently awoken from cryostasis in an underground outpost. Monitor Nanotrasen communications and record information. All intruders should be \
-	disposed of swiftly to assure no gathered information is stolen or lost. Try not to wander too far from the outpost as the caves can be a deadly place even for a trained operative such as yourself."
-
-/datum/outfit/snowsyndie
-	name = "Syndicate Snow Operative"
-	uniform = /obj/item/clothing/under/syndicate/coldres
-	shoes = /obj/item/clothing/shoes/combat/coldres
-	ears = /obj/item/radio/headset/syndicate/alt
-	r_pocket = /obj/item/gun/ballistic/automatic/pistol
-	id = /obj/item/card/id/advanced/chameleon
-	implants = list(/obj/item/implant/exile)
-	id_trim = /datum/id_trim/chameleon/operative
-
-/obj/effect/mob_spawn/human/syndicatesoldier/coldres/alive/female
-	mob_gender = FEMALE
 
 //mobs//--
 

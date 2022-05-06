@@ -167,7 +167,7 @@
 "aE" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/mecha_wreckage/ripley,
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/iron/recharge_floor,
 /area/shuttle/abandoned)
 "aF" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -205,7 +205,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/left/directional/east,
 /obj/structure/window/reinforced/tinted,
 /turf/open/floor/iron/showroomfloor/airless,
 /area/shuttle/abandoned)
@@ -270,7 +270,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/directional/south,
 /obj/effect/spawner/random/exotic/ripley,
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/iron/recharge_floor,
 /area/shuttle/abandoned)
 "aV" = (
 /obj/machinery/computer/mech_bay_power_console{
@@ -499,7 +499,7 @@
 "pe" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/shreds,
-/obj/item/storage/firstaid/ancient,
+/obj/item/storage/medkit/ancient,
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
 "tT" = (

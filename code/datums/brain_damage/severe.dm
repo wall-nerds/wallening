@@ -189,12 +189,12 @@
 		if(2)
 			if(!high_stress)
 				to_chat(owner, span_warning("You can't stop shaking..."))
-				owner.dizziness += 20
+				owner.adjust_timed_status_effect(40 SECONDS, /datum/status_effect/dizziness)
 				owner.add_confusion(20)
 				owner.Jitter(20)
 			else
 				to_chat(owner, span_warning("You feel weak and scared! If only you weren't alone..."))
-				owner.dizziness += 20
+				owner.adjust_timed_status_effect(40 SECONDS, /datum/status_effect/dizziness)
 				owner.add_confusion(20)
 				owner.Jitter(20)
 				owner.adjustStaminaLoss(50)
@@ -218,6 +218,9 @@
 				else
 					to_chat(owner, span_userdanger("You feel your heart lurching in your chest..."))
 					owner.adjustOxyLoss(8)
+		else
+			//No effect
+			return
 
 /datum/brain_trauma/severe/discoordination
 	name = "Discoordination"
@@ -227,12 +230,12 @@
 	lose_text = "<span class='notice'>You feel in control of your hands again.</span>"
 
 /datum/brain_trauma/severe/discoordination/on_gain()
-	ADD_TRAIT(owner, TRAIT_DISCOORDINATED_TOOL_USER, TRAUMA_TRAIT)
-	..()
+	. = ..()
+	owner.apply_status_effect(/datum/status_effect/discoordinated)
 
 /datum/brain_trauma/severe/discoordination/on_lose()
-	REMOVE_TRAIT(owner, TRAIT_DISCOORDINATED_TOOL_USER, TRAUMA_TRAIT)
-	..()
+	owner.remove_status_effect(/datum/status_effect/discoordinated)
+	return ..()
 
 /datum/brain_trauma/severe/pacifism
 	name = "Traumatic Non-Violence"

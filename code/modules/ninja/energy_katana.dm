@@ -45,7 +45,7 @@
 	var/list/modifiers = params2list(click_parameters)
 
 	if(LAZYACCESS(modifiers, RIGHT_CLICK) && !target.density)
-		jaunt.Teleport(user, target)
+		jaunt.teleport(user, target)
 
 /obj/item/energy_katana/pickup(mob/living/user)
 	. = ..()
@@ -93,7 +93,7 @@
 
 	if(doSpark)
 		spark_system.start()
-		playsound(get_turf(src), "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+		playsound(get_turf(src), SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 	var/msg = ""
 

@@ -5,6 +5,7 @@
 	product_ads = "Sufficiently healthy.;Efficiently produced tofu!;Mmm! So good!;Have a meal.;You need food to live!;Even prisoners deserve their daily bread!;Have some more candy corn!;Try our new ice cups!"
 	light_mask = "snack-light-mask"
 	icon_state = "sustenance"
+	panel_type = "panel2"
 	products = list(
 		/obj/item/food/tofu/prison = 24,
 		/obj/item/food/breadslice/moldy = 15,
@@ -21,8 +22,8 @@
 	)
 
 	refill_canister = /obj/item/vending_refill/sustenance
-	default_price = PAYCHECK_PRISONER
-	extra_price = PAYCHECK_PRISONER * 0.6
+	default_price = PAYCHECK_LOWER
+	extra_price = PAYCHECK_LOWER * 0.6
 	payment_department = NO_FREEBIES
 
 /obj/item/vending_refill/sustenance

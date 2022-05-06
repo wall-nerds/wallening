@@ -45,6 +45,10 @@
 	name = "white floor"
 	icon_state = "white"
 
+/turf/open/floor/holofloor/pure_white
+	name = "white floor"
+	icon_state = "pure_white"
+
 /turf/open/floor/holofloor/plating/burnmix
 	name = "burn-mix floor"
 	initial_gas_mix = BURNMIX_ATMOS
@@ -148,7 +152,7 @@
 
 /turf/open/floor/holofloor/carpet/update_icon(updates=ALL)
 	. = ..()
-	if((updates & UPDATE_SMOOTHING) && intact && smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if((updates & UPDATE_SMOOTHING) && overfloor_placed && smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src)
 
 /turf/open/floor/holofloor/wood

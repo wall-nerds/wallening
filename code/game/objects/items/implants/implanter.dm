@@ -48,11 +48,10 @@
 /obj/item/implanter/attackby(obj/item/I, mob/living/user, params)
 	if(!istype(I, /obj/item/pen))
 		return ..()
-	if(!user.is_literate())
-		to_chat(user, span_notice("You prod at [src] with [I]!"))
+	if(!user.can_write(I))
 		return
 
-	var/new_name = stripped_input(user, "What would you like the label to be?", name, null)
+	var/new_name = tgui_input_text(user, "What would you like the label to be?", name, max_length = MAX_NAME_LEN)
 	if(user.get_active_held_item() != I)
 		return
 	if(!user.canUseTopic(src, BE_CLOSE))

@@ -217,6 +217,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/nv_sci_goggles
+	name = "Night Vision Science Goggles"
+	desc = "Goggles that lets the user see in the dark and recognize chemical compounds at a glance."
+	id = "nv_scigoggles"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/plasma = 350, /datum/material/uranium = 1000)
+	build_path = /obj/item/clothing/glasses/science/night
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/roastingstick
 	name = "Advanced Roasting Stick"
 	desc = "A roasting stick for cooking sausages in exotic ovens."
@@ -325,14 +335,14 @@
 	category = list("Equipment")
 
 /datum/design/pneumatic_seal
-	name = "Pneumatic Seal"
-	desc = "A heavy brace used to seal doors. Useful for keeping out people without the dexterity to remove it."
+	name = "Pneumatic Airlock Seal"
+	desc = "A heavy brace used to seal airlocks. Useful for keeping out people without the dexterity to remove it."
 	id = "pneumatic_seal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 10000)
 	build_path = /obj/item/door_seal
 	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
 
 /////////////////////////////////////////
 ////////////Janitor Designs//////////////
@@ -345,7 +355,7 @@
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 200)
 	build_path = /obj/item/mop/advanced
-	category = list("Equipment")
+	category = list("Equipment", "Tools", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/normtrash
@@ -590,6 +600,16 @@
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = 100)
 	build_path = /obj/item/evidencebag
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/inspector
+	name = "N-Spect Scanner"
+	desc = "Central Command-issued inspection device. Performs inspections according to Nanotrasen protocols when activated, then prints an encrypted report regarding the maintenance of the station. Definitely not giving you cancer."
+	id = "inspector"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/gold = 1000, /datum/material/uranium = 2000)
+	build_path = /obj/item/inspector
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

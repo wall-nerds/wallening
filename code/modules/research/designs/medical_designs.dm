@@ -5,7 +5,7 @@
 /datum/design/healthanalyzer
 	name = "Health Analyzer"
 	id = "healthanalyzer"
-	build_type =  PROTOLATHE | AWAY_LATHE
+	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 50)
 	build_path = /obj/item/healthanalyzer
 	category = list("Medical Designs")
@@ -72,7 +72,7 @@
 	category = list("Medical Designs")
 
 /datum/design/ph_meter
-	name = "Chemical analyser"
+	name = "Chemical Analyzer"
 	id = "ph_meter"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL

@@ -5,7 +5,7 @@
 ///How often a carbon becomes penalized
 #define BEYBLADE_DIZZINESS_PROBABILITY 20
 ///How long the screenshake lasts
-#define BEYBLADE_DIZZINESS_VALUE 10
+#define BEYBLADE_DIZZINESS_DURATION 20 SECONDS
 ///How much confusion a carbon gets when penalized
 #define BEYBLADE_CONFUSION_INCREMENT 10
 ///A max for how penalized a carbon will be for beyblading
@@ -13,13 +13,13 @@
 
 //The code execution of the emote datum is located at code/datums/emotes.dm
 /mob/proc/emote(act, m_type = null, message = null, intentional = FALSE, force_silence = FALSE)
-	act = lowertext(act)
 	var/param = message
 	var/custom_param = findchar(act, " ")
 	if(custom_param)
 		param = copytext(act, custom_param + length(act[custom_param]))
 		act = copytext(act, 1, custom_param)
 
+	act = lowertext(act)
 	var/list/key_emotes = GLOB.emote_list[act]
 
 	if(!length(key_emotes))
@@ -121,13 +121,13 @@
 		return
 	if(prob(BEYBLADE_DIZZINESS_PROBABILITY))
 		to_chat(user, span_warning("You feel woozy from spinning."))
-		user.Dizzy(BEYBLADE_DIZZINESS_VALUE)
+		user.set_timed_status_effect(BEYBLADE_DIZZINESS_DURATION, /datum/status_effect/dizziness, only_if_higher = TRUE)
 		if(current_confusion < BEYBLADE_CONFUSION_LIMIT)
 			user.add_confusion(BEYBLADE_CONFUSION_INCREMENT)
 
 #undef BEYBLADE_PUKE_THRESHOLD
 #undef BEYBLADE_PUKE_NUTRIENT_LOSS
 #undef BEYBLADE_DIZZINESS_PROBABILITY
-#undef BEYBLADE_DIZZINESS_VALUE
+#undef BEYBLADE_DIZZINESS_DURATION
 #undef BEYBLADE_CONFUSION_INCREMENT
 #undef BEYBLADE_CONFUSION_LIMIT

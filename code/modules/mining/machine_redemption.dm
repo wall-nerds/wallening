@@ -160,11 +160,13 @@
 	else
 		unregister_input_turf() // someone just un-wrenched us, unregister the turf
 
+/obj/machinery/mineral/ore_redemption/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	default_unfasten_wrench(user, tool)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
 /obj/machinery/mineral/ore_redemption/attackby(obj/item/W, mob/user, params)
-	if(default_unfasten_wrench(user, W))
-		return
 	if(default_deconstruction_screwdriver(user, "ore_redemption-open", "ore_redemption", W))
-		updateUsrDialog()
 		return
 	if(default_deconstruction_crowbar(W))
 		return
@@ -284,8 +286,9 @@
 				if (params["sheets"])
 					desired = text2num(params["sheets"])
 				else
-					desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
-
+					desired = tgui_input_number(usr, "How many sheets would you like to smelt?", "Smelt",  max_value = stored_amount)
+					if(!desired || QDELETED(usr) || QDELETED(src) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+						return
 				var/sheets_to_remove = round(min(desired,50,stored_amount))
 
 				var/count = mat_container.retrieve_sheets(sheets_to_remove, mat, get_step(src, output_dir))
@@ -331,7 +334,9 @@
 				if (params["sheets"])
 					desired = text2num(params["sheets"])
 				else
-					desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
+					desired = tgui_input_number(usr, "How many sheets would you like to smelt?", "Smelt", max_value = smelt_amount)
+					if(!desired || QDELETED(usr) || QDELETED(src) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+						return
 				var/amount = round(min(desired,50,smelt_amount))
 				mat_container.use_materials(alloy.materials, amount)
 				materials.silo_log(src, "released", -amount, "sheets", alloy.materials)

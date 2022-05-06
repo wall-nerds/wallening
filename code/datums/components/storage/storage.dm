@@ -115,14 +115,33 @@
 /datum/component/storage/PreTransfer()
 	update_actions()
 
-/datum/component/storage/proc/set_holdable(can_hold_list, cant_hold_list)
-	can_hold_description = generate_hold_desc(can_hold_list)
+/// Almost 100% of the time the lists passed into set_holdable are reused for each instance of the component
+/// Just fucking cache it 4head
+/// Yes I could generalize this, but I don't want anyone else using it. in fact, DO NOT COPY THIS
+/// If you find yourself needing this pattern, you're likely better off using static typecaches
+/// I'm not because I do not trust implementers of the storage component to use them, BUT
+/// IF I FIND YOU USING THIS PATTERN IN YOUR CODE I WILL BREAK YOU ACROSS MY KNEES
+/// ~Lemon
+GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
-	if (can_hold_list != null)
-		can_hold = string_list(typecacheof(can_hold_list))
+/datum/component/storage/proc/set_holdable(list/can_hold_list, list/cant_hold_list)
+	if(!islist(can_hold_list))
+		can_hold_list = list(can_hold_list)
+	if(!islist(cant_hold_list))
+		cant_hold_list = list(cant_hold_list)
+
+	can_hold_description = generate_hold_desc(can_hold_list)
+	if (can_hold_list)
+		var/unique_key = can_hold_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(can_hold_list)
+		can_hold = GLOB.cached_storage_typecaches[unique_key]
 
 	if (cant_hold_list != null)
-		cant_hold = string_list(typecacheof(cant_hold_list))
+		var/unique_key = cant_hold_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(cant_hold_list)
+		cant_hold = GLOB.cached_storage_typecaches[unique_key]
 
 /datum/component/storage/proc/generate_hold_desc(can_hold_list)
 	var/list/desc = list()
@@ -505,24 +524,28 @@
 //Tries to dump content
 /datum/component/storage/proc/dump_content_at(atom/dest_object, mob/M)
 	var/atom/A = parent
-	var/atom/dump_destination = dest_object.get_dumping_location()
-	if(A.Adjacent(M) && dump_destination && M.Adjacent(dump_destination))
+	var/atom/dump_destination = get_dumping_location(dest_object)
+	if(M.CanReach(A) && dump_destination && M.CanReach(dump_destination))
 		if(locked)
 			to_chat(M, span_warning("[parent] seems to be locked!"))
 			return FALSE
 		if(dump_destination.storage_contents_dump_act(src, M))
-			playsound(A, "rustle", 50, TRUE, -5)
+			playsound(A, SFX_RUSTLE, 50, TRUE, -5)
 			return TRUE
 	return FALSE
+
+/datum/component/storage/proc/get_dumping_location(atom/dest_object)
+	var/datum/component/storage/storage = dest_object.GetComponent(/datum/component/storage)
+	if(storage)
+		return storage.real_location()
+	return dest_object.get_dumping_location()
 
 //This proc is called when you want to place an item into the storage item.
 /datum/component/storage/proc/attackby(datum/source, obj/item/I, mob/M, params)
 	SIGNAL_HANDLER
 
-	if(istype(I, /obj/item/hand_labeler))
-		var/obj/item/hand_labeler/labeler = I
-		if(labeler.mode)
-			return FALSE
+	if(!I.attackby_storage_insert(src, parent, M))
+		return FALSE
 	. = TRUE //no afterattack
 	if(iscyborg(M))
 		return
@@ -587,7 +610,7 @@
 		return
 	if(A.loc != M)
 		return
-	playsound(A, "rustle", 50, TRUE, -5)
+	playsound(A, SFX_RUSTLE, 50, TRUE, -5)
 	if(istype(over_object, /atom/movable/screen/inventory/hand))
 		var/atom/movable/screen/inventory/hand/H = over_object
 		M.putItemFromInventoryInHandIfPossible(A, H.held_index)
@@ -698,7 +721,7 @@
 	if(silent && !override)
 		return
 	if(rustle_sound)
-		playsound(parent, "rustle", 50, TRUE, -5)
+		playsound(parent, SFX_RUSTLE, 50, TRUE, -5)
 	for(var/mob/viewing in viewers(user, null))
 		if(M == viewing)
 			to_chat(usr, span_notice("You put [I] [insert_preposition]to [parent]."))
@@ -794,7 +817,7 @@
 		return
 
 	if(rustle_sound)
-		playsound(A, "rustle", 50, TRUE, -5)
+		playsound(A, SFX_RUSTLE, 50, TRUE, -5)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -843,7 +866,10 @@
 
 
 /datum/component/storage/proc/open_storage(mob/user)
-	if(!isliving(user) || !user.CanReach(parent) || user.incapacitated())
+	if(!user.CanReach(parent))
+		user.balloon_alert(user, "can't reach!")
+		return FALSE
+	if(!isliving(user) || user.incapacitated())
 		return FALSE
 	if(locked)
 		to_chat(user, span_warning("[parent] seems to be locked!"))
@@ -854,7 +880,7 @@
 	if(!quickdraw)
 		A.add_fingerprint(user)
 		user_show_to_mob(user)
-		playsound(A, "rustle", 50, TRUE, -5)
+		playsound(A, SFX_RUSTLE, 50, TRUE, -5)
 		return
 
 	var/obj/item/to_remove = locate() in real_location()
@@ -868,6 +894,8 @@
 
 	if(open_storage(user))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
 
 /datum/component/storage/proc/on_open_storage_attackby(datum/source, obj/item/weapon, mob/user, params)
 	SIGNAL_HANDLER

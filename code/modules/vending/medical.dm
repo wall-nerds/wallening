@@ -3,6 +3,7 @@
 	desc = "Medical drug dispenser."
 	icon_state = "med"
 	icon_deny = "med-deny"
+	panel_type = "panel11"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MEDICAL)
 	products = list(
@@ -26,12 +27,12 @@
 		/obj/item/storage/belt/medical = 3,
 		/obj/item/sensor_device = 2,
 		/obj/item/pinpointer/crew = 2,
-		/obj/item/storage/firstaid/advanced = 2,
+		/obj/item/storage/medkit/advanced = 2,
 		/obj/item/shears = 1,
 		/obj/item/storage/organbox = 1
 	)
 	refill_canister = /obj/item/vending_refill/medical
-	default_price = PAYCHECK_EASY
+	default_price = PAYCHECK_CREW
 	extra_price = PAYCHECK_COMMAND
 	payment_department = ACCOUNT_MED
 	light_mask = "med-light-mask"
@@ -50,6 +51,7 @@
 	desc = "Medical drugs dispenser."
 	icon_state = "drug"
 	icon_deny = "drug-deny"
+	panel_type = "panel11"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MEDICAL)
 	products = list(/obj/item/reagent_containers/pill/patch/libital = 5,

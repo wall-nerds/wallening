@@ -26,8 +26,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 
 #define QUEUE_SMOOTH(thing_to_queue) if(thing_to_queue.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) {SSicon_smooth.add_to_queue(thing_to_queue)}
 
-#define QUEUE_SMOOTH_NEIGHBORS(thing_to_queue) for(var/neighbor in orange(1, thing_to_queue)) {var/atom/atom_neighbor = neighbor; QUEUE_SMOOTH(atom_neighbor)}
-
+#define QUEUE_SMOOTH_NEIGHBORS(thing_to_queue) for(var/atom/atom_neighbor as anything in orange(1, thing_to_queue)) {QUEUE_SMOOTH(atom_neighbor)}
 
 /**SMOOTHING GROUPS
  * Groups of things to smooth with.
@@ -45,10 +44,10 @@ DEFINE_BITFIELD(smoothing_flags, list(
 
 #define SMOOTH_GROUP_OPEN_FLOOR S_TURF(4) ///turf/open/floor
 
-#define SMOOTH_GROUP_FLOOR_GRASS S_TURF(5) ///turf/open/floor/plating/grass
-#define SMOOTH_GROUP_FLOOR_ASH S_TURF(6) ///turf/open/floor/plating/ashplanet/ash
-#define SMOOTH_GROUP_FLOOR_ASH_ROCKY S_TURF(7) ///turf/open/floor/plating/ashplanet/rocky
-#define SMOOTH_GROUP_FLOOR_ICE S_TURF(8) ///turf/open/floor/plating/ice
+#define SMOOTH_GROUP_FLOOR_GRASS S_TURF(5) ///turf/open/misc/grass
+#define SMOOTH_GROUP_FLOOR_ASH S_TURF(6) ///turf/open/misc/ashplanet/ash
+#define SMOOTH_GROUP_FLOOR_ASH_ROCKY S_TURF(7) ///turf/open/misc/ashplanet/rocky
+#define SMOOTH_GROUP_FLOOR_ICE S_TURF(8) ///turf/open/misc/ice
 #define SMOOTH_GROUP_FLOOR_SNOWED S_TURF(9) ///turf/open/floor/plating/snowed
 
 #define SMOOTH_GROUP_CARPET S_TURF(10) ///turf/open/floor/carpet
@@ -93,6 +92,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SMOOTH_GROUP_CARPET_SIMPLE_NEON_PURPLE_NODOTS S_TURF(49) //![turf/open/floor/carpet/neon/simple/purple/nodots]
 #define SMOOTH_GROUP_CARPET_SIMPLE_NEON_VIOLET_NODOTS S_TURF(50) //![turf/open/floor/carpet/neon/simple/violet/nodots]
 #define SMOOTH_GROUP_CARPET_SIMPLE_NEON_PINK_NODOTS S_TURF(51) //![turf/open/floor/carpet/neon/simple/pink/nodots]
+#define SMOOTH_GROUP_BAMBOO_FLOOR S_TURF(52) //![/turf/open/floor/bamboo]
 
 #define SMOOTH_GROUP_CLOSED_TURFS S_TURF(52) ///turf/closed
 #define SMOOTH_GROUP_MATERIAL_WALLS S_TURF(53) ///turf/closed/wall/material
@@ -126,6 +126,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SMOOTH_GROUP_HIERO_WALL S_OBJ(15) ///obj/effect/temp_visual/elite_tumor_wall, /obj/effect/temp_visual/hierophant/wall
 #define SMOOTH_GROUP_BAMBOO_WALLS S_OBJ(16)  ///turf/closed/wall/mineral/bamboo, /obj/structure/falsewall/bamboo
 #define SMOOTH_GROUP_PIZZA_WALLS S_OBJ(17)  ///turf/closed/wall/mineral/pizza, /obj/structure/falsewall/pizza
+#define SMOOTH_GROUP_PLASTINUM_WALLS S_OBJ(18) //![turf/closed/indestructible/riveted/plastinum]
 
 #define SMOOTH_GROUP_PAPERFRAME S_OBJ(20) ///obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe
 

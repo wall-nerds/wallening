@@ -11,6 +11,7 @@
 		/datum/surgery_step/incise,
 		/datum/surgery_step/hepatectomy,
 		/datum/surgery_step/close)
+	organ_to_manipulate = ORGAN_SLOT_LIVER
 
 /datum/surgery/hepatectomy/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/liver/target_liver = target.getorganslot(ORGAN_SLOT_LIVER)
@@ -27,6 +28,9 @@
 		/obj/item/knife = 45,
 		/obj/item/shard = 35)
 	time = 52
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/organ1.ogg'
+	failure_sound = 'sound/surgery/organ2.ogg'
 
 /datum/surgery_step/hepatectomy/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to cut out a damaged piece of [target]'s liver..."),

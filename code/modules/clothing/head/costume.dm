@@ -44,6 +44,11 @@
 	inhand_icon_state = "witch"
 	flags_inv = HIDEHAIR
 
+/obj/item/clothing/head/maidheadband
+	name = "maid headband"
+	desc = "Just like from one of those chinese cartoons!"
+	icon_state = "maid_headband"
+
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
 	desc = "Bkaw!"
@@ -88,7 +93,7 @@
 	flags_inv = HIDEHAIR //bald
 	icon_state = "shrine_wig"
 	inhand_icon_state = "shrine_wig"
-	dynamic_hair_suffix = ""
+
 	worn_y_offset = 1
 
 /obj/item/clothing/head/cardborg
@@ -117,11 +122,11 @@
 /obj/item/clothing/head/bronze
 	name = "bronze hat"
 	desc = "A crude helmet made out of bronze plates. It offers very little in the way of protection."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "clockwork_helmet_old"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEEARS|HIDEHAIR
-	armor = list(MELEE = 5, BULLET = 0, LASER = -5, ENERGY = -15, BOMB = 10, BIO = 0, RAD = 0, FIRE = 20, ACID = 20)
+	armor = list(MELEE = 5, BULLET = 0, LASER = -5, ENERGY = -15, BOMB = 10, BIO = 0, FIRE = 20, ACID = 20)
 
 /obj/item/clothing/head/irs
 	name = "internal revenue service cap"
