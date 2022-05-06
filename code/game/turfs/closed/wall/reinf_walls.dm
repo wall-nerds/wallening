@@ -2,8 +2,8 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
-	icon_state = "reinforced"
-	base_icon_state = "reinforced_wall"
+	icon_state = "reinforced_wall-0"
+	base_icon_state = "reinforced_wall-0"
 	opacity = TRUE
 	density = TRUE
 	turf_flags = IS_SOLID
