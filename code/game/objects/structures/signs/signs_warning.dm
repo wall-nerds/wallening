@@ -1,8 +1,6 @@
 //warning signs
 
-
 ///////DANGEROUS THINGS
-
 /obj/structure/sign/warning
 	name = "\improper WARNING sign"
 	sign_change_name = "Warning"
@@ -10,17 +8,23 @@
 	icon_state = "securearea"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning, 32)
+
 /obj/structure/sign/warning/securearea
 	name = "\improper SECURE AREA sign"
 	sign_change_name = "Warning - Secure Area"
 	desc = "A warning sign which reads 'SECURE AREA'."
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/securearea, 32)
+
 /obj/structure/sign/warning/docking
 	name = "\improper KEEP CLEAR: DOCKING AREA sign"
 	sign_change_name = "Warning - Docking Area"
 	desc = "A warning sign which reads 'KEEP CLEAR OF DOCKING AREA'."
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/docking, 32)
 
 /obj/structure/sign/warning/biohazard
 	name = "\improper BIOHAZARD sign"
@@ -29,12 +33,16 @@
 	icon_state = "bio"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/biohazard, 32)
+
 /obj/structure/sign/warning/electricshock
 	name = "\improper HIGH VOLTAGE sign"
 	sign_change_name = "Warning - High Voltage"
 	desc = "A warning sign which reads 'HIGH VOLTAGE'."
 	icon_state = "shock"
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/electricshock, 32)
 
 /obj/structure/sign/warning/vacuum
 	name = "\improper HARD VACUUM AHEAD sign"
@@ -43,12 +51,16 @@
 	icon_state = "space"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum, 32)
+
 /obj/structure/sign/warning/vacuum/external
 	name = "\improper EXTERNAL AIRLOCK sign"
 	sign_change_name = "Warning - External Airlock"
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'."
 	layer = MOB_LAYER
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum/external, 32)
 
 /obj/structure/sign/warning/deathsposal
 	name = "\improper DISPOSAL: LEADS TO SPACE sign"
@@ -57,12 +69,16 @@
 	icon_state = "deathsposal"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/deathsposal, 32)
+
 /obj/structure/sign/warning/bodysposal
 	name = "\improper DISPOSAL: LEADS TO MORGUE sign"
 	sign_change_name = "Warning - Disposals: Leads to Morgue"
 	desc = "A warning sign which reads 'DISPOSAL: LEADS TO MORGUE'."
 	icon_state = "bodysposal"
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/bodysposal, 32)
 
 /obj/structure/sign/warning/fire
 	name = "\improper DANGER: FIRE sign"
@@ -72,6 +88,8 @@
 	resistance_flags = FIRE_PROOF
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/fire, 32)
+
 /obj/structure/sign/warning/nosmoking
 	name = "\improper NO SMOKING sign"
 	sign_change_name = "Warning - No Smoking"
@@ -80,12 +98,16 @@
 	resistance_flags = FLAMMABLE
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/nosmoking, 32)
+
 /obj/structure/sign/warning/nosmoking/circle
 	name = "\improper NO SMOKING sign"
 	sign_change_name = "Warning - No Smoking Alt"
 	desc = "A warning sign which reads 'NO SMOKING'."
 	icon_state = "nosmoking"
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/nosmoking/circle, 32)
 
 /obj/structure/sign/warning/yessmoking/circle
 	name = "\improper YES SMOKING sign"
@@ -94,6 +116,8 @@
 	icon_state = "yessmoking"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/yessmoking/circle, 32)
+
 /obj/structure/sign/warning/radiation
 	name = "\improper HAZARDOUS RADIATION sign"
 	sign_change_name = "Warning - Radiation"
@@ -101,11 +125,15 @@
 	icon_state = "radiation"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/radiation, 32)
+
 /obj/structure/sign/warning/radiation/rad_area
 	name = "\improper RADIOACTIVE AREA sign"
 	sign_change_name = "Warning - Radioactive Area"
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'."
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/rad_area, 32)
 
 /obj/structure/sign/warning/xeno_mining
 	name = "\improper DANGEROUS ALIEN LIFE sign"
@@ -115,12 +143,16 @@
 	icon_state = "xeno_warning"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/xeno_mining, 32)
+
 /obj/structure/sign/warning/enginesafety
 	name = "\improper ENGINEERING SAFETY sign"
 	sign_change_name = "Warning - Engineering Safety Protocols"
 	desc = "A sign detailing the various safety protocols when working on-site to ensure a safe shift."
 	icon_state = "safety"
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/enginesafety, 32)
 
 /obj/structure/sign/warning/explosives
 	name = "\improper HIGH EXPLOSIVES sign"
@@ -129,12 +161,16 @@
 	icon_state = "explosives"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives, 32)
+
 /obj/structure/sign/warning/explosives/alt
 	name = "\improper HIGH EXPLOSIVES sign"
 	sign_change_name = "Warning - Explosives Alt"
 	desc = "A warning sign which reads 'HIGH EXPLOSIVES'."
 	icon_state = "explosives2"
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives/alt, 32)
 
 /obj/structure/sign/warning/testchamber
 	name = "\improper TESTING AREA sign"
@@ -143,12 +179,16 @@
 	icon_state = "testchamber"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/testchamber, 32)
+
 /obj/structure/sign/warning/firingrange
 	name = "\improper FIRING RANGE sign"
 	sign_change_name = "Warning - Firing Range"
 	desc = "A sign reminding you to remain behind the firing line, and to wear ear protection."
 	icon_state = "firingrange"
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/firingrange, 32)
 
 /obj/structure/sign/warning/coldtemp
 	name = "\improper FREEZING AIR sign"
@@ -157,12 +197,16 @@
 	icon_state = "cold"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/coldtemp, 32)
+
 /obj/structure/sign/warning/hottemp
 	name = "\improper SUPERHEATED AIR sign"
 	sign_change_name = "Warning - Temp: Hot"
 	desc = "A sign that warns of extremely hot air in the vicinity."
 	icon_state = "heat"
 	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/hottemp, 32)
 
 /obj/structure/sign/warning/gasmask
 	name = "\improper CONTAMINATED AIR sign"
@@ -171,6 +215,8 @@
 	icon_state = "gasmask"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/gasmask, 32)
+
 /obj/structure/sign/warning/chemdiamond
 	name = "\improper REACTIVE CHEMICALS sign"
 	sign_change_name = "Warning - Hazardous Chemicals sign"
@@ -178,8 +224,9 @@
 	icon_state = "chemdiamond"
 	is_editable = TRUE
 
-////MISC LOCATIONS
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/chemdiamond, 32)
 
+////MISC LOCATIONS
 /obj/structure/sign/warning/pods
 	name = "\improper ESCAPE PODS sign"
 	sign_change_name = "Location - Escape Pods"
@@ -187,10 +234,11 @@
 	icon_state = "pods"
 	is_editable = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/pods, 32)
+
 /obj/structure/sign/warning/radshelter
 	name = "\improper RADSTORM SHELTER sign"
 	sign_change_name = "Location - Radstorm Shelter"
 	desc = "A warning sign which reads 'RADSTORM SHELTER'."
 	icon_state = "radshelter"
 	is_editable = TRUE
-
