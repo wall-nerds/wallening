@@ -1,5 +1,7 @@
 //departmental signs
 
+/obj/structure/sign/departments
+	icon = 'icons/obj/departmental_signs.dmi'
 
 ///////MEDBAY
 
@@ -16,7 +18,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay, 32)
 	name = "\improper Medbay sign"
 	sign_change_name = "Department - Medbay Alt"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
-	icon_state = "bluecross2"
+	icon_state = "department_med"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay/alt, 32)
@@ -34,7 +36,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/exam_room, 32)
 	name = "\improper Chemistry sign"
 	sign_change_name = "Department - Medbay: Chemistry"
 	desc = "A sign labelling an area containing chemical equipment."
-	icon_state = "chemistry1"
+	icon_state = "department_chem"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry, 32)
@@ -43,7 +45,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry, 32)
 	name = "\improper Pharmacy sign"
 	sign_change_name = "Department - Medbay: Pharmacy"
 	desc = "A sign labelling an area containing pharmacy equipment."
-	icon_state = "pharmacy"
+	icon_state = "department_chem"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry/pharmacy, 32)
@@ -52,7 +54,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry/pharmacy, 
 	name = "\improper Psychology sign"
 	sign_change_name = "Department - Medbay: Psychology"
 	desc = "A sign labelling where the Psychologist works, they can probably help you get your head straight."
-	icon_state = "psychology"
+	icon_state = "department_psych"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/psychology, 32)
@@ -63,7 +65,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/psychology, 32)
 	name = "\improper Engineering sign"
 	sign_change_name = "Department - Engineering"
 	desc = "A sign labelling an area where engineers work."
-	icon_state = "engine"
+	icon_state = "department_engi"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/engineering, 32)
@@ -74,25 +76,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/engineering, 32)
 	name = "\improper Science sign"
 	sign_change_name = "Department - Science"
 	desc = "A sign labelling an area where research and science is performed."
-	icon_state = "science1"
+	icon_state = "department_sci"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/science, 32)
-
-/obj/structure/sign/departments/science/alt
-	name = "\improper Science sign"
-	sign_change_name = "Department - Science Alt"
-	desc = "A sign labelling an area where research and science is performed."
-	icon_state = "science2"
-	is_editable = TRUE
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/science/alt, 32)
 
 /obj/structure/sign/departments/xenobio
 	name = "\improper Xenobiology sign"
 	sign_change_name = "Department - Science: Xenobiology"
 	desc = "A sign labelling an area as a place where xenobiological entities are researched."
-	icon_state = "xenobio"
+	icon_state = "department_xeno"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/xenobio, 32)
@@ -103,7 +96,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/xenobio, 32)
 	name = "\improper Botany sign"
 	sign_change_name = "Department - Botany"
 	desc = "A sign labelling an area as a place where plants are grown."
-	icon_state = "hydro1"
+	icon_state = "department_hydro"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/botany, 32)
@@ -121,7 +114,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/custodian, 32)
 	name = "\improper Chapel sign"
 	sign_change_name = "Department - Chapel"
 	desc = "A sign labelling a religious area."
-	icon_state = "holy"
+	icon_state = "department_chapel"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/holy, 32)
@@ -130,7 +123,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/holy, 32)
 	name = "\improper Legal Department sign"
 	sign_change_name = "Department - Legal"
 	desc = "A sign labelling an area where the Lawyers work, apply here for arrivals shuttle whiplash settlement."
-	icon_state = "lawyer"
+	icon_state = "department_lawyer"
+	is_editable = TRUE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, 32)
+
+/obj/structure/sign/departments/lawyer/alt
+	name = "\improper Legal Department sign"
+	sign_change_name = "Department - Legal"
+	desc = "A sign labelling an area where the Lawyers work, apply here for arrivals shuttle whiplash settlement."
+	icon_state = "department_lawyer2"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, 32)
@@ -141,7 +143,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, 32)
 	name = "\improper Cargo sign"
 	sign_change_name = "Department - Cargo"
 	desc = "A sign labelling an area where cargo ships dock."
-	icon_state = "cargo"
+	icon_state = "department_cargo"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/cargo, 32)
@@ -152,7 +154,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/cargo, 32)
 	name = "\improper Security sign"
 	sign_change_name = "Department - Security"
 	desc = "A sign labelling an area where the law is law."
-	icon_state = "security"
+	icon_state = "department_sec"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/security, 32)
@@ -163,7 +165,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/security, 32)
 	name = "\improper Restroom sign"
 	sign_change_name = "Location - Restroom"
 	desc = "A sign labelling a restroom."
-	icon_state = "restroom"
+	icon_state = "department_wc"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/restroom, 32)
@@ -190,7 +192,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint/alt, 32)
 	name = "\improper Evacuation sign"
 	sign_change_name = "Location - Evacuation"
 	desc = "A sign labelling an area where evacuation procedures take place."
-	icon_state = "evac"
+	icon_state = "department_evac"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/evac, 32)
@@ -208,7 +210,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/drop, 32)
 	name = "\improper Courtroom sign"
 	sign_change_name = "Location - Courtroom"
 	desc = "A sign labelling the courtroom, where the ever sacred Space Law is upheld."
-	icon_state = "court"
+	icon_state = "department_law"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/court, 32)
