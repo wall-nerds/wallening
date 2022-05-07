@@ -28,7 +28,12 @@
 	tiltable = FALSE
 	light_mask = "wallmed-light-mask"
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/wallmed, 32)
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/wallmed, offset_north, offset_south, offset_east, offset_west)
 
 /obj/item/vending_refill/wallmed
 	machine_name = "NanoMed"

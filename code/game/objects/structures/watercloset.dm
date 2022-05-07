@@ -156,10 +156,16 @@
 	icon_state = "urinal"
 	density = FALSE
 	anchored = TRUE
+
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 	var/exposed = 0 // can you currently put an item inside
 	var/obj/item/hiddenitem = null // what's in the urinal
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, offset_north, offset_south, offset_east, offset_west)
 
 /obj/structure/urinal/Initialize(mapload)
 	. = ..()

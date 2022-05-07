@@ -8,6 +8,11 @@
 	dog_fashion = null
 	unscrewed = FALSE
 
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 /obj/item/radio/intercom/unscrewed
 	unscrewed = TRUE
 
@@ -141,7 +146,7 @@
 	pixel_shift = 26
 	custom_materials = list(/datum/material/iron = 75, /datum/material/glass = 25)
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 26)
+MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, offset_north, offset_south, offset_east, offset_west)
 
 /obj/item/radio/intercom/chapel
 	name = "Confessional intercom"
@@ -152,5 +157,5 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 26)
 	set_frequency(1481)
 	set_broadcasting(TRUE)
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/prison, 26)
-MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/chapel, 26)
+MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/prison, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/chapel, offset_north, offset_south, offset_east, offset_west)

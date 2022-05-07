@@ -9,7 +9,12 @@
 	max_integrity = 200
 	integrity_failure = 0.5
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror, 28)
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror, offset_north, offset_south, offset_east, offset_west)
 
 /obj/structure/mirror/Initialize(mapload)
 	. = ..()

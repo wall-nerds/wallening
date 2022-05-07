@@ -22,6 +22,11 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 80, ACID = 30)
 	layer = OBJ_LAYER
 
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 	///The bluespace sender that this vendor is connected to
 	var/obj/machinery/atmospherics/components/unary/bluespace_sender/connected_machine
 	///Amount of usable tanks inside the machine
@@ -52,7 +57,7 @@
 	map_spawned = FALSE
 	mode = BS_MODE_OPEN
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/bluespace_vendor, 30)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/bluespace_vendor, offset_north, offset_south, offset_east, offset_west)
 
 /obj/machinery/bluespace_vendor/New(loc, ndir, nbuild)
 	. = ..()

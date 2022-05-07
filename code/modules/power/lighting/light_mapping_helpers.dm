@@ -85,56 +85,56 @@
 
 // -------- Directional presets
 // The directions are backwards on the lights we have now
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Broken tube
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/broken, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/broken, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Tube construct
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/light_construct, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/light_construct, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Tube frames
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/built, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/built, offset_north, offset_south, offset_east, offset_west)
 
 // ---- No nightlight tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/no_nightlight, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/no_nightlight, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Warm light tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/warm, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/warm, offset_north, offset_south, offset_east, offset_west)
 
 // ---- No nightlight warm light tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/warm/no_nightlight, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/warm/no_nightlight, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Cold light tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/cold, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/cold, offset_north, offset_south, offset_east, offset_west)
 
 // ---- No nightlight cold light tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/cold/no_nightlight, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/cold/no_nightlight, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Red tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/red, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/red, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Blacklight tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/blacklight, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/blacklight, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Dim tubes
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/dim, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/dim, offset_north, offset_south, offset_east, offset_west)
 
 
 // -------- Bulb lights
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Bulb construct
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/light_construct/small, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/light_construct/small, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Bulb frames
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/built, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/built, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Broken bulbs
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/broken, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/broken, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Red bulbs
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/red, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/red, offset_north, offset_south, offset_east, offset_west)
 
 // ---- Blacklight bulbs
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blacklight, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blacklight, offset_north, offset_south, offset_east, offset_west)

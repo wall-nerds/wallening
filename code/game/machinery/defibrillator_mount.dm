@@ -11,21 +11,24 @@
 	power_channel = AREA_USAGE_EQUIP
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_HEADS, ACCESS_SECURITY) //used to control clamps
 	processing_flags = NONE
-/// The mount's defib
-	var/obj/item/defibrillator/defib
-/// if true, and a defib is loaded, it can't be removed without unlocking the clamps
-	var/clamps_locked = FALSE
-/// the type of wallframe it 'disassembles' into
-	var/wallframe_type = /obj/item/wallframe/defib_mount
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_east = DEFAULT_OFFSET_Y_SOUTH
+	offset_west = DEFAULT_OFFSET_X
+
+	/// The mount's defib
+	var/obj/item/defibrillator/defib
+	/// if true, and a defib is loaded, it can't be removed without unlocking the clamps
+	var/clamps_locked = FALSE
+	/// the type of wallframe it 'disassembles' into
+	var/wallframe_type = /obj/item/wallframe/defib_mount
 
 /obj/machinery/defibrillator_mount/loaded/Initialize(mapload) //loaded subtype for mapping use
 	. = ..()
 	defib = new/obj/item/defibrillator/loaded(src)
 	AddElement(/datum/element/wall_mount)
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, offset_north, offset_south, offset_east, offset_west)
 
 /obj/machinery/defibrillator_mount/Destroy()
 	if(defib)

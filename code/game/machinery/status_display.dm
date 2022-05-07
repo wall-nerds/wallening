@@ -27,6 +27,11 @@
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
 
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 	var/obj/effect/overlay/status_display_text/message1_overlay
 	var/obj/effect/overlay/status_display_text/message2_overlay
 	var/current_picture = ""
@@ -287,7 +292,7 @@
 	var/friendc = FALSE      // track if Friend Computer mode
 	var/last_picture  // For when Friend Computer mode is undone
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, offset_north, offset_south, offset_east, offset_west)
 
 //makes it go on the wall when built
 /obj/machinery/status_display/Initialize(mapload, ndir, building)
@@ -470,7 +475,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 	)
 
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, offset_north, offset_south, offset_east, offset_west)
 
 /obj/machinery/status_display/ai/Initialize(mapload)
 	. = ..()

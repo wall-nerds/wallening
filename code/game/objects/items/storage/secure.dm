@@ -190,11 +190,16 @@
 	density = FALSE
 	has_door = TRUE
 
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 /obj/item/storage/secure/safe/Initialize()
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe, offset_north, offset_south, offset_east, offset_west)
 
 /obj/item/storage/secure/safe/ComponentInitialize()
 	. = ..()
@@ -235,7 +240,7 @@ There appears to be a small amount of surface corrosion. It doesn't look like it
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 70, BIO = 100, FIRE = 80, ACID = 70)
 	max_integrity = 300
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe/caps_spare, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe/caps_spare, offset_north, offset_south, offset_east, offset_west)
 
 /obj/item/storage/secure/safe/caps_spare/Initialize(mapload)
 	. = ..()

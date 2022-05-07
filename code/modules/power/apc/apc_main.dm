@@ -18,6 +18,11 @@
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 	///Range of the light emitted when on
 	var/light_on_range = 1.5
 	///Reference to our area
@@ -126,22 +131,31 @@
 
 	// offset APC_PIXEL_OFFSET pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
-	var/offset_old
+	var/offset_x_old
+	var/offset_y_north_old
+	var/offset_y_south_old
 	switch(dir)
 		if(NORTH)
-			offset_old = pixel_y
-			pixel_y = APC_PIXEL_OFFSET
+			offset_y_south_old = pixel_y
+			pixel_y = DEFAULT_OFFSET_Y_SOUTH
 		if(SOUTH)
-			offset_old = pixel_y
-			pixel_y = -APC_PIXEL_OFFSET
+			offset_y_north_old = pixel_y
+			pixel_y = -DEFAULT_OFFSET_Y_NORTH
 		if(EAST)
-			offset_old = pixel_x
-			pixel_x = APC_PIXEL_OFFSET
+			offset_x_old = pixel_x
+			pixel_x = DEFAULT_OFFSET_X
 		if(WEST)
-			offset_old = pixel_x
-			pixel_x = -APC_PIXEL_OFFSET
-	if(abs(offset_old) != APC_PIXEL_OFFSET && !building)
-		log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([dir] | [uppertext(dir2text(dir))]) has pixel_[dir & (WEST|EAST) ? "x" : "y"] value [offset_old] - should be [dir & (SOUTH|EAST) ? "-" : ""][APC_PIXEL_OFFSET]. Use the directional/ helpers!")
+			offset_x_old = pixel_x
+			pixel_x = -DEFAULT_OFFSET_X
+
+	if(abs(offset_y_north_old) != DEFAULT_OFFSET_Y_NORTH && !building)
+		log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([dir] | [uppertext(dir2text(dir))]) has pixel_y value [offset_y_north_old] - should be [dir & (SOUTH|EAST) ? "-" : ""][DEFAULT_OFFSET_Y_NORTH]. Use the directional/ helpers!")
+
+	if(abs(offset_y_south_old) != DEFAULT_OFFSET_Y_SOUTH && !building)
+		log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([dir] | [uppertext(dir2text(dir))]) has pixel_y value [offset_y_south_old] - should be [dir & (SOUTH|EAST) ? "-" : ""][DEFAULT_OFFSET_Y_SOUTH]. Use the directional/ helpers!")
+
+	if(abs(offset_x_old) != DEFAULT_OFFSET_X && !building)
+		log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([dir] | [uppertext(dir2text(dir))]) has pixel_x value [offset_x_old] - should be [dir & (SOUTH|EAST) ? "-" : ""][DEFAULT_OFFSET_X]. Use the directional/ helpers!")
 
 /obj/machinery/power/apc/Initialize(mapload)
 	. = ..()

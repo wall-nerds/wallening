@@ -9,6 +9,12 @@
 	desc = "A marvel of bureaucratic engineering encased in an efficient plastic shell. It can be refilled with a hand labeler refill roll and linked to buttons with a multitool."
 	density = FALSE
 	layer = HIGH_OBJ_LAYER
+
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 	var/ticket_number = 0 //Increment the ticket number whenever the HOP presses his button
 	var/current_number = 0 //What ticket number are we currently serving?
 	var/max_number = 100 //At this point, you need to refill it.
@@ -28,7 +34,7 @@
 	tickets.Cut()
 	return ..()
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine, offset_north, offset_south, offset_east, offset_west)
 
 /obj/machinery/ticket_machine/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I)) //make sure it has a data buffer

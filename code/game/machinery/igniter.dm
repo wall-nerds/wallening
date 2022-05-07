@@ -62,12 +62,18 @@
 	icon_state = "migniter"
 	base_icon_state = "migniter"
 	resistance_flags = FIRE_PROOF
+
+	offset_north = DEFAULT_OFFSET_Y_NORTH
+	offset_south = DEFAULT_OFFSET_Y_SOUTH
+	offset_east = DEFAULT_OFFSET_X
+	offset_west = DEFAULT_OFFSET_X
+
 	var/id = null
 	var/disable = 0
 	var/last_spark = 0
 	var/datum/effect_system/spark_spread/spark_system
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, offset_north, offset_south, offset_east, offset_west)
 
 /obj/machinery/sparker/ordmix
 	id = INCINERATOR_ORDMIX_IGNITER
