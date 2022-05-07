@@ -266,7 +266,7 @@
 	return (exposed_temperature > T0C + (reinf ? 1600 : 800))
 
 /obj/machinery/door/window/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(round(exposed_temperature / 200), BURN, offset_north, offset_south, offset_east, offset_west)
+	take_damage(round(exposed_temperature / 200), BURN, 0, 0)
 
 
 /obj/machinery/door/window/emag_act(mob/user)
@@ -434,29 +434,29 @@
 	name = "holding cell door"
 	req_one_access = list(ACCESS_BRIG_ENTRANCE) //lawyer also gets brig_entrance
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/left, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/right, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/left, 0, 0, 0, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/right, 0, 0, 0, 0)
 
 /obj/machinery/door/window/right
 	icon_state = "right"
 	base_state = "right"
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/left, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/right, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/left, 0, 0, 0, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/right, 0, 0, 0, 0)
 
 /obj/machinery/door/window/brigdoor/right
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/cell/left, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/cell/right, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/cell/left, 0, 0, 0, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/cell/right, 0, 0, 0, 0)
 
 /obj/machinery/door/window/brigdoor/security/cell/right
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/holding/left, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/holding/right, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/holding/left, 0, 0, 0, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/holding/right, 0, 0, 0, 0)
 
 /obj/machinery/door/window/brigdoor/security/holding/right
 	icon_state = "rightsecure"

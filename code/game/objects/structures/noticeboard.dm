@@ -9,15 +9,10 @@
 	anchored = TRUE
 	max_integrity = 150
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	/// Current number of a pinned notices
 	var/notices = 0
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/noticeboard, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/noticeboard/Initialize(mapload)
 	. = ..()

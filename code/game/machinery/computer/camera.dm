@@ -285,12 +285,7 @@
 	circuit = null
 	interaction_flags_atom = NONE  // interact() is called by BigClick()
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertainment, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertainment, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/machinery/computer/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()

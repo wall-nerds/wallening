@@ -261,7 +261,7 @@
 	buildstackamount = 1
 	item_chair = /obj/item/chair/stool
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool, 0, 0, 0, 0)
 
 /obj/structure/chair/stool/narsie_act()
 	return
@@ -289,7 +289,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool, offset_north, offset_sou
 	icon_state = "bar"
 	item_chair = /obj/item/chair/stool/bar
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0, 0, 0, 0)
 
 /obj/structure/chair/stool/bamboo
 	name = "bamboo stool"

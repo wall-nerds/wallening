@@ -13,18 +13,13 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	req_access = list(ACCESS_KEYCARD_AUTH)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	var/datum/callback/ev
 	var/event = ""
 	var/obj/machinery/keycard_auth/event_source
 	var/mob/triggerer = null
 	var/waiting = FALSE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/keycard_auth, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/keycard_auth, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/machinery/keycard_auth/Initialize(mapload)
 	. = ..()

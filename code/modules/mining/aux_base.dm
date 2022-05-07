@@ -20,11 +20,6 @@
 	req_one_access = list(ACCESS_AUX_BASE, ACCESS_HEADS)
 	circuit = /obj/item/circuitboard/computer/auxiliary_base
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	/// Shuttle ID of the base
 	var/shuttleId = "colony_drop"
 	/// If we give warnings before base is launched
@@ -40,7 +35,7 @@
 
 	density = FALSE //this is a wallmount
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/auxiliary_base, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/machinery/computer/auxiliary_base/Initialize(mapload)
 	. = ..()

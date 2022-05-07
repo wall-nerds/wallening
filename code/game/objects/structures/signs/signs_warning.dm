@@ -10,12 +10,7 @@
 	icon_state = "securearea"
 	is_editable = TRUE
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/secure_area
 	name = "\improper SECURE AREA sign"
@@ -23,7 +18,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning, offset_north, offset_so
 	desc = "A warning sign which reads 'SECURE AREA'."
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/secure_area, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/secure_area, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/docking
 	name = "\improper KEEP CLEAR: DOCKING AREA sign"
@@ -31,7 +26,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/secure_area, offset_nort
 	desc = "A warning sign which reads 'KEEP CLEAR OF DOCKING AREA'."
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/docking, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/docking, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/biohazard
 	name = "\improper BIOHAZARD sign"
@@ -40,7 +35,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/docking, offset_north, o
 	icon_state = "bio"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/biohazard, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/biohazard, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/electric_shock
 	name = "\improper HIGH VOLTAGE sign"
@@ -49,7 +44,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/biohazard, offset_north,
 	icon_state = "shock"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/electric_shock, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/electric_shock, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/vacuum
 	name = "\improper HARD VACUUM AHEAD sign"
@@ -58,7 +53,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/electric_shock, offset_n
 	icon_state = "space"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/vacuum/external
 	name = "\improper EXTERNAL AIRLOCK sign"
@@ -67,7 +62,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum, offset_north, of
 	layer = MOB_LAYER
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum/external, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum/external, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/deathsposal
 	name = "\improper DISPOSAL: LEADS TO SPACE sign"
@@ -76,7 +71,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/vacuum/external, offset_
 	icon_state = "deathsposal"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/deathsposal, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/deathsposal, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/bodysposal
 	name = "\improper DISPOSAL: LEADS TO MORGUE sign"
@@ -85,7 +80,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/deathsposal, offset_nort
 	icon_state = "bodysposal"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/bodysposal, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/bodysposal, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/fire
 	name = "\improper DANGER: FIRE sign"
@@ -95,7 +90,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/bodysposal, offset_north
 	resistance_flags = FIRE_PROOF
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/fire, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/fire, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/no_smoking
 	name = "\improper NO SMOKING sign"
@@ -105,7 +100,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/fire, offset_north, offs
 	resistance_flags = FLAMMABLE
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/no_smoking, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/no_smoking, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/no_smoking/circle
 	name = "\improper NO SMOKING sign"
@@ -114,7 +109,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/no_smoking, offset_north
 	icon_state = "nosmoking"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/no_smoking/circle, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/no_smoking/circle, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/yes_smoking/circle
 	name = "\improper YES SMOKING sign"
@@ -123,7 +118,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/no_smoking/circle, offse
 	icon_state = "yessmoking"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/yes_smoking/circle, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/yes_smoking/circle, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/radiation
 	name = "\improper HAZARDOUS RADIATION sign"
@@ -132,7 +127,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/yes_smoking/circle, offs
 	icon_state = "radiation"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/radiation, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/radiation, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/radiation/rad_area
 	name = "\improper RADIOACTIVE AREA sign"
@@ -140,7 +135,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/radiation, offset_north,
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'."
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/rad_area, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/rad_area, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/xeno_mining
 	name = "\improper DANGEROUS ALIEN LIFE sign"
@@ -150,7 +145,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/rad_area, offset_north, 
 	icon_state = "xeno_warning"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/xeno_mining, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/xeno_mining, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/engine_safety
 	name = "\improper ENGINEERING SAFETY sign"
@@ -159,7 +154,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/xeno_mining, offset_nort
 	icon_state = "safety"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/engine_safety, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/engine_safety, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/explosives
 	name = "\improper HIGH EXPLOSIVES sign"
@@ -168,7 +163,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/engine_safety, offset_no
 	icon_state = "explosives"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/explosives/alt
 	name = "\improper HIGH EXPLOSIVES sign"
@@ -177,7 +172,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives, offset_north
 	icon_state = "explosives2"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives/alt, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives/alt, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/test_chamber
 	name = "\improper TESTING AREA sign"
@@ -186,7 +181,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/explosives/alt, offset_n
 	icon_state = "testchamber"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/test_chamber, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/test_chamber, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/firing_range
 	name = "\improper FIRING RANGE sign"
@@ -195,7 +190,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/test_chamber, offset_nor
 	icon_state = "firingrange"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/firing_range, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/firing_range, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/cold_temp
 	name = "\improper FREEZING AIR sign"
@@ -204,7 +199,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/firing_range, offset_nor
 	icon_state = "cold"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/cold_temp, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/cold_temp, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/hot_temp
 	name = "\improper SUPERHEATED AIR sign"
@@ -213,7 +208,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/cold_temp, offset_north,
 	icon_state = "heat"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/hot_temp, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/hot_temp, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/gas_mask
 	name = "\improper CONTAMINATED AIR sign"
@@ -222,7 +217,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/hot_temp, offset_north, 
 	icon_state = "gasmask"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/gas_mask, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/gas_mask, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/chem_diamond
 	name = "\improper REACTIVE CHEMICALS sign"
@@ -231,7 +226,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/gas_mask, offset_north, 
 	icon_state = "chemdiamond"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/chem_diamond, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/chem_diamond, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 ////MISC LOCATIONS
 
@@ -242,7 +237,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/chem_diamond, offset_nor
 	icon_state = "pods"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/pods, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/pods, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/warning/rad_shelter
 	name = "\improper RADSTORM SHELTER sign"
@@ -251,4 +246,4 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/pods, offset_north, offs
 	icon_state = "radshelter"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/rad_shelter, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/warning/rad_shelter, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)

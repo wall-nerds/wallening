@@ -16,11 +16,6 @@
 	max_integrity = 100
 	integrity_failure = 0.5
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	var/default_camera_icon = "camera" //the camera's base icon used by update_appearance - icon_state is primarily used for mapping display purposes.
 	var/list/network = list("ss13")
 	var/c_tag = null
@@ -50,11 +45,11 @@
 	///Proximity monitor associated with this atom, for motion sensitive cameras.
 	var/datum/proximity_monitor/proximity_monitor
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/emp_proof, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/motion, offset_north, offset_south, offset_east, offset_west)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/emp_proof, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/motion, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/machinery/camera/preset/ordnance //Bomb test site in space
 	name = "Hardened Bomb-Test Camera"

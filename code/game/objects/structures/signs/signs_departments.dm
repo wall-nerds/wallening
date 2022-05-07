@@ -3,11 +3,6 @@
 /obj/structure/sign/departments
 	icon = 'icons/obj/departmental_signs.dmi'
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 ///////MEDBAY
 
 /obj/structure/sign/departments/medbay
@@ -17,7 +12,7 @@
 	icon_state = "bluecross"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/medbay/alt
 	name = "\improper Medbay sign"
@@ -26,7 +21,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay, offset_north
 	icon_state = "department_med"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay/alt, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay/alt, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/exam_room
 	name = "\improper Exam Room sign"
@@ -35,7 +30,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/medbay/alt, offset_n
 	icon_state = "examroom"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/exam_room, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/exam_room, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/chemistry
 	name = "\improper Chemistry sign"
@@ -44,7 +39,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/exam_room, offset_no
 	icon_state = "department_chem"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/chemistry/pharmacy
 	name = "\improper Pharmacy sign"
@@ -53,7 +48,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry, offset_no
 	icon_state = "department_chem"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry/pharmacy, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry/pharmacy, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/psychology
 	name = "\improper Psychology sign"
@@ -62,7 +57,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/chemistry/pharmacy, 
 	icon_state = "department_psych"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/psychology, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/psychology, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 ///////ENGINEERING
 
@@ -73,7 +68,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/psychology, offset_n
 	icon_state = "department_engi"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/engineering, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/engineering, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 ///////SCIENCE
 
@@ -84,7 +79,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/engineering, offset_
 	icon_state = "department_sci"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/science, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/science, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/xenobio
 	name = "\improper Xenobiology sign"
@@ -93,7 +88,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/science, offset_nort
 	icon_state = "department_xeno"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/xenobio, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/xenobio, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 ///////SERVICE
 
@@ -104,7 +99,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/xenobio, offset_nort
 	icon_state = "department_hydro"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/botany, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/botany, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/custodian
 	name = "\improper Janitor sign"
@@ -113,7 +108,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/botany, offset_north
 	icon_state = "custodian"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/custodian, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/custodian, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/holy
 	name = "\improper Chapel sign"
@@ -122,7 +117,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/custodian, offset_no
 	icon_state = "department_chapel"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/holy, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/holy, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/lawyer
 	name = "\improper Legal Department sign"
@@ -131,7 +126,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/holy, offset_north, 
 	icon_state = "department_lawyer"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/lawyer/alt
 	name = "\improper Legal Department sign"
@@ -140,7 +135,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, offset_north
 	icon_state = "department_lawyer2"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 ///////SUPPLY
 
@@ -151,7 +146,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/lawyer, offset_north
 	icon_state = "department_cargo"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/cargo, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/cargo, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 ///////SECURITY
 
@@ -162,7 +157,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/cargo, offset_north,
 	icon_state = "department_sec"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/security, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/security, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 ////MISC LOCATIONS
 
@@ -173,7 +168,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/security, offset_nor
 	icon_state = "department_wc"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/restroom, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/restroom, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/maint
 	name = "\improper Maintenance Tunnel sign"
@@ -182,7 +177,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/restroom, offset_nor
 	icon_state = "mait1"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/maint/alt
 	name = "\improper Maintenance Tunnel sign"
@@ -191,7 +186,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint, offset_north,
 	icon_state = "mait2"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint/alt, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint/alt, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/evac
 	name = "\improper Evacuation sign"
@@ -200,7 +195,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint/alt, offset_no
 	icon_state = "department_evac"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/evac, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/evac, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/drop
 	name = "\improper Drop Pods sign"
@@ -209,7 +204,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/evac, offset_north, 
 	icon_state = "drop"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/drop, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/drop, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/departments/court
 	name = "\improper Courtroom sign"
@@ -218,4 +213,4 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/drop, offset_north, 
 	icon_state = "department_law"
 	is_editable = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/court, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/court, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)

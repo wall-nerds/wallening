@@ -8,9 +8,6 @@
 	pressure_resistance = 2 * ONE_ATMOSPHERE
 	max_integrity = 300
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-
 	///In units, how much the dispenser can hold
 	var/tank_volume = 1000
 	///The ID of the reagent that the dispenser uses
@@ -170,7 +167,7 @@
 	icon_state = "pepper"
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, 0, 0)
 
 /obj/structure/reagent_dispensers/wall/peppertank/Initialize(mapload)
 	. = ..()
@@ -225,7 +222,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, o
 	icon_state = "virus_food"
 	reagent_id = /datum/reagent/consumable/virus_food
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, 0, 0)
 
 /obj/structure/reagent_dispensers/cooking_oil
 	name = "vat of cooking oil"

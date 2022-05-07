@@ -8,15 +8,6 @@
 	var/damtype = BRUTE
 	var/force = 0
 
-	/// Default north pixel offset
-	var/offset_north = 0
-	/// Default south pixel offset
-	var/offset_south = 0
-	/// Default east pixel offset
-	var/offset_east = 0
-	/// Default west pixel offset
-	var/offset_west = 0
-
 	/// How good a given object is at causing wounds on carbons. Higher values equal better shots at creating serious wounds.
 	var/wound_bonus = 0
 	/// If this attacks a human with no wound armor on the affected body part, add this to the wound mod. Some attacks may be significantly worse at wounding if there's even a slight layer of armor to absorb some of it vs bare flesh

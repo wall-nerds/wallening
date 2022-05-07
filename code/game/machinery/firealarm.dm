@@ -27,11 +27,6 @@
 	light_range = 7
 	light_color = COLOR_VIVID_RED
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	//Trick to get the glowing overlay visible from a distance
 	luminosity = 1
 	///Buildstate for contruction steps. 2 = complete, 1 = no wires, 0 = circuit gone
@@ -394,7 +389,7 @@
 	to_chat(user, span_notice("You [ my_area.fire_detect ? "enable" : "disable" ] the local firelock thermal sensors!"))
 	log_game("[user] has [ my_area.fire_detect ? "enabled" : "disabled" ] firelock sensors using [src] at [COORD(src)]")
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm,  offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /*
  * Return of Party button

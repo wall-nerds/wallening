@@ -8,15 +8,10 @@
 	max_integrity = 200
 	integrity_failure = 0.25
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	var/obj/item/extinguisher/stored_extinguisher
 	var/opened = FALSE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/extinguisher_cabinet/Initialize(mapload, ndir, building)
 	. = ..()

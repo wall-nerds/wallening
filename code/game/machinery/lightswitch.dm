@@ -8,11 +8,6 @@
 	power_channel = AREA_USAGE_LIGHT
 	use_power = NO_POWER_USE
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	/// Set this to a string, path, or area instance to control that area
 	/// instead of the switch's location.
 	var/area/area = null
@@ -23,7 +18,7 @@
 		/obj/item/circuit_component/light_switch,
 	))
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/machinery/light_switch/Initialize(mapload)
 	. = ..()

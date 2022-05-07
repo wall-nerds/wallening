@@ -10,11 +10,6 @@
 	force = 0
 	resistance_flags = FLAMMABLE
 
-	offset_north = DEFAULT_OFFSET_Y_NORTH
-	offset_south = DEFAULT_OFFSET_Y_SOUTH
-	offset_east = DEFAULT_OFFSET_X
-	offset_west = DEFAULT_OFFSET_X
-
 	var/poster_type
 	var/obj/structure/sign/poster/poster_structure
 
@@ -195,7 +190,7 @@
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/random, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/random, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/poster/contraband
 	poster_item_name = "contraband poster"
@@ -208,7 +203,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/random, offset_north, off
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster/contraband
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/random, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/random, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/poster/contraband/free_tonto
 	name = "Free Tonto"
@@ -537,7 +532,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/random, offset
 	icon_state = "random_official"
 	never_random = TRUE
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/random, offset_north, offset_south, offset_east, offset_west)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/random, DEFAULT_OFFSET_Y_NORTH, DEFAULT_OFFSET_Y_SOUTH, DEFAULT_OFFSET_X, DEFAULT_OFFSET_X)
 
 /obj/structure/sign/poster/official/here_for_your_safety
 	name = "Here For Your Safety"
