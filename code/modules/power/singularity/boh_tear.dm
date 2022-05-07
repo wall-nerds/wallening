@@ -21,7 +21,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	flags_1 = SUPERMATTER_IGNORES_1
 
-/obj/boh_tear/Initialize()
+/obj/boh_tear/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 5 SECONDS) // vanishes after 5 seconds
 
@@ -37,7 +37,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/jedi = user
-	to_chat(jedi, "<span class='userdanger'>You don't feel like you are real anymore.</span>")
+	to_chat(jedi, span_userdanger("You don't feel like you are real anymore."))
 	jedi.dust_animation()
 	jedi.spawn_dust()
 	addtimer(CALLBACK(src, /atom/proc/attack_hand, jedi), 0.5 SECONDS)

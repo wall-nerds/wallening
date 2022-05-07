@@ -8,6 +8,7 @@
 	var/datum/radio_frequency/radio_connection
 
 
+
 /obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if(!signal)
 		return
@@ -106,9 +107,9 @@
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 
-/obj/machinery/airlock_sensor/incinerator_toxmix
-	id_tag = INCINERATOR_TOXMIX_AIRLOCK_SENSOR
-	master_tag = INCINERATOR_TOXMIX_AIRLOCK_CONTROLLER
+/obj/machinery/airlock_sensor/incinerator_ordmix
+	id_tag = INCINERATOR_ORDMIX_AIRLOCK_SENSOR
+	master_tag = INCINERATOR_ORDMIX_AIRLOCK_CONTROLLER
 
 /obj/machinery/airlock_sensor/incinerator_atmos
 	id_tag = INCINERATOR_ATMOS_AIRLOCK_SENSOR
@@ -161,7 +162,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
-/obj/machinery/airlock_sensor/Initialize()
+/obj/machinery/airlock_sensor/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 

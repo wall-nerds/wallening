@@ -61,6 +61,13 @@
 	glass_type = /obj/machinery/door/airlock/medical/glass
 	airlock_type = /obj/machinery/door/airlock/medical
 
+/obj/structure/door_assembly/door_assembly_hydro
+	name = "hydroponics airlock assembly"
+	icon = 'icons/obj/doors/airlocks/station/medical.dmi'
+	base_name = "hydroponics airlock"
+	glass_type = /obj/machinery/door/airlock/hydroponics/glass
+	airlock_type = /obj/machinery/door/airlock/hydroponics
+
 /obj/structure/door_assembly/door_assembly_mai
 	name = "maintenance airlock assembly"
 	icon = 'icons/obj/doors/airlocks/tall/maintenance.dmi'
@@ -156,20 +163,19 @@
 	airlock_type = /obj/machinery/door/airlock/virology
 
 /obj/structure/door_assembly/door_assembly_centcom
-	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
-	overlays_file = 'icons/obj/doors/airlocks/centcom/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 	airlock_type = /obj/machinery/door/airlock/centcom
 	noglass = TRUE
 
 /obj/structure/door_assembly/door_assembly_grunge
-	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
-	overlays_file = 'icons/obj/doors/airlocks/centcom/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 	airlock_type = /obj/machinery/door/airlock/grunge
 	noglass = TRUE
 
 /obj/structure/door_assembly/door_assembly_gold
 	name = "gold airlock assembly"
-	icon = 'icons/obj/doors/airlocks/station/gold.dmi'
 	base_name = "gold airlock"
 	airlock_type = /obj/machinery/door/airlock/gold
 	mineral = "gold"
@@ -177,7 +183,6 @@
 
 /obj/structure/door_assembly/door_assembly_silver
 	name = "silver airlock assembly"
-	icon = 'icons/obj/doors/airlocks/station/silver.dmi'
 	base_name = "silver airlock"
 	airlock_type = /obj/machinery/door/airlock/silver
 	mineral = "silver"
@@ -247,7 +252,7 @@
 	base_name = "bronze airlock"
 	airlock_type = /obj/machinery/door/airlock/bronze
 	noglass = TRUE
-	material_type = /obj/item/stack/tile/bronze
+	material_type = /obj/item/stack/sheet/bronze
 
 /obj/structure/door_assembly/door_assembly_bronze/seethru
 	airlock_type = /obj/machinery/door/airlock/bronze/seethru

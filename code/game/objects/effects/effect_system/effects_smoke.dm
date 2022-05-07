@@ -30,7 +30,7 @@
 			set_opacity(0) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
 
-/obj/effect/particle_effect/smoke/Initialize()
+/obj/effect/particle_effect/smoke/Initialize(mapload)
 	. = ..()
 	create_reagents(500)
 	START_PROCESSING(SSobj, src)
@@ -76,7 +76,7 @@
 	if(!t_loc)
 		return
 	var/list/newsmokes = list()
-	for(var/turf/T in t_loc.GetAtmosAdjacentTurfs())
+	for(var/turf/T in t_loc.get_atmos_adjacent_turfs())
 		var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 		if(foundsmoke)
 			continue
@@ -125,6 +125,13 @@
 /obj/effect/particle_effect/smoke/bad
 	lifetime = 8
 
+/obj/effect/particle_effect/smoke/bad/Initialize(mapload)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_entered,
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/effect/particle_effect/smoke/bad/smoke_mob(mob/living/carbon/M)
 	. = ..()
 	if(.)
@@ -133,11 +140,11 @@
 		M.emote("cough")
 		return TRUE
 
-/obj/effect/particle_effect/smoke/bad/Crossed(atom/movable/AM, oldloc)
-	. = ..()
-	if(istype(AM, /obj/projectile/beam))
-		var/obj/projectile/beam/B = AM
-		B.damage = (B.damage/2)
+/obj/effect/particle_effect/smoke/bad/proc/on_entered(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	SIGNAL_HANDLER
+	if(istype(arrived, /obj/projectile/beam))
+		var/obj/projectile/beam/beam = arrived
+		beam.damage *= 0.5
 
 /datum/effect_system/smoke_spread/bad
 	effect_type = /obj/effect/particle_effect/smoke/bad
@@ -179,7 +186,7 @@
 				if(!isnull(U.welded) && !U.welded) //must be an unwelded vent pump or vent scrubber.
 					U.welded = TRUE
 					U.update_appearance()
-					U.visible_message("<span class='danger'>[U] is frozen shut!</span>")
+					U.visible_message(span_danger("[U] is frozen shut!"))
 		for(var/mob/living/L in T)
 			L.extinguish_mob()
 		for(var/obj/item/Item in T)
@@ -265,7 +272,7 @@
 	chemholder = new /obj()
 	var/datum/reagents/R = new (500, REAGENT_HOLDER_INSTANT_REACT) //This is a safety for now to prevent smoke generating more smoke as the smoke reagents react in the smoke. This is prevented naturally from happening even if this is off, but I want to be sure that any edge cases are prevented before I get a chance to rework smoke reactions (specifically adding water or reacting away stabilizing agent in the middle of it).
 	chemholder.reagents = R
-	
+
 	R.my_atom = chemholder
 
 /datum/effect_system/smoke_spread/chem/Destroy()

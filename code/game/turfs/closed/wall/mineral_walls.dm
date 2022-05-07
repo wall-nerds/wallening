@@ -6,6 +6,7 @@
 	canSmoothWith = null
 	rcd_memory = null
 	frill_icon = null
+	material_flags = MATERIAL_EFFECTS
 	var/last_event = 0
 	var/active = null
 
@@ -13,6 +14,7 @@
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
 	icon = 'icons/turf/walls/gold_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_gold_frill.dmi'
 	icon_state = "gold_wall-0"
 	base_icon_state = "gold_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/gold
@@ -25,6 +27,7 @@
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny!"
 	icon = 'icons/turf/walls/silver_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_silver_frill.dmi'
 	icon_state = "silver_wall-0"
 	base_icon_state = "silver_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/silver
@@ -66,6 +69,7 @@
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_sandstone_frill.dmi'
 	icon_state = "sandstone_wall-0"
 	base_icon_state = "sandstone_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/sandstone
@@ -80,6 +84,7 @@
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
 	icon = 'icons/turf/walls/uranium_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_uranium_frill.dmi'
 	icon_state = "uranium_wall-0"
 	base_icon_state = "uranium_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
@@ -161,10 +166,12 @@
 	name = "wooden wall"
 	desc = "A wall with wooden plating. Stiff."
 	icon = 'icons/turf/walls/wood_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_wood_frill.dmi'
 	icon_state = "wood_wall-0"
 	base_icon_state = "wood_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/wood
 	hardness = 70
+	turf_flags = NONE
 	explosion_block = 0
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_WOOD_WALLS)
@@ -193,6 +200,7 @@
 	name = "rough iron wall"
 	desc = "A wall with rough iron plating."
 	icon = 'icons/turf/walls/iron_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_iron_frill.dmi'
 	icon_state = "iron_wall-0"
 	base_icon_state = "iron_wall"
 	sheet_type = /obj/item/stack/rods
@@ -235,19 +243,35 @@
 	canSmoothWith = list(SMOOTH_GROUP_ABDUCTOR_WALLS)
 	custom_materials = list(/datum/material/alloy/alien = 4000)
 
+/turf/closed/wall/mineral/bamboo
+	name = "bamboo wall"
+	desc = "A wall with constructed from bamboo."
+	icon = 'icons/turf/walls/bamboo_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_bamboo_frill.dmi'
+	icon_state = "bamboo_wall-0"
+	base_icon_state = "bamboo_wall"
+	sheet_type = /obj/item/stack/sheet/mineral/bamboo
+	hardness = 50
+	explosion_block = 0
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BAMBOO_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_BAMBOO_WALLS)
+	custom_materials = list(/datum/material/bamboo = 4000)
+
 /////////////////////Titanium walls/////////////////////
 
 /turf/closed/wall/mineral/titanium //has to use this path due to how building walls works
 	name = "wall"
 	desc = "A light-weight titanium wall used in shuttles."
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_shuttle_frill.dmi'
 	icon_state = "shuttle_wall-0"
 	base_icon_state = "shuttle_wall"
 	explosion_block = 3
 	flags_1 = CAN_BE_DIRTY_1
 	flags_ricochet = RICOCHET_SHINY | RICOCHET_HARD
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_TITANIUM_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_TITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
 	custom_materials = list(/datum/material/titanium = 4000)
@@ -271,24 +295,9 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	fixed_underlay = list("space" = TRUE)
 
-//sub-type to be used for interior shuttle walls
-//won't get an underlay of the destination turf on shuttle move
 /turf/closed/wall/mineral/titanium/interior/copyTurf(turf/T)
-	if(T.type != type)
-		T.ChangeTurf(type)
-		if(underlays.len)
-			T.underlays = underlays
-	if(T.icon_state != icon_state)
-		T.icon_state = icon_state
-	if(T.icon != icon)
-		T.icon = icon
-	if(color)
-		T.atom_colours = atom_colours.Copy()
-		T.update_atom_colour()
-	if(T.dir != dir)
-		T.setDir(dir)
+	. = ..()
 	T.transform = transform
-	return T
 
 /turf/closed/wall/mineral/titanium/copyTurf(turf/T)
 	. = ..()
@@ -319,6 +328,7 @@
 	name = "wall"
 	desc = "A durable wall made of an alloy of plasma and titanium."
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_plastitanium_frill.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"
 	explosion_block = 4
@@ -355,24 +365,6 @@
 
 /turf/closed/wall/mineral/plastitanium/hulk_recoil(obj/item/bodypart/arm, mob/living/carbon/human/hulkman, damage = 41)
 	return ..()
-
-//have to copypaste this code
-/turf/closed/wall/mineral/plastitanium/interior/copyTurf(turf/T)
-	if(T.type != type)
-		T.ChangeTurf(type)
-		if(underlays.len)
-			T.underlays = underlays
-	if(T.icon_state != icon_state)
-		T.icon_state = icon_state
-	if(T.icon != icon)
-		T.icon = icon
-	if(color)
-		T.atom_colours = atom_colours.Copy()
-		T.update_atom_colour()
-	if(T.dir != dir)
-		T.setDir(dir)
-	T.transform = transform
-	return T
 
 /turf/closed/wall/mineral/plastitanium/copyTurf(turf/T)
 	. = ..()

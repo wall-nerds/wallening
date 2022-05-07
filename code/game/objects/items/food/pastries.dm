@@ -20,7 +20,7 @@
 	var/extra_reagent = null
 	var/decorated_adjective = "sprinkled"
 
-/obj/item/food/donut/Initialize()
+/obj/item/food/donut/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/dunkable, amount_per_dunk = 10)
 	if(prob(DONUT_SPRINKLE_CHANCE))
@@ -70,7 +70,7 @@
 	tastes = list("donut" = 3, "chaos" = 1)
 	is_decorated = TRUE
 
-/obj/item/food/donut/chaos/Initialize()
+/obj/item/food/donut/chaos/Initialize(mapload)
 	. = ..()
 	extra_reagent = pick(/datum/reagent/consumable/nutriment, /datum/reagent/consumable/capsaicin, /datum/reagent/consumable/frostoil, /datum/reagent/drug/krokodil, /datum/reagent/toxin/plasma, /datum/reagent/consumable/coco, /datum/reagent/toxin/slimejelly, /datum/reagent/consumable/banana, /datum/reagent/consumable/berryjuice, /datum/reagent/medicine/omnizine)
 	reagents.add_reagent(extra_reagent, 3)
@@ -171,7 +171,7 @@
 /obj/item/food/donut/jelly/in_box_sprite()
 	return "[replacetext(icon_state, "jelly", "donut")]_inbox"
 
-/obj/item/food/donut/jelly/Initialize()
+/obj/item/food/donut/jelly/Initialize(mapload)
 	. = ..()
 	if(extra_reagent)
 		reagents.add_reagent(extra_reagent, 3)
@@ -339,6 +339,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("muffin" = 1)
 	foodtypes = GRAIN | SUGAR | BREAKFAST
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/muffin/berry
@@ -374,9 +375,9 @@
 		return
 	var/mob/living/carbon/human/moffin_observer = user
 	if(moffin_observer.dna.species.liked_food & CLOTH)
-		. += "<span class='nicegreen'>Ooh! It's even got bits of clothes on it! Yummy!</span>"
+		. += span_nicegreen("Ooh! It's even got bits of clothes on it! Yummy!")
 	else
-		. += "<span class='warning'>You're not too sure what's on top though...</span>"
+		. += span_warning("You're not too sure what's on top though...")
 
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
@@ -431,7 +432,12 @@
 	microwaved_type = /obj/item/food/donkpocket/warm
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtypes = GRAIN
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
+
+//donk pockets cook quick... try not to burn them for using an unoptimal tool
+/obj/item/food/donkpocket/MakeBakeable()
+	AddComponent(/datum/component/bakeable, microwaved_type, rand(25 SECONDS, 30 SECONDS), TRUE, TRUE)
 
 /obj/item/food/donkpocket/warm
 	name = "warm Donk-pocket"
@@ -440,6 +446,10 @@
 	microwaved_type = null
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtypes = GRAIN
+
+///Override for fast-burning food
+/obj/item/food/donkpocket/warm/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/food/badrecipe, rand(10 SECONDS, 15 SECONDS), FALSE)
 
 /obj/item/food/dankpocket
 	name = "\improper Dank-pocket"
@@ -561,9 +571,10 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/cookie/Initialize()
+/obj/item/food/cookie/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/dunkable, 10)
 
@@ -577,6 +588,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/poppypretzel
@@ -586,6 +598,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pretzel" = 1)
 	foodtypes = GRAIN | SUGAR
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/plumphelmetbiscuit
@@ -595,9 +608,10 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("mushroom" = 1, "biscuit" = 1)
 	foodtypes = GRAIN | VEGETABLES
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/plumphelmetbiscuit/Initialize()
+/obj/item/food/plumphelmetbiscuit/Initialize(mapload)
 	var/fey = prob(10)
 	if(fey)
 		name = "exceptional plump helmet biscuit"
@@ -615,31 +629,8 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("cracker" = 1)
 	foodtypes = GRAIN
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/food/hotdog
-	name = "hotdog"
-	desc = "Fresh footlong ready to go down on."
-	icon_state = "hotdog"
-	bite_consumption = 3
-	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/ketchup = 3, /datum/reagent/consumable/nutriment/vitamin = 6)
-	tastes = list("bun" = 3, "meat" = 2)
-	foodtypes = GRAIN | MEAT | VEGETABLES
-	w_class = WEIGHT_CLASS_SMALL
-	venue_value = FOOD_PRICE_CHEAP
-
-/obj/item/food/hotdog/debug
-	eat_time = 0
-
-/obj/item/food/meatbun
-	name = "meat bun"
-	desc = "Has the potential to not be Dog."
-	icon_state = "meatbun"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("bun" = 3, "meat" = 2)
-	foodtypes = GRAIN | MEAT | VEGETABLES
-	w_class = WEIGHT_CLASS_SMALL
-	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/khachapuri
 	name = "khachapuri"
@@ -658,7 +649,7 @@
 	tastes = list("sweetness" = 1)
 	foodtypes = GRAIN | JUNKFOOD | SUGAR
 
-/obj/item/food/cookie/sugar/Initialize()
+/obj/item/food/cookie/sugar/Initialize(mapload)
 	. = ..()
 	if(SSevents.holidays && SSevents.holidays[FESTIVE_SEASON])
 		var/shape = pick("tree", "bear", "santa", "stocking", "present", "cane")
@@ -697,6 +688,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("cake" = 3, "cherry" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
+	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/cherrycupcake/blue
@@ -761,7 +753,7 @@
 		return ..()
 	if(newresult)
 		qdel(garnish)
-		to_chat(user, "<span class='notice'>You add [garnish] to [src].</span>")
+		to_chat(user, span_notice("You add [garnish] to [src]."))
 		AddComponent(/datum/component/grillable, cook_result = newresult)
 
 /obj/item/food/pancakes/raw/examine(mob/user)
@@ -785,7 +777,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pancakes" = 1, "chocolate" = 1)
 
-/obj/item/food/pancakes/Initialize()
+/obj/item/food/pancakes/Initialize(mapload)
 	. = ..()
 	update_appearance()
 
@@ -828,11 +820,11 @@
 	if(istype(item, /obj/item/food/pancakes))
 		var/obj/item/food/pancakes/pancake = item
 		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK))
-			to_chat(user, "<span class='warning'>You can't add that many pancakes to [src]!</span>")
+			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
 		else
 			if(!user.transferItemToLoc(pancake, src))
 				return
-			to_chat(user, "<span class='notice'>You add the [pancake] to the [src].</span>")
+			to_chat(user, span_notice("You add the [pancake] to the [src]."))
 			pancake.name = initial(pancake.name)
 			contents += pancake
 			update_snack_overlays(pancake)
@@ -885,6 +877,7 @@
 	tastes = list("cream" = 2, "waffle" = 1)
 	bite_consumption = 4
 	foodtypes = DAIRY | SUGAR
+	food_flags = FOOD_FINGER_FOOD
 	max_volume = 10 //The max volumes scales up with the number of scoops of ice cream served.
 	/// These two variables are used by the ice cream vat. Latter is the one that shows on the UI.
 	var/list/ingredients = list(/datum/reagent/consumable/flour, /datum/reagent/consumable/sugar)

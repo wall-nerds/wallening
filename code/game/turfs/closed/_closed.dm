@@ -51,10 +51,30 @@
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "block"
 
+/turf/closed/indestructible/weeb
+	name = "paper wall"
+	desc = "Reinforced paper walling. Someone really doesn't you to leave."
+	icon = 'icons/obj/smooth_structures/paperframes.dmi'
+	icon_state = "paperframes-0"
+	base_icon_state = "paperframes"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_PAPERFRAME)
+	canSmoothWith = list(SMOOTH_GROUP_PAPERFRAME)
+	var/static/mutable_appearance/indestructible_paper = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "paper", layer = CLOSED_TURF_LAYER - 0.1)
+
+/turf/closed/indestructible/weeb/Initialize(mapload)
+	. = ..()
+	update_appearance()
+
+/turf/closed/indestructible/weeb/update_overlays()
+	. = ..()
+	. += indestructible_paper
+
 /turf/closed/indestructible/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_sandstone_frill.dmi'
 	icon_state = "sandstone_wall-0"
 	base_icon_state = "sandstone_wall"
 	baseturfs = /turf/closed/indestructible/sandstone
@@ -65,16 +85,30 @@
 
 /turf/closed/indestructible/splashscreen
 	name = "Space Station 13"
+	desc = null
 	icon = 'icons/blank_title.png'
 	icon_state = ""
+	pixel_x = -64
 	plane = SPLASHSCREEN_PLANE
 	bullet_bounce_sound = null
 
-/turf/closed/indestructible/splashscreen/New()
+INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
+
+/turf/closed/indestructible/splashscreen/Initialize(mapload)
+	. = ..()
 	SStitle.splash_turf = src
 	if(SStitle.icon)
 		icon = SStitle.icon
-	..()
+	handle_generic_titlescreen_sizes()
+
+///helper proc that will center the screen if the icon is changed to a generic width, to make admins have to fudge around with pixel_x less. returns null
+/turf/closed/indestructible/splashscreen/proc/handle_generic_titlescreen_sizes()
+	var/icon/size_check = icon(icon, icon_state)
+	var/width = size_check.Width()
+	if(width == 480) // 480x480 is nonwidescreen
+		pixel_x = 0
+	else if(width == 608) // 608x480 is widescreen
+		pixel_x = -64
 
 /turf/closed/indestructible/splashscreen/vv_edit_var(var_name, var_value)
 	. = ..()
@@ -82,7 +116,12 @@
 		switch(var_name)
 			if(NAMEOF(src, icon))
 				SStitle.icon = icon
+				handle_generic_titlescreen_sizes()
 
+/turf/closed/indestructible/start_area
+	name = null
+	desc = null
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /turf/closed/indestructible/reinforced
 	name = "reinforced wall"
@@ -97,15 +136,17 @@
 
 
 /turf/closed/indestructible/riveted
-	icon = 'icons/turf/walls/riveted.dmi'
-	icon_state = "riveted-0"
-	base_icon_state = "riveted"
+	icon = 'icons/turf/walls/riveted_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_riveted_frill.dmi'
+	icon_state = "riveted_wall-0"
+	base_icon_state = "riveted_wall"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS)
 	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 
 /turf/closed/indestructible/syndicate
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_plastitanium_frill.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -114,9 +155,11 @@
 
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_uranium_frill.dmi'
 	icon_state = "uranium_wall-0"
 	base_icon_state = "uranium_wall"
 	smoothing_flags = SMOOTH_BITMASK
+
 
 /turf/closed/indestructible/riveted/plastinum
 	name = "plastinum wall"
@@ -128,6 +171,7 @@
 
 /turf/closed/indestructible/wood
 	icon = 'icons/turf/walls/wood_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_wood_frill.dmi'
 	icon_state = "wood_wall-0"
 	base_icon_state = "wood_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -150,6 +194,7 @@
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound. Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls/cult_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_cult_frill.dmi'
 	icon_state = "cult_wall-0"
 	base_icon_state = "cult_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -174,7 +219,7 @@
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
-/turf/closed/indestructible/fakeglass/Initialize()
+/turf/closed/indestructible/fakeglass/Initialize(mapload)
 	. = ..()
 	underlays += mutable_appearance('icons/obj/structures.dmi', "grille") //add a grille underlay
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating") //add the plating underlay, below the grille
@@ -189,7 +234,7 @@
 	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM)
 
-/turf/closed/indestructible/opsglass/Initialize()
+/turf/closed/indestructible/opsglass/Initialize(mapload)
 	. = ..()
 	icon_state = null
 	underlays += mutable_appearance('icons/obj/structures.dmi', "grille")
@@ -197,7 +242,6 @@
 
 /turf/closed/indestructible/fakedoor
 	name = "CentCom Access"
-	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	icon_state = "fake_door"
 
 /turf/closed/indestructible/rock
@@ -253,6 +297,7 @@
 	name = "impervious iron wall"
 	desc = "A wall with tough iron plating."
 	icon = 'icons/turf/walls/iron_wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_iron_frill.dmi'
 	icon_state = "iron_wall-0"
 	base_icon_state = "iron_wall"
 	smoothing_flags = SMOOTH_BITMASK

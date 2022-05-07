@@ -10,7 +10,9 @@
 	return get_strippable_alternate_action_internals(get_item(source), source)
 
 /datum/strippable_item/mob_item_slot/back/alternate_action(atom/source, mob/user)
-	return strippable_alternate_action_internals(get_item(source), source, user)
+	if(!..())
+		return
+	strippable_alternate_action_internals(get_item(source), source, user)
 
 /datum/strippable_item/mob_item_slot/mask
 	key = STRIPPABLE_ITEM_MASK
@@ -76,7 +78,7 @@
 	var/mob/mob_source = source
 
 	if (!mob_source.can_put_in_hand(equipping, hand_index))
-		to_chat(src, "<span class='warning'>\The [equipping] doesn't fit in that place!</span>")
+		to_chat(src, span_warning("\The [equipping] doesn't fit in that place!"))
 		return FALSE
 
 	return TRUE

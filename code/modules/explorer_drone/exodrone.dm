@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	/// Used to provide source to the regex replacement function. DO NOT MODIFY DIRECTLY
 	var/static/obj/item/exodrone/_regex_context
 
-/obj/item/exodrone/Initialize()
+/obj/item/exodrone/Initialize(mapload)
 	. = ..()
 	name = pick(strings(EXODRONE_FILE,"probe_names"))
 	if(name_counter[name])
@@ -179,9 +179,11 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /// Crashes the drone somewhere random if there's no launchpad to be found.
 /obj/item/exodrone/proc/drop_somewhere_on_station()
 	var/turf/random_spot = get_safe_random_station_turf()
-	var/obj/structure/closet/supplypod/pod = new
-	pod.bluespace = TRUE
-	new /obj/effect/pod_landingzone(random_spot, pod, src)
+
+	var/obj/structure/closet/supplypod/pod = podspawn(list(
+		"target" = random_spot,
+	))
+	forceMove(pod)
 	return random_spot
 
 /// Tries to find landing pad, starting with the one we launched from.
@@ -345,14 +347,14 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	/// Loaded fuel pellet.
 	var/obj/item/fuel_pellet/fuel_canister
 
-/obj/machinery/exodrone_launcher/Initialize()
+/obj/machinery/exodrone_launcher/Initialize(mapload)
 	. = ..()
 	GLOB.exodrone_launchers += src
 
 /obj/machinery/exodrone_launcher/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/fuel_pellet))
 		if(fuel_canister)
-			to_chat(user, "<span class='warning'>There's already a fuel tank inside [src]!</span>")
+			to_chat(user, span_warning("There's already a fuel tank inside [src]!"))
 			return TRUE
 		if(!user.transferItemToLoc(I, src))
 			return
@@ -367,7 +369,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /obj/machinery/exodrone_launcher/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(fuel_canister)
-		to_chat(user, "<span class='notie'>You remove the fuel tank from [src].</span>")
+		to_chat(user, span_notice("You remove the fuel tank from [src]."))
 		fuel_canister.forceMove(drop_location())
 		fuel_canister = null
 
@@ -435,10 +437,12 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		qdel(src)
 
 /obj/item/fuel_pellet/advanced
+	name = "advanced fuel pellet"
 	fuel_type = FUEL_ADVANCED
 	icon_state = "fuel_advanced"
 
 /obj/item/fuel_pellet/exotic
+	name = "exotic fuel pellet"
 	fuel_type = FUEL_EXOTIC
 	icon_state = "fuel_exotic"
 

@@ -1,11 +1,12 @@
 /datum/job/shaft_miner
 	title = "Shaft Miner"
 	department_head = list("Head of Personnel")
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dcba97"
+	exp_granted_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/miner
 	plasmaman_outfit = /datum/outfit/plasmaman/mining
@@ -15,9 +16,14 @@
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 	bounty_types = CIV_JOB_MINE
-	departments = DEPARTMENT_CARGO
+	departments_list = list(
+		/datum/job_department/cargo,
+		)
 
 	family_heirlooms = list(/obj/item/pickaxe/mini, /obj/item/shovel)
+	rpg_title = "Adventurer"
+	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS
+
 
 /datum/outfit/job/miner
 	name = "Shaft Miner"
@@ -32,7 +38,7 @@
 	r_pocket = /obj/item/storage/bag/ore //causes issues if spawned in backpack
 	backpack_contents = list(
 		/obj/item/flashlight/seclite=1,\
-		/obj/item/kitchen/knife/combat/survival=1,\
+		/obj/item/knife/combat/survival=1,\
 		/obj/item/mining_voucher=1,\
 		/obj/item/stack/marker_beacon/ten=1)
 
@@ -54,7 +60,7 @@
 	internals_slot = ITEM_SLOT_SUITSTORE
 	backpack_contents = list(
 		/obj/item/flashlight/seclite=1,\
-		/obj/item/kitchen/knife/combat/survival=1,
+		/obj/item/knife/combat/survival=1,
 		/obj/item/mining_voucher=1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser=1,
 		/obj/item/gun/energy/kinetic_accelerator=1,\

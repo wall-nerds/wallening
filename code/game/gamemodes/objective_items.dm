@@ -102,6 +102,16 @@
 	special_equipment += /obj/item/storage/box/syndie_kit/nuke
 	..()
 
+/datum/objective_item/steal/hdd_extraction
+	name = "the source code for Project Goon from the master R&D server mainframe."
+	targetitem = /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
+	difficulty = 10
+
+/datum/objective_item/steal/hdd_extraction/New()
+	special_equipment += /obj/item/paper/guides/antag/hdd_extraction
+	return ..()
+
+
 /datum/objective_item/steal/supermatter
 	name = "a sliver of a supermatter crystal. Be sure to use the proper safety equipment when extracting the sliver!"
 	targetitem = /obj/item/nuke_core/supermatter_sliver
@@ -124,7 +134,8 @@
 /datum/objective_item/steal/plasma/check_special_completion(obj/item/tank/T)
 	var/target_amount = text2num(name)
 	var/found_amount = 0
-	found_amount += T.air_contents.gases[/datum/gas/plasma] ? T.air_contents.gases[/datum/gas/plasma][MOLES] : 0
+	var/datum/gas_mixture/mix = T.return_air()
+	found_amount += mix.gases[/datum/gas/plasma] ? mix.gases[/datum/gas/plasma][MOLES] : 0
 	return found_amount>=target_amount
 
 

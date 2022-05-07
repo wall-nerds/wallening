@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 		category_weights[modifier] += distance*distance_modifiers[modifier]
 	var/min_events_amount = CEILING(0.4*distance+0.2,1)
 	for(var/i in 1 to rand(min_events_amount,min_events_amount+2))
-		var/chosen_category = pickweight(category_weights)
+		var/chosen_category = pick_weight(category_weights)
 		var/datum/exploration_event/event = generate_event(site_traits,chosen_category)
 		if(event)
 			add_event(event)
@@ -82,14 +82,14 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 
 /datum/exploration_site/proc/generate_adventure(site_traits)
 	var/list/possible_adventures = list()
-	for(var/datum/adventure/adventure_candidate in GLOB.explorer_drone_adventures)
-		if(adventure_candidate.placed || (adventure_candidate.required_site_traits && length(adventure_candidate.required_site_traits - site_traits) != 0))
-			continue
-		possible_adventures += adventure_candidate
+	for(var/datum/adventure_db_entry/entry in GLOB.explorer_drone_adventure_db_entries)
+		if(entry.valid_for_use(site_traits))
+			possible_adventures += entry
 	if(!length(possible_adventures))
 		return
-	var/datum/adventure/chosen_adventure = pick(possible_adventures)
-	chosen_adventure.placed = TRUE
+	var/datum/adventure_db_entry/chosen_db_entry = pick(possible_adventures)
+	var/datum/adventure/chosen_adventure = chosen_db_entry.create_adventure()
+	chosen_db_entry.placed = TRUE
 	var/datum/exploration_event/adventure/adventure_event = new
 	adventure_event.adventure = chosen_adventure
 	adventure_event.band_values = chosen_adventure.band_modifiers

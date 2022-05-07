@@ -79,10 +79,10 @@
 	. = ..()
 	AddComponent(/datum/component/wet_floor, TURF_WET_SUPERLUBE, INFINITY, 0, INFINITY, TRUE)
 
-/turf/open/indestructible/honk/Entered(atom/movable/AM)
-	..()
-	if(ismob(AM))
-		playsound(src,sound,50,TRUE)
+/turf/open/indestructible/honk/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(ismob(arrived))
+		playsound(src, sound, 50, TRUE)
 
 /turf/open/indestructible/necropolis
 	name = "necropolis floor"
@@ -97,7 +97,7 @@
 	heavyfootstep = FOOTSTEP_LAVA
 	tiled_dirt = FALSE
 
-/turf/open/indestructible/necropolis/Initialize()
+/turf/open/indestructible/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
@@ -141,7 +141,7 @@
 
 /turf/open/indestructible/binary
 	name = "tear in the fabric of reality"
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 	baseturfs = /turf/open/indestructible/binary
 	icon_state = "binary"
 	footstep = null
@@ -159,7 +159,7 @@
 	update_visuals()
 
 	current_cycle = times_fired
-	ImmediateCalculateAdjacentTurfs()
+	immediate_calculate_adjacent_turfs()
 	for(var/i in atmos_adjacent_turfs)
 		var/turf/open/enemy_tile = i
 		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
@@ -168,17 +168,17 @@
 			excited = TRUE
 			SSair.active_turfs += src
 
-/turf/open/proc/GetHeatCapacity()
+/turf/open/GetHeatCapacity()
 	. = air.heat_capacity()
 
-/turf/open/proc/GetTemperature()
+/turf/open/GetTemperature()
 	. = air.temperature
 
-/turf/open/proc/TakeTemperature(temp)
+/turf/open/TakeTemperature(temp)
 	air.temperature += temp
 	air_update_turf(FALSE, FALSE)
 
-/turf/open/proc/freon_gas_act()
+/turf/open/proc/freeze_turf()
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
 			continue
@@ -219,7 +219,7 @@
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return FALSE
 		if(!(lube&SLIDE_ICE))
-			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
+			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
 		SEND_SIGNAL(C, COMSIG_ON_CARBON_SLIP)

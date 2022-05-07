@@ -3,13 +3,13 @@
 /turf/closed/wall
 	name = "wall"
 	desc = "A huge chunk of iron used to separate rooms."
-	icon = 'icons/turf/walls/bases.dmi'
+	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
 	base_icon_state = "wall"
 	explosion_block = 1
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
+	heat_capacity = 62500 //a little over 5 cm thick , 62500 for 1 m by 2.5 m by 0.25 m iron wall. also indicates the temperature at wich the wall will melt (currently only able to melt with H/E pipes)
 
 	baseturfs = /turf/open/floor/plating
 
@@ -18,22 +18,26 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS)
-	frill_icon = 'icons/turf/walls/wall.dmi'
+	frill_icon = 'icons/effects/frills/wall_metal_frill.dmi'
 
 	rcd_memory = RCD_MEMORY_WALL
-
+	///bool on whether this wall can be chiselled into
+	var/can_engrave = TRUE
 	///lower numbers are harder. Used to determine the probability of a hulk smashing through.
 	var/hardness = 40
 	var/slicing_duration = 100  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/iron
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
+	/// A turf that will replace this turf when this turf is destroyed
+	var/decon_type
 
 	var/list/dent_decals
 
-
 /turf/closed/wall/Initialize(mapload)
 	. = ..()
+	if(!can_engrave)
+		ADD_TRAIT(src, TRAIT_NOT_ENGRAVABLE, INNATE_TRAIT)
 	if(is_station_level(z))
 		GLOB.station_turfs += src
 	if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS && fixed_underlay) //Set underlays for the diagonal walls.
@@ -48,8 +52,8 @@
 		fixed_underlay = string_assoc_list(fixed_underlay)
 		underlays += underlay_appearance
 
-	icon_state = "black"
-
+/turf/closed/wall/atom_destruction(damage_flag)
+	dismantle_wall(TRUE, FALSE)
 
 /turf/closed/wall/Destroy()
 	if(is_station_level(z))
@@ -62,7 +66,7 @@
 	. += deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
-	return "<span class='notice'>The outer plating is <b>welded</b> firmly in place.</span>"
+	return span_notice("The outer plating is <b>welded</b> firmly in place.")
 
 /turf/closed/wall/attack_tk()
 	return
@@ -80,8 +84,10 @@
 		if(istype(O, /obj/structure/sign/poster))
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
-
-	ScrapeAway()
+	if(decon_type)
+		ChangeTurf(decon_type, flags = CHANGETURF_INHERIT_AIR)
+	else
+		ScrapeAway()
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)
@@ -92,6 +98,9 @@
 	new sheet_type(src, sheet_amount)
 	if(girder_type)
 		new /obj/item/stack/sheet/iron(src)
+
+/turf/attacked_by(obj/item/attacking_item, mob/living/user)
+	return
 
 /turf/closed/wall/ex_act(severity, target)
 	if(target == src)
@@ -148,9 +157,9 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 		add_dent(WALL_DENT_HIT)
-		user.visible_message("<span class='danger'>[user] smashes \the [src]!</span>", \
-					"<span class='danger'>You smash \the [src]!</span>", \
-					"<span class='hear'>You hear a booming smash!</span>")
+		user.visible_message(span_danger("[user] smashes \the [src]!"), \
+					span_danger("You smash \the [src]!"), \
+					span_hear("You hear a booming smash!"))
 	return TRUE
 
 /**
@@ -176,14 +185,14 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, "<span class='notice'>You push the wall but nothing happens!</span>")
+	to_chat(user, span_notice("You push the wall but nothing happens!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 25, TRUE)
 	add_fingerprint(user)
 
 /turf/closed/wall/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	//get the user's location
@@ -196,7 +205,7 @@
 
 	//the istype cascade has been spread among various procs for easy overriding
 	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T))
-		return
+		return TRUE
 
 	return ..()
 
@@ -208,10 +217,10 @@
 		if(!W.tool_start_check(user, amount=0))
 			return FALSE
 
-		to_chat(user, "<span class='notice'>You begin fixing dents on the wall...</span>")
+		to_chat(user, span_notice("You begin fixing dents on the wall..."))
 		if(W.use_tool(src, user, 0, volume=100))
 			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, "<span class='notice'>You fix some dents on the wall.</span>")
+				to_chat(user, span_notice("You fix some dents on the wall."))
 				cut_overlay(dent_decals)
 				dent_decals.Cut()
 			return TRUE
@@ -237,14 +246,17 @@
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE
 
-		to_chat(user, "<span class='notice'>You begin slicing through the outer plating...</span>")
+		to_chat(user, span_notice("You begin slicing through the outer plating..."))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			if(iswallturf(src))
-				to_chat(user, "<span class='notice'>You remove the outer plating.</span>")
+				to_chat(user, span_notice("You remove the outer plating."))
 				dismantle_wall()
 			return TRUE
 
 	return FALSE
+
+/turf/closed/wall/proc/try_damage(obj/item/attacking_item, mob/user, turf/user_turf)
+	return //by default walls dont work like this
 
 /turf/closed/wall/singularity_pull(S, current_size)
 	..()
@@ -284,7 +296,7 @@
 /turf/closed/wall/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_DECONSTRUCT)
-			to_chat(user, "<span class='notice'>You deconstruct the wall.</span>")
+			to_chat(user, span_notice("You deconstruct the wall."))
 			ScrapeAway()
 			return TRUE
 	return FALSE
@@ -312,8 +324,11 @@
 	add_overlay(dent_decals)
 
 /turf/closed/wall/rust_heretic_act()
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		ScrapeAway()
+		return
 	if(prob(70))
 		new /obj/effect/temp_visual/glowing_rune(src)
-	ChangeTurf(/turf/closed/wall/rust)
+	return ..()
 
 #undef MAX_DENT_DECALS

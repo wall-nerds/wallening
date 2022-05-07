@@ -239,7 +239,7 @@ So then, what does superconduction do, and what do all these damn vars mean.
 
 As I mentioned above, superconduction shares heat where heat can't normally travel. It does this by heating up the turf the heat is in, not the gasmix, the turf itself. This temperature is then shared with adjacent turfs, based on `thermal_conductivity`, a value between 0 and 1 that slows the heat share. Turfs also have a `heat_capacity`, which is how hard it is to heat, along with providing a threshold for the lowest temperature that can melt the turf.
 
-There's one more, and it's a doozy. `atmos_superconductivity` is a set of directions that we cannot share with. I know. It's set in CanAtmosPass(), a rather heady set of procs that build `atmos_adjacent_turfs`, and also modify `atmos_superconductivity`.
+There's one more, and it's a doozy. `atmos_superconductivity` is a set of directions that we cannot share with. I know. It's set in can_atmos_pass(), a rather heady set of procs that build `atmos_adjacent_turfs`, and also modify `atmos_superconductivity`.
 
 So then, a review.
 
@@ -391,9 +391,17 @@ This is for the oddballs, the one offs, the half useless things. Things that are
 
 These are the atmos machines you can move around. They interface with connectors to talk to pipelines, and can contain tanks. Not a whole lot more to discuss here.
 
+## 9. A word on processing
+
+You may have noticed that a large portion of the optimizations we do are focused around not checking to see if we need to do work.
+
+This is essentially what active turfs are built around, and it's a somewhat unfinished project. There's still quite a few things in atmos, mostly machinery, that check each fire to see if they should be doing work. There's a general pattern to solving this sort of thing by the way, centralize the ways a bit of outside code can interact with a "thing", and then when the outside code does something that might warrant processing, start processing.
+
+This attitude needs to be applied to a few large targets, and you may see it crop up when reading through the code. Keep this in mind, and make sure to respect the rules that describe how to work with the object, or things will go to shit.
+
 ## Appendix A - Glossary
 
-* *LINDA* - Our environmental gas system, created by Aranclanos, Beautiful in Spanish
+* *LINDA* - Our environmental gas system, created by Aranclanos, allegedly Beautiful in Spanish
 * *Naps* - A healthy pastime
 * *Gas mixtures* - The datums that store gas information, key to listmos and our underlying method of handling well gas
 * *Diffs* - The differences between gasmixes. We want to get rid of these over time, and clump them up with their sources so we don't need to process too many turfs

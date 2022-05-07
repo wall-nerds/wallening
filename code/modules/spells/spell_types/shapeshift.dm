@@ -22,7 +22,7 @@
 		/mob/living/simple_animal/pet/dog/corgi,\
 		/mob/living/simple_animal/hostile/carp/ranged/chaos,\
 		/mob/living/simple_animal/bot/secbot/ed209,\
-		/mob/living/simple_animal/hostile/poison/giant_spider/viper/wizard,\
+		/mob/living/simple_animal/hostile/giant_spider/viper/wizard,\
 		/mob/living/simple_animal/hostile/construct/juggernaut/mystic)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/cast(list/targets,mob/user = usr)
@@ -40,7 +40,7 @@
 				animal_list[initial(animal.name)] = path
 				var/image/animal_image = image(icon = initial(animal.icon), icon_state = initial(animal.icon_state))
 				display_animals += list(initial(animal.name) = animal_image)
-			sortList(display_animals)
+			sort_list(display_animals)
 			var/new_shapeshift_type = show_radial_menu(M, M, display_animals, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 38, require_near = TRUE)
 			if(shapeshift_type)
 				return
@@ -67,13 +67,13 @@
 
 		var/obj/machinery/atmospherics/pipeyoudiein = M.loc
 		var/datum/pipeline/ourpipeline
-		var/pipenets = pipeyoudiein.returnPipenets()
+		var/pipenets = pipeyoudiein.return_pipenets()
 		if(islist(pipenets))
 			ourpipeline = pipenets[1]
 		else
 			ourpipeline = pipenets
 
-		to_chat(M, "<span class='userdanger'>Casting [src] inside of [pipeyoudiein] quickly turns you into a bloody mush!</span>")
+		to_chat(M, span_userdanger("Casting [src] inside of [pipeyoudiein] quickly turns you into a bloody mush!"))
 		var/gibtype = /obj/effect/gibspawner/generic
 		if(isalien(M))
 			gibtype = /obj/effect/gibspawner/xeno
@@ -101,7 +101,7 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/proc/Shapeshift(mob/living/caster)
 	var/obj/shapeshift_holder/H = locate() in caster
 	if(H)
-		to_chat(caster, "<span class='warning'>You're already shapeshifted!</span>")
+		to_chat(caster, span_warning("You're already shapeshifted!"))
 		return
 
 	var/mob/living/shape = new shapeshift_type(caster.loc)
@@ -145,7 +145,8 @@
 	source = _source
 	shape = loc
 	if(!istype(shape))
-		CRASH("shapeshift holder created outside mob/living")
+		stack_trace("shapeshift holder created outside mob/living")
+		return INITIALIZE_HINT_QDEL
 	stored = caster
 	if(stored.mind)
 		stored.mind.transfer_to(shape)
@@ -172,15 +173,15 @@
 
 /obj/shapeshift_holder/Moved()
 	. = ..()
-	if(!restoring || QDELETED(src))
+	if(!restoring && !QDELETED(src))
 		restore()
 
 /obj/shapeshift_holder/handle_atom_del(atom/A)
 	if(A == stored && !restoring)
 		restore()
 
-/obj/shapeshift_holder/Exited(atom/movable/AM)
-	if(AM == stored && !restoring)
+/obj/shapeshift_holder/Exited(atom/movable/gone, direction)
+	if(stored == gone && !restoring)
 		restore()
 
 /obj/shapeshift_holder/proc/caster_death()
