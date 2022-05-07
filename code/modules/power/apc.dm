@@ -421,32 +421,32 @@
 		return
 
 	if(update_overlay & UPSTATE_BLUESCREEN)
-		. += mutable_appearance(icon, "emagged")
-		. += emissive_appearance(icon, "emagged")
+		. += mutable_appearance(icon, "emagged", layer, plane)
+		. += emissive_appearance(icon, "emagged", layer)
 
 		if(update_overlay & (UPSTATE_OPENED1 | UPSTATE_OPENED2))
 			return
 
-		. += mutable_appearance(icon, "equip-0")
-		. += emissive_appearance(icon, "equip-0")
-		. += mutable_appearance(icon, "light-0")
-		. += emissive_appearance(icon, "light-0")
-		. += mutable_appearance(icon, "enviro-0")
-		. += emissive_appearance(icon, "enviro-0")
+		. += mutable_appearance(icon, "equip-0", layer, plane)
+		. += emissive_appearance(icon, "equip-0", layer)
+		. += mutable_appearance(icon, "light-0", layer, plane)
+		. += emissive_appearance(icon, "light-0", layer)
+		. += mutable_appearance(icon, "enviro-0", layer, plane)
+		. += emissive_appearance(icon, "enviro-0", layer)
 		return
 
-	. += mutable_appearance(icon, "state-[charging]")
-	. += emissive_appearance(icon, "state-[charging]")
+	. += mutable_appearance(icon, "state-[charging]", layer, plane)
+	. += emissive_appearance(icon, "state-[charging]", layer)
 
 	if(!operating || update_overlay & (UPSTATE_OPENED1 | UPSTATE_OPENED2))
 		return
 
-	. += mutable_appearance(icon, "equip-[equipment]")
-	. += emissive_appearance(icon, "equip-[equipment]")
-	. += mutable_appearance(icon, "light-[lighting]")
-	. += emissive_appearance(icon, "light-[lighting]")
-	. += mutable_appearance(icon, "enviro-[environ]")
-	. += emissive_appearance(icon, "enviro-[environ]")
+	. += mutable_appearance(icon, "equip-[equipment]", layer, plane)
+	. += emissive_appearance(icon, "equip-[equipment]", layer)
+	. += mutable_appearance(icon, "light-[lighting]", layer, plane)
+	. += emissive_appearance(icon, "light-[lighting]", layer)
+	. += mutable_appearance(icon, "enviro-[environ]", layer, plane)
+	. += emissive_appearance(icon, "enviro-[environ]", layer)
 
 /// Checks for what icon updates we will need to handle
 /obj/machinery/power/apc/proc/check_updates()
