@@ -42,7 +42,7 @@
 		togglelock(user)
 		return
 
-	if(istype(attacking_object, /obj/item/stack/cable_coil) && opened)
+	if(istype(attacking_object, /obj/item/stack/cable_coil) && opened && panel_open)
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
 			CRASH("attackby on APC when it's not on a turf")
@@ -68,7 +68,7 @@
 			return
 		if(installing_cable.get_amount() < 10 || !installing_cable)
 			return
-		if(terminal || !opened || !has_electronics)
+		if(terminal || !opened || !panel_open || !has_electronics)
 			return
 		var/turf/our_turf = get_turf(src)
 		var/obj/structure/cable/cable_node = our_turf.get_cable_node()
@@ -81,7 +81,7 @@
 		terminal.connect_to_network()
 		return
 
-	if(istype(attacking_object, /obj/item/electronics/apc) && opened)
+	if(istype(attacking_object, /obj/item/electronics/apc) && panel_open)
 		if(has_electronics)
 			to_chat(user, span_warning("There is already a board inside the [src]!"))
 			return
@@ -100,12 +100,13 @@
 		has_electronics = APC_ELECTRONICS_INSTALLED
 		locked = FALSE
 		to_chat(user, span_notice("You place the power control board inside the frame."))
+		update_appearance()
 		qdel(attacking_object)
 		return
 
-	if(istype(attacking_object, /obj/item/electroadaptive_pseudocircuit) && opened)
+	if(istype(attacking_object, /obj/item/electroadaptive_pseudocircuit) && (opened || panel_open))
 		var/obj/item/electroadaptive_pseudocircuit/pseudocircuit = attacking_object
-		if(!has_electronics)
+		if(!has_electronics && panel_open)
 			if(machine_stat & BROKEN)
 				to_chat(user, span_warning("[src]'s frame is too damaged to support a circuit."))
 				return
@@ -115,9 +116,10 @@
 			span_notice("You adapt a power control board and click it into place in [src]'s guts."))
 			has_electronics = APC_ELECTRONICS_INSTALLED
 			locked = FALSE
+			update_appearance()
 			return
 
-		if(!cell)
+		if(!cell && opened)
 			if(machine_stat & MAINT)
 				to_chat(user, span_warning("There's no connector for a power cell."))
 				return

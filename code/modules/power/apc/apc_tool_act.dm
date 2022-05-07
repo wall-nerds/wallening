@@ -1,100 +1,81 @@
 //attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/crowbar_act(mob/user, obj/item/crowbar)
 	. = TRUE
-	if((!opened && opened != APC_COVER_REMOVED) && !(machine_stat & BROKEN))
-		if(coverlocked && !(machine_stat & MAINT)) // locked...
-			to_chat(user, span_warning("The cover is locked and cannot be opened!"))
+	if (panel_open && has_electronics == APC_ELECTRONICS_INSTALLED)
+		if (terminal)
+			to_chat(user, span_warning("Disconnect the wires first!"))
 			return
-		else if(panel_open)
-			to_chat(user, span_warning("Exposed wires prevents you from opening it!"))
+		crowbar.play_tool_sound(src)
+		to_chat(user, span_notice("You attempt to remove the power control board..."))
+		if(!crowbar.use_tool(src, user, 50))
 			return
+		if(has_electronics != APC_ELECTRONICS_INSTALLED)
+			return
+		has_electronics = APC_ELECTRONICS_MISSING
+		if (machine_stat & BROKEN)
+			user.visible_message(span_notice("[user.name] breaks the power control board inside [src.name]!"),\
+				span_notice("You break the charred power control board and remove the remains."),
+				span_hear("You hear a crack."))
+		else if (obj_flags & EMAGGED)
+			obj_flags &= ~EMAGGED
+			user.visible_message(span_notice("[user.name] discards an emagged power control board from [src.name]!"),\
+				span_notice("You discard the emagged power control board."))
+		else if (malfhack)
+			user.visible_message(span_notice("[user.name] discards a strangely programmed power control board from [src.name]!"),\
+				span_notice("You discard the strangely programmed board."))
+			malfai = null
+			malfhack = FALSE
 		else
-			opened = APC_COVER_OPENED
-			update_appearance()
-			return
-
-	if((opened && has_electronics == APC_ELECTRONICS_SECURED) && !(machine_stat & BROKEN))
+			user.visible_message(span_notice("[user.name] removes the power control board from [src.name]!"),\
+				span_notice("You remove the power control board."))
+			new /obj/item/electronics/apc(loc)
+		update_appearance()
+		return
+	else if (opened == APC_COVER_OPENED)
 		opened = APC_COVER_CLOSED
 		coverlocked = TRUE //closing cover relocks it
 		update_appearance()
 		return
-
-	if(!opened || has_electronics != APC_ELECTRONICS_INSTALLED)
+	else if (!(machine_stat & BROKEN))
+		if(coverlocked && !(machine_stat & MAINT)) // locked...
+			to_chat(user, span_warning("The cover is locked and cannot be opened!"))
+			return
+		opened = APC_COVER_OPENED
+		update_appearance()
 		return
-	if(terminal)
-		to_chat(user, span_warning("Disconnect the wires first!"))
-		return
-	crowbar.play_tool_sound(src)
-	to_chat(user, span_notice("You attempt to remove the power control board...") )
-	if(!crowbar.use_tool(src, user, 50))
-		return
-	if(has_electronics != APC_ELECTRONICS_INSTALLED)
-		return
-	has_electronics = APC_ELECTRONICS_MISSING
-	if(machine_stat & BROKEN)
-		user.visible_message(span_notice("[user.name] breaks the power control board inside [name]!"),\
-			span_notice("You break the charred power control board and remove the remains."),
-			span_hear("You hear a crack."))
-		return
-	else if(obj_flags & EMAGGED)
-		obj_flags &= ~EMAGGED
-		user.visible_message(span_notice("[user.name] discards an emagged power control board from [name]!"),\
-			span_notice("You discard the emagged power control board."))
-		return
-	else if(malfhack)
-		user.visible_message(span_notice("[user.name] discards a strangely programmed power control board from [name]!"),\
-			span_notice("You discard the strangely programmed board."))
-		malfai = null
-		malfhack = 0
-		return
-	user.visible_message(span_notice("[user.name] removes the power control board from [name]!"),\
-		span_notice("You remove the power control board."))
-	new /obj/item/electronics/apc(loc)
-	return
 
 /obj/machinery/power/apc/screwdriver_act(mob/living/user, obj/item/W)
 	if(..())
 		return TRUE
 	. = TRUE
-
-	if(!opened)
-		if(obj_flags & EMAGGED)
-			to_chat(user, span_warning("The interface is broken!"))
-			return
+	//You can only touch the electronics if the panel and tray are open, and the terminal is yoten
+	if(opened && panel_open && !terminal)
+		switch (has_electronics)
+			if (APC_ELECTRONICS_INSTALLED)
+				has_electronics = APC_ELECTRONICS_SECURED
+				set_machine_stat(machine_stat & ~MAINT)
+				W.play_tool_sound(src)
+				to_chat(user, span_notice("You screw the circuit electronics into place."))
+			if (APC_ELECTRONICS_SECURED)
+				has_electronics = APC_ELECTRONICS_INSTALLED
+				set_machine_stat(machine_stat | MAINT)
+				W.play_tool_sound(src)
+				to_chat(user, span_notice("You unfasten the electronics."))
+			else
+				to_chat(user, span_warning("There is nothing to secure!"))
+				return
+		update_appearance()
+	else if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("The interface is broken!"))
+		return
+	else
 		panel_open = !panel_open
 		to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
 		update_appearance()
-		return
-
-	if(cell)
-		user.visible_message(span_notice("[user] removes \the [cell] from [src]!"), span_notice("You remove \the [cell]."))
-		var/turf/user_turf = get_turf(user)
-		cell.forceMove(user_turf)
-		cell.update_appearance()
-		cell = null
-		charging = APC_NOT_CHARGING
-		update_appearance()
-		return
-
-	switch (has_electronics)
-		if(APC_ELECTRONICS_INSTALLED)
-			has_electronics = APC_ELECTRONICS_SECURED
-			set_machine_stat(machine_stat & ~MAINT)
-			W.play_tool_sound(src)
-			to_chat(user, span_notice("You screw the circuit electronics into place."))
-		if(APC_ELECTRONICS_SECURED)
-			has_electronics = APC_ELECTRONICS_INSTALLED
-			set_machine_stat(machine_stat | MAINT)
-			W.play_tool_sound(src)
-			to_chat(user, span_notice("You unfasten the electronics."))
-		else
-			to_chat(user, span_warning("There is nothing to secure!"))
-			return
-	update_appearance()
 
 /obj/machinery/power/apc/wirecutter_act(mob/living/user, obj/item/W)
 	. = ..()
-	if(terminal && opened)
+	if(terminal && opened && panel_open)
 		terminal.dismantle(user, W)
 		return TRUE
 
@@ -169,22 +150,25 @@
 	return FALSE
 
 /obj/machinery/power/apc/emag_act(mob/user)
-	if((obj_flags & EMAGGED) || malfhack)
+	if(obj_flags & EMAGGED || malfhack)
 		return
-
 	if(opened)
 		to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
-	else if(panel_open)
+		return
+	if(panel_open)
 		to_chat(user, span_warning("You must close the panel first!"))
-	else if(machine_stat & (BROKEN|MAINT))
+		return
+	if(machine_stat & (BROKEN|MAINT))
 		to_chat(user, span_warning("Nothing happens!"))
-	else
-		flick("apc-spark", src)
-		playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-		obj_flags |= EMAGGED
-		locked = FALSE
-		to_chat(user, span_notice("You emag the APC interface."))
-		update_appearance()
+		return
+	var/image/overlay = image(icon, src, "sparks_flick", layer, dir)
+	overlay.plane = plane
+	flick_overlay_view(overlay, src, 0.5 SECONDS)
+	playsound(src, "sparks", 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	obj_flags |= EMAGGED
+	locked = FALSE
+	to_chat(user, span_notice("You emag the APC interface."))
+	update_appearance()
 
 // damage and destruction acts
 /obj/machinery/power/apc/emp_act(severity)
@@ -208,8 +192,6 @@
 		to_chat(user, span_warning("The interface is broken!"))
 	else if(opened)
 		to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
-	else if(panel_open)
-		to_chat(user, span_warning("You must close the panel!"))
 	else if(machine_stat & (BROKEN|MAINT))
 		to_chat(user, span_warning("Nothing happens!"))
 	else
