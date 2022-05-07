@@ -22,5 +22,3 @@
 		ranged_ability.add_ranged_ability(src, span_notice("You currently have <b>[ranged_ability]</b> active!"))
 
 	med_hud_set_status()
-
-	update_fov_client()

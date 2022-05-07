@@ -226,6 +226,8 @@
 
 // /obj/item/clothing signals
 
+/// When a clothing gets it's visor toggled : (/obj/item/clothing, visor_state)
+#define COMSIG_CLOTHING_VISOR_TOGGLE "clothing_visor_toggle"
 ///from [/mob/living/carbon/human/Move]: ()
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"
 ///from base of /obj/item/clothing/suit/space/proc/toggle_spacesuit(): (obj/item/clothing/suit/space/suit)

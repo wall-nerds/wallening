@@ -154,7 +154,6 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
-	plane = ABOVE_GAME_PLANE
 	light_system = MOVABLE_LIGHT
 	light_range = 2
 	duration = 8
@@ -174,7 +173,6 @@
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
-	plane = GAME_PLANE
 	var/explode_hit_objects = TRUE
 
 /obj/projectile/colossus/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)

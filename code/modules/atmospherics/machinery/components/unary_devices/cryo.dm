@@ -16,8 +16,7 @@
 	// Must be tall, otherwise the filter will consider this as a 32x32 tile
 	// and will crop the head off.
 	icon_state = "mask_bg"
-	layer = ABOVE_MOB_LAYER
-	plane = GAME_PLANE_UPPER
+	layer = MOB_LAYER + 0.01
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_y = 22
 	appearance_flags = KEEP_TOGETHER
@@ -198,8 +197,8 @@
 	. = ..()
 	plane = initial(plane)
 
-GLOBAL_VAR_INIT(cryo_overlay_cover_on, mutable_appearance('icons/obj/cryogenics.dmi', "cover-on", layer = ABOVE_ALL_MOB_LAYER, plane = ABOVE_GAME_PLANE))
-GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics.dmi', "cover-off", layer = ABOVE_ALL_MOB_LAYER, plane = ABOVE_GAME_PLANE))
+GLOBAL_VAR_INIT(cryo_overlay_cover_on, mutable_appearance('icons/obj/cryogenics.dmi', "cover-on", layer = ABOVE_ALL_MOB_LAYER))
+GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics.dmi', "cover-off", layer = ABOVE_ALL_MOB_LAYER))
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
 	. = ..()

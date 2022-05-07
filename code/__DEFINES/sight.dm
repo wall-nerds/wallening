@@ -29,3 +29,14 @@
 #define VISOR_DARKNESSVIEW (1<<3)
 #define VISOR_INVISVIEW (1<<4)
 
+/// Range at which blindness effects treat nearsightness as blind and play
+#define NEARSIGHTNESS_BLINDNESS_THRESHOLD 2
+
+/// Range in tiles that a mob can see in the dark (used to determine if a mob has night_vision)
+#define NIGHTVISION_RANGE 8
+
+//Fullscreen overlay resolution in tiles for the clients view.
+/// The fullscreen overlay in tiles for x axis
+#define FULLSCREEN_OVERLAY_RESOLUTION_X 15
+/// The fullscreen overlay in tiles for y axis
+#define FULLSCREEN_OVERLAY_RESOLUTION_Y 15

@@ -1037,6 +1037,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	attempt_auto_fit_viewport()
+	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_CHANGE_VIEW, mob, new_size)
 
 /client/proc/generate_clickcatcher()
 	if(!void)

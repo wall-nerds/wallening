@@ -5,9 +5,6 @@
 //NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
 #define LOWEST_EVER_PLANE -200
 
-#define FIELD_OF_VISION_BLOCKER_PLANE -199
-#define FIELD_OF_VISION_BLOCKER_RENDER_TARGET "*FIELD_OF_VISION_BLOCKER_RENDER_TARGET"
-
 #define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
@@ -34,19 +31,9 @@
 #define FRILL_PLANE -4
 #define OVER_FRILL_PLANE -3
 
-#define GAME_PLANE -6
-#define GAME_PLANE_FOV_HIDDEN -5
-#define GAME_PLANE_UPPER -4
-#define GAME_PLANE_UPPER_FOV_HIDDEN -3
 
-#define ABOVE_GAME_PLANE -2
-
-// PLANE_SPACE layer(s)
 #define SPACE_LAYER 1.8
-
-//#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define. Most floors (FLOOR_PLANE) and walls (GAME_PLANE) use this.
-
-// GAME_PLANE layers
+//#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
 #define CULT_OVERLAY_LAYER 2.01
 #define MID_TURF_LAYER 2.02
 #define HIGH_TURF_LAYER 2.03
@@ -96,40 +83,28 @@
 #define CORGI_ASS_PIN_LAYER 3.41
 #define NOT_HIGH_OBJ_LAYER 3.5
 #define HIGH_OBJ_LAYER 3.6
-#define BELOW_MOB_LAYER 3.7
 
-// GAME_PLANE_FOV_HIDDEN layers
-#define LOW_MOB_LAYER 3.75
+#define BELOW_MOB_LAYER 3.7
 #define LYING_MOB_LAYER 3.8
-#define VEHICLE_LAYER 3.9
 #define MOB_BELOW_PIGGYBACK_LAYER 3.94
 //#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
 #define MOB_SHIELD_LAYER 4.01
 #define MOB_ABOVE_PIGGYBACK_LAYER 4.06
-#define MOB_UPPER_LAYER 4.07
-#define HITSCAN_PROJECTILE_LAYER 4.09 //above all mob but still hidden by FoV
-
-// GAME_PLANE_UPPER layers
 #define ABOVE_MOB_LAYER 4.1
 #define WALL_OBJ_LAYER 4.25
 #define EDGED_TURF_LAYER 4.3
 #define ON_EDGED_TURF_LAYER 4.35
-#define SPACEVINE_LAYER 4.4
+#define LARGE_MOB_LAYER 4.4
+#define ABOVE_ALL_MOB_LAYER 4.5
 
-// GAME_PLANE_UPPER_FOV_HIDDEN layers
-#define LARGE_MOB_LAYER 4.5
-#define SPACEVINE_MOB_LAYER 4.6
-
-// Intermediate layer used by both GAME_PLANE_FOV_HIDDEN and ABOVE_GAME_PLANE
-#define ABOVE_ALL_MOB_LAYER 4.7
-
-// ABOVE_GAME_PLANE layers
+#define SPACEVINE_LAYER 4.8
+#define SPACEVINE_MOB_LAYER 4.9
 //#define FLY_LAYER 5 //For easy recordkeeping; this is a byond define
 #define GASFIRE_LAYER 5.05
 #define RIPPLE_LAYER 5.1
 
-
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+
 
 #define AREA_PLANE 60
 #define MASSIVE_OBJ_PLANE 70
@@ -189,7 +164,10 @@
 #define BLIND_LAYER 4
 #define CRIT_LAYER 5
 #define CURSE_LAYER 6
-#define FOV_EFFECTS_LAYER 10000 //Blindness effects are not layer 4, they lie to you
+
+/// This should really just be using TOPDOWN_LAYER but I can't get it to co-operate. I'm conviced it's bugged, remind me to check
+#define ABOVE_FULLSCREEN_PLANE 501
+#define BLIND_EFFECT_LAYER 1
 
 ///--------------- FULLSCREEN RUNECHAT BUBBLES ------------
 

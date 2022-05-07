@@ -10,7 +10,6 @@
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
 	SSpoints_of_interest.make_point_of_interest(src)
-	update_fov()
 
 /mob/living/ComponentInitialize()
 	. = ..()
@@ -2304,3 +2303,62 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 
 	adjust_timed_status_effect(duration SECONDS, impediments[chosen])
+
+/// Plays a visual effect representing a sound cue for people with vision obstructed by blindness
+/proc/play_blind_effect(atom/center, range, icon_state, dir = SOUTH, ignore_self = FALSE, angle = 0)
+	var/turf/anchor_point = get_turf(center)
+	var/image/effect
+	for(var/mob/living/living_mob in get_hearers_in_view(range, center))
+		var/client/mob_client = living_mob.client
+		if(!mob_client)
+			continue
+		if(HAS_TRAIT(living_mob, TRAIT_DEAF)) //Deaf people can't hear sounds so no sound indicators
+			continue
+		if(living_mob.in_view(center, ignore_self))
+			continue
+		if(!effect) //Make the image once we found one recipient to receive it
+			effect = image(icon = 'icons/effects/fov/fov_effects.dmi', icon_state = icon_state, loc = anchor_point)
+			effect.plane = ABOVE_FULLSCREEN_PLANE
+			effect.layer = BLIND_EFFECT_LAYER
+			effect.dir = dir
+			effect.appearance_flags = RESET_COLOR | RESET_TRANSFORM
+			if(angle)
+				var/matrix/matrix = new
+				matrix.Turn(angle)
+				effect.transform = matrix
+			effect.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+		mob_client.images += effect
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/remove_image_from_client, effect, mob_client), 30)
+
+/// Is `observed_atom` in a mob's field of view? This takes blindness and nearsightness into consideration
+/mob/living/proc/in_view(atom/observed_atom, ignore_self = FALSE)
+	if(ignore_self && observed_atom == src)
+		return TRUE
+	if(is_blind())
+		return FALSE
+
+	// Handling nearsightnedness
+	if(!HAS_TRAIT(src, TRAIT_NEARSIGHT))
+		return TRUE
+
+	var/turf/my_turf = get_turf(src) //Because being inside contents of something will cause our x,y to not be updated
+	// WTF
+	if(!my_turf)
+		return FALSE
+
+	var/rel_x = observed_atom.x - my_turf.x
+	var/rel_y = observed_atom.y - my_turf.y
+
+	// Not far enough for nearsightedness to kick in? Go away
+	if(abs(rel_x) < NEARSIGHTNESS_BLINDNESS_THRESHOLD || abs(rel_y) < NEARSIGHTNESS_BLINDNESS_THRESHOLD)
+		return TRUE
+	//Checking if our dude really is suffering from nearsightness! (very nice nearsightness code)
+	if(!iscarbon(src))
+		return FALSE
+	var/mob/living/carbon/carbon_me = src
+	if(!carbon_me.glasses)
+		return FALSE
+	var/obj/item/clothing/glasses/glass = carbon_me.glasses
+	if(glass.vision_correction)
+		return TRUE
+	return FALSE

@@ -6,7 +6,7 @@
 	icon_state = "hygienebot"
 	base_icon_state = "hygienebot"
 	pass_flags = PASSMOB | PASSFLAPS | PASSTABLE
-	layer = MOB_UPPER_LAYER
+	layer = ABOVE_MOB_LAYER
 	density = FALSE
 	anchored = FALSE
 	health = 100

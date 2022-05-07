@@ -223,8 +223,7 @@
 		if(visible_icon)
 			if(eye_user.client)
 				eye_user.client.images -= user_image
-				user_image = image(icon,loc,icon_state, FLY_LAYER)
-				user_image.plane = ABOVE_GAME_PLANE
+				user_image = image(icon,loc,icon_state,FLY_LAYER)
 				eye_user.client.images += user_image
 
 /mob/camera/ai_eye/remote/relaymove(mob/living/user, direction)
