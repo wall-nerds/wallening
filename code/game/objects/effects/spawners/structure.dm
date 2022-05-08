@@ -152,14 +152,14 @@ again.
 /obj/effect/spawner/structure/window/reinforced/tinted
 	name = "tinted reinforced window spawner"
 	icon_state = "twindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/tinted/fulltile)
+	spawn_list = list(/turf/closed/wall/window_frame/iron, /obj/structure/window/reinforced/tinted/fulltile)
 
 //bronze
 
 /obj/effect/spawner/structure/window/bronze
 	name = "bronze window spawner"
 	icon_state = "bronzewindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/bronze/fulltile)
+	spawn_list = list(/turf/closed/wall/window_frame/bronze, /obj/structure/window/bronze/fulltile)
 
 
 //shuttle window
@@ -167,7 +167,7 @@ again.
 /obj/effect/spawner/structure/window/reinforced/shuttle
 	name = "shuttle window spawner"
 	icon_state = "swindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/shuttle)
+	spawn_list = list(/turf/closed/wall/window_frame/titanium, /obj/structure/window/reinforced/shuttle)
 
 
 //plastitanium window
@@ -175,7 +175,7 @@ again.
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium
 	name = "plastitanium window spawner"
 	icon_state = "plastitaniumwindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/plasma/plastitanium)
+	spawn_list = list(/turf/closed/wall/window_frame/plastitanium, /obj/structure/window/reinforced/plasma/plastitanium)
 
 
 //ice window
@@ -183,7 +183,7 @@ again.
 /obj/effect/spawner/structure/window/ice
 	name = "ice window spawner"
 	icon_state = "icewindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile/ice)
+	spawn_list = list(/turf/closed/wall/window_frame/iron, /obj/structure/window/reinforced/fulltile/ice)
 
 
 //survival pod window
@@ -191,7 +191,7 @@ again.
 /obj/effect/spawner/structure/window/survival_pod
 	name = "pod window spawner"
 	icon_state = "podwindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/shuttle/survival_pod)
+	spawn_list = list(/turf/closed/wall/window_frame/iron, /obj/structure/window/reinforced/shuttle/survival_pod)
 
 /obj/effect/spawner/structure/window/hollow/survival_pod
 	name = "hollow pod window spawner"
@@ -253,7 +253,7 @@ again.
 /obj/effect/spawner/structure/window/plasma
 	name = "plasma window spawner"
 	icon_state = "pwindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/plasma/fulltile)
+	spawn_list = list(/turf/closed/wall/window_frame/plastitanium, /obj/structure/window/plasma/fulltile)
 
 /obj/effect/spawner/structure/window/hollow/plasma
 	name = "hollow plasma window spawner"
@@ -314,7 +314,7 @@ again.
 /obj/effect/spawner/structure/window/reinforced/plasma
 	name = "reinforced plasma window spawner"
 	icon_state = "prwindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/plasma/fulltile)
+	spawn_list = list(/turf/closed/wall/window_frame/plastitanium, /obj/structure/window/reinforced/plasma/fulltile)
 
 /obj/effect/spawner/structure/window/hollow/reinforced/plasma
 	name = "hollow reinforced plasma window spawner"

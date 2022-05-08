@@ -152,6 +152,7 @@
 		span_danger("You hit [src] with [attacking_item][no_damage ? ", which doesn't leave a mark" : ""]!"), null, COMBAT_MESSAGE_RANGE)
 
 /turf/closed/wall/window_frame/atom_destruction(damage_flag)
+	..()
 	dismantle_wall()
 
 /turf/closed/wall/window_frame/dismantle_wall(devastated = FALSE, explode = FALSE)
