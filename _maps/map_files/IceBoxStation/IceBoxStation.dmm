@@ -13097,11 +13097,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cIv" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating,
-/area/engineering/supermatter/room)
 "cIW" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spawner/random/structure/crate,
@@ -23201,8 +23196,7 @@
 /area/engineering/main)
 "ifB" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/hidden,
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating,
+/turf/closed/wall/window_frame/reinforced_plasma,
 /area/engineering/supermatter/room)
 "ifU" = (
 /obj/structure/table,
@@ -24464,8 +24458,7 @@
 /turf/open/floor/iron,
 /area/hallway/primary/starboard)
 "iLd" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating,
+/turf/closed/wall/window_frame/reinforced_plasma,
 /area/engineering/supermatter/room)
 "iLm" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -27987,10 +27980,6 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/machinery/status_display/evac/directional/west,
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/iron,
 /area/hallway/primary/starboard)
@@ -29651,9 +29640,8 @@
 	},
 /area/maintenance/department/medical)
 "lBH" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
-/turf/open/floor/plating,
+/turf/closed/wall/window_frame/reinforced_plasma,
 /area/engineering/supermatter/room)
 "lBY" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -31785,9 +31773,8 @@
 /turf/open/floor/iron,
 /area/hallway/secondary/exit/departure_lounge)
 "mFX" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
-/turf/open/floor/plating,
+/turf/closed/wall/window_frame/reinforced_plasma,
 /area/engineering/supermatter/room)
 "mGc" = (
 /obj/structure/railing{
@@ -32937,9 +32924,8 @@
 /turf/open/floor/iron,
 /area/cargo/miningdock)
 "nid" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
+/turf/closed/wall/window_frame/reinforced_plasma,
 /area/engineering/supermatter/room)
 "nie" = (
 /obj/structure/cable,
@@ -34146,10 +34132,12 @@
 	},
 /area/science/misc_lab)
 "nPT" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
+/obj/structure/sign/departments/evac/east{
+	dir = 4;
+	pixel_x = 25;
+	pixel_y = 8
 	},
-/turf/open/floor/iron,
+/turf/closed/wall/r_wall,
 /area/hallway/primary/starboard)
 "nPY" = (
 /obj/structure/disposalpipe/segment{
@@ -38302,8 +38290,7 @@
 /turf/open/floor/iron,
 /area/command/teleporter)
 "pWt" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating,
+/turf/closed/wall/window_frame/reinforced_plasma,
 /area/engineering/supermatter)
 "pXw" = (
 /obj/structure/ladder,
@@ -82488,7 +82475,7 @@ hua
 vvt
 jnr
 nHI
-cIv
+iLd
 wfC
 fQX
 oJZ
@@ -100926,7 +100913,7 @@ jOF
 mGd
 aYV
 bfX
-oYz
+nPT
 oYz
 oYz
 oYz
@@ -101182,7 +101169,7 @@ qkY
 rBZ
 mGd
 aYV
-nPT
+aYV
 kFG
 ubR
 jfk

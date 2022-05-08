@@ -12,8 +12,7 @@
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "d" = (
-/obj/effect/spawner/structure/window/reinforced/shuttle,
-/turf/open/floor/plating,
+/turf/closed/wall/window_frame/titanium/window,
 /area/shuttle/arrival)
 "e" = (
 /obj/structure/table,

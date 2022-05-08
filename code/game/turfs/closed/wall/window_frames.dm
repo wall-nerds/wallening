@@ -219,7 +219,7 @@
 	start_with_window = TRUE
 
 /turf/closed/wall/window_frame/reinforced
-	name = "reinforced window frame"
+	name = "window frame"
 	window_type = /obj/item/stack/sheet/rglass
 	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
 	max_integrity = 150
@@ -229,6 +229,22 @@
 	has_grille = TRUE
 	start_with_window = TRUE
 
+/turf/closed/wall/window_frame/plasma
+	has_grille = TRUE
+	start_with_window = TRUE
+	window_type = /obj/item/stack/sheet/plasmaglass
+	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
+	max_integrity = 150
+	damage_deflection = 11
+
+/turf/closed/wall/window_frame/reinforced_plasma
+	has_grille = TRUE
+	start_with_window = TRUE
+	window_type = /obj/item/stack/sheet/plasmarglass
+	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
+	max_integrity = 150
+	damage_deflection = 11
+
 /turf/closed/wall/window_frame/titanium
 	name = "shuttle window frame"
 	icon = 'icons/turf/walls/low_walls/low_wall_shuttle.dmi'
@@ -237,6 +253,17 @@
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	custom_materials = list(/datum/material/titanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
+/turf/closed/wall/window_frame/titanium/window
+	name = "shuttle window frame"
+	icon = 'icons/turf/walls/low_walls/low_wall_shuttle.dmi'
+	icon_state = "low_wall_shuttle-0"
+	base_icon_state = "low_wall_shuttle"
+	sheet_type = /obj/item/stack/sheet/mineral/titanium
+	window_type = /obj/item/stack/sheet/titaniumglass
+	custom_materials = list(/datum/material/titanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
+	has_grille = TRUE
+	start_with_window = TRUE
+
 /turf/closed/wall/window_frame/plastitanium
 	name = "plastitanium window frame"
 	icon = 'icons/turf/walls/low_walls/low_wall_plastitanium.dmi'
@@ -244,6 +271,10 @@
 	base_icon_state = "low_wall_plastitanium"
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	custom_materials = list(/datum/material/alloy/plastitanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
+
+/turf/closed/wall/window_frame/plastitanium/window
+	has_grille = TRUE
+	start_with_window = TRUE
 
 /turf/closed/wall/window_frame/wood
 	name = "wooden platform"
