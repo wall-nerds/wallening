@@ -619,7 +619,6 @@
 
 	var/light_to_use
 	var/area/our_area = get_area(src)
-	var/state
 	switch(max(danger_level, !!our_area.active_alarms[ALARM_ATMOS]))
 		if(0)
 			light_to_use = "light-0"
