@@ -52,34 +52,34 @@
 	return FALSE
 
 ///creates a window from the typepath given from window_type, which is either a glass sheet typepath or a /obj/structure/window subtype
-/turf/closed/wall/window_frame/proc/create_structure_window(window_type, start_anchored = TRUE)
+/turf/closed/wall/window_frame/proc/create_structure_window(window_material_type, start_anchored = TRUE)
 	var/obj/structure/window/our_window
 
-	if(ispath(window_type, /obj/structure/window))
-		our_window = new window_type(src)
+	if(ispath(window_material_type, /obj/structure/window))
+		our_window = new window_material_type(src)
 		if(!our_window.fulltile)
-			stack_trace("window frames cant use non fulltile windows!")
+			stack_trace("window frames can't use non fulltile windows!")
 
 	//window_type isnt a window typepath, so check if its a material typepath
-	if(ispath(window_type, /obj/item/stack/sheet/glass))
+	if(ispath(window_material_type, /obj/item/stack/sheet/glass))
 		our_window = new /obj/structure/window/fulltile(src)
 
-	if(ispath(window_type, /obj/item/stack/sheet/rglass))
+	if(ispath(window_material_type, /obj/item/stack/sheet/rglass))
 		our_window = new /obj/structure/window/reinforced/fulltile(src)
 
-	if(ispath(window_type, /obj/item/stack/sheet/plasmaglass))
+	if(ispath(window_material_type, /obj/item/stack/sheet/plasmaglass))
 		our_window = new /obj/structure/window/plasma/fulltile(src)
 
-	if(ispath(window_type, /obj/item/stack/sheet/plasmarglass))
+	if(ispath(window_material_type, /obj/item/stack/sheet/plasmarglass))
 		our_window = new /obj/structure/window/reinforced/plasma/fulltile(src)
 
-	if(ispath(window_type, /obj/item/stack/sheet/titaniumglass))
+	if(ispath(window_material_type, /obj/item/stack/sheet/titaniumglass))
 		our_window = new /obj/structure/window/reinforced/shuttle(src)
 
-	if(ispath(window_type, /obj/item/stack/sheet/plastitaniumglass))
+	if(ispath(window_material_type, /obj/item/stack/sheet/plastitaniumglass))
 		our_window = new /obj/structure/window/reinforced/plasma/plastitanium(src)
 
-	if(ispath(window_type, /obj/item/stack/sheet/paperframes))
+	if(ispath(window_material_type, /obj/item/stack/sheet/paperframes))
 		our_window = new /obj/structure/window/paperframe(src)
 
 	if(!start_anchored)
@@ -152,6 +152,7 @@
 		span_danger("You hit [src] with [attacking_item][no_damage ? ", which doesn't leave a mark" : ""]!"), null, COMBAT_MESSAGE_RANGE)
 
 /turf/closed/wall/window_frame/atom_destruction(damage_flag)
+	..()
 	dismantle_wall()
 
 /turf/closed/wall/window_frame/dismantle_wall(devastated = FALSE, explode = FALSE)
@@ -235,7 +236,12 @@
 	icon_state = "low_wall_shuttle-0"
 	base_icon_state = "low_wall_shuttle"
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
+	window_type = /obj/item/stack/sheet/titaniumglass
 	custom_materials = list(/datum/material/titanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
+
+/turf/closed/wall/window_frame/titanium/grille_and_window
+	has_grille = TRUE
+	start_with_window = TRUE
 
 /turf/closed/wall/window_frame/plastitanium
 	name = "plastitanium window frame"
@@ -243,7 +249,12 @@
 	icon_state = "low_wall_plastitanium-0"
 	base_icon_state = "low_wall_plastitanium"
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
+	window_type = /obj/item/stack/sheet/plastitaniumglass
 	custom_materials = list(/datum/material/alloy/plastitanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
+
+/turf/closed/wall/window_frame/plastitanium/grille_and_window
+	has_grille = TRUE
+	start_with_window = TRUE
 
 /turf/closed/wall/window_frame/wood
 	name = "wooden platform"
