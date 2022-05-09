@@ -131,6 +131,14 @@
 	remove_filter(FRILL_MOB_MASK)
 	add_filter(FRILL_MOB_MASK, 1, alpha_mask_filter(render_source = FRILL_MASK_RENDER_TARGET, flags = MASK_INVERSE))
 
+// Not entirely sure how required this is, it's the plane we use for things that sit "on" walls
+/atom/movable/screen/plane_master/frill_over
+	name = "frill under plane master"
+	plane = OVER_FRILL_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_OVERLAY
+	render_relay_plane = RENDER_PLANE_GAME
+
 /atom/movable/screen/plane_master/massive_obj
 	name = "massive object plane master"
 	plane = MASSIVE_OBJ_PLANE
