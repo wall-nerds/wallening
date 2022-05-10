@@ -81,7 +81,7 @@
 	name = "frill mask plane master"
 	plane = FRILL_MASK_PLANE
 	appearance_flags = PLANE_MASTER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_OVERLAY
 	render_target = FRILL_MASK_RENDER_TARGET
 	render_relay_plane = null
@@ -89,7 +89,6 @@
 /atom/movable/screen/plane_master/wall
 	name = "wall plane master"
 	plane = WALL_PLANE
-	mouse_opacity = 0
 	appearance_flags = PLANE_MASTER //should use client color
 	render_relay_plane = RENDER_PLANE_GAME
 
@@ -97,7 +96,6 @@
 /atom/movable/screen/plane_master/frill
 	name = "frill plane master"
 	plane = FRILL_PLANE
-	mouse_opacity = 0
 	appearance_flags = PLANE_MASTER //should use client color
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_relay_plane = RENDER_PLANE_GAME
@@ -119,7 +117,7 @@
 /atom/movable/screen/plane_master/frill_under
 	name = "frill under plane master"
 	plane = UNDER_FRILL_PLANE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	appearance_flags = PLANE_MASTER
 	render_target = UNDER_FRILL_RENDER_TARGET
 	render_relay_plane = RENDER_PLANE_GAME
