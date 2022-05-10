@@ -69,13 +69,6 @@
 	appearance_flags = PLANE_MASTER //should use client color
 	render_relay_plane = RENDER_PLANE_GAME
 
-/atom/movable/screen/plane_master/wall
-	name = "wall plane master"
-	plane = WALL_PLANE
-	appearance_flags = PLANE_MASTER //should use client color
-	render_relay_plane = RENDER_PLANE_GAME
-	blend_mode = BLEND_OVERLAY // Wallening TODO: Is this in the right place?
-
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/game_world
 	name = "game world plane master"
@@ -94,6 +87,7 @@
 	name = "frill mask plane master"
 	plane = FRILL_MASK_PLANE
 	appearance_flags = PLANE_MASTER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_OVERLAY
 	render_target = FRILL_MASK_RENDER_TARGET
 	render_relay_plane = null
@@ -129,6 +123,7 @@
 /atom/movable/screen/plane_master/frill_under
 	name = "frill under plane master"
 	plane = UNDER_FRILL_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	appearance_flags = PLANE_MASTER
 	render_target = UNDER_FRILL_RENDER_TARGET
 	render_relay_plane = RENDER_PLANE_GAME
@@ -137,6 +132,14 @@
 	. = ..()
 	remove_filter(FRILL_MOB_MASK)
 	add_filter(FRILL_MOB_MASK, 1, alpha_mask_filter(render_source = FRILL_MASK_RENDER_TARGET, flags = MASK_INVERSE))
+
+// Not entirely sure how required this is, it's the plane we use for things that sit "on" walls
+/atom/movable/screen/plane_master/frill_over
+	name = "frill under plane master"
+	plane = OVER_FRILL_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_OVERLAY
+	render_relay_plane = RENDER_PLANE_GAME
 
 /atom/movable/screen/plane_master/massive_obj
 	name = "massive object plane master"

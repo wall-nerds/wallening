@@ -167,7 +167,7 @@ again.
 /obj/effect/spawner/structure/window/reinforced/shuttle
 	name = "shuttle window spawner"
 	icon_state = "swindow_spawner"
-	spawn_list = list(/turf/closed/wall/window_frame/titanium/grille_and_window)
+	spawn_list = list(/turf/closed/wall/window_frame/titanium/grille_and_window, /obj/structure/window/reinforced/shuttle)
 
 
 //plastitanium window
