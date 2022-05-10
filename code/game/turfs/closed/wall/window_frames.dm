@@ -58,9 +58,9 @@
 	if(ispath(window_material_type, /obj/structure/window))
 		our_window = new window_material_type(src)
 		if(!our_window.fulltile)
-			stack_trace("window frames can't use non fulltile windows!")
+			stack_trace("Window frames can't use non fulltile windows!")
 
-	//window_type isnt a window typepath, so check if its a material typepath
+	//window_material_type isnt a window typepath, so check if its a material typepath
 	if(ispath(window_material_type, /obj/item/stack/sheet/glass))
 		our_window = new /obj/structure/window/fulltile(src)
 

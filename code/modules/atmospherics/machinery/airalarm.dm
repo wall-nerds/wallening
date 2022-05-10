@@ -628,7 +628,7 @@
 			light_to_use = "light-1"
 
 	. += mutable_appearance(icon, light_to_use, layer, plane)
-	. += emissive_appearance(icon, light_to_use, layer, alpha = src.alpha)
+	. += emissive_appearance(icon, light_to_use, layer)
 
 /**
  * main proc for throwing a shitfit if the air isnt right.
