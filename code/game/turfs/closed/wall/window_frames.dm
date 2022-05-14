@@ -1,12 +1,13 @@
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A frame section to place a window on top."
-	icon = 'icons/turf/walls/low_walls/low_wall_normal.dmi'//TODOKYLER: fix
+	icon = 'icons/turf/walls/low_walls/low_wall_normal.dmi'
 	icon_state = "low_wall_normal-0"
 	base_icon_state = "low_wall_normal"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOWS)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOWS)
+	plane = OVER_TILE_PLANE //otherwise they will mask windows
+	smoothing_flags = SMOOTH_BITMASK|SMOOTH_OBJ
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAMES)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FRAMES)
 	opacity = FALSE
 	density = TRUE
 	rad_insulation = null
@@ -20,7 +21,7 @@
 	///whether we spawn a window structure with us on mapload
 	var/start_with_window = FALSE
 	///Icon used by grilles for this window frame
-	var/grille_icon = 'icons/turf/walls/low_walls/window_grille.dmi'
+	var/grille_icon = 'icons/obj/smooth_structures/window_grille.dmi'
 	///Icon state used by grilles for this window frame
 	var/grille_icon_state = "window_grille"
 
@@ -96,7 +97,7 @@
 
 	if(attacking_item.tool_behaviour == TOOL_WELDER)
 		if(atom_integrity < max_integrity)
-			if(!attacking_item.tool_start_check(user, amount = 0))//TODOKYLER: im pretty sure this was a replacement for structure behavior
+			if(!attacking_item.tool_start_check(user, amount = 0))
 				return
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
@@ -139,19 +140,7 @@
 			to_chat(user, "<span class='notice'>You add [stack_name] to [src]")
 			update_appearance()
 
-	return ..() || attacking_item.attack_atom(src, user, params)
-
-/obj/structure/window_frame/attacked_by(obj/item/attacking_item, mob/living/user)//TODOKYLER: reimplementation of obj behavior
-	if(!attacking_item.force)
-		return
-
-	var/no_damage = TRUE
-	if(take_damage(attacking_item.force, attacking_item.damtype, MELEE, 1))
-		no_damage = FALSE
-	//only witnesses close by and the victim see a hit message.
-	log_combat(user, src, "attacked", attacking_item)
-	user.visible_message(span_danger("[user] hits [src] with [attacking_item][no_damage ? ", which doesn't leave a mark" : ""]!"), \
-		span_danger("You hit [src] with [attacking_item][no_damage ? ", which doesn't leave a mark" : ""]!"), null, COMBAT_MESSAGE_RANGE)
+	return ..()
 
 /obj/structure/window_frame/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = NONE)
 	switch(damage_type)
@@ -174,7 +163,7 @@
 /obj/structure/window_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_DECONSTRUCT)
 		to_chat(user, "<span class='notice'>You deconstruct the window frame.</span>")
-		//ScrapeAway() //TODOKYLER: fix
+		qdel(src)
 		return TRUE
 	return FALSE
 
