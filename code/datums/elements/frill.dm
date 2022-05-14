@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(frill_objects)
 /datum/element/frill/Detach(turf/target)
 
 	target.cut_overlay(get_frill_object(icon_path, target.smoothing_junction, pixel_y = 32))
-	target.cut_overlay(get_frill_object(icon_path, target.smoothing_junction, pixel_y = 32))
+	target.cut_overlay(get_frill_object(icon_path, target.smoothing_junction, plane = OVER_FRILL_PLANE, pixel_y = 32))
 	UnregisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE)
 	return ..()
 
