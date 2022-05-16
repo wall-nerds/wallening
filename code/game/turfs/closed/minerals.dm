@@ -29,9 +29,6 @@
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
-	var/matrix/M = new
-	M.Translate(-4, -4)
-	transform = M
 	icon = smooth_icon
 
 
