@@ -101,21 +101,21 @@
 
 /obj/structure/shuttle/engine/propulsion
 	name = "propulsion engine"
+	icon = 'icons/turf/shuttleengine.dmi'
 	icon_state = "propulsion"
 	desc = "A standard reliable bluespace engine used by many forms of shuttles."
 	opacity = TRUE
 
 /obj/structure/shuttle/engine/propulsion/left
 	name = "left propulsion engine"
-	icon_state = "propulsion_l"
 
 /obj/structure/shuttle/engine/propulsion/right
 	name = "right propulsion engine"
-	icon_state = "propulsion_r"
 
 /obj/structure/shuttle/engine/propulsion/burst
 	name = "burst engine"
 	desc = "An engine that releases a large bluespace burst to propel it."
+	icon_state = "burst"
 
 /obj/structure/shuttle/engine/propulsion/burst/cargo
 	state = ENGINE_UNWRENCHED
@@ -123,11 +123,9 @@
 
 /obj/structure/shuttle/engine/propulsion/burst/left
 	name = "left burst engine"
-	icon_state = "burst_l"
 
 /obj/structure/shuttle/engine/propulsion/burst/right
 	name = "right burst engine"
-	icon_state = "burst_r"
 
 /obj/structure/shuttle/engine/router
 	name = "engine router"
