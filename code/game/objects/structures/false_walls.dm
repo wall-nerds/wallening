@@ -383,6 +383,17 @@
 	smoothing_groups = list(SMOOTH_GROUP_BAMBOO_WALLS, SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BAMBOO_WALLS)
 
+/obj/structure/falsewall/material/meat
+	name = "meat wall"
+	desc = "A wall of somone's compacted meat."
+	icon = 'icons/turf/walls/meat_wall.dmi'
+	icon_state = "meat"
+	mineral = /obj/item/stack/sheet/meat
+	walltype = /turf/closed/wall/mineral/meat
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_MEAT_WALLS, SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MEAT_WALLS)
+
 /obj/structure/falsewall/material/iron
 	name = "rough iron wall"
 	desc = "A wall with rough metal plating."

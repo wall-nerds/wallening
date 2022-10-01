@@ -249,6 +249,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_ABDUCTOR_WALLS)
 	custom_materials = list(/datum/material/alloy/alien = 4000)
 
+// Wallening todo: why do we have two versions of bamboo
 /turf/closed/wall/mineral/bamboo
 	name = "bamboo wall"
 	desc = "A wall with constructed from bamboo."
@@ -263,6 +264,21 @@
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BAMBOO_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BAMBOO_WALLS)
 	custom_materials = list(/datum/material/bamboo = 4000)
+
+/turf/closed/wall/mineral/meat
+	name = "meat wall"
+	desc = "A wall of somone's compacted meat."
+	icon = 'icons/turf/walls/meat_wall.dmi'
+	frill_icon = TRUE
+	icon_state = "meat_wall-0"
+	base_icon_state = "meat_wall"
+	sheet_type = /obj/item/stack/sheet/meat
+	hardness = 50
+	explosion_block = 0
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_MEAT_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MEAT_WALLS)
+	custom_materials = list(/datum/material/meat = 4000)
 
 /////////////////////Titanium walls/////////////////////
 
