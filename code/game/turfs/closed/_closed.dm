@@ -11,7 +11,7 @@
 
 /turf/closed/Initialize(mapload)
 	. = ..()
-	if(!opacity)
+	if(opacity)
 		AddElement(/datum/element/split_visibility, icon)
 
 
@@ -200,7 +200,13 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 
 /turf/closed/indestructible/abductor
-	icon_state = "alien1"
+	name = "alien wall"
+	icon = 'icons/turf/walls/abductor_wall.dmi'
+	icon_state = "abductor_wall-0"
+	base_icon_state = "abductor_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_ABDUCTOR_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_ABDUCTOR_WALLS)
 
 /turf/closed/indestructible/opshuttle
 	icon_state = "wall3"
@@ -244,8 +250,10 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/rock
 	name = "dense rock"
 	desc = "An extremely densely-packed rock, most mining tools or explosives would never get through this."
-	icon = 'icons/turf/mining.dmi'
-	icon_state = "rock"
+	icon = 'icons/turf/walls/rock_wall.dmi'
+	base_icon_state = "rock_wall"
+	smoothing_flags = SMOOTH_BITMASK
+
 
 /turf/closed/indestructible/rock/snow
 	name = "mountainside"
@@ -262,7 +270,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	icon_state = "icerock"
 
 /turf/closed/indestructible/rock/snow/ice/ore
-// wallening todo:	icon = 'icons/turf/walls/icerock_wall.dmi'
+	icon = 'icons/turf/walls/icerock_wall.dmi'
 	icon_state = "icerock_wall-0"
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER

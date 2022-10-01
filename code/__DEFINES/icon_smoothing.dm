@@ -127,6 +127,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SMOOTH_GROUP_MEAT_WALLS S_TURF(17) //![/turf/closed/wall/mineral/meat, /obj/structure/falsewall/material/meat]
 #define SMOOTH_GROUP_PLASTINUM_WALLS S_TURF(18) //![turf/closed/indestructible/riveted/plastinum]
 #define SMOOTH_GROUP_PIZZA_WALLS S_OBJ(19)  ///turf/closed/wall/mineral/pizza, /obj/structure/falsewall/material/pizza (wallening todo: these don't exist)
+#define SMOOTH_GROUP_CLOCK_WALLS S_OBJ(20) ///turf/closed/wall/mineral/bronze,
 
 #define SMOOTH_GROUP_PAPERFRAME S_OBJ(20) ///obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe
 

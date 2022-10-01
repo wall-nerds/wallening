@@ -122,6 +122,8 @@
 	sheet_type = /obj/item/stack/sheet/bronze
 	sheet_amount = 2
 	girder_type = /obj/structure/girder/bronze
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_CLOCK_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_CLOCK_WALLS)
 
 /turf/closed/wall/rock
 	name = "reinforced rock"
