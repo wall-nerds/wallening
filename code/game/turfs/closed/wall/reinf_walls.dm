@@ -14,7 +14,6 @@
 	girder_type = /obj/structure/girder/reinforced
 	explosion_block = 2
 	rad_insulation = RAD_HEAVY_INSULATION
-	frill_icon = 'icons/effects/frills/wall_reinforced_frill.dmi'
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall. also indicates the temperature at wich the wall will melt (currently only able to melt with H/E pipes)
 	///Dismantled state, related to deconstruction.
 	var/d_state = INTACT
@@ -253,7 +252,6 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_SYNDICATE_WALLS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_SYNDICATE_WALLS, SMOOTH_GROUP_PLASTITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
-	frill_icon = null
 
 
 /turf/closed/wall/r_wall/syndicate/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)

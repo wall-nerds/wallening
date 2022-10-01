@@ -506,7 +506,6 @@ DEFINE_BITFIELD(smoothing_junction, list(
 	smoothing_flags = SMOOTH_CORNERS|SMOOTH_DIAGONAL_CORNERS|SMOOTH_BORDER
 	smoothing_groups = null
 	canSmoothWith = null
-	frill_icon = null
 
 #undef NORTH_JUNCTION
 #undef SOUTH_JUNCTION

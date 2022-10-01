@@ -72,7 +72,6 @@
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_sandstone_frill.dmi'
 	icon_state = "sandstone_wall-0"
 	base_icon_state = "sandstone_wall"
 	baseturfs = /turf/closed/indestructible/sandstone
@@ -130,12 +129,10 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS)
-	frill_icon = 'icons/effects/frills/wall_reinforced_frill.dmi'
 
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_riveted_frill.dmi'
 	icon_state = "riveted_wall-0"
 	base_icon_state = "riveted_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -144,7 +141,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/syndicate
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_plastitanium_frill.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -153,7 +149,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_uranium_frill.dmi'
 	icon_state = "uranium_wall-0"
 	base_icon_state = "uranium_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -175,7 +170,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/wood
 	icon = 'icons/turf/walls/wood_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_wood_frill.dmi'
 	icon_state = "wood_wall-0"
 	base_icon_state = "wood_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -198,7 +192,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound. Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls/cult_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_cult_frill.dmi'
 	icon_state = "cult_wall-0"
 	base_icon_state = "cult_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -301,7 +294,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "impervious iron wall"
 	desc = "A wall with tough iron plating."
 	icon = 'icons/turf/walls/iron_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_iron_frill.dmi'
 	icon_state = "iron_wall-0"
 	base_icon_state = "iron_wall"
 	smoothing_flags = SMOOTH_BITMASK

@@ -2,7 +2,6 @@
 	name = "wall"
 	desc = "A huge chunk of material used to separate rooms."
 	icon = 'icons/turf/walls/material_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_material_frill.dmi'
 	icon_state = "material_wall-0"
 	base_icon_state = "material_wall"
 	smoothing_flags = SMOOTH_BITMASK

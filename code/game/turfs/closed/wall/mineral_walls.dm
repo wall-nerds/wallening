@@ -5,14 +5,12 @@
 	smoothing_flags = SMOOTH_BITMASK
 	canSmoothWith = null
 	rcd_memory = null
-	frill_icon = null
 	material_flags = MATERIAL_EFFECTS
 
 /turf/closed/wall/mineral/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
 	icon = 'icons/turf/walls/gold_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_gold_frill.dmi'
 	icon_state = "gold_wall-0"
 	base_icon_state = "gold_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/gold
@@ -26,7 +24,6 @@
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny!"
 	icon = 'icons/turf/walls/silver_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_silver_frill.dmi'
 	icon_state = "silver_wall-0"
 	base_icon_state = "silver_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/silver
@@ -71,7 +68,6 @@
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_sandstone_frill.dmi'
 	icon_state = "sandstone_wall-0"
 	base_icon_state = "sandstone_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/sandstone
@@ -87,7 +83,6 @@
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
 	icon = 'icons/turf/walls/uranium_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_uranium_frill.dmi'
 	icon_state = "uranium_wall-0"
 	base_icon_state = "uranium_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
@@ -158,7 +153,6 @@
 	name = "wooden wall"
 	desc = "A wall with wooden plating. Stiff."
 	icon = 'icons/turf/walls/wood_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_wood_frill.dmi'
 	icon_state = "wood_wall-0"
 	base_icon_state = "wood_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/wood
@@ -203,7 +197,6 @@
 	name = "rough iron wall"
 	desc = "A wall with rough iron plating."
 	icon = 'icons/turf/walls/iron_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_iron_frill.dmi'
 	icon_state = "iron_wall-0"
 	base_icon_state = "iron_wall"
 	sheet_type = /obj/item/stack/rods
@@ -254,7 +247,6 @@
 	name = "bamboo wall"
 	desc = "A wall with constructed from bamboo."
 	icon = 'icons/turf/walls/bamboo_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_bamboo_frill.dmi'
 	icon_state = "bamboo_wall-0"
 	base_icon_state = "bamboo_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/bamboo
@@ -269,7 +261,6 @@
 	name = "meat wall"
 	desc = "A wall of somone's compacted meat."
 	icon = 'icons/turf/walls/meat_wall.dmi'
-	frill_icon = TRUE
 	icon_state = "meat_wall-0"
 	base_icon_state = "meat_wall"
 	sheet_type = /obj/item/stack/sheet/meat
@@ -286,7 +277,6 @@
 	name = "wall"
 	desc = "A light-weight titanium wall used in shuttles."
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_shuttle_frill.dmi'
 	icon_state = "shuttle_wall-0"
 	base_icon_state = "shuttle_wall"
 	explosion_block = 3
@@ -351,7 +341,6 @@
 	name = "wall"
 	desc = "A durable wall made of an alloy of plasma and titanium."
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	frill_icon = 'icons/effects/frills/wall_plastitanium_frill.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"
 	explosion_block = 4
