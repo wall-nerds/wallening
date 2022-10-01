@@ -14,7 +14,7 @@
 
 /turf/closed/Initialize(mapload)
 	. = ..()
-	if(frill_icon)
+	if(!opaque)
 		AddElement(/datum/element/split_visibility, icon)
 
 

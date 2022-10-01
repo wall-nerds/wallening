@@ -440,8 +440,7 @@
 
 /turf/closed/mineral/ash_rock //wall piece
 	name = "rock"
-	icon = 'icons/turf/mining.dmi'
-	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
+	icon = 'icons/turf/walls/rock_wall2.dmi'
 	icon_state = "rock2"
 	base_icon_state = "rock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -497,15 +496,13 @@
 
 /turf/closed/mineral/asteroid
 	name = "iron rock"
-	icon = 'icons/turf/mining.dmi'
+	icon = 'icons/turf/walls/red_rock_wall.dmi'
 	icon_state = "redrock"
-	smooth_icon = 'icons/turf/walls/red_rock_wall.dmi'
 	base_icon_state = "red_wall"
 
 /turf/closed/mineral/random/stationside/asteroid
 	name = "iron rock"
-	icon = 'icons/turf/mining.dmi'
-	smooth_icon = 'icons/turf/walls/red_rock_wall.dmi'
+	icon = 'icons/turf/walls/red_rock_wall.dmi'
 	base_icon_state = "red_wall"
 
 /turf/closed/mineral/random/stationside/asteroid/porus
@@ -637,9 +634,9 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
-	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
+	icon = 'icons/turf/walls/rock_wall.dmi'
 	base_icon_state = "rock_wall"
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/mineral/strong/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
