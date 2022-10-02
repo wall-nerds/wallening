@@ -258,6 +258,24 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/plane_master)
 	plane = GAME_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
 
+/atom/movable/screen/plane_master/hidden_walls
+	name = "Hidden Walls"
+	documentation = "Holds portions of walls that are not typically visible.\
+		<br>Alpha'd up if that isn't the case, so basically if you have SEE_TURFS or an equivilant"
+	plane = HIDDEN_WALL_PLANE
+	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
+
+/atom/movable/screen/plane_master/hidden_walls/show_to(mob/mymob)
+	. = ..()
+	handle_sight(mymob, mymob.sight, NONE)
+	RegisterSignal(mymob, COMSIG_MOB_SIGHT_CHANGE, .proc/handle_sight)
+
+/atom/movable/screen/plane_master/hidden_walls/proc/handle_sight(mob/source, new_sight, old_sight)
+	if(new_sight & (SEE_TURFS|SEE_THRU))
+		enable_alpha()
+	else
+		disable_alpha()
+
 //Yes this is currently used for JUST shadows. Need to figure out how I want it to work
 /atom/movable/screen/plane_master/frill_under
 	name = "Under Frill"

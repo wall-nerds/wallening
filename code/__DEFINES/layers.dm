@@ -19,17 +19,18 @@
 #define FLOOR_PLANE_RENDER_TARGET "*FLOOR_PLANE"
 #define OVER_TILE_PLANE -9
 #define GAME_PLANE -8
-#define UNDER_FRILL_PLANE -7
+#define HIDDEN_WALL_PLANE -7
+#define UNDER_FRILL_PLANE -6
 #define UNDER_FRILL_RENDER_TARGET "*UNDER_FRILL_PLANE"
-#define FRILL_PLANE -6
-#define FRILL_MASK_PLANE -5
+#define FRILL_PLANE -5
+#define FRILL_MASK_PLANE -4
 #define FRILL_MASK_RENDER_TARGET "*FRILL_MASK_PLANE"
-#define OVER_FRILL_PLANE -4
+#define OVER_FRILL_PLANE -3
 
 ///Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees
-#define SEETHROUGH_PLANE -3
+#define SEETHROUGH_PLANE -2
 
-#define RENDER_PLANE_GAME_WORLD -2
+#define RENDER_PLANE_GAME_WORLD -1
 
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 
@@ -134,6 +135,14 @@
 
 //GAME_PLANE layers
 
+//Walls draw below
+//We draw them to the game plane so we can take advantage of SIDE_MAP for em
+//Need to cover for the whole "things below us" with position offsetting with pixel_y/z rather just one or the other
+#define UNDER_WALL_LAYER 2.66
+#define WALL_LAYER 2.67
+#define ABOVE_WALL_LAYER 2.68
+#define ON_WALL_LAYER 2.69
+
 #define BELOW_OPEN_DOOR_LAYER 2.75
 #define BLASTDOOR_LAYER 2.78
 #define OPEN_DOOR_LAYER 2.8
@@ -178,15 +187,6 @@
 #define HIGH_BUBBLE_LAYER 5.03
 #define GASFIRE_LAYER 5.05
 #define RIPPLE_LAYER 5.1
-
-//Walls draw above, since if you're pixel overlapping a wall via offsets, you should always render below them
-//We draw them to the game plane so we can take advantage of SIDE_MAP for em
-//I'm unsure of this. It mostly just impacts how sitting NEXT to a wall should look
-//Tho we could cover for that with position offsetting with pixel_y/z
-#define UNDER_WALL_LAYER 6
-#define WALL_LAYER 6.1
-#define ABOVE_WALL_LAYER 6.2
-#define ON_WALL_LAYER 6.3
 
 //---------- LIGHTING -------------
 

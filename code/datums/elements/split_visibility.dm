@@ -105,10 +105,23 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 		if(!operating_turf)
 			continue
 
-		var/mutable_appearance/split_vis/vis = get_splitvis_object(operating_turf, icon_path, junction, direction, uses_shadow, 255, -DIR_TO_PIXEL_X(direction), -DIR_TO_PIXEL_Y(direction), active_plane)
 		if(add_to_turfs)
-			operating_turf.overlays += vis
+			var/mutable_appearance/split_vis/vis
+			// If we're trying to draw to something opaque, just draw to yourself, and use the hidden wall plane
+			// Turfs smooth neighbors on opacity change so this is safe
+			if(operating_turf.opacity)
+				vis = get_splitvis_object(operating_turf, icon_path, junction, direction, FALSE, 255, 0, 0, HIDDEN_WALL_PLANE)
+				target_turf.overlays += vis
+			else
+				vis = get_splitvis_object(operating_turf, icon_path, junction, direction, uses_shadow, 255, -DIR_TO_PIXEL_X(direction), -DIR_TO_PIXEL_Y(direction), active_plane)
+				operating_turf.overlays += vis
 		else
+			// I HATE the code duping, but we need to try both to ensure it's properly cleared
+			var/mutable_appearance/split_vis/vis
+			vis = get_splitvis_object(operating_turf, icon_path, junction, direction, FALSE, 255, 0, 0, HIDDEN_WALL_PLANE)
+			target_turf.overlays -= vis
+			vis = get_splitvis_object(operating_turf, icon_path, junction, direction, uses_shadow, 255, -DIR_TO_PIXEL_X(direction), -DIR_TO_PIXEL_Y(direction), active_plane)
+			operating_turf.overlays += vis
 			operating_turf.overlays -= vis
 
 	for(var/direction in GLOB.diagonals)
@@ -125,11 +138,23 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 		if(!operating_turf)
 			continue
 
-		var/mutable_appearance/split_vis/vis = get_splitvis_object(operating_turf, icon_path, junction, direction, FALSE, 255, -DIR_TO_PIXEL_X(direction), -DIR_TO_PIXEL_Y(direction), layer = ABOVE_WALL_LAYER)
-
 		if(add_to_turfs)
-			operating_turf.overlays += vis
+			var/mutable_appearance/split_vis/vis
+			// If we're trying to draw to something opaque, just draw to yourself, and use the hidden wall plane
+			// Turfs smooth neighbors on opacity change so this is safe
+			if(operating_turf.opacity)
+				vis = get_splitvis_object(operating_turf, icon_path, junction, direction, FALSE, 255, 0, 0, HIDDEN_WALL_PLANE, ABOVE_WALL_LAYER)
+				target_turf.overlays += vis
+			else
+				vis = get_splitvis_object(operating_turf, icon_path, junction, direction, FALSE, 255, -DIR_TO_PIXEL_X(direction), -DIR_TO_PIXEL_Y(direction), layer = ABOVE_WALL_LAYER)
+				operating_turf.overlays += vis
 		else
+			// I HATE the code duping, but we need to try both to ensure it's properly cleared
+			var/mutable_appearance/split_vis/vis
+			vis = get_splitvis_object(operating_turf, icon_path, junction, direction, FALSE, 255, 0, 0, HIDDEN_WALL_PLANE, ABOVE_WALL_LAYER)
+			target_turf.overlays -= vis
+			vis = get_splitvis_object(operating_turf, icon_path, junction, direction, FALSE, 255, -DIR_TO_PIXEL_X(direction), -DIR_TO_PIXEL_Y(direction), layer = ABOVE_WALL_LAYER)
+			operating_turf.overlays += vis
 			operating_turf.overlays -= vis
 
 /datum/element/split_visibility/Detach(turf/target)
