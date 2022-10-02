@@ -82,7 +82,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/plane_master_controller)
 	controlled_planes = list(
 		FLOOR_PLANE,
 		OVER_TILE_PLANE,
-		WALL_PLANE,
 		RENDER_PLANE_TRANSPARENT,
 		GAME_PLANE,
 		UNDER_FRILL_PLANE,

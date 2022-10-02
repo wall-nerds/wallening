@@ -34,6 +34,7 @@
 	var/atom/movable/real_target = target
 	var/new_plane = OVER_FRILL_PLANE
 	if(newdir == SOUTH)
-		new_plane = WALL_PLANE
+		new_plane = GAME_PLANE
+	real_target.layer = ON_WALL_LAYER
 	SET_PLANE_EXPLICIT(real_target, new_plane, real_target)
 

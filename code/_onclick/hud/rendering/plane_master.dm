@@ -251,13 +251,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/plane_master)
 	plane = OVER_TILE_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
 
-/atom/movable/screen/plane_master/wall
-	name = "Wall"
-	documentation = "Holds well, walls! Done this way so they don't side_map z fight with anything else."
-	plane = WALL_PLANE
-	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
-
-// RENAME AND REDOC THIS
 /atom/movable/screen/plane_master/game_misc
 	name = "Game Misc"
 	documentation = "Exists to hold anything we want to be a part of the \"game world\" that isn't held by other plane masters that point at the world rendering plate.\
