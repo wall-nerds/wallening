@@ -49,17 +49,17 @@ INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/engineering/le
 	desc = "A direction sign, pointing out which way the Security department is."
 	icon_state = "direction_sec"
 
-INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/medical, 32)
+INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/security, 32)
 
 /obj/structure/sign/directions/security/right
 	icon_state = "direction_sec_right"
 
-INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/medical/right, 32)
+INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/security/right, 32)
 
 /obj/structure/sign/directions/security/left
 	icon_state = "direction_sec_left"
 
-INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/medical/left, 32)
+INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/security/left, 32)
 
 /obj/structure/sign/directions/medical
 	name = "medbay sign"
