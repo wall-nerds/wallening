@@ -13,32 +13,35 @@
 	var/obj/structure/obj_target = target
 
 	RegisterSignal(obj_target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_changed_z_level)
+	RegisterSignal(obj_target, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/on_update_overlays)
 	obj_target.alpha = 0
-	gen_overlay(obj_target)
+	obj_target.update_overlays()
 
 /datum/element/render_over_keep_hitbox/Detach(obj/structure/target, ...)
-	UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
+	UnregisterSignal(target, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_ATOM_UPDATE_OVERLAYS))
 	target.alpha = initial(target.alpha)
-	SSvis_overlays.remove_vis_overlay(target.managed_vis_overlays)
+	target.update_overlays()
 	return ..()
 
 /datum/element/render_over_keep_hitbox/proc/on_changed_z_level(obj/structure/target, turf/old_turf, turf/new_turf, same_z_layer)
 	SIGNAL_HANDLER
-	
+
 	if(same_z_layer)
 		return
-	SSvis_overlays.remove_vis_overlay(target.managed_vis_overlays)
-	gen_overlay(target)
+	target.update_overlays()
 
-/datum/element/render_over_keep_hitbox/proc/gen_overlay(obj/structure/target)
+/datum/element/render_over_keep_hitbox/proc/on_update_overlays(obj/structure/target, list/overlays)
+	SIGNAL_HANDLER
+
 	var/turf/our_turf = get_turf(target)
 	//you see mobs under it, but you hit them like they are above it
-	SSvis_overlays.add_vis_overlay(
-		target,
+
+	overlays += mutable_appearance(
 		target.icon,
 		target.icon_state,
 		ABOVE_MOB_LAYER,
+		null,
 		MUTATE_PLANE(GAME_PLANE, our_turf),
-		target.dir,
-		add_appearance_flags = RESET_ALPHA
+		initial(target.alpha),
+		RESET_ALPHA,
 	)
