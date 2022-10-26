@@ -186,7 +186,7 @@
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe, 32)
+INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe, 0)
 
 /obj/item/storage/secure/safe/Initialize(mapload)
 	. = ..()
@@ -208,6 +208,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe, 32)
 /obj/item/storage/secure/safe/hos
 	name = "head of security's safe"
 
+INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe/hos, 0)
+
 /**
  * This safe is meant to be damn robust. To break in, you're supposed to get creative, or use acid or an explosion.
  *
@@ -226,7 +228,7 @@ There appears to be a small amount of surface corrosion. It doesn't look like it
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 70, BIO = 0, FIRE = 80, ACID = 70)
 	max_integrity = 300
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe/caps_spare, 32)
+INVERT_MAPPING_DIRECTIONAL_HELPERS(/obj/item/storage/secure/safe/caps_spare, 32)
 
 /obj/item/storage/secure/safe/caps_spare/Initialize(mapload)
 	. = ..()
