@@ -130,7 +130,7 @@
 	. = ..()
 	if(!atom_storage || !has_door)
 		return
-	var/mutable_appearance/door_overlay = mutable_appearance(icon, "[initial(icon_state)]_door")
+	var/mutable_appearance/door_overlay = mutable_appearance(icon, "[initial(icon_state)]_door") // Wallening todo: This needs attention for wall safes.
 	if(dir == SOUTH)
 		door_overlay.pixel_y = -1
 	else if(dir == WEST)
