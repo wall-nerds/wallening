@@ -9832,10 +9832,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/highcap{
-	name = "Central Primary Hallway APC";
-	pixel_y = -25
-	},
+/obj/machinery/power/apc/highcap/five_k/directional/south,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "aJU" = (
