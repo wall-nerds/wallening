@@ -54,7 +54,7 @@
 /turf/closed/wall/mineral/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
-// wallening todo:	icon = 'icons/turf/walls/bananium_wall.dmi'
+	icon = 'icons/turf/walls/bananium_wall.dmi'
 	icon_state = "bananium_wall-0"
 	base_icon_state = "bananium_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
