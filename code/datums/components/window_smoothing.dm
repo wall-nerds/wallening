@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(window_appearances)
 	var/list/mutable_appearance/our_appearances = list()
 	var/mutable_appearance/appearance_above
 
-/datum/component/window_smoothing/Initialize(icon_path)
+/datum/component/window_smoothing/Initialize()
 	. = ..()
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(window_appearances)
 		stack_trace("We tried to splitvis something without bitmask smoothing. What?")
 		return COMPONENT_INCOMPATIBLE
 
-	src.icon_path = icon_path
+	icon_path = parent_atom.icon
 	parent_atom.icon = ""
 	add_smoothing()
 	RegisterSignal(parent, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE, .proc/on_junction_change)
