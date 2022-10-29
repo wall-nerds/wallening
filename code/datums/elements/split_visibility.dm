@@ -11,7 +11,7 @@
 /mutable_appearance/split_vis/New()
 	. = ..()
 	// Need to do this here because it's overriden by the parent call
-	appearance_flags = TILE_BOUND
+	appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 
 GLOBAL_LIST_EMPTY(split_visibility_objects)
 
@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 	. = ..()
 	var/atom/target_atom = target
 	if(!(target_atom.smoothing_flags & SMOOTH_BITMASK))
-		CRASH("We tried to splitvis something without bitmask smoothing. What?")
+		CRASH("We tried to splitvis [target.type] without bitmask smoothing. What?")
 
 	target_atom.add_overlay(mutable_appearance('wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target_atom, GAME_PLANE))
 	// Ensures when you try to click on a turf, you actually click on the turf, and not the adjacent things holding it
@@ -145,6 +145,8 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 			var/mutable_appearance/split_vis/vis
 			// If we're trying to draw to something opaque, just draw to yourself, and use the hidden wall plane
 			// Turfs smooth neighbors on opacity change so this is safe
+			// Wallening todo: this opaictiy check is not sufficient, and causes doors to layer under walls
+			// You need to make sure we only use the hidden plane if we're drawing against something that also uses splitvis I think
 			if(operating_turf.opacity || operating_turf.directional_opacity)
 				vis = get_splitvis_object(offset, icon_path, "innercorner", direction, FALSE, 255, 0, 0, HIDDEN_WALL_PLANE, ABOVE_WALL_LAYER)
 				target_turf.overlays += vis
