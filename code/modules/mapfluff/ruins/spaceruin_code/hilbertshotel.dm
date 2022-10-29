@@ -226,6 +226,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 //Turfs and Areas
 /turf/closed/indestructible/hotelwall
 	name = "hotel wall"
+	icon = 'icons/turf/walls/hotel_wall.dmi'
 	desc = "A wall designed to protect the security of the hotel's guests."
 	icon_state = "hotelwall"
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_HOTEL_WALLS)
