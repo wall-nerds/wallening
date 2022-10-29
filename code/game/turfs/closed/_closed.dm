@@ -49,6 +49,7 @@
 	name = "strange shuttle wall"
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "block"
+	use_splitvis = FALSE
 
 /turf/closed/indestructible/weeb
 	name = "paper wall"
