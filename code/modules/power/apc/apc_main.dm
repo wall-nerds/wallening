@@ -126,7 +126,7 @@
 		set_machine_stat(machine_stat | MAINT)
 		update_appearance()
 		addtimer(CALLBACK(src, .proc/update), 5)
-		dir = ndir
+		dir = turn(ndir, 180)
 	AddElement(/datum/element/wall_mount)
 
 /obj/machinery/power/apc/Initialize(mapload)
