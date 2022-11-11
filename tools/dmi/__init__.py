@@ -59,8 +59,10 @@ class Dmi:
         # read metadata
         metadata = image.info['Description']
         line_iter = iter(metadata.splitlines())
-        assert next(line_iter) == "# BEGIN DMI"
-        assert next(line_iter) == f"version = {cls.version}"
+        next_line = next(line_iter)
+        assert next_line == "# BEGIN DMI", "Failed to parse DMI, missing \"# BEGIN DMI\" header"
+        next_line = next(line_iter)
+        assert next_line == f"version = {cls.version}", f"Failed to parse dmi, bad version, found \"{next_line}\" hex: \"{(':'.join(hex(ord(next_line))[2:] for next_line in 'Hello, World!'))}\""
 
         dmi = Dmi(*DEFAULT_SIZE)
         state = None
