@@ -58,8 +58,12 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 	if(ismovable(target))
 		RegisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE, .proc/on_movable_junction_change)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
-		add_split_vis_objects(get_turf(target_atom), target_atom.smoothing_junction)
+		var/turf/our_turf = get_turf(target_atom)
+		var/ref = REF(source)
+		ADD_TRAIT(our_turf, TRAIT_CONTAINS_SPLITVIS, ref)
+		add_split_vis_objects(our_turf, target_atom.smoothing_junction)
 	else
+		ADD_TRAIT(target, TRAIT_CONTAINS_SPLITVIS, src) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
 		RegisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE, .proc/on_turf_junction_change)
 		add_split_vis_objects(target_atom, target_atom.smoothing_junction)
 
@@ -111,9 +115,8 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 
 		if(add_to_turfs)
 			var/mutable_appearance/split_vis/vis
-			// If we're trying to draw to something opaque, just draw to yourself, and use the hidden wall plane
-			// Turfs smooth neighbors on opacity change so this is safe
-			if(operating_turf.opacity || operating_turf.directional_opacity)
+			// If we're trying to draw to something with splitvis, just draw to yourself, and use the hidden wall plane
+			if(HAS_TRAIT(operating_turf, TRAIT_CONTAINS_SPLITVIS))
 				vis = get_splitvis_object(offset, icon_path, junction, direction, FALSE, 255, 0, 0, HIDDEN_WALL_PLANE)
 				target_turf.overlays += vis
 			else
@@ -143,11 +146,9 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 
 		if(add_to_turfs)
 			var/mutable_appearance/split_vis/vis
-			// If we're trying to draw to something opaque, just draw to yourself, and use the hidden wall plane
-			// Turfs smooth neighbors on opacity change so this is safe
-			// Wallening todo: this opaictiy check is not sufficient, and causes doors to layer under walls
-			// You need to make sure we only use the hidden plane if we're drawing against something that also uses splitvis I think
-			if(operating_turf.opacity || operating_turf.directional_opacity)
+			// If we're trying to draw to something with splitvis, just draw to yourself, and use the hidden wall plane
+			// Wallening todo: Frills should block emissives
+			if(HAS_TRAIT(operating_turf, TRAIT_CONTAINS_SPLITVIS))
 				vis = get_splitvis_object(offset, icon_path, "innercorner", direction, FALSE, 255, 0, 0, HIDDEN_WALL_PLANE, ABOVE_WALL_LAYER)
 				target_turf.overlays += vis
 			else
@@ -164,6 +165,12 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 /datum/element/split_visibility/Detach(atom/target)
 	remove_split_vis_objects(target, target.smoothing_junction)
 	UnregisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE)
+	if(ismovable(target))
+		var/ref = REF(source)
+		var/turf/our_turf = get_turf(target)
+		REMOVE_TRAIT(our_turf, TRAIT_CONTAINS_SPLITVIS, ref) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
+	else
+		REMOVE_TRAIT(target, TRAIT_CONTAINS_SPLITVIS, src) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
 	return ..()
 
 /datum/element/split_visibility/proc/on_turf_junction_change(turf/source, new_junction)
@@ -182,5 +189,11 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 	if(isturf(old_loc))
 		remove_split_vis_objects(old_loc, source.smoothing_junction) // We trust that junction changing will create the new visuals. just gotta cover the old
 		QUEUE_SMOOTH_NEIGHBORS(old_loc)
+	var/turf/old_turf = get_turf(old_loc)
+	var/ref = REF(source)
+	REMOVE_TRAIT(old_turf, TRAIT_CONTAINS_SPLITVIS, ref)
 	QUEUE_SMOOTH(source)
 	QUEUE_SMOOTH_NEIGHBORS(source)
+	var/turf/our_turf = get_turf(source)
+	if(our_turf)
+		ADD_TRAIT(our_turf, TRAIT_CONTAINS_SPLITVIS, ref)
