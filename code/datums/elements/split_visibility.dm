@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 		RegisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE, .proc/on_movable_junction_change)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
 		var/turf/our_turf = get_turf(target_atom)
-		var/ref = REF(source)
+		var/ref = REF(target)
 		ADD_TRAIT(our_turf, TRAIT_CONTAINS_SPLITVIS, ref)
 		add_split_vis_objects(our_turf, target_atom.smoothing_junction)
 	else
@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 	remove_split_vis_objects(target, target.smoothing_junction)
 	UnregisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE)
 	if(ismovable(target))
-		var/ref = REF(source)
+		var/ref = REF(target)
 		var/turf/our_turf = get_turf(target)
 		REMOVE_TRAIT(our_turf, TRAIT_CONTAINS_SPLITVIS, ref) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
 	else
