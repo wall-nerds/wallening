@@ -15,7 +15,7 @@
 
 /obj/structure/window/fulltile/Initialize(mapload, direct)
 	. = ..()
-	AddComponent(/datum/component/window_smoothing, 'normal_window.dmi')
+	AddComponent(/datum/component/window_smoothing)
 
 /obj/structure/window/fulltile/unanchored
 	anchored = FALSE
