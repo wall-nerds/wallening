@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(window_appearances)
 	var/wall_below = isclosedturf(get_step(our_turf, SOUTH)) || \
 		(junction & (SOUTH|EAST) && isclosedturf(get_step(our_turf, SOUTHEAST))) || \
 		(junction & (SOUTH|WEST) && isclosedturf(get_step(our_turf, SOUTHWEST)))
-	 // If there's a wall below us, we render different
+	// If there's a wall below us, we render different
 	our_appearances += get_window_appearance(offset, icon_path, junction, "lower", wall_below, FALSE)
 
 	if(paired_turf)
