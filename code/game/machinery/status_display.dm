@@ -32,9 +32,10 @@
 	light_range = 1.7
 	light_color = LIGHT_COLOR_BLUE
 
-	// Wallening todo: check what happen to maptext width/height/y, see if they need to have their defaults adjusted
-	var/obj/effect/overlay/status_display_text/message1_overlay
-	var/obj/effect/overlay/status_display_text/message2_overlay
+	/// vis_content atom for the top text.
+	var/obj/effect/overlay/status_display_text/message1_visual
+	/// vis_content atom for the bottom text.
+	var/obj/effect/overlay/status_display_text/message2_visual
 	var/current_picture = ""
 	var/current_mode = SD_BLANK
 	var/message1 = ""
@@ -87,8 +88,7 @@
 	. = ..()
 
 	// Force cached visuals to update.
-	QDEL_NULL(message1_overlay)
-	QDEL_NULL(message2_overlay)
+	remove_messages()
 	update_appearance()
 
 /obj/machinery/status_display/wrench_act_secondary(mob/living/user, obj/item/tool)
@@ -143,11 +143,11 @@
 
 	var/should_update = FALSE
 
-	if(line1 != message1 || !message1_overlay)
+	if(line1 != message1 || !message1_visual)
 		message1 = line1
 		should_update = TRUE
 
-	if(line2 != message2 || !message2_overlay)
+	if(line2 != message2 || !message2_visual)
 		message2 = line2
 		should_update = TRUE
 
@@ -161,27 +161,24 @@
  * Don't call this in subclasses.
  */
 /obj/machinery/status_display/proc/remove_messages()
-	if(message1_overlay)
-		QDEL_NULL(message1_overlay)
-	if(message2_overlay)
-		QDEL_NULL(message2_overlay)
+	QDEL_NULL(message1_visual)
+	QDEL_NULL(message2_visual)
 
 /**
  * Create/update message overlay.
  * They must be handled as real objects for the animation to run.
  * Don't call this in subclasses.
  * Arguments:
- * * overlay - the current /obj/effect/overlay/status_display_text instance
+ * * old_status_display_text - the current /obj/effect/overlay/status_display_text instance
  * * line_y - The Y offset to render the text.
  * * message - the new message text.
  * Returns new /obj/effect/overlay/status_display_text or null if unchanged.
  */
-/obj/machinery/status_display/proc/update_message(obj/effect/overlay/status_display_text/overlay, line_y, message)
-	if(overlay && message == overlay.message)
+/obj/machinery/status_display/proc/update_message(obj/effect/overlay/status_display_text/old_status_display_text, line_y, message)
+	if(old_status_display_text && message == old_status_display_text.message)
 		return null
 
-	if(overlay)
-		qdel(overlay)
+	qdel(old_status_display_text)
 
 	var/obj/effect/overlay/status_display_text/new_status_display_text = new(src, line_y, message, text_color, header_text_color)
 	vis_contents += new_status_display_text
@@ -204,14 +201,14 @@
 
 	// Facing south, we render traditionally.
 	if(dir == SOUTH)
-		add_screen_overlays(.)
+		add_screen_visuals(.)
 		return
 
 	// Otherwise, we render a projection on the floor.
 
 	// Get screen overlays and return if it's off.
 	var/list/projected_overlays = list()
-	var/anything_displayed = add_screen_overlays(projected_overlays, projection_only = TRUE)
+	var/anything_displayed = add_screen_visuals(projected_overlays, projection_only = TRUE)
 
 	if(!anything_displayed)
 		return
@@ -226,7 +223,7 @@
 	generate_projection_overlay(floor_matrix, projected_overlays, alpha = PROJECTION_FLOOR_ALPHA)
 	generate_projection_overlay(beam_matrix, projected_overlays, alpha = PROJECTION_BEAM_ALPHA)
 
-	// Impossible for this to look good as an actual emissive since the emissive plane crushes alpha to all or nothing for some reason.
+	// Impossible for this to look good as an actual emissive since the emissive plane crushes alpha to all or nothing.
 	// We don't really want anything blocking it anyway since the projection would shine over people.
 	var/mutable_appearance/projection_emissive = mutable_appearance(icon, "projection-mask", offset_spokesman = src, plane = LIGHTING_PLANE)
 	var/list/emissive_offsets = projection_emissive_offsets["[dir]"]
@@ -235,11 +232,11 @@
 	projection_emissive.blend_mode = BLEND_ADD
 	. += projection_emissive
 
-	// Translate the text.
-	message1_overlay?.transform = floor_matrix
-	message1_overlay?.alpha = PROJECTION_TEXT_ALPHA
-	message2_overlay?.transform = floor_matrix
-	message2_overlay?.alpha = PROJECTION_TEXT_ALPHA
+	// Translate the text seperately, since they are vis_contents.
+	message1_visual?.transform = floor_matrix
+	message1_visual?.alpha = PROJECTION_TEXT_ALPHA
+	message2_visual?.transform = floor_matrix
+	message2_visual?.alpha = PROJECTION_TEXT_ALPHA
 
 /**
  * Generate a set of vis contents objects for the overlays.
@@ -270,15 +267,15 @@
 	return new_overlay
 
 /**
- * Generate overlays for the screen. Has an optional offset to shift it around.
+ * Generate mutable_appearances for the screen. Has an optional offset to shift it around.
  *
  * Returns whether the the screen is conceptually on.
  *
  * Arguments:
- * * overlays - the overlays list
+ * * overlays - the overlays list to add to
  * * projection_only - only add overlays that are transformed for the projection effect
  */
-/obj/machinery/status_display/proc/add_screen_overlays(list/overlays, projection_only = FALSE)
+/obj/machinery/status_display/proc/add_screen_visuals(list/overlays, projection_only = FALSE)
 	// Always have a base screen, or frame.
 	var/screen_icon_state = "outline"
 	// Is this screen emissive?
@@ -298,14 +295,14 @@
 			if(current_picture in list("ai_off", "outline"))
 				backlight_on = FALSE
 		else
-			var/atom/overlay = update_message(message1_overlay, LINE1_Y, message1)
-			if(overlay)
-				overlay.alpha = alpha
-				message1_overlay = overlay
-			overlay = update_message(message2_overlay, LINE2_Y, message2)
-			if(overlay)
-				overlay.alpha = alpha
-				message2_overlay = overlay
+			var/atom/new_visual = update_message(message1_visual, LINE1_Y, message1)
+			if(new_visual)
+				new_visual.alpha = alpha
+				message1_visual = new_visual
+			new_visual = update_message(message2_visual, LINE2_Y, message2)
+			if(new_visual)
+				new_visual.alpha = alpha
+				message2_visual = new_visual
 
 			// Turn off backlight if message is blank
 			if(message1 == "" && message2 == "")
@@ -348,12 +345,12 @@
 
 /obj/machinery/status_display/examine(mob/user)
 	. = ..()
-	if (message1_overlay || message2_overlay)
+	if (message1 || message2)
 		. += "The display says:"
-		if (message1_overlay.message)
-			. += "\t<tt>[html_encode(message1_overlay.message)]</tt>"
-		if (message2_overlay.message)
-			. += "\t<tt>[html_encode(message2_overlay.message)]</tt>"
+		if (message1)
+			. += "\t<tt>[html_encode(message1)]</tt>"
+		if (message2)
+			. += "\t<tt>[html_encode(message2)]</tt>"
 
 // Helper procs for child display types.
 /obj/machinery/status_display/proc/display_shuttle_status(obj/docking_port/mobile/shuttle)
