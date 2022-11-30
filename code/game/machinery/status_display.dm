@@ -272,10 +272,10 @@
  * Returns whether the the screen is conceptually on.
  *
  * Arguments:
- * * overlays - the overlays list to add to
+ * * screen_overlays - the overlays list to add to
  * * projection_only - only add overlays that are transformed for the projection effect
  */
-/obj/machinery/status_display/proc/add_screen_visuals(list/overlays, projection_only = FALSE)
+/obj/machinery/status_display/proc/add_screen_visuals(list/screen_overlays, projection_only = FALSE)
 	// Always have a base screen, or frame.
 	var/screen_icon_state = "outline"
 	// Is this screen emissive?
@@ -309,13 +309,13 @@
 				backlight_on = FALSE
 
 	var/mutable_appearance/mutable_screen = mutable_appearance(icon, screen_icon_state)
-	overlays += mutable_screen
+	screen_overlays += mutable_screen
 
 	if(!backlight_on || projection_only)
 		return backlight_on
 
 	var/mutable_appearance/emissive_screen = emissive_appearance(icon, "outline", src)
-	overlays += emissive_screen
+	screen_overlays += emissive_screen
 
 	return TRUE
 
