@@ -22,8 +22,12 @@
 	var/start_with_window = FALSE
 	///Icon used by grilles for this window frame
 	var/grille_icon = 'icons/obj/smooth_structures/window_grille.dmi'
-	///Icon state used by grilles for this window frame
+
+	var/grille_black_icon = 'icons/obj/smooth_structures/window_grille_black.dmi'
+	///Icon state used by grilles for this window frame.
 	var/grille_icon_state = "window_grille"
+
+	var/use_vis_contents_grill = FALSE
 
 	///whether or not this window is reinforced and thus doesnt use the default attackby() behavior
 	var/is_reinforced = FALSE
@@ -34,6 +38,10 @@
 
 	var/sheet_type = /obj/item/stack/sheet/iron
 	var/sheet_amount = 2
+
+	var/mutable_appearance/grill_overlay
+	///identical appearance to grill_overlay but completely black and on a lower plane so wires can layer between
+	var/mutable_appearance/grill_black_overlay
 
 /obj/structure/window_frame/Initialize(mapload)
 	. = ..()
@@ -186,7 +194,11 @@
 /obj/structure/window_frame/update_overlays()
 	. = ..()
 	if(has_grille)
-		. += mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]")
+		var/offset = GET_TURF_PLANE_OFFSET(src)
+		grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = (src.plane + 1), offset_const = offset)
+		grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]", plane = (src.plane), offset_const = offset)
+		. += grill_overlay
+		. += grill_black_overlay
 
 /obj/structure/window_frame/grille
 	has_grille = TRUE
