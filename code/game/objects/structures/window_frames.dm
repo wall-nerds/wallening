@@ -37,8 +37,6 @@
 
 	var/south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/normal_frame.dmi'
 
-	var/south_face_icon_state = "normal_face"
-
 	///whether or not this window is reinforced and thus doesnt use the default attackby() behavior
 	var/is_reinforced = FALSE
 
@@ -204,8 +202,8 @@
 #define EAST_JUNCTION EAST  //(1<<2)
 #define WEST_JUNCTION WEST  //(1<<3)
 #define NORTHEAST_JUNCTION (1<<4)
-#define SOUTHEAST_JUNCTION (1<<5)
-#define SOUTHWEST_JUNCTION (1<<6)
+#define SOUTHEAST_JUNCTION (1<<5) 32 _|
+#define SOUTHWEST_JUNCTION (1<<6) 64 |_
 #define NORTHWEST_JUNCTION (1<<7)
 */
 
@@ -219,9 +217,6 @@
 		. += grill_black_overlay
 
 		var/south_face_exists = !(smoothing_junction & (SOUTH_JUNCTION | SOUTHEAST_JUNCTION | SOUTHWEST_JUNCTION))
-
-		if(type != /obj/structure/window_frame && south_face_icon_state == "normal_face")
-			return
 
 		if(!south_face_exists)
 			return
@@ -243,7 +238,8 @@
 		if(!south_face_dir)
 			CRASH("somehow a window frame couldnt find a compatible south face direction when it should have one! smoothing_junction: [smoothing_junction], south_face_dir: [south_face_dir]")
 
-		south_face_overlay = mutable_appearance(south_face_icon, "[south_face_icon_state]-[south_face_dir]", plane = (src.plane + 1), offset_const = offset)
+		south_face_overlay = mutable_appearance(south_face_icon, "[south_face_dir]", plane = (src.plane + 2), offset_const = offset)
+		. += south_face_overlay
 
 
 
@@ -272,6 +268,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_shuttle.dmi'
 	icon_state = "window_frame_shuttle-0"
 	base_icon_state = "window_frame_shuttle"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/shuttle_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	window_type = /obj/item/stack/sheet/titaniumglass
 	custom_materials = list(/datum/material/titanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
