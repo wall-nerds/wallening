@@ -282,6 +282,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_plastitanium.dmi'
 	icon_state = "window_frame_plastitanium-0"
 	base_icon_state = "window_frame_plastitanium"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/plasititanium_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	window_type = /obj/item/stack/sheet/plastitaniumglass
 	custom_materials = list(/datum/material/alloy/plastitanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
@@ -295,6 +296,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_wood.dmi'
 	icon_state = "window_frame_wood-0"
 	base_icon_state = "window_frame_wood"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/wood_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/wood
 	custom_materials = list(/datum/material/wood = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -303,6 +305,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_uranium.dmi'
 	icon_state = "window_frame_uranium-0"
 	base_icon_state = "window_frame_uranium"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/uranium_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
 	custom_materials = list(/datum/material/uranium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -311,6 +314,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_iron.dmi'
 	icon_state = "window_frame_iron-0"
 	base_icon_state = "window_frame_iron"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/iron_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/iron
 	custom_materials = list(/datum/material/iron = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -319,6 +323,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_silver.dmi'
 	icon_state = "window_frame_silver-0"
 	base_icon_state = "window_frame_silver"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/silver_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/silver
 	custom_materials = list(/datum/material/silver = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -327,6 +332,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_gold.dmi'
 	icon_state = "window_frame_gold-0"
 	base_icon_state = "window_frame_gold"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/gold_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	custom_materials = list(/datum/material/gold = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -335,6 +341,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_bronze.dmi'
 	icon_state = "window_frame_bronze-0"
 	base_icon_state = "window_frame_bronze"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/bronze_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/bronze
 	custom_materials = list(/datum/material/bronze = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -343,6 +350,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_cult.dmi'
 	icon_state = "window_frame_cult-0"
 	base_icon_state = "window_frame_cult"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/cult_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/runed_metal
 	custom_materials = list(/datum/material/runedmetal = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -351,6 +359,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_hotel.dmi'
 	icon_state = "window_frame_hotel-0"
 	base_icon_state = "window_frame_hotel"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/hotel_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/wood
 	custom_materials = list(/datum/material/wood = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -359,6 +368,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_material.dmi'
 	icon_state = "window_frame_material-0"
 	base_icon_state = "window_frame_material"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/material_frame.dmi'
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
 /obj/structure/window_frame/rusty
@@ -366,6 +376,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_rusty.dmi'
 	icon_state = "window_frame_rusty-0"
 	base_icon_state = "window_frame_rusty"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/rusty_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/iron
 	custom_materials = list(/datum/material/iron = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -374,6 +385,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_sandstone.dmi'
 	icon_state = "window_frame_sandstone-0"
 	base_icon_state = "window_frame_sandstone"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/sandstone_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/sandstone
 	custom_materials = list(/datum/material/sandstone = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -382,6 +394,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_bamboo.dmi'
 	icon_state = "window_frame_bamboo-0"
 	base_icon_state = "window_frame_bamboo"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/bamboo_frame.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/bamboo
 	custom_materials = list(/datum/material/bamboo = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -390,5 +403,6 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_paperframe.dmi'
 	icon_state = "window_frame_paperframe-0"
 	base_icon_state = "window_frame_paperframe"
+	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/paperframe.dmi'
 	sheet_type = /obj/item/stack/sheet/paperframes
 	custom_materials = list(/datum/material/paper = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
