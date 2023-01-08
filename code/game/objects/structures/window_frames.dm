@@ -197,14 +197,68 @@
 
 /*
 //Redefinitions of the diagonal directions so they can be stored in one var without conflicts
-#define NORTH_JUNCTION NORTH //(1<<0)
-#define SOUTH_JUNCTION SOUTH //(1<<1)
-#define EAST_JUNCTION EAST  //(1<<2)
-#define WEST_JUNCTION WEST  //(1<<3)
-#define NORTHEAST_JUNCTION (1<<4)
+#define NORTH_JUNCTION NORTH (1<<0) 1
+#define SOUTH_JUNCTION SOUTH (1<<1) 2
+#define EAST_JUNCTION EAST  (1<<2) 4
+#define WEST_JUNCTION WEST  (1<<3) 8
+#define NORTHEAST_JUNCTION (1<<4) 16
 #define SOUTHEAST_JUNCTION (1<<5) 32 _|
 #define SOUTHWEST_JUNCTION (1<<6) 64 |_
-#define NORTHWEST_JUNCTION (1<<7)
+#define NORTHWEST_JUNCTION (1<<7) 128
+		  _| = 32
+		 |_  = 64
+		 |_| = 96
+		  _  = 2
+
+0  ▢
+1  |_|
+2  |‾|
+3  |#|
+4  |=#
+5  |_#
+6  |‾#
+7  |##
+8  #=|
+9  #_|
+10 #‾|
+11 ##|
+12 #=#
+13 #_#
+14 #‾#
+15 empty
+
+21 |_#
+23 |##
+29 #_#
+31 empty
+38 |‾#
+39 |##
+46 #‾#
+47 empty
+55 |##
+63 empty
+74 #‾|
+75 ##|
+78 #‾#
+79 empty
+95 empty
+110 #‾#
+111 empty
+127 empty
+137 #_|
+139 ##|
+141 #_#
+143 empty
+157 #_#
+159 empty
+175 empty
+191 empty
+203 ##|
+207 empty
+223 empty
+239 empty
+255 empty
+
 */
 
 /obj/structure/window_frame/update_overlays()
@@ -221,15 +275,19 @@
 		if(!south_face_exists)
 			return
 
-		///this is set to SOUTH_JUNCTION, SOUTHEAST_JUNCTION, or SOUTHWEST_JUNCTION depending on whether the south face exists and
-		///whether the east and/or west faces exist.
+		/// 4 cases if the southern face exists
+		/// this is set to SOUTH_JUNCTION, SOUTHEAST_JUNCTION, or SOUTHWEST_JUNCTION, or SOUTHEAST_JUNCTION|SOUTHWEST_JUNCTION
+		/// depending on whether the south face exists and whether the east and/or west faces exist.
 		var/south_face_dir = NONE
 
 		var/east_face_exists = !(smoothing_junction & (EAST_JUNCTION | SOUTHEAST_JUNCTION | NORTHEAST_JUNCTION))
 		var/west_face_exists = !(smoothing_junction & (WEST_JUNCTION | SOUTHWEST_JUNCTION | NORTHWEST_JUNCTION))
 
 		if(east_face_exists && west_face_exists)
+			south_face_dir = SOUTHEAST_JUNCTION | SOUTHWEST_JUNCTION
+		else if(!east_face_exists && !west_face_exists)
 			south_face_dir = SOUTH_JUNCTION
+
 		else if(east_face_exists)
 			south_face_dir = SOUTHWEST_JUNCTION
 		else if(west_face_exists)
@@ -238,7 +296,8 @@
 		if(!south_face_dir)
 			CRASH("somehow a window frame couldnt find a compatible south face direction when it should have one! smoothing_junction: [smoothing_junction], south_face_dir: [south_face_dir]")
 
-		south_face_overlay = mutable_appearance(south_face_icon, "[south_face_dir]", plane = (src.plane + 2), offset_const = offset)
+		south_face_overlay = mutable_appearance(south_face_icon, "[south_face_dir]", plane = (src.plane + 1), offset_const = offset)
+		south_face_overlay.appearance_flags = KEEP_APART
 		. += south_face_overlay
 
 
