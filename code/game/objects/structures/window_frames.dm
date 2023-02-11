@@ -20,9 +20,8 @@
 	///identical appearance to grill_overlay but completely black and on a lower plane so wires can layer between
 	var/mutable_appearance/grill_black_overlay
 
-	///used for an overlay that just layers our southern face (if it exists ie we arent smoothed in that direction) above things that should
-	///be occluded like cables that go through us (which show below any grill we have but above us)
-	var/mutable_appearance/south_face_overlay
+	/// the appearance that masks our sides so cables are properly occluded
+	var/mutable_appearance/frame_overlay
 
 	///whether we currently have a grille
 	var/has_grille = FALSE
@@ -35,7 +34,7 @@
 	///Icon state used by grilles for this window frame.
 	var/grille_icon_state = "window_grille"
 
-	var/south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/normal_frame.dmi'
+	var/frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_normal.dmi'
 
 	///whether or not this window is reinforced and thus doesnt use the default attackby() behavior
 	var/is_reinforced = FALSE
@@ -263,45 +262,21 @@
 
 /obj/structure/window_frame/update_overlays()
 	. = ..()
-	if(has_grille)
-		var/offset = GET_TURF_PLANE_OFFSET(src)
-		grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = (src.plane + 1), offset_const = offset)
-		grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]", plane = (src.plane), offset_const = offset)
-		. += grill_overlay
-		. += grill_black_overlay
+	if(!has_grille)
+		return
 
-		var/south_face_exists = !(smoothing_junction & (SOUTH_JUNCTION | SOUTHEAST_JUNCTION | SOUTHWEST_JUNCTION))
+	var/offset = GET_TURF_PLANE_OFFSET(src)
+	grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = (src.plane + 1), offset_const = offset)
+	grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]", plane = (src.plane), offset_const = offset)
+	. += grill_overlay
+	. += grill_black_overlay
 
-		if(!south_face_exists)
-			return
+	if(!frame_icon)
+		return
 
-		/// 4 cases if the southern face exists
-		/// this is set to SOUTH_JUNCTION, SOUTHEAST_JUNCTION, or SOUTHWEST_JUNCTION, or SOUTHEAST_JUNCTION|SOUTHWEST_JUNCTION
-		/// depending on whether the south face exists and whether the east and/or west faces exist.
-		var/south_face_dir = NONE
-
-		var/east_face_exists = !(smoothing_junction & (EAST_JUNCTION | SOUTHEAST_JUNCTION | NORTHEAST_JUNCTION))
-		var/west_face_exists = !(smoothing_junction & (WEST_JUNCTION | SOUTHWEST_JUNCTION | NORTHWEST_JUNCTION))
-
-		if(east_face_exists && west_face_exists)
-			south_face_dir = SOUTHEAST_JUNCTION | SOUTHWEST_JUNCTION
-		else if(!east_face_exists && !west_face_exists)
-			south_face_dir = SOUTH_JUNCTION
-
-		else if(east_face_exists)
-			south_face_dir = SOUTHWEST_JUNCTION
-		else if(west_face_exists)
-			south_face_dir = SOUTHEAST_JUNCTION
-
-		if(!south_face_dir)
-			CRASH("somehow a window frame couldnt find a compatible south face direction when it should have one! smoothing_junction: [smoothing_junction], south_face_dir: [south_face_dir]")
-
-		south_face_overlay = mutable_appearance(south_face_icon, "[south_face_dir]", plane = (src.plane + 1), offset_const = offset)
-		south_face_overlay.appearance_flags = KEEP_APART
-		. += south_face_overlay
-
-
-
+	frame_overlay = mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = (src.plane + 1), offset_const = offset)
+	frame_overlay.appearance_flags = KEEP_APART
+	. += frame_overlay
 
 
 /obj/structure/window_frame/grille
@@ -327,7 +302,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_shuttle.dmi'
 	icon_state = "window_frame_shuttle-0"
 	base_icon_state = "window_frame_shuttle"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/shuttle_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_shuttle.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	window_type = /obj/item/stack/sheet/titaniumglass
 	custom_materials = list(/datum/material/titanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
@@ -341,7 +316,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_plastitanium.dmi'
 	icon_state = "window_frame_plastitanium-0"
 	base_icon_state = "window_frame_plastitanium"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/plasititanium_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_plastitanium.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	window_type = /obj/item/stack/sheet/plastitaniumglass
 	custom_materials = list(/datum/material/alloy/plastitanium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
@@ -355,7 +330,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_wood.dmi'
 	icon_state = "window_frame_wood-0"
 	base_icon_state = "window_frame_wood"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/wood_frame.dmi'
+	frame_icon = null //no walls above the center
 	sheet_type = /obj/item/stack/sheet/mineral/wood
 	custom_materials = list(/datum/material/wood = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -364,7 +339,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_uranium.dmi'
 	icon_state = "window_frame_uranium-0"
 	base_icon_state = "window_frame_uranium"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/uranium_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_uranium.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
 	custom_materials = list(/datum/material/uranium = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -373,7 +348,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_iron.dmi'
 	icon_state = "window_frame_iron-0"
 	base_icon_state = "window_frame_iron"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/iron_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_iron.dmi'
 	sheet_type = /obj/item/stack/sheet/iron
 	custom_materials = list(/datum/material/iron = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -382,7 +357,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_silver.dmi'
 	icon_state = "window_frame_silver-0"
 	base_icon_state = "window_frame_silver"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/silver_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_silver.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/silver
 	custom_materials = list(/datum/material/silver = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -391,7 +366,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_gold.dmi'
 	icon_state = "window_frame_gold-0"
 	base_icon_state = "window_frame_gold"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/gold_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_gold.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	custom_materials = list(/datum/material/gold = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -400,7 +375,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_bronze.dmi'
 	icon_state = "window_frame_bronze-0"
 	base_icon_state = "window_frame_bronze"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/bronze_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_bronze.dmi'
 	sheet_type = /obj/item/stack/sheet/bronze
 	custom_materials = list(/datum/material/bronze = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -409,7 +384,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_cult.dmi'
 	icon_state = "window_frame_cult-0"
 	base_icon_state = "window_frame_cult"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/cult_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_cult.dmi'
 	sheet_type = /obj/item/stack/sheet/runed_metal
 	custom_materials = list(/datum/material/runedmetal = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -418,7 +393,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_hotel.dmi'
 	icon_state = "window_frame_hotel-0"
 	base_icon_state = "window_frame_hotel"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/hotel_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_hotel.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/wood
 	custom_materials = list(/datum/material/wood = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -427,7 +402,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_material.dmi'
 	icon_state = "window_frame_material-0"
 	base_icon_state = "window_frame_material"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/material_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_material.dmi'
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
 /obj/structure/window_frame/rusty
@@ -435,7 +410,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_rusty.dmi'
 	icon_state = "window_frame_rusty-0"
 	base_icon_state = "window_frame_rusty"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/rusty_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_rusty.dmi'
 	sheet_type = /obj/item/stack/sheet/iron
 	custom_materials = list(/datum/material/iron = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -444,7 +419,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_sandstone.dmi'
 	icon_state = "window_frame_sandstone-0"
 	base_icon_state = "window_frame_sandstone"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/sandstone_frame.dmi'
+	frame_icon = null //no walls above center
 	sheet_type = /obj/item/stack/sheet/mineral/sandstone
 	custom_materials = list(/datum/material/sandstone = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -453,7 +428,7 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_bamboo.dmi'
 	icon_state = "window_frame_bamboo-0"
 	base_icon_state = "window_frame_bamboo"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/bamboo_frame.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_bamboo.dmi'
 	sheet_type = /obj/item/stack/sheet/mineral/bamboo
 	custom_materials = list(/datum/material/bamboo = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
 
@@ -462,6 +437,6 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_paperframe.dmi'
 	icon_state = "window_frame_paperframe-0"
 	base_icon_state = "window_frame_paperframe"
-	south_face_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/paperframe.dmi'
+	frame_icon = 'icons/obj/smooth_structures/window_frames/frame_faces/window_frame_paperframe.dmi'
 	sheet_type = /obj/item/stack/sheet/paperframes
 	custom_materials = list(/datum/material/paper = WINDOW_FRAME_BASE_MATERIAL_AMOUNT)
