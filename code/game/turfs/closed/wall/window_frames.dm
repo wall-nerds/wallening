@@ -66,10 +66,10 @@
 
 ///Gives the user a shock if they get unlucky (Based on shock chance)
 /obj/structure/window_frame/proc/try_shock(mob/user, shock_chance)
-	var/turf/my_turf = get_turf(src)
-	var/obj/structure/cable/underlaying_cable = my_turf.get_cable_node()
 	if(!has_grille) // no grille? dont shock.
 		return FALSE
+	var/turf/my_turf = get_turf(src)
+	var/obj/structure/cable/underlaying_cable = my_turf.get_cable_node()
 	if(!underlaying_cable)
 		return FALSE
 	if(!prob(shock_chance))
