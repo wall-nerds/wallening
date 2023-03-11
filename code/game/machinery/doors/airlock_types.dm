@@ -92,7 +92,6 @@
 
 /obj/machinery/door/airlock/glass/incinerator
 	autoclose = FALSE
-	frequency = FREQ_AIRLOCK_CONTROL
 	heat_proof = TRUE
 	req_access = list(ACCESS_SYNDICATE)
 
@@ -135,7 +134,6 @@
 
 /obj/machinery/door/airlock/research/glass/incinerator
 	autoclose = FALSE
-	frequency = FREQ_AIRLOCK_CONTROL
 	heat_proof = TRUE
 
 /obj/machinery/door/airlock/research/glass/incinerator/ordmix_interior
@@ -346,7 +344,6 @@
 
 /obj/machinery/door/airlock/public/glass/incinerator
 	autoclose = FALSE
-	frequency = FREQ_AIRLOCK_CONTROL
 	heat_proof = TRUE
 
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior
@@ -647,6 +644,7 @@
 	name = "Airlock"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_AFFECT_STATISTICS
 	greyscale_config = /datum/greyscale_config/material_airlock
+	greyscale_colors = "#a5a7ac"
 	assemblytype = /obj/structure/door_assembly/door_assembly_material
 
 /obj/machinery/door/airlock/material/close(forced, force_crush)
