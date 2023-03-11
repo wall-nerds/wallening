@@ -200,15 +200,15 @@
 		return
 
 	var/offset = GET_TURF_PLANE_OFFSET(src)
-	grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = (src.plane + 1), offset_const = offset)
-	grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]", plane = (src.plane), offset_const = offset)
+	grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_const = offset)
+	grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]", plane = src.plane, offset_const = offset)
 	. += grill_overlay
 	. += grill_black_overlay
 
 	if(!frame_icon)
 		return
 
-	frame_overlay = mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = (src.plane + 1), offset_const = offset)
+	frame_overlay = mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_const = offset)
 	frame_overlay.appearance_flags = KEEP_APART
 	. += frame_overlay
 
