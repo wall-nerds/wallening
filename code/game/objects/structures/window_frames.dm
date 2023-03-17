@@ -17,13 +17,6 @@
 	max_integrity = 50
 	anchored = TRUE
 
-	var/mutable_appearance/grill_overlay
-	///identical appearance to grill_overlay but completely black and on a lower plane so wires can layer between
-	var/mutable_appearance/grill_black_overlay
-
-	/// the appearance that masks our sides so cables are properly occluded
-	var/mutable_appearance/frame_overlay
-
 	///whether we currently have a grille
 	var/has_grille = FALSE
 	///whether we spawn a window structure with us on mapload
@@ -269,24 +262,27 @@
 	. = ..()
 	update_icon()
 
+/// if this frame has a grill, creates both the overlay for the grill (that goes over cables) and the black overlay beneath it (goes over us, but not cables)
+/obj/structure/window_frame/proc/create_grill_overlays(list/return_list)
+	if(!has_grille || !return_list)
+		return
+
+	var/grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src)
+	var/grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]")
+	return_list += grill_overlay
+	return_list += grill_black_overlay
+
+/// if this frame has a valid frame icon, creates it. this is what obscures the cable if it goes through the frame
+/obj/structure/window_frame/proc/create_frame_overlay(list/return_list)
+	if(!frame_icon || !return_list)
+		return
+	var/frame_overlay = mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src, appearance_flags = KEEP_APART)
+	return_list += frame_overlay
+
 /obj/structure/window_frame/update_overlays()
 	. = ..()
-	if(!has_grille)
-		return
-
-	var/offset = GET_TURF_PLANE_OFFSET(src)
-	grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_const = offset)
-	grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]", plane = src.plane, offset_const = offset)
-	. += grill_overlay
-	. += grill_black_overlay
-
-	if(!frame_icon)
-		return
-
-	frame_overlay = mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_const = offset)
-	frame_overlay.appearance_flags = KEEP_APART
-	. += frame_overlay
-
+	create_grill_overlays(.)
+	create_frame_overlay(.)
 
 /obj/structure/window_frame/grille
 	has_grille = TRUE
