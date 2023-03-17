@@ -12,7 +12,7 @@
 
 /turf/closed/Initialize(mapload)
 	. = ..()
-	if(use_splitvis && (smoothing_flags & SMOOTH_BITMASK))
+	if(use_splitvis)
 		AddElement(/datum/element/split_visibility, icon)
 
 
