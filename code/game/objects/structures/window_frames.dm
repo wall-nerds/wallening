@@ -267,17 +267,14 @@
 	if(!has_grille || !return_list)
 		return
 
-	var/grill_overlay = mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src)
-	var/grill_black_overlay = mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]")
-	return_list += grill_overlay
-	return_list += grill_black_overlay
+	return_list += mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src)
+	return_list += mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]")
 
 /// if this frame has a valid frame icon, creates it. this is what obscures the cable if it goes through the frame
 /obj/structure/window_frame/proc/create_frame_overlay(list/return_list)
 	if(!frame_icon || !return_list)
 		return
-	var/frame_overlay = mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src, appearance_flags = KEEP_APART)
-	return_list += frame_overlay
+	return_list += mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src, appearance_flags = KEEP_APART)
 
 /obj/structure/window_frame/update_overlays()
 	. = ..()
