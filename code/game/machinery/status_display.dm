@@ -68,7 +68,7 @@
 		TEXT_WEST = list(-18, -4),
 	)
 
-/obj/machinery/status_display/Initialize()
+/obj/machinery/status_display/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 

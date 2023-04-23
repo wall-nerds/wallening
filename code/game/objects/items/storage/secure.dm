@@ -199,7 +199,7 @@
 	density = FALSE
 	has_door = TRUE
 
-/obj/item/storage/secure/safe/Initialize()
+/obj/item/storage/secure/safe/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 

@@ -368,7 +368,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank
 	icon_state = "virus_food"
 	reagent_id = /datum/reagent/consumable/virus_food
 
-/obj/structure/reagent_dispensers/wall/virusfood/Initialize()
+/obj/structure/reagent_dispensers/wall/virusfood/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 

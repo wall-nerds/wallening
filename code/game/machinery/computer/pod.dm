@@ -144,7 +144,7 @@
 	icon_screen = null
 	density = FALSE
 
-/obj/machinery/computer/pod/old/mass_driver_controller/Initialize()
+/obj/machinery/computer/pod/old/mass_driver_controller/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 

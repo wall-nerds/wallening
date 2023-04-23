@@ -35,7 +35,7 @@
 
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/airlock_controller)
 
-/obj/machinery/airlock_controller/Initialize()
+/obj/machinery/airlock_controller/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 

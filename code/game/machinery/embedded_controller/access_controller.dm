@@ -50,7 +50,7 @@
 
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/door_buttons/access_button)
 
-/obj/machinery/door_buttons/access_button/Initialize()
+/obj/machinery/door_buttons/access_button/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 
@@ -120,7 +120,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/door_buttons/access_button)
 
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/door_buttons/airlock_controller)
 
-/obj/machinery/door_buttons/airlock_controller/Initialize()
+/obj/machinery/door_buttons/airlock_controller/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/wall_mount)
 

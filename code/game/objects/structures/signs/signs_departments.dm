@@ -211,7 +211,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/maint/alt)
 	///This var detemines which arrow overlay to use.
 	var/arrow_direction_state = "evac_overlay_f"
 
-/obj/structure/sign/departments/evac/Initialize()
+/obj/structure/sign/departments/evac/Initialize(mapload)
 	. = ..()
 	add_overlay(arrow_direction_state)
 
