@@ -357,7 +357,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_groups = SMOOTH_GROUP_HIERO_WALL
 	canSmoothWith = SMOOTH_GROUP_HIERO_WALL
 
-// Wallening todo: these
 /turf/closed/indestructible/resin
 	name = "resin wall"
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'

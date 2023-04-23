@@ -200,9 +200,6 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/item/radio/intercom)
 	icon_state = "intercom_command"
 	freerange = TRUE
 
-// Wallening todo: These likely need to be done explicitly
-// Because the offsets are NOT consistent
-// That or change the sprite? or make the macro better unsure
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/prison)
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/chapel)
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/command)
