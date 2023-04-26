@@ -86,6 +86,8 @@
 
 /obj/structure/window/setDir(newdir)
 	. = ..()
+	if(fulltile)
+		return
 	// Needed because render targets seem to shift larger then 32x32 icons down constantly. No idea why
 	pixel_z = 16
 	pixel_y = 0
