@@ -632,16 +632,9 @@
 					if(locked)
 						context[SCREENTIP_CONTEXT_LMB] = "Raise bolts"
 						return CONTEXTUAL_SCREENTIP_SET
-					return
 				context[SCREENTIP_CONTEXT_LMB] = "Change orientation"
 				return CONTEXTUAL_SCREENTIP_SET
 
-	if(istype(held_item, /obj/item/wrench/bolter))
-		if(locked)
-			context[SCREENTIP_CONTEXT_LMB] = "Raise bolts"
-			return CONTEXTUAL_SCREENTIP_SET
-
-		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
@@ -776,11 +769,14 @@
 	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/door/airlock/wrench_act(mob/living/user, obj/item/tool)
-	if(!panel_open)
+	if(!panel_open || !density)
 		return ..()
 
 	if(security_level != AIRLOCK_SECURITY_NONE)
 		balloon_alert(user, "cannot access!")
+		return TRUE
+
+	if(shock(user, 100))
 		return TRUE
 
 	if(locked)
@@ -793,8 +789,8 @@
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 		return TRUE
 
-	setDir(dir == NORTH ? EAST : NORTH)
-	balloon_alert(user, "changed orientation")
+	setDir(turn(dir, 90))
+	balloon_alert(user, "changed orientation [dir2text(dir)]")
 	return TRUE
 
 /obj/machinery/door/airlock/wirecutter_act(mob/living/user, obj/item/tool)
@@ -1394,6 +1390,8 @@
 		return TRUE
 	if(density && !operating)
 		return TRUE // to prevent people from getting stuck in doors
+	if(locate(/obj/machinery/door/airlock) in get_step(src, direction))
+		return TRUE // going from one airlock to another
 	return (direction == dir || direction == turn(dir, 180))
 
 /obj/machinery/door/airlock/CanAllowThrough(atom/movable/mover, border_dir)
