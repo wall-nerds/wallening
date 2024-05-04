@@ -705,6 +705,7 @@
 	name = "large painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories. Make sure you have enough space to mount this one to the wall."
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT*2)
+	icon = 'icons/obj/signs.dmi'
 	icon_state = "frame-large-empty"
 	result_path = /obj/structure/sign/painting/large
 	pixel_shift = 0 //See [/obj/structure/sign/painting/large/proc/finalize_size]
