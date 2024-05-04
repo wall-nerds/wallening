@@ -57,6 +57,8 @@
 	var/icon/generated_icon
 	///boolean that blocks persistence from saving it. enabled from printing copies, because we do not want to save copies.
 	var/no_save = FALSE
+	/// What icon file do we get our frame sprites from?
+	var/frame_icon = 'icons/obj/painting_frames.dmi'
 
 	///reference to the last patron's mind datum, used to allow them (and no others) to change the frame before the round ends.
 	var/datum/weakref/last_patron
@@ -66,8 +68,9 @@
 	// Painting overlay offset when framed
 	var/framed_offset_x = 10
 	var/framed_offset_y = 9
-	// Wallening todo: we need extra large painting support
-	var/wall_y_offset = 32
+
+	/// Additional offset to apply to the parent while framed
+	var/wall_y_offset = 0
 
 	/**
 	 * How big the grid cells that compose the painting are in the UI (multiplied by zoom).
@@ -78,13 +81,7 @@
 	///A list that keeps track of the current zoom value for each current viewer.
 	var/list/zoom_by_observer
 
-	// Unsure which of these to keep, wallening todo:
-	// commented out is latest
-	pixel_x = 10
-	pixel_y = 9
-/*
-	SET_BASE_PIXEL(11, 10)
-*/
+	SET_BASE_PIXEL(10, 9)
 
 	custom_price = PAYCHECK_CREW
 
@@ -426,52 +423,32 @@
 	icon_state = "19x19"
 	width = 19
 	height = 19
-	// wallening todo: same as above, conflicting offsets
-	pixel_x = 6
-	pixel_y = 9
+	SET_BASE_PIXEL(6, 7)
 	framed_offset_x = 6
 	framed_offset_y = 7
-	wall_y_offset = 30
-/*
-	SET_BASE_PIXEL(7, 7)
-	framed_offset_x = 7
-	framed_offset_y = 7
-*/
+	wall_y_offset = -2
 
 /obj/item/canvas/twentythree_nineteen
 	name = "canvas (23x19)"
 	icon_state = "23x19"
 	width = 23
 	height = 19
-	// Ok this just applies to all of these
-	pixel_x = 4
-	pixel_y = 10
+	SET_BASE_PIXEL(4, 7)
 	framed_offset_x = 4
 	framed_offset_y = 7
-	wall_y_offset = 30
-/*
-	SET_BASE_PIXEL(5, 7)
-	framed_offset_x = 5
-	framed_offset_y = 7
-*/
 	pixels_per_unit = 8
+	wall_y_offset = -2
 
 /obj/item/canvas/twentythree_twentythree
 	name = "canvas (23x23)"
 	icon_state = "23x23"
 	width = 23
 	height = 23
-	pixel_x = 5
-	pixel_y = 9
+	SET_BASE_PIXEL(4, 7)
 	framed_offset_x = 4
 	framed_offset_y = 7
-	wall_y_offset = 28
-/*
-	SET_BASE_PIXEL(5, 5)
-	framed_offset_x = 5
-	framed_offset_y = 5
-*/
 	pixels_per_unit = 8
+	wall_y_offset = -4
 
 /obj/item/canvas/twentyfour_twentyfour
 	name = "canvas (24x24) (AI Universal Standard)"
@@ -479,11 +456,10 @@
 	icon_state = "24x24"
 	width = 24
 	height = 24
-	SET_BASE_PIXEL(4, 4)
+	SET_BASE_PIXEL(4, 7)
 	framed_offset_x = 4
 	framed_offset_y = 7
-	wall_y_offset = 28
-	// framed_offset_y = 4
+	wall_y_offset = -5
 	pixels_per_unit = 8
 
 /obj/item/canvas/thirtysix_twentyfour
@@ -504,6 +480,7 @@
 	. = ..()
 	AddElement(/datum/element/item_scaling, 1, 0.8)
 	icon = 'icons/obj/art/artstuff_64x64.dmi'
+	frame_icon = 'icons/obj/art/artstuff_64x64.dmi'
 	icon_state = "36x24"
 
 /obj/item/canvas/fortyfive_twentyseven
@@ -524,18 +501,20 @@
 	. = ..()
 	AddElement(/datum/element/item_scaling, 1, 0.7)
 	icon = 'icons/obj/art/artstuff_64x64.dmi'
+	frame_icon = 'icons/obj/art/artstuff_64x64.dmi'
 	icon_state = "45x27"
 
 /obj/item/wallframe/painting
 	name = "painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories."
 	icon = 'icons/obj/painting_frames.dmi'
-	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
 	flags_1 = NONE
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/painting
-	pixel_shift = 30
+	pixel_shift = -3
+	inverse_dir = TRUE
 
 /obj/structure/sign/painting
 	name = "Painting"
@@ -543,7 +522,7 @@
 	icon = 'icons/obj/painting_frames.dmi'
 	icon_state = "frame-empty"
 	base_icon_state = "frame"
-	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
 	buildable_sign = FALSE
 	///Canvas we're currently displaying.
@@ -563,8 +542,6 @@
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
 	SSpersistent_paintings.painting_frames += src
-	if(building)
-		pixel_y = 32
 
 /obj/structure/sign/painting/Destroy()
 	. = ..()
@@ -618,7 +595,7 @@
 		if(!current_canvas.finalized)
 			current_canvas.finalize(user)
 		to_chat(user,span_notice("You frame [current_canvas]."))
-		pixel_y = current_canvas.wall_y_offset
+		pixel_y += current_canvas.wall_y_offset
 		update_appearance()
 		return TRUE
 	return FALSE
@@ -630,7 +607,6 @@
 		return
 	SStgui.update_uis(current_canvas)
 
-// Wallening todo: we used to use frame-empty if there was no canvas. no longer. someone please look into this
 /obj/structure/sign/painting/update_icon_state(updates=ALL)
 	. = ..()
 	// Stops the frame icon_state from poking out behind the paintings. we have proper frame overlays in artstuff.dmi.
@@ -646,20 +622,15 @@
 
 /obj/structure/sign/painting/update_overlays()
 	. = ..()
-	if(current_canvas)
-		var/mutable_appearance/MA = mutable_appearance(current_canvas.generated_icon)
-		MA.pixel_x = current_canvas.framed_offset_x
-		MA.pixel_y = current_canvas.framed_offset_y
-		. += MA
-		var/mutable_appearance/frame = mutable_appearance('icons/obj/painting_frames.dmi',"[current_canvas.icon_state]frame")
-		. += frame
+	if(!current_canvas?.generated_icon)
+		return
 
 	var/mutable_appearance/painting = mutable_appearance(current_canvas.generated_icon)
 	painting.pixel_x = current_canvas.framed_offset_x
 	painting.pixel_y = current_canvas.framed_offset_y
 	. += painting
 	var/frame_type = current_canvas.painting_metadata.frame_type
-	. += mutable_appearance(current_canvas.icon,"[current_canvas.icon_state]frame_[frame_type]") //add the frame
+	. += mutable_appearance(current_canvas.frame_icon, "[current_canvas.icon_state]frame_[frame_type]") //add the frame
 
 /**
  * Loads a painting from SSpersistence. Called globally by said subsystem when it inits
