@@ -456,9 +456,9 @@
 	icon_state = "24x24"
 	width = 24
 	height = 24
-	SET_BASE_PIXEL(4, 7)
+	SET_BASE_PIXEL(4, 11)
 	framed_offset_x = 4
-	framed_offset_y = 7
+	framed_offset_y = 11
 	wall_y_offset = -5
 	pixels_per_unit = 8
 
@@ -468,11 +468,11 @@
 	icon_state = "24x24" //The vending spritesheet needs the icons to be 32x32. We'll set the actual icon on Initialize.
 	width = 36
 	height = 24
-	SET_BASE_PIXEL(-4, 4)
+	SET_BASE_PIXEL(-4, 7)
 	framed_offset_x = 14
-	framed_offset_y = 4
-	wall_y_offset = 4
+	framed_offset_y = 7
 	pixels_per_unit = 7
+	wall_y_offset = 3
 	w_class = WEIGHT_CLASS_BULKY
 
 	custom_price = PAYCHECK_CREW * 1.25
@@ -490,10 +490,9 @@
 	icon_state = "24x24" //Ditto
 	width = 45
 	height = 27
-	SET_BASE_PIXEL(-8, 2)
+	SET_BASE_PIXEL(-8, 7)
 	framed_offset_x = 9
-	framed_offset_y = 4
-	wall_y_offset = 4
+	framed_offset_y = 7
 	pixels_per_unit = 6
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -707,8 +706,8 @@
 	name = "large painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories. Make sure you have enough space to mount this one to the wall."
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT*2)
-	icon = 'icons/obj/signs.dmi'
-	icon_state = "frame-large-empty"
+	icon = 'icons/obj/art/artstuff_64x64.dmi'
+	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/painting/large
 	pixel_shift = 0 //See [/obj/structure/sign/painting/large/proc/finalize_size]
 	custom_price = PAYCHECK_CREW * 1.25
