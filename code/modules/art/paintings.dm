@@ -471,6 +471,7 @@
 	SET_BASE_PIXEL(-4, 4)
 	framed_offset_x = 14
 	framed_offset_y = 4
+	wall_y_offset = 4
 	pixels_per_unit = 7
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -492,6 +493,7 @@
 	SET_BASE_PIXEL(-8, 2)
 	framed_offset_x = 9
 	framed_offset_y = 4
+	wall_y_offset = 4
 	pixels_per_unit = 6
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -750,11 +752,13 @@
  * of the way it's designed, the pixel_shift variable from the wallframe item won't do.
  * Also we want higher bounds so it actually covers an extra wall turf, so that it can count toward check_wall_item calls for
  * that wall turf.
+ *
+ * I havent figured out if we still want this in wallening yet?
  */
 /obj/structure/sign/painting/large/proc/finalize_size()
 	switch(dir)
 		if(SOUTH)
-			pixel_y = -32
+			pixel_y = -11
 			bound_width = 64
 		if(NORTH)
 			bound_width = 64
@@ -765,6 +769,8 @@
 			bound_height = 64
 		if(EAST)
 			bound_height = 64
+	if (!isnull(current_canvas))
+		pixel_y += current_canvas.wall_y_offset
 
 /obj/structure/sign/painting/large/frame_canvas(mob/user, obj/item/canvas/new_canvas)
 	. = ..()
