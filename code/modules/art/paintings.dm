@@ -313,7 +313,7 @@
 	var/possible_frames = candidates || SSpersistent_paintings.get_available_frames(painting_metadata.credit_value)
 	var/list/radial_options = list()
 	for(var/frame_name in possible_frames)
-		radial_options[frame_name] = image(icon, "[icon_state]frame_[frame_name]")
+		radial_options[frame_name] = image(frame_icon, "[icon_state]frame_[frame_name]")
 	var/result = show_radial_menu(user, loc, radial_options, radius = 60, custom_check = CALLBACK(src, PROC_REF(can_select_frame), user), tooltips = TRUE)
 	if(!result)
 		return
@@ -448,7 +448,7 @@
 	framed_offset_x = 4
 	framed_offset_y = 7
 	pixels_per_unit = 8
-	wall_y_offset = -4
+	wall_y_offset = -5
 
 /obj/item/canvas/twentyfour_twentyfour
 	name = "canvas (24x24) (AI Universal Standard)"
@@ -458,8 +458,8 @@
 	height = 24
 	SET_BASE_PIXEL(4, 11)
 	framed_offset_x = 4
-	framed_offset_y = 11
-	wall_y_offset = -5
+	framed_offset_y = 7
+	wall_y_offset = -6
 	pixels_per_unit = 8
 
 /obj/item/canvas/thirtysix_twentyfour
@@ -472,7 +472,7 @@
 	framed_offset_x = 14
 	framed_offset_y = 7
 	pixels_per_unit = 7
-	wall_y_offset = 3
+	wall_y_offset = 1
 	w_class = WEIGHT_CLASS_BULKY
 
 	custom_price = PAYCHECK_CREW * 1.25
@@ -494,6 +494,7 @@
 	framed_offset_x = 9
 	framed_offset_y = 7
 	pixels_per_unit = 6
+	wall_y_offset = -2
 	w_class = WEIGHT_CLASS_BULKY
 
 	custom_price = PAYCHECK_CREW * 1.75
