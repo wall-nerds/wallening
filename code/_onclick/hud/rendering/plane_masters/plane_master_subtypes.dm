@@ -271,10 +271,6 @@
 	documentation = "Masks the frill plane, this allows us to hide frills around the area of our mob, or really just as we desire"
 	plane = FRILL_MASK_PLANE
 	render_target = FRILL_MASK_RENDER_TARGET
-	/// TEMP CHANGE REMOVE ON MERGE
-	/// I want to retain a bit of what's beneath the mask, so we alpha it out
-	/// This would likely be better done by alphaing the mask itself, I am unsure
-	alpha = 200
 	render_relay_planes = list()
 
 // Not entirely sure how required this is, it's the plane we use for things that sit "on" walls

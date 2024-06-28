@@ -98,6 +98,7 @@
 		AA.onNewMob(src)
 
 	frill_oval_mask = image('icons/effects/ovalmask.dmi', src, "primary", pixel_x = -32, pixel_y = -12)
+	frill_oval_mask.alpha = 200
 	SET_PLANE_EXPLICIT(frill_oval_mask, FRILL_MASK_PLANE, src)
 	frill_oval_mask.appearance_flags = RESET_TRANSFORM
 	LAZYADD(update_on_z, frill_oval_mask)

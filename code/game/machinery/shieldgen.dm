@@ -287,6 +287,10 @@
 	icon = 'icons/obj/machines/shield_generator.dmi'
 	icon_state = "shield_wall_gen"
 	base_icon_state = "shield_wall_gen"
+	layer = SHIELD_GENERATOR_LAYER
+	light_range = 2.5
+	light_power = 2
+	light_color = LIGHT_COLOR_BLUE
 	anchored = FALSE
 	density = TRUE
 	req_access = list(ACCESS_TELEPORTER)
@@ -530,30 +534,91 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldwall"
 	density = TRUE
+	layer = SHIELD_WALL_LAYER
+	// Phsyically shift down to get the "over everything above us" effect we want
+	pixel_y = MAP_SWITCH(-16, 0)
+	pixel_z = MAP_SWITCH(16, 0)
+
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	light_range = 3
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_SHIELD_GEN_WALL
+	canSmoothWith = SMOOTH_GROUP_SHIELD_GEN_WALL
+	light_range = 2.5
+	light_power = 0.6
+	light_color = LIGHT_COLOR_BLUE
+	var/primary_direction = NONE
 	var/needs_power = FALSE
 	var/obj/machinery/power/shieldwallgen/gen_primary
 	var/obj/machinery/power/shieldwallgen/gen_secondary
 
 /obj/machinery/shieldwall/Initialize(mapload, obj/machinery/power/shieldwallgen/first_gen, obj/machinery/power/shieldwallgen/second_gen)
+	primary_direction = dir
 	. = ..()
 	gen_primary = first_gen
 	gen_secondary = second_gen
 	if(gen_primary && gen_secondary)
 		needs_power = TRUE
-		setDir(get_dir(gen_primary, gen_secondary))
+		primary_direction = get_dir(gen_primary, gen_secondary)
+		setDir(primary_direction)
 	for(var/mob/living/L in get_turf(src))
 		visible_message(span_danger("\The [src] is suddenly occupying the same space as \the [L]!"))
 		L.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
 		L.gib(DROP_ALL_REMAINS)
 	RegisterSignal(src, COMSIG_ATOM_SINGULARITY_TRY_MOVE, PROC_REF(block_singularity))
 	AddElement(/datum/element/give_turf_traits, string_list(list(TRAIT_CONTAINMENT_FIELD)))
+	AddElement(/datum/element/render_over_keep_hitbox)
+	if(smoothing_flags & (SMOOTH_BITMASK|SMOOTH_CORNERS|SMOOTH_BORDER_OBJECT))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/machinery/shieldwall/Destroy()
 	gen_primary = null
 	gen_secondary = null
 	return ..()
+
+/obj/machinery/shieldwall/set_smoothed_icon_state(new_junction)
+	smoothing_junction = new_junction
+	icon_state = initial(icon_state)
+	var/default_junctions = dir_to_junction(primary_direction) | dir_to_junction(REVERSE_DIR(primary_direction))
+	// What edges were we expecting to fill but have not?
+	var/dropped_junction = default_junctions & ~new_junction
+
+	// Nothing missing? act like a line piece
+	if(!dropped_junction)
+		setDir(primary_direction)
+		update_overlays()
+		return
+
+	// If we are missing an edge we get to check for smoothing
+	// Only if we're facing EAST/WEST though, NORTH/SOUTH just goes with the flow
+	if(primary_direction & (EAST|WEST))
+		var/working_dir = NONE
+		// Goal here is to make a big ass circle you know?
+		if(new_junction & NORTH)
+			working_dir = dropped_junction|NORTH
+		else if(new_junction & SOUTH)
+			working_dir = dropped_junction|SOUTH
+		if(working_dir)
+			setDir(working_dir)
+			update_overlays()
+			return
+
+	// Alright if there's holes, go ahead and patch em up
+	icon_state = "[initial(icon_state)]-edge"
+	update_overlays()
+	if(dropped_junction & NORTH)
+		setDir(NORTH)
+	else if(dropped_junction & SOUTH)
+		setDir(SOUTH)
+	else if(dropped_junction & EAST)
+		setDir(EAST)
+	else if(dropped_junction & WEST)
+		setDir(WEST)
+
+/obj/machinery/shieldwall/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src, alpha = 200)
+	. += mutable_appearance(icon, icon_state, offset_spokesman = src, plane = FRILL_MASK_PLANE)
 
 /obj/machinery/shieldwall/process()
 	if(needs_power)
