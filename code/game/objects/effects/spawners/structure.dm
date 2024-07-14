@@ -6,7 +6,7 @@ again.
 
 /obj/effect/spawner/structure
 	name = "map structure spawner"
-	icon = 'icons/obj/structures_spawners_tall.dmi'
+	icon = 'icons/obj/structures_spawners.dmi'
 	var/list/spawn_list
 
 /obj/effect/spawner/structure/Initialize(mapload)
