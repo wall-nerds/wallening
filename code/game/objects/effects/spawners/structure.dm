@@ -6,6 +6,7 @@ again.
 
 /obj/effect/spawner/structure
 	name = "map structure spawner"
+	icon = 'icons/obj/structures_spawners_tall.dmi'
 	var/list/spawn_list
 
 /obj/effect/spawner/structure/Initialize(mapload)
@@ -16,10 +17,9 @@ again.
 //normal windows
 
 /obj/effect/spawner/structure/window
-	icon = 'icons/obj/structures_spawners.dmi'
 	icon_state = "window_spawner"
 	name = "window spawner"
-	spawn_list = list(/obj/structure/window_frame/reinforced/grille_and_window)
+	spawn_list = list(/obj/structure/window_frame/grille_and_window)
 	dir = SOUTH
 
 /obj/effect/spawner/structure/window/Initialize(mapload)
@@ -146,7 +146,7 @@ again.
 /obj/effect/spawner/structure/window/reinforced/damaged
 	name = "damaged reinforced window spawner"
 	spawn_list = list(/obj/structure/window_frame/reinforced/damaged/grille_and_window)
-	
+
 //tinted
 
 /obj/effect/spawner/structure/window/reinforced/tinted
@@ -375,6 +375,5 @@ again.
 
 /obj/effect/spawner/structure/electrified_grille
 	name = "electrified grill spawner"
-	icon = 'icons/obj/structures_spawners.dmi'
 	icon_state = "electrified_grille"
 	spawn_list = list(/obj/structure/grille, /obj/structure/cable)
