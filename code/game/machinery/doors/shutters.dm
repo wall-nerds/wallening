@@ -3,6 +3,7 @@
 	name = "shutters"
 	desc = "Heavy duty mechanical shutters with an atmospheric seal that keeps them airtight once closed."
 	icon = 'icons/obj/doors/shutters.dmi'
+	icon_state = "closed_bottom"
 	layer = SHUTTER_LAYER
 	closingLayer = SHUTTER_LAYER
 	damage_deflection = 20
