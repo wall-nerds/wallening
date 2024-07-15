@@ -58,7 +58,7 @@
 	///boolean that blocks persistence from saving it. enabled from printing copies, because we do not want to save copies.
 	var/no_save = FALSE
 	/// What icon file do we get our frame sprites from?
-	var/frame_icon = 'icons/obj/painting_frames.dmi'
+	var/frame_icon = 'icons/obj/art/painting_frames.dmi'
 
 	///reference to the last patron's mind datum, used to allow them (and no others) to change the frame before the round ends.
 	var/datum/weakref/last_patron
@@ -509,7 +509,7 @@
 /obj/item/wallframe/painting
 	name = "painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories."
-	icon = 'icons/obj/painting_frames.dmi'
+	icon = 'icons/obj/art/painting_frames.dmi'
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
 	flags_1 = NONE
@@ -521,7 +521,7 @@
 /obj/structure/sign/painting
 	name = "Painting"
 	desc = "Art or \"Art\"? You decide."
-	icon = 'icons/obj/painting_frames.dmi'
+	icon = 'icons/obj/art/painting_frames.dmi'
 	icon_state = "frame-empty"
 	base_icon_state = "frame"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
