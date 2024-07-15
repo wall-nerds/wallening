@@ -169,9 +169,8 @@
 /obj/structure/window/paperframe
 	name = "paper frame"
 	desc = "A fragile separator made of thin wood and paper."
-	icon = 'icons/obj/smooth_structures/window_frames/window_frame_paperframe.dmi'
-	icon_state = "window_frame_paperframe-0"
-	base_icon_state = "window_frame_paperframe"
+	icon = 'icons/obj/smooth_structures/windows/paper_window.dmi'
+	icon_state = null
 	opacity = TRUE
 	max_integrity = 15
 	fulltile = TRUE
@@ -227,7 +226,8 @@
 
 /obj/structure/window/paperframe/update_overlays()
 	. = ..()
-	. += (atom_integrity < max_integrity) ? torn : paper
+	#warn deal with this
+	//. += (atom_integrity < max_integrity) ? torn : paper
 
 /obj/structure/window/paperframe/attackby(obj/item/W, mob/living/user)
 	if(W.get_temperature())
