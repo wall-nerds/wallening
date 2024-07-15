@@ -80,6 +80,8 @@ GLOBAL_LIST_EMPTY(window_appearances)
 	// Now we'll check above
 	// If there's nothin, we'll use a frill. Otherwise we won't
 	paired_turf = get_step(our_turf, NORTH)
+	#warn ok this shit ain't working. Instead of trying to track walls like this, we should attach an effect object to the turf of our window that smooths for walls, and pass that into window logic
+
 	// We only display an above state if there's a wall, OR if we're smoothing with nothing up there
 	if(isclosedturf(paired_turf) && (!ignored_turf || !istype(paired_turf, ignored_turf)))
 		our_appearances += get_window_appearance(offset, icon_path, junction, "upper", TRUE, pixel_y = 32)
