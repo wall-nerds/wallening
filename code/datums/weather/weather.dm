@@ -271,6 +271,7 @@
 			if(has_frills)
 				var/mutable_appearance/glow_frill_overlay = mutable_appearance('icons/effects/glow_weather.dmi', "[weather_state]_top", overlay_layer, null, WEATHER_FRILL_FULLBRIGHT_PLANE, 100, offset_const = offset)
 				glow_frill_overlay.color = weather_color
+				glow_frill_overlay.pixel_z = 32
 				gen_overlay_cache += glow_frill_overlay
 
 		if(has_frills)
