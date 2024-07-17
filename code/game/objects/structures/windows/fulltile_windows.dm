@@ -189,8 +189,6 @@
 	bash_sound = 'sound/weapons/slashmiss.ogg'
 	break_sound = 'sound/items/poster_ripped.ogg'
 	hit_sound = 'sound/weapons/slashmiss.ogg'
-	var/static/mutable_appearance/torn = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "torn", layer = ABOVE_OBJ_LAYER - 0.1)
-	var/static/mutable_appearance/paper = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "paper", layer = ABOVE_OBJ_LAYER - 0.1)
 
 /obj/structure/window/paperframe/Initialize(mapload)
 	. = ..()
@@ -220,14 +218,13 @@
 	set_opacity(atom_integrity >= max_integrity)
 
 /obj/structure/window/paperframe/update_icon(updates=ALL)
+	if(atom_integrity >= max_integrity)
+		icon = 'icons/obj/smooth_structures/windows/paper_window.dmi'
+	else
+		icon = 'icons/obj/smooth_structures/windows/paper_window_torn.dmi'
 	. = ..()
 	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK|SMOOTH_BITMASK_CARDINALS)))
 		QUEUE_SMOOTH(src)
-
-/obj/structure/window/paperframe/update_overlays()
-	. = ..()
-	#warn deal with this
-	//. += (atom_integrity < max_integrity) ? torn : paper
 
 /obj/structure/window/paperframe/attackby(obj/item/W, mob/living/user)
 	if(W.get_temperature())
