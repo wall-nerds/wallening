@@ -3,7 +3,7 @@ template = "bitmask/diagonal_32x48.toml"
 
 [cut_pos]
 x = 16
-y = 20
+y = 16
 
 [positions]
 convex = 0
