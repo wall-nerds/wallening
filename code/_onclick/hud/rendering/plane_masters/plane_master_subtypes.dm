@@ -197,7 +197,7 @@
 	name = "Wall"
 	documentation = "Holds a mirror of all walls. Separate so we can use this + space and floor planes as a guide for where byond blackness is NOT."
 	plane = WALL_PLANE
-	render_relay_planes = list(LIGHT_MASK_PLANE)
+	render_relay_planes = list(LIGHT_MASK_PLANE, RENDER_PLANE_WALL_WEATHER_MASK)
 
 /atom/movable/screen/plane_master/wall/Initialize(mapload, datum/hud/hud_owner, datum/plane_master_group/home, offset)
 	. = ..()
@@ -260,7 +260,7 @@
 	// Clicking on a frill can't get you the wall it's on (cause it's not overlayed onto it)
 	// So this just fucks people up, we should simply make it transparent.
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_relay_planes = list(RENDER_PLANE_FRILL)
+	render_relay_planes = list(RENDER_PLANE_FRILL, RENDER_PLANE_WALL_WEATHER_MASK)
 
 /atom/movable/screen/plane_master/frill/Initialize(mapload, datum/hud/hud_owner, datum/plane_master_group/home, offset)
 	. = ..()
@@ -330,6 +330,19 @@
 		return
 	home.AddComponent(/datum/component/hide_weather_planes, src)
 
+/atom/movable/screen/plane_master/weather
+	name = "Weather"
+	documentation = "Holds the main tiling 32x32 sprites of weather. We mask against walls that are on the edge of weather effects."
+	plane = WEATHER_PLANE
+	start_hidden = TRUE
+
+/atom/movable/screen/plane_master/weather/set_home(datum/plane_master_group/home)
+	. = ..()
+	if(!.)
+		return
+	home.AddComponent(/datum/component/hide_weather_planes, src)
+	add_filter("wall_mask", 1, alpha_mask_filter(render_source = OFFSET_RENDER_TARGET(WALL_WEATHER_MASK_RENDER_TARGET, offset), flags = MASK_INVERSE))
+
 // using this as a mask against weather might be kinda? weird cause of potential double transforms. idk how I feel bout it tbh. works for now?
 // weather is weird on multiz stacks anyway so idkkkkk
 /atom/movable/screen/plane_master/weather_frill
@@ -390,17 +403,30 @@
 	documentation = "Anything on the game plane that needs a space to draw on that will be above the lighting plane.\
 		<br>Mostly little alerts and effects, also sometimes contains things that are meant to look as if they glow."
 
-/atom/movable/screen/plane_master/weather_frill_fullbright
-	name = "Weather Fullbright Frills"
-	documentation = "Very similar to weather frills except it draws above lighting. Reaches up to touch unweathered turfs."
-	plane = WEATHER_FRILL_FULLBRIGHT_PLANE
+/atom/movable/screen/plane_master/weather_glow
+	name = "Weather Glow"
+	documentation = "Holds the glowing parts of the main tiling 32x32 sprites of weather. Exists because we need to mask away walls RIGHT below us."
+	plane = WEATHER_GLOW_PLANE
 	start_hidden = TRUE
 
-/atom/movable/screen/plane_master/weather_frill_fullbright/Initialize(mapload, datum/hud/hud_owner, datum/plane_master_group/home, offset)
+/atom/movable/screen/plane_master/weather_glow/set_home(datum/plane_master_group/home)
+	. = ..()
+	if(!.)
+		return
+	home.AddComponent(/datum/component/hide_weather_planes, src)
+	add_filter("wall_mask", 1, alpha_mask_filter(render_source = OFFSET_RENDER_TARGET(WALL_WEATHER_MASK_RENDER_TARGET, offset), flags = MASK_INVERSE))
+
+/atom/movable/screen/plane_master/weather_frill_glow
+	name = "Weather Glow Frills"
+	documentation = "Very similar to weather frills except it draws above lighting. Reaches up to touch unweathered turfs."
+	plane = WEATHER_FRILL_GLOW_PLANE
+	start_hidden = TRUE
+
+/atom/movable/screen/plane_master/weather_frill_glow/Initialize(mapload, datum/hud/hud_owner, datum/plane_master_group/home, offset)
 	. = ..()
 	add_filter("weather_mask", 1, alpha_mask_filter(render_source = OFFSET_RENDER_TARGET(WEATHER_MASK_RENDER_TARGET, offset), flags = MASK_INVERSE))
 
-/atom/movable/screen/plane_master/weather_frill_fullbright/set_home(datum/plane_master_group/home)
+/atom/movable/screen/plane_master/weather_frill_glow/set_home(datum/plane_master_group/home)
 	. = ..()
 	if(!.)
 		return

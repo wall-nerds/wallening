@@ -20,14 +20,16 @@
 #define RENDER_PLANE_TRANSPARENT -18 //Transparent plane that shows openspace underneath the floor
 #define TRANSPARENT_FLOOR_PLANE -14
 
-#define FLOOR_PLANE -12
+#define FLOOR_PLANE -13
 #define FLOOR_PLANE_RENDER_TARGET "*FLOOR_PLANE"
-#define WALL_PLANE -11
-#define OVER_TILE_PLANE -10
-#define GAME_PLANE -9
-#define ABOVE_GAME_PLANE -8
-#define HIDDEN_WALL_PLANE -7
-#define FRILL_PLANE -6
+#define WALL_PLANE -12
+#define OVER_TILE_PLANE -11
+#define GAME_PLANE -10
+#define ABOVE_GAME_PLANE -9
+#define HIDDEN_WALL_PLANE -8
+#define FRILL_PLANE -7
+#define RENDER_PLANE_WALL_WEATHER_MASK -6
+#define WALL_WEATHER_MASK_RENDER_TARGET "*RENDER_PLANE_WALL_WEATHER_MASK"
 #define FRILL_MASK_PLANE -5
 #define RENDER_PLANE_FRILL -4
 #define FRILL_MASK_RENDER_TARGET "*FRILL_MASK_PLANE"
@@ -42,11 +44,12 @@
 #define AREA_PLANE 2
 #define WEATHER_MASK_PLANE 3
 #define WEATHER_MASK_RENDER_TARGET "*WEATHER_MASK_PLANE"
-#define WEATHER_FRILL_PLANE 4
+#define WEATHER_PLANE 4
+#define WEATHER_FRILL_PLANE 5
 
-#define MASSIVE_OBJ_PLANE 5
-#define GHOST_PLANE 6
-#define POINT_PLANE 7
+#define MASSIVE_OBJ_PLANE 6
+#define GHOST_PLANE 7
+#define POINT_PLANE 8
 
 
 //---------- LIGHTING -------------
@@ -79,7 +82,8 @@
 
 ///Things that should render ignoring lighting
 #define ABOVE_LIGHTING_PLANE 17
-#define WEATHER_FRILL_FULLBRIGHT_PLANE 18
+#define WEATHER_GLOW_PLANE 18
+#define WEATHER_FRILL_GLOW_PLANE 19
 
 ///---------------- MISC -----------------------
 
