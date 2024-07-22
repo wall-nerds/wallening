@@ -139,8 +139,14 @@
 	isSwitchingStates = FALSE
 
 /obj/structure/mineral_door/update_icon_state()
-	icon_state = "[initial(icon_state)][door_opened ? "_open":""]"
+	icon_state = "[initial(icon_state)][door_opened ? "_open_top":""]"
 	return ..()
+
+/obj/structure/mineral_door/update_overlays()
+	. = ..()
+	if(!density)
+		// If we're open we layer the bit below us "above" any mobs so they can walk through
+		. += mutable_appearance(icon, "[initial(icon_state)]_open_bottom", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
 
 /obj/structure/mineral_door/attackby(obj/item/I, mob/living/user)
 	if(pickaxe_door(user, I))
@@ -304,7 +310,7 @@
 
 /obj/structure/mineral_door/paperframe/Initialize(mapload)
 	. = ..()
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK|SMOOTH_BITMASK_CARDINALS))
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/structure/mineral_door/paperframe/examine(mob/user)
@@ -337,6 +343,6 @@
 	return ..()
 
 /obj/structure/mineral_door/paperframe/Destroy()
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK|SMOOTH_BITMASK_CARDINALS))
 		QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
