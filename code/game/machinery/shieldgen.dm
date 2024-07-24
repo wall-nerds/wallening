@@ -299,6 +299,8 @@
 	active_power_usage = 150
 	circuit = /obj/item/circuitboard/machine/shieldwallgen
 	max_integrity = 300
+	/// List of directions in which we have active walls
+	var/list/active_directions = list()
 	/// whether the shield generator is active, ACTIVE_SETUPFIELDS will make it search for generators on process, and if that is successful, is set to ACTIVE_HASFIELDS
 	var/active = FALSE
 	/// are we locked?
@@ -331,14 +333,34 @@
 	set_wires(new /datum/wires/shieldwallgen(src))
 
 /obj/machinery/power/shieldwallgen/update_icon_state()
-	icon_state = "[base_icon_state][active ? "_on" : ""]"
+	if(anchored)
+		icon_state = "[base_icon_state]_anchored"
+	else
+		icon_state = "[base_icon_state]"
 	return ..()
 
 /obj/machinery/power/shieldwallgen/update_overlays()
 	. = ..()
-	if(!panel_open)
+	if(panel_open)
+		. += mutable_appearance(icon, "shieldgen_wires")
 		return
-	. += "shieldgen_wires"
+	if(active)
+		. += mutable_appearance(icon, "shield_wall_gen_on_overlay")
+		. += emissive_appearance(icon, "shield_wall_gen_on_overlay", src)
+
+	for(var/direction in active_directions)
+		// don't draw cause the gen would cut it off anyhow
+		if(direction == NORTH)
+			continue
+		// we draw an edge overlay with vis_contents (both to avoid expanding visual bounds and to make dirsetting easier)
+		var/obj/effect/overlay/vis/edge_overlay = SSvis_overlays.add_vis_overlay(src, 'icons/effects/effects.dmi', "shieldwall-edge", layer, plane, dir = direction, unique = TRUE)
+		edge_overlay.vis_flags = NONE
+		if(direction == SOUTH)
+			// Physically shift down to overlay over stuff below us
+			edge_overlay.pixel_y = -16
+			edge_overlay.pixel_z = 16
+		edge_overlay.add_overlay(emissive_appearance('icons/effects/effects.dmi', "shieldwall-edge", src, alpha = 200))
+		edge_overlay.add_overlay(mutable_appearance('icons/effects/effects.dmi', "shieldwall-edge", offset_spokesman = src, plane = FRILL_MASK_PLANE, appearance_flags = KEEP_APART))
 
 /obj/machinery/power/shieldwallgen/Destroy()
 	for(var/d in GLOB.cardinals)
@@ -382,45 +404,54 @@
 		return
 
 	var/turf/T = loc
-	var/obj/machinery/power/shieldwallgen/G
+	var/obj/machinery/power/shieldwallgen/paired
 	var/steps = 0
 	var/opposite_direction = REVERSE_DIR(direction)
 
 	for(var/i in 1 to shield_range) //checks out to 8 tiles away for another generator
 		T = get_step(T, direction)
-		G = locate(/obj/machinery/power/shieldwallgen) in T
-		if(G)
-			if(!G.active)
+		paired = locate(/obj/machinery/power/shieldwallgen) in T
+		if(paired)
+			if(!paired.active)
 				return
-			G.cleanup_field(opposite_direction)
+			paired.cleanup_field(opposite_direction)
 			break
 		else
 			steps++
 
-	if(!G || !steps) //no shield gen or no tiles between us and the gen
+	if(!paired || !steps) //no shield gen or no tiles between us and the gen
 		return
 
 	for(var/i in 1 to steps) //creates each field tile
 		T = get_step(T, opposite_direction)
-		new/obj/machinery/shieldwall(T, src, G)
+		new /obj/machinery/shieldwall(T, src, paired)
+
+	active_directions += direction
+	paired.active_directions += opposite_direction
+	update_appearance()
+	paired.update_appearance()
 	return TRUE
 
 /// cleans up fields in the specified direction if they belong to this generator
 /obj/machinery/power/shieldwallgen/proc/cleanup_field(direction)
 	var/obj/machinery/shieldwall/F
-	var/obj/machinery/power/shieldwallgen/G
+	var/obj/machinery/power/shieldwallgen/paired
 	var/turf/T = loc
 
 	for(var/i in 1 to shield_range)
 		T = get_step(T, direction)
 
-		G = (locate(/obj/machinery/power/shieldwallgen) in T)
-		if(G && !G.active)
+		paired = (locate(/obj/machinery/power/shieldwallgen) in T)
+		if(paired && !paired.active)
 			break
 
 		F = (locate(/obj/machinery/shieldwall) in T)
 		if(F && (F.gen_primary == src || F.gen_secondary == src)) //it's ours, kill it.
 			qdel(F)
+	active_directions -= direction
+	paired.active_directions -= REVERSE_DIR(direction)
+	update_appearance()
+	paired.update_appearance()
 
 /obj/machinery/power/shieldwallgen/proc/block_singularity_if_active()
 	SIGNAL_HANDLER
@@ -441,13 +472,14 @@
 	update_cable_icons_on_turf(get_turf(src))
 	if(unfasten_result == SUCCESSFUL_UNFASTEN && anchored)
 		connect_to_network()
+	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/shieldwallgen/screwdriver_act(mob/user, obj/item/tool)
 	if(!panel_open && locked)
 		balloon_alert(user, "unlock first!")
 		return
-	update_appearance(UPDATE_OVERLAYS)
+	update_appearance()
 	return default_deconstruction_screwdriver(user, icon_state, icon_state, tool)
 
 /obj/machinery/power/shieldwallgen/crowbar_act(mob/user, obj/item/tool)
@@ -536,8 +568,8 @@
 	density = TRUE
 	layer = SHIELD_WALL_LAYER
 	// Phsyically shift down to get the "over everything above us" effect we want
-	pixel_y = MAP_SWITCH(-16, 0)
-	pixel_z = MAP_SWITCH(16, 0)
+	SET_BASE_PIXEL_NOMAP(0, -16)
+	SET_BASE_VISUAL_PIXEL(0, WALLENING_OFFSET + 16)
 
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	smoothing_flags = SMOOTH_BITMASK
@@ -586,7 +618,7 @@
 	// Nothing missing? act like a line piece
 	if(!dropped_junction)
 		setDir(primary_direction)
-		update_overlays()
+		update_appearance()
 		return
 
 	// If we are missing an edge we get to check for smoothing
@@ -600,20 +632,7 @@
 			working_dir = dropped_junction|SOUTH
 		if(working_dir)
 			setDir(working_dir)
-			update_overlays()
-			return
-
-	// Alright if there's holes, go ahead and patch em up
-	icon_state = "[initial(icon_state)]-edge"
-	update_overlays()
-	if(dropped_junction & NORTH)
-		setDir(NORTH)
-	else if(dropped_junction & SOUTH)
-		setDir(SOUTH)
-	else if(dropped_junction & EAST)
-		setDir(EAST)
-	else if(dropped_junction & WEST)
-		setDir(WEST)
+			update_appearance()
 
 /obj/machinery/shieldwall/update_overlays()
 	. = ..()
