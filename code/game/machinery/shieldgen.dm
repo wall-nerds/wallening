@@ -449,9 +449,10 @@
 		if(F && (F.gen_primary == src || F.gen_secondary == src)) //it's ours, kill it.
 			qdel(F)
 	active_directions -= direction
-	paired.active_directions -= REVERSE_DIR(direction)
 	update_appearance()
-	paired.update_appearance()
+	if(paired)
+		paired.active_directions -= REVERSE_DIR(direction)
+		paired.update_appearance()
 
 /obj/machinery/power/shieldwallgen/proc/block_singularity_if_active()
 	SIGNAL_HANDLER
