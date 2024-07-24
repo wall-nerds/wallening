@@ -212,6 +212,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_GLITTER_PINK S_OBJ(76) // /obj/effect/decal/cleanable/glitter/pink
 #define SMOOTH_GROUP_GLITTER_WHITE S_OBJ(77) // /obj/effect/decal/cleanable/glitter/white
 #define SMOOTH_GROUP_GLITTER_BLUE S_OBJ(78) // /obj/effect/decal/cleanable/glitter/blue
+#define SMOOTH_GROUP_SHIELD_GEN_WALL S_OBJ(79) // /obj/machinery/shieldwall
 
 /// Performs the work to set smoothing_groups and canSmoothWith.
 /// An inlined function used in both turf/Initialize and atom/Initialize.
