@@ -24,9 +24,22 @@
 	build_plane_masters(0, SSmapping.max_plane_offset)
 
 /datum/plane_master_group/Destroy()
-	orphan_hud()
+	set_hud(null)
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 	return ..()
+
+/datum/plane_master_group/proc/set_hud(datum/hud/new_hud)
+	if(new_hud == our_hud)
+		return
+	if(our_hud)
+		our_hud.master_groups -= key
+		hide_hud()
+	our_hud = new_hud
+	if(new_hud)
+		our_hud.master_groups[key] = src
+		show_hud()
+		transform_lower_turfs(our_hud, active_offset)
+	SEND_SIGNAL(src, COMSIG_GROUP_HUD_CHANGED, our_hud)
 
 /// Display a plane master group to some viewer, so show all our planes to it
 /datum/plane_master_group/proc/attach_to(datum/hud/viewing_hud)
@@ -34,17 +47,7 @@
 		stack_trace("Hey brother, our key [key] is already in use by a plane master group on the passed in hud, belonging to [viewing_hud.mymob]. Ya fucked up, why are there dupes")
 		return
 
-	our_hud = viewing_hud
-	our_hud.master_groups[key] = src
-	show_hud()
-	transform_lower_turfs(our_hud, active_offset)
-
-/// Hide the plane master from its current hud, fully clear it out
-/datum/plane_master_group/proc/orphan_hud()
-	if(our_hud)
-		our_hud.master_groups -= key
-		hide_hud()
-		our_hud = null
+	set_hud(viewing_hud)
 
 /// Well, refresh our group, mostly useful for plane specific updates
 /datum/plane_master_group/proc/refresh_hud()
@@ -143,6 +146,7 @@
 		var/scale = scale_by ** (offset)
 		var/matrix/multiz_shrink = matrix()
 		multiz_shrink.Scale(scale)
+		multiz_shrink.Translate(0, -16 * offset)
 		offsets += multiz_shrink
 
 	// So we can talk in 1 -> max_offset * 2 + 1, rather then -max_offset -> max_offset
