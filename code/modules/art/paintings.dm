@@ -494,7 +494,7 @@
 	framed_offset_x = 9
 	framed_offset_y = 7
 	pixels_per_unit = 6
-	wall_y_offset = -2
+	wall_y_offset = -1
 	w_class = WEIGHT_CLASS_BULKY
 
 	custom_price = PAYCHECK_CREW * 1.75
@@ -710,6 +710,7 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT*2)
 	icon = 'icons/obj/art/artstuff_64x64.dmi'
 	icon_state = "frame-empty"
+	base_pixel_x = -17
 	result_path = /obj/structure/sign/painting/large
 	pixel_shift = 0 //See [/obj/structure/sign/painting/large/proc/finalize_size]
 	custom_price = PAYCHECK_CREW * 1.25
