@@ -517,6 +517,7 @@
 	result_path = /obj/structure/sign/painting
 	pixel_shift = -3
 	inverse_dir = TRUE
+	north_only = TRUE
 
 /obj/structure/sign/painting
 	name = "Painting"
