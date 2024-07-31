@@ -393,6 +393,22 @@
 	blend_mode = BLEND_MULTIPLY
 	critical = PLANE_CRITICAL_DISPLAY
 
+/atom/movable/screen/plane_master/darkness_mask
+	name = "Darkness Mask"
+	documentation = "Masks out bits of the world that would otherwise be lit up, but should be hidden due to say, being on the other side of an airlock."
+	plane = DARKNESS_MASK_PLANE
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
+	render_relay_planes = list(RENDER_PLANE_GAME)
+	critical = PLANE_CRITICAL_DISPLAY
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/atom/movable/screen/plane_master/darkness_mask/Initialize(mapload, datum/hud/hud_owner, datum/plane_master_group/home, offset)
+	. = ..()
+	// Ensures any speck of white means darkness at the end
+	add_filter("bump_color", 2, color_matrix_filter(list(255,0,0,0, 0,255,0,0, 0,0,255,0, 0,0,0,255, 0,0,0,0)))
+	// Converts white to darkness, and black to transparency
+	add_filter("color_to_opacity", 3, color_matrix_filter(list(0,0,0,1/3, 0,0,0,1/3, 0,0,0,1/3, 0,0,0,0, 0,0,0,0)))
+
 /atom/movable/screen/plane_master/above_lighting
 	name = "Above lighting"
 	plane = ABOVE_LIGHTING_PLANE
