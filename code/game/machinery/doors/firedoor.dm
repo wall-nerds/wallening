@@ -8,6 +8,9 @@
 	desc = "Apply crowbar."
 	icon = 'icons/obj/doors/doorfireglass.dmi'
 	icon_state = "door_open"
+	dir_mask = "firelock_mask"
+	edge_dir_mask = "shutter"
+	inner_transparent_dirs = EAST|WEST
 	opacity = FALSE
 	density = FALSE
 	max_integrity = 300
@@ -712,6 +715,9 @@
 
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
+	// Disable directional opacity please (we are always transparent)
+	dir_mask = ""
+	edge_dir_mask = ""
 	can_crush = FALSE
 	flags_1 = ON_BORDER_1
 	can_atmos_pass = ATMOS_PASS_PROC

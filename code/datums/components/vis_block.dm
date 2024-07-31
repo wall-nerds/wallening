@@ -176,7 +176,7 @@
 	var/turf/home = atom_parent.loc
 
 	/// This is the darkness everything else will be masking out
-	var/mutable_appearance/darkness_base = mutable_appearance('icons/obj/doors/airlocks/tall/airlock_mask.dmi', "[wall_junction]", offset_spokesman = atom_parent, plane = DARKNESS_MASK_PLANE)
+	var/mutable_appearance/darkness_base = mutable_appearance('icons/obj/doors/airlocks/tall/airlock_darkness.dmi', "[wall_junction]", offset_spokesman = atom_parent, plane = DARKNESS_MASK_PLANE)
 	darkness_base.pixel_w = -5
 	partial_darkness = FALSE
 	for(var/check_dir in GLOB.cardinals)
@@ -227,7 +227,7 @@
 			partial_darkness = TRUE
 			if(!HAS_TRAIT(home, TRAIT_INNER_DARKNESS) || HAS_TRAIT_FROM(home, TRAIT_INNER_DARKNESS, WEAKREF(src)))
 				ADD_TRAIT(home, TRAIT_INNER_DARKNESS, WEAKREF(src))
-				var/mutable_appearance/half_darken = mutable_appearance('icons/obj/doors/airlocks/tall/airlock_mask.dmi', "[wall_junction]", alpha = 130)
+				var/mutable_appearance/half_darken = mutable_appearance('icons/obj/doors/airlocks/tall/airlock_darkness.dmi', "[wall_junction]", alpha = 130)
 				half_darken.blend_mode = BLEND_SUBTRACT
 				mask.add_overlay(half_darken)
 

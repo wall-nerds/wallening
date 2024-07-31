@@ -5,6 +5,9 @@
 	icon = 'icons/obj/doors/shutters.dmi'
 	layer = SHUTTER_LAYER
 	closingLayer = SHUTTER_LAYER
+	dir_mask = "shutter"
+	edge_dir_mask = "shutter"
+	inner_transparent_dirs = EAST|WEST
 	damage_deflection = 20
 	armor_type = /datum/armor/poddoor_shutters
 	max_integrity = 100

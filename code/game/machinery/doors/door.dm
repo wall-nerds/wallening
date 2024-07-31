@@ -68,6 +68,13 @@
 	var/elevator_status
 	/// What specific lift ID do we link with?
 	var/transport_linked_id
+	/// Icon state prefix to use for masks from airlock_mask.dmi
+	var/dir_mask = "standard"
+	/// Similar to the above but used for cases where walls are adjacent
+	var/edge_dir_mask = "standard"
+	/// What directions in which we do not fully cover our darkness with masks
+	/// Allows for full directional visibility
+	var/inner_transparent_dirs = NONE
 
 /datum/armor/machinery_door
 	melee = 30
@@ -112,6 +119,12 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 	AddElement(/datum/element/can_barricade)
+	make_dir_opaque()
+
+/obj/machinery/door/proc/make_dir_opaque()
+	if(!dir_mask || !edge_dir_mask)
+		return
+	AddComponent(/datum/component/vis_block, dir_mask, edge_dir_mask, inner_transparent_dirs)
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
