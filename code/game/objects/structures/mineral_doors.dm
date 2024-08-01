@@ -44,7 +44,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/mineral_door/LateInitialize(mapload)
-	. = ..()
 	if(mapload)
 		auto_align()
 

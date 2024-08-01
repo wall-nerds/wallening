@@ -72,8 +72,6 @@ SUBSYSTEM_DEF(icon_smooth)
 /datum/controller/subsystem/icon_smooth/proc/add_to_queue(atom/thing)
 	if(thing.smoothing_flags & SMOOTH_QUEUED)
 		return
-	if(!thing.z)
-		stack_trace("HELP HELP I'VE FALLEN")
 	thing.smoothing_flags |= SMOOTH_QUEUED
 	// If we're currently locked into mapload BY something
 	// Then put us in a deferred list that we release when this mapload run is finished

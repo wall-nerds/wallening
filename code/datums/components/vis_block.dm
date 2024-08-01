@@ -26,6 +26,8 @@
 	if(isturf(loc))
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
+	else
+		SSicon_smooth.remove_from_queues(src)
 
 /// Applies directional opacity through a series of "vis" overlays
 /// (drawing darkness onto our main object, and masks of that darkness on the turfs around us)
