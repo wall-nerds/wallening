@@ -1730,7 +1730,7 @@
 
 /// Returns true if we should layer in common with the general game
 /// If false, render over the frill plane insted
-/atom/movable/proc/wall_mount_common_layer(direction)
+/atom/movable/proc/wall_mount_common_plane(direction)
 	if(direction == SOUTH)
 		return TRUE
 	return FALSE

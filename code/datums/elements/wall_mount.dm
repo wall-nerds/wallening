@@ -15,10 +15,10 @@
 /datum/element/wall_mount/proc/on_dir_changed(datum/target, olddir, newdir)
 	var/atom/movable/real_target = target
 	var/new_plane = OVER_FRILL_PLANE
-	if(real_target.wall_mount_common_layer(newdir))
-		new_plane = GAME_PLANE
-	real_target.layer = ON_WALL_LAYER
+	if(real_target.wall_mount_common_plane(newdir))
+		new_plane = initial(real_target.plane)
 	SET_PLANE_EXPLICIT(real_target, new_plane, real_target)
+	real_target.layer = ON_WALL_LAYER
 	real_target.wall_mount_offset(newdir)
 	real_target.update_appearance()
 

@@ -350,7 +350,7 @@ CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray)
 			pixel_x = 11
 			pixel_z = 16
 
-/obj/machinery/camera/wall_mount_common_layer(direction)
+/obj/machinery/camera/wall_mount_common_plane(direction)
 	if(direction == SOUTH || direction == NORTHEAST)
 		return TRUE
 	return FALSE
