@@ -628,16 +628,26 @@
 /obj/machinery/door/firedoor/update_icon_state()
 	. = ..()
 	if(animation)
-		icon_state = "[base_icon_state]_[animation]"
+		icon_state = "[base_icon_state]_[animation]_top"
 	else
-		icon_state = "[base_icon_state]_[density ? "closed" : "open"]"
+		icon_state = "[base_icon_state]_[density ? "closed" : "open"]_top"
+
+/obj/machinery/door/firedoor/update_overlays()
+	. = ..()
+	var/working_icon_state
+	if(animation)
+		working_icon_state = "[base_icon_state]_[animation]_bottom"
+	else
+		working_icon_state = "[base_icon_state]_[density ? "closed" : "open"]_bottom"
+	. += mutable_appearance(icon, working_icon_state, ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
+	. += emissive_blocker(icon, working_icon_state, src, ABOVE_MOB_LAYER)
 
 /obj/machinery/door/firedoor/animation_delay(animation)
 	switch(animation)
 		if("opening")
-			return 0.8 SECONDS
+			return 0.9 SECONDS
 		if("closing")
-			return 0.8 SECONDS
+			return 1.3 SECONDS
 		if("deny")
 			return 0.3 SECONDS
 
