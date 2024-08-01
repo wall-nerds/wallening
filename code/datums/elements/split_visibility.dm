@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 			RegisterSignal(target_atom.loc, COMSIG_TURF_CHANGE, PROC_REF(on_movable_turf_change))
 			add_split_vis_objects(target_atom.loc, target_atom.smoothing_junction)
 	else
-		ADD_TRAIT(target, TRAIT_CONTAINS_SPLITVIS, src) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
+		ADD_TRAIT(target, TRAIT_CONTAINS_SPLITVIS, UNLINT(src)) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
 		RegisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE, PROC_REF(on_turf_junction_change))
 		add_split_vis_objects(target_atom, target_atom.smoothing_junction)
 
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(split_visibility_objects)
 			REMOVE_TRAIT(target.loc, TRAIT_CONTAINS_SPLITVIS, ref)
 	else
 		remove_split_vis_objects(target, target.smoothing_junction)
-		REMOVE_TRAIT(target, TRAIT_CONTAINS_SPLITVIS, src) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
+		REMOVE_TRAIT(target, TRAIT_CONTAINS_SPLITVIS, UNLINT(src)) // We use src here because this code is hot, and we assert that bespoke elements cannot self delete. Not a good pattern but fast
 	return ..()
 
 /datum/element/split_visibility/proc/on_turf_junction_change(turf/source, new_junction)

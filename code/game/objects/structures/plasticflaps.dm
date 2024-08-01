@@ -33,7 +33,6 @@
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/plasticflaps/LateInitialize(mapload)
-	. = ..()
 	if(mapload)
 		auto_align()
 

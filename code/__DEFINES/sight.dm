@@ -69,11 +69,6 @@
 /// Range in tiles that a mob can see in the dark (used to determine if a mob has night_vision)
 #define NIGHTVISION_RANGE 8
 
-//Fullscreen overlay resolution in tiles for the clients view.
-/// The fullscreen overlay in tiles for x axis
-#define FULLSCREEN_OVERLAY_RESOLUTION_X 15
-/// The fullscreen overlay in tiles for y axis
-#define FULLSCREEN_OVERLAY_RESOLUTION_Y 15
 /// Bitfield of sight flags that show THINGS but no lighting
 /// Since lighting is an underlay on turfs, this is everything but that
 #define SEE_AVOID_TURF_BLACKNESS (SEE_MOBS|SEE_OBJS)
