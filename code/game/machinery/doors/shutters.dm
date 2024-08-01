@@ -27,8 +27,10 @@
 	. = ..()
 	. += emissive_appearance(icon, "emissives", src, alpha = 100)
 
-/obj/machinery/door/poddoor/shutters/get_lower_overlay()
-	return mutable_appearance(icon, "[get_working_state()]_bottom", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
+/obj/machinery/door/poddoor/shutters/get_lower_overlays()
+	var/list/hand_back = list()
+	hand_back += mutable_appearance(icon, "[get_working_state()]_bottom", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
+	hand_back += emissive_blocker(icon, "[get_working_state()]_bottom", src, ABOVE_MOB_LAYER)
 
 /obj/machinery/door/poddoor/shutters/animation_delay(animation)
 	switch(animation)
