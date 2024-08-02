@@ -26,8 +26,16 @@
 					else if(path == /obj/structure/window/reinforced)
 						sprite_icon = icon(icon = 'icons/hud/radial.dmi', icon_state = "windowtype")
 					else if(path == /obj/structure/window/fulltile || path == /obj/structure/window/reinforced/fulltile)
-						sprite_icon = icon(icon = initial(path.icon), icon_state = initial(path.icon_state))
-						sprite_icon.Blend(icon(icon = 'icons/obj/structures.dmi', icon_state = "grille"), ICON_UNDERLAY)
+						//sprite_icon = icon(icon = initial(path.icon), icon_state = initial(path.icon_state)) //TODOKYLER: delete
+						//sprite_icon.Blend(icon(icon = 'icons/obj/smooth_structures/window_frames/window_frame_normal.dmi', icon_state = "window_frame_normal-0"), ICON_UNDERLAY)
+
+						sprite_icon = icon(icon = 'icons/obj/smooth_structures/window_frames/window_frame_normal.dmi', icon_state = "window_frame_normal-0")
+
+						var/obj/structure/window_frame/frame_path = /obj/structure/window_frame
+
+						sprite_icon.Blend(icon(icon = initial(frame_path.grille_black_icon), icon_state = "[initial(frame_path.grille_icon_state)]_black-[0]"), ICON_OVERLAY)
+						sprite_icon.Blend(icon(icon = initial(frame_path.grille_icon), icon_state = "[initial(frame_path.grille_icon_state)]-[0]"), ICON_OVERLAY)
+						sprite_icon.Blend(icon(icon = initial(path.icon), icon_state = initial(path.icon_state)), ICON_OVERLAY)
 
 				//icons for solid airlocks have an added solid overlay on top of their glass icons
 				else if(ispath(path, /obj/machinery/door/airlock))
