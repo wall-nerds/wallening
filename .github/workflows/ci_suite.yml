@@ -2,17 +2,20 @@ name: CI Suite
 on:
   push:
     branches:
-    - master
+    - stable
+    - experimental
     - 'project/**'
     - 'gh-readonly-queue/master/**'
     - 'gh-readonly-queue/project/**'
   pull_request:
     branches:
-    - master
+    - stable
+    - experimental
     - 'project/**'
   merge_group:
     branches:
-    - master
+    - stable
+    - experimental
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
