@@ -292,7 +292,7 @@
 
 			if(locate(/obj/structure/window_frame) in src)
 				return FALSE
-			var/obj/structure/window_frame/frame = new(src)
+			new /obj/structure/window_frame(src)
 			return TRUE
 		if(RCD_AIRLOCK)
 			var/obj/machinery/door/airlock_type = rcd_data["[RCD_DESIGN_PATH]"]
