@@ -246,17 +246,75 @@
 	return attack_hand(user, modifiers)
 
 /obj/structure/window_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	if(the_rcd.mode == RCD_DECONSTRUCT)
-		return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
+	switch(the_rcd.mode)
+		if(RCD_DECONSTRUCT)
+			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
+		if(RCD_WINDOWGRILLE)
+			var/cost = 0
+			var/delay = 0
+
+			if(!has_grille)
+				cost = 2
+				delay = 2 SECONDS
+			else
+				var/obj/structure/window/window_path = the_rcd.rcd_design_path
+				if(!ispath(window_path))
+					stack_trace("invalid window path passed to rcd_vals: [window_path]")
+					return FALSE
+
+				if(initial(window_path.fulltile))
+					cost = 8
+					delay = 3 SECONDS
+				else
+					cost = 4
+					delay = 2 SECONDS
+
+				if(initial(window_path.reinf))
+					cost *= 1.5
+					delay *= 1.5
+
+
+			if(!cost)
+				return FALSE
+
+			return rcd_result_with_memory(
+				list("delay" = delay, "cost" = cost),
+				get_turf(src), RCD_MEMORY_WINDOWGRILLE
+			)
+
 	return FALSE
 
-/obj/structure/window_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd)
-	if(the_rcd.mode == RCD_DECONSTRUCT)
-		var/turf/home = get_turf(src)
-		// No thing to display on if we get deleted
-		home.balloon_alert(user, "Deconstructed!")
-		qdel(src)
-		return TRUE
+/obj/structure/window_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
+	switch(rcd_data["[RCD_DESIGN_MODE]"])
+		if(RCD_DECONSTRUCT)
+			var/turf/home = get_turf(src)
+			// No thing to display on if we get deleted
+			home.balloon_alert(user, "Deconstructed!")
+			qdel(src)
+			return TRUE
+		if(RCD_WINDOWGRILLE)
+			if(!isturf(loc))
+				return FALSE
+
+			if(!has_grille)
+				balloon_alert(user, "grill added!")
+				has_grille = TRUE
+				update_appearance()
+				return TRUE
+
+			var/obj/structure/window/window_path = rcd_data["[RCD_DESIGN_PATH]"]
+			if(!ispath(window_path))
+				CRASH("Invalid window path type in RCD: [window_path]")
+
+			if(!initial(window_path.fulltile))
+				if(!valid_build_direction(loc, user.dir, is_fulltile = FALSE))
+					balloon_alert(user, "window already here!")
+					return FALSE
+
+			var/obj/structure/window/window = new window_path(loc, user.dir)
+			window.set_anchored(TRUE)
+			return TRUE
+
 	return FALSE
 
 /obj/structure/window_frame/examine(mob/user)
