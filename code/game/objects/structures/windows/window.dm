@@ -695,6 +695,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/spawner, 0)
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/unanchored/spawner)
 
 /obj/structure/window/half
+	can_atmos_pass = ATMOS_PASS_YES
 	icon = 'icons/obj/smooth_structures/windows/half_thindow.dmi'
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half)
@@ -838,6 +839,7 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/spawner)
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/unanchored/spawner)
 
 /obj/structure/window/reinforced/half
+	can_atmos_pass = ATMOS_PASS_YES
 	icon = 'icons/obj/smooth_structures/windows/reinforced_half_thindow.dmi'
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/half)
