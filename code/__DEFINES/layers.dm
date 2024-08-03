@@ -369,3 +369,5 @@
 #define MAX_EXPECTED_Z_DEPTH 3
 
 #define WALLENING_OFFSET 12
+/// How many pixels do we increment mobs away from the tile to appear more centered?
+#define WALLENING_MOB_OFFSET 4
