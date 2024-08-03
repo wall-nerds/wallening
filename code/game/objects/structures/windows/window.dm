@@ -694,6 +694,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/spawner, 0)
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/unanchored/spawner)
 
+/obj/structure/window/half
+	icon = 'icons/obj/smooth_structures/windows/half_thindow.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half)
+
 /obj/structure/window/reinforced
 	name = "reinforced window"
 	desc = "A window that is reinforced with metal rods."
@@ -826,6 +831,11 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/spawner)
 	state = WINDOW_OUT_OF_FRAME
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/unanchored/spawner)
+
+/obj/structure/window/reinforced/half
+	icon = 'icons/obj/smooth_structures/windows/reinforced_half_thindow.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half)
 
 // You can't rust glass! So only reinforced glass can be impacted.
 /obj/structure/window/reinforced/rust_heretic_act()

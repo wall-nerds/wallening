@@ -8529,22 +8529,25 @@
 "bUU" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/white,
+/obj/machinery/door/window/right/directional/east{
+	name = "Secure Medical Storage";
+	req_access = list("medical")
+	},
 /obj/item/storage/medkit/regular{
 	pixel_x = -3;
 	pixel_y = 1
 	},
 /obj/item/storage/medkit/regular{
-	pixel_y = 6
+	pixel_y = 4
 	},
 /obj/item/storage/medkit/regular{
 	pixel_x = 3;
-	pixel_y = 11
+	pixel_y = 7
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/obj/machinery/door/window/half/right/directional/east,
-/obj/structure/window/reinforced/half,
+/obj/structure/window/half/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "bVs" = (
@@ -31561,6 +31564,10 @@
 	pixel_y = 10
 	},
 /obj/effect/turf_decal/siding/white,
+/obj/machinery/door/window/left/directional/west{
+	name = "Secure Medical Storage";
+	req_access = list("medical")
+	},
 /obj/item/clothing/glasses/blindfold,
 /obj/item/clothing/glasses/blindfold,
 /obj/item/clothing/ears/earmuffs{
@@ -31572,8 +31579,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/obj/machinery/door/window/half/left/directional/west,
-/obj/structure/window/reinforced/half,
+/obj/structure/window/half/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "kiN" = (
@@ -32255,20 +32261,22 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/medkit/brute{
 	pixel_x = 3;
-	pixel_y = 12
-	},
-/obj/item/storage/medkit/brute{
 	pixel_y = 8
 	},
 /obj/item/storage/medkit/brute{
-	pixel_x = -3;
 	pixel_y = 4
+	},
+/obj/item/storage/medkit/brute{
+	pixel_x = -3
+	},
+/obj/machinery/door/window/right/directional/east{
+	name = "Secure Medical Storage";
+	req_access = list("medical")
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/obj/machinery/door/window/half/right/directional/east,
-/obj/structure/window/reinforced/half,
+/obj/structure/window/half/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "kum" = (
@@ -36009,20 +36017,23 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/medkit/fire{
 	pixel_x = 3;
-	pixel_y = 11
+	pixel_y = 7
 	},
 /obj/item/storage/medkit/fire{
-	pixel_y = 8
+	pixel_y = 4
 	},
 /obj/item/storage/medkit/fire{
 	pixel_x = -3;
-	pixel_y = 5
+	pixel_y = 1
+	},
+/obj/machinery/door/window/left/directional/west{
+	name = "Secure Medical Storage";
+	req_access = list("medical")
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/obj/machinery/door/window/half/left/directional/west,
-/obj/structure/window/reinforced/half,
+/obj/structure/window/half/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "lIe" = (
@@ -53391,13 +53402,17 @@
 "rSa" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/syringes{
-	pixel_y = 8
+	pixel_y = 4
 	},
 /obj/item/storage/box/syringes{
-	pixel_y = 8
+	pixel_y = 4
 	},
 /obj/item/mod/module/plasma_stabilizer{
-	pixel_y = 12
+	pixel_y = 4
+	},
+/obj/machinery/door/window/left/directional/west{
+	name = "Secure Medical Storage";
+	req_access = list("medical")
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -53405,14 +53420,11 @@
 /obj/item/mod/module/signlang_radio{
 	pixel_y = 4
 	},
-/obj/item/mod/module/thermal_regulator{
-	pixel_y = 8
-	},
+/obj/item/mod/module/thermal_regulator,
 /obj/item/gun/syringe{
-	pixel_y = 8
+	pixel_y = 4
 	},
-/obj/machinery/door/window/half/left/directional/west,
-/obj/structure/window/reinforced/half,
+/obj/structure/window/half/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "rSb" = (
@@ -53704,20 +53716,23 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/medkit/toxin{
 	pixel_x = 3;
-	pixel_y = 11
+	pixel_y = 7
 	},
 /obj/item/storage/medkit/toxin{
-	pixel_y = 6
+	pixel_y = 4
 	},
 /obj/item/storage/medkit/toxin{
 	pixel_x = -3;
 	pixel_y = 1
 	},
+/obj/machinery/door/window/right/directional/east{
+	name = "Secure Medical Storage";
+	req_access = list("medical")
+	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/obj/machinery/door/window/half/right/directional/east,
-/obj/structure/window/reinforced/half,
+/obj/structure/window/half/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "rYL" = (
@@ -61258,21 +61273,18 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/medkit/o2{
 	pixel_x = 3;
-	pixel_y = 14
+	pixel_y = 3
 	},
-/obj/item/storage/medkit/o2{
-	pixel_y = 10
-	},
+/obj/item/storage/medkit/o2,
 /obj/item/storage/medkit/o2{
 	pixel_x = -3;
-	pixel_y = 5
+	pixel_y = -3
+	},
+/obj/machinery/door/window/left/directional/south{
+	name = "Secure Medical Storage";
+	req_access = list("medical")
 	},
 /obj/machinery/light/cold/directional/north,
-/obj/item/storage/medkit/o2{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/machinery/door/window/half/right/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "uCh" = (
