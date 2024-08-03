@@ -65,7 +65,7 @@
 	var/list/design = GLOB.rcd_designs[root_category][design_category][1]
 
 	rcd_design_path = design["[RCD_DESIGN_PATH]"]
-	design_title = initial(rcd_design_path.name)
+	design_title = initial(rcd_design_path.rcd_spritesheet_override) || initial(rcd_design_path.name)
 	mode = design["[RCD_DESIGN_MODE]"]
 	construction_mode = mode
 
@@ -319,7 +319,7 @@
 		for(var/list/design as anything in target_category)
 			var/atom/movable/design_path = design[RCD_DESIGN_PATH]
 
-			var/design_name = initial(design_path.name)
+			var/design_name = initial(design_path.rcd_spritesheet_override) || initial(design_path.name)
 
 			designs += list(list("title" = design_name, "icon" = sanitize_css_class_name(design_name)))
 		data["categories"] += list(list("cat_name" = sub_category, "designs" = designs))
@@ -379,7 +379,7 @@
 			mode = design["[RCD_DESIGN_MODE]"]
 			construction_mode = mode
 			rcd_design_path = design["[RCD_DESIGN_PATH]"]
-			design_title = initial(rcd_design_path.name)
+			design_title = initial(rcd_design_path.rcd_spritesheet_override) || initial(rcd_design_path.name)
 			blueprint_changed = TRUE
 
 		else
