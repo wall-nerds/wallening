@@ -2698,13 +2698,8 @@
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "jH" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/structure/mirror/directional/north,
-/obj/structure/sink/directional/east,
-/obj/machinery/light/small/directional/west,
-/turf/open/floor/iron/showroomfloor,
+/obj/structure/sign/warning/vacuum/external/directional/north,
+/turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "jK" = (
 /obj/structure/sign/warning/electric_shock/directional/north,
@@ -2887,6 +2882,7 @@
 /obj/effect/turf_decal/siding/dark_green{
 	dir = 4
 	},
+/obj/structure/sign/warning/chem_diamond/directional/north,
 /turf/open/floor/iron,
 /area/shuttle/sbc_starfury)
 "ks" = (
@@ -3463,7 +3459,8 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_starfury)
 "ng" = (
-/obj/structure/sign/warning/vacuum/external/directional/north,
+/obj/structure/cable,
+/obj/structure/sign/warning/electric_shock/directional/north,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "nk" = (
@@ -3814,9 +3811,12 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/sbc_starfury)
 "th" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /obj/structure/cable,
-/obj/structure/sign/warning/electric_shock/directional/north,
-/turf/open/floor/plating,
+/obj/structure/sign/warning/radiation/directional/north,
+/turf/open/floor/engine,
 /area/shuttle/sbc_starfury)
 "tn" = (
 /turf/open/floor/iron/smooth,
@@ -4260,12 +4260,13 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_starfury)
 "zE" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/structure/toilet{
+	dir = 4
 	},
-/obj/structure/cable,
-/obj/structure/sign/warning/radiation/directional/north,
-/turf/open/floor/engine,
+/obj/structure/mirror/directional/north,
+/obj/structure/sink/directional/east,
+/obj/machinery/light/small/directional/west,
+/turf/open/floor/iron/showroomfloor,
 /area/shuttle/sbc_starfury)
 "zI" = (
 /obj/effect/turf_decal/stripes/line{
@@ -4615,7 +4616,6 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/sbc_starfury)
 "FA" = (
-/obj/structure/sign/warning/chem_diamond/directional/south,
 /obj/machinery/sleeper/syndie{
 	dir = 8;
 	icon_state = "sleeper_s-open"
@@ -6218,7 +6218,7 @@ aa
 aa
 ae
 ae
-jH
+zE
 fK
 xw
 gS
@@ -6303,7 +6303,7 @@ ac
 aa
 ac
 ae
-ng
+jH
 kM
 aH
 aH
@@ -6841,7 +6841,7 @@ it
 iE
 KK
 ae
-zE
+th
 PP
 qF
 nr
@@ -6918,7 +6918,7 @@ kF
 JP
 lm
 ae
-th
+ng
 aS
 aS
 ae
@@ -7799,7 +7799,7 @@ ac
 aa
 ac
 ae
-ng
+jH
 Pb
 aH
 aH
