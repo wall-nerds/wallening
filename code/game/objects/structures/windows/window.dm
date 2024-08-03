@@ -835,7 +835,7 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/unanchored/sp
 /obj/structure/window/reinforced/half
 	icon = 'icons/obj/smooth_structures/windows/reinforced_half_thindow.dmi'
 
-MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half)
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/half)
 
 // You can't rust glass! So only reinforced glass can be impacted.
 /obj/structure/window/reinforced/rust_heretic_act()
