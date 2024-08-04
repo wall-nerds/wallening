@@ -398,6 +398,17 @@
 	},
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_starfury)
+"by" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/button/door/directional/east{
+	id = "syndie_battlecruiser_sm";
+	name = "engine shutters";
+	req_access = list("syndicate")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/sbc_starfury)
 "bB" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/iron/dark,
@@ -799,6 +810,17 @@
 /obj/structure/sign/warning/cold_temp/directional/north,
 /obj/machinery/portable_atmospherics/canister/anesthetic_mix,
 /turf/open/floor/plating,
+/area/shuttle/sbc_starfury)
+"dj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/button/door/directional/west{
+	id = "syndie_battlecruiser_sm";
+	name = "engine shutters";
+	req_access = list("syndicate")
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/sbc_starfury)
 "dk" = (
 /obj/effect/turf_decal/siding/dark,
@@ -2718,11 +2740,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/button/door/directional/north{
-	id = "syndie_battlecruiser_sm";
-	name = "engine shutters";
-	req_access = list("syndicate")
-	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/sbc_starfury)
 "jQ" = (
@@ -3812,6 +3829,11 @@
 	},
 /obj/structure/cable,
 /obj/structure/sign/warning/radiation/directional/north,
+/obj/machinery/button/door/directional/west{
+	id = "syndie_battlecruiser_sm";
+	name = "engine shutters";
+	req_access = list("syndicate")
+	},
 /turf/open/floor/engine,
 /area/shuttle/sbc_starfury)
 "tn" = (
@@ -4002,11 +4024,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/button/door/directional/north{
-	id = "syndie_battlecruiser_sm";
-	name = "engine shutters";
-	req_access = list("syndicate")
-	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/sbc_starfury)
 "wg" = (
@@ -4639,6 +4656,11 @@
 	},
 /obj/structure/cable,
 /obj/structure/sign/warning/radiation/directional/north,
+/obj/machinery/button/door/directional/east{
+	id = "syndie_battlecruiser_sm";
+	name = "engine shutters";
+	req_access = list("syndicate")
+	},
 /turf/open/floor/engine,
 /area/shuttle/sbc_starfury)
 "FO" = (
@@ -5492,11 +5514,9 @@
 /turf/open/floor/iron,
 /area/shuttle/sbc_starfury)
 "VX" = (
-/obj/item/kirbyplants/random,
 /obj/machinery/turretid/directional/south{
 	ailock = 1;
 	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
-	icon_state = "control_stun";
 	name = "Ship Turret Control";
 	req_access = list("syndicate")
 	},
@@ -6699,7 +6719,7 @@ zm
 iD
 iQ
 iZ
-kt
+by
 MR
 kt
 kg
@@ -7379,7 +7399,7 @@ Rv
 iI
 kb
 jb
-kH
+dj
 yM
 Lb
 kj
