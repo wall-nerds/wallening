@@ -165,12 +165,9 @@
 	// This way we only need to pass along the full 7 color set when making a new airlock pattern.
 	if(!ispath(greyscale_config, /datum/greyscale_config/airlocks/custom))
 		if(glass)
-			airlock_material = "glass"
-			greyscale_config = /datum/greyscale_config/airlocks/window
 			greyscale_colors = (copytext(greyscale_colors, 1, 43))
 		else if(ispath(greyscale_config, /datum/greyscale_config/airlocks))
 			greyscale_colors = (copytext(greyscale_colors, 1, 36))
-
 	. = ..()
 
 	set_wires(get_wires())
