@@ -59,9 +59,7 @@
 	AddElement(/datum/element/climbable, on_try_climb_procpath = TYPE_PROC_REF(/obj/structure/window_frame/, on_try_climb))
 
 	if(mapload && start_with_window)
-		var/obj/structure/window/our_window = create_structure_window(window_type)
-		our_window.state = WINDOW_OUT_OF_FRAME
-		our_window.set_anchored(FALSE)
+		create_structure_window(window_type)
 
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
@@ -220,7 +218,9 @@
 				return
 
 			to_chat(user, "<span class='notice'>You add [stack_name] to [src].")
-			create_structure_window(adding_stack.type)
+			var/obj/structure/window/our_window = create_structure_window(adding_stack.type)
+			our_window.state = WINDOW_OUT_OF_FRAME
+			our_window.set_anchored(FALSE)
 
 		else if(istype(adding_stack, /obj/item/stack/rods) && !has_grille && adding_stack.use(sheet_amount))
 			has_grille = TRUE
