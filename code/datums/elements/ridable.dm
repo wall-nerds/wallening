@@ -21,7 +21,7 @@
 		return COMPONENT_INCOMPATIBLE
 
 	if(!isliving(target))
-		target.pixel_z = WALLENING_OFFSET
+		target.pixel_z = DEPTH_OFFSET
 
 	if(component_type == /datum/component/riding)
 		stack_trace("Tried attaching a ridable element to [target] with basic/abstract /datum/component/riding component type. Please designate a specific riding component subtype when adding the ridable element.")
