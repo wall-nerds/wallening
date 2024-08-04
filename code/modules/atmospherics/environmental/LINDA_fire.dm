@@ -37,7 +37,8 @@
 			hotspot_around |= direction
 
 	active_hotspot = new_lad
-	active_hotspot.set_smoothed_icon_state(hotspot_around)
+	if(active_hotspot)
+		active_hotspot.set_smoothed_icon_state(hotspot_around)
 
 /**
  * Handles the creation of hotspots and initial activation of turfs.
