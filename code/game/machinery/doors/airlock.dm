@@ -553,7 +553,7 @@
 			else if(emergency)
 				light_state = AIRLOCK_LIGHT_EMERGENCY
 			if(!greyscale_config)
-				. += get_airlock_overlay("[airlock_material]_closed", icon , src, em_block = FALSE)
+				. += get_airlock_overlay("[airlock_material]_closed", icon , src)
 		if(AIRLOCK_DENY)
 			frame_state = AIRLOCK_FRAME_CLOSED
 			light_state = AIRLOCK_LIGHT_DENIED
@@ -563,19 +563,19 @@
 			frame_state = AIRLOCK_FRAME_CLOSING
 			light_state = AIRLOCK_LIGHT_CLOSING
 			if(!greyscale_config)
-				. += get_airlock_overlay("[airlock_material]_closing", icon , src, em_block = FALSE)
+				. += get_airlock_overlay("[airlock_material]_closing", icon , src)
 		if(AIRLOCK_OPEN)
 			frame_state = AIRLOCK_FRAME_OPEN
 			// If we're open we layer the bit below us "above" any mobs so they can walk through
 			. += mutable_appearance(icon, "open_bottom", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
 			. += emissive_blocker(icon, "open_bottom", src, ABOVE_MOB_LAYER)
 			if(!greyscale_config)
-				. += get_airlock_overlay("[airlock_material]_open", icon , src, em_block = FALSE)
+				. += get_airlock_overlay("[airlock_material]_open", icon , src)
 		if(AIRLOCK_OPENING)
 			frame_state = AIRLOCK_FRAME_OPENING
 			light_state = AIRLOCK_LIGHT_OPENING
 			if(!greyscale_config)
-				. += get_airlock_overlay("[airlock_material]_opening", icon , src, em_block = FALSE)
+				. += get_airlock_overlay("[airlock_material]_opening", icon , src)
 
 	if(lights && hasPower())
 		. += get_airlock_overlay("lights_[light_state]", overlays_file, src, em_block = FALSE)
