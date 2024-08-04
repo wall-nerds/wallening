@@ -398,10 +398,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_starfury)
-"by" = (
-/obj/structure/sign/warning/secure_area,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/sbc_starfury)
 "bB" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/iron/dark,
@@ -6595,7 +6591,7 @@ oI
 oI
 oI
 ae
-by
+ae
 Sb
 Yg
 ae
@@ -7411,7 +7407,7 @@ oI
 oI
 oI
 ae
-by
+ae
 po
 ES
 ae
@@ -7578,12 +7574,12 @@ nD
 Qw
 ae
 ae
-by
+ae
 ae
 ZK
 hX
 ae
-by
+ae
 ae
 ae
 xG
