@@ -230,7 +230,10 @@
 	UNSETEMPTY(new_overlay_types)
 	src.atmos_overlay_types = new_overlay_types
 
-/turf/proc/rebuild_visuals()
+/// Fully recalculates the smoothing of our atmos overlays
+/// Call when their inputs outside of the system (like, what adjacent turfs we have) change
+/turf/proc/rebuild_atmos_smoothing()
+	PRIVATE_PROC(TRUE)
 	var/list/atmos_overlay_types = src.atmos_overlay_types
 	for(var/direction in GLOB.cardinals)
 		var/turf/paired_turf = get_step(src, direction)
