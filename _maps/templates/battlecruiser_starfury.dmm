@@ -773,25 +773,25 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/sbc_starfury)
 "de" = (
-/obj/machinery/button/door{
-	id = "syndie_battlecruiser_bridge_bolt";
-	name = "Bridge Lockdown";
-	normaldoorcontrol = 1;
-	req_access = list("syndicate_leader");
-	specialfunctions = 4;
-	pixel_y = 4
-	},
-/obj/machinery/button/door{
-	id = "syndie_battlecruier_bridge_blast";
-	name = "Bridge Blast Doors";
-	req_access = list("syndicate_leader");
-	pixel_y = -4
-	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 9
+	},
+/obj/machinery/button/door/table{
+	pixel_y = 4;
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	id = "syndie_battlecruiser_bridge_bolt";
+	req_access = list("syndicate_leader");
+	name = "Bridge Lockdown"
+	},
+/obj/machinery/button/door/table{
+	id = "syndie_battlecruier_bridge_blast";
+	req_access = list("syndicate_leader");
+	name = "Bridge Blast Doors";
+	pixel_y = -4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/sbc_starfury)
