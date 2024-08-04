@@ -39,7 +39,6 @@
 		RegisterSignal(target, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 
 /datum/element/ridable/Detach(atom/movable/target)
-
 	if(!isliving(target))
 		target.pixel_z = target::pixel_z
 		target.base_pixel_z = target::base_pixel_z
