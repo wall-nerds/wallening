@@ -555,6 +555,8 @@
 				light_state = AIRLOCK_LIGHT_BOLTS
 			else if(emergency)
 				light_state = AIRLOCK_LIGHT_EMERGENCY
+			if(!greyscale_config)
+				. += get_airlock_overlay("[airlock_material]_closed", icon , src, em_block = FALSE)
 		if(AIRLOCK_DENY)
 			frame_state = AIRLOCK_FRAME_CLOSED
 			light_state = AIRLOCK_LIGHT_DENIED
@@ -563,14 +565,20 @@
 		if(AIRLOCK_CLOSING)
 			frame_state = AIRLOCK_FRAME_CLOSING
 			light_state = AIRLOCK_LIGHT_CLOSING
+			if(!greyscale_config)
+				. += get_airlock_overlay("[airlock_material]_closing", icon , src, em_block = FALSE)
 		if(AIRLOCK_OPEN)
 			frame_state = AIRLOCK_FRAME_OPEN
 			// If we're open we layer the bit below us "above" any mobs so they can walk through
 			. += mutable_appearance(icon, "open_bottom", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
 			. += emissive_blocker(icon, "open_bottom", src, ABOVE_MOB_LAYER)
+			if(!greyscale_config)
+				. += get_airlock_overlay("[airlock_material]_open", icon , src, em_block = FALSE)
 		if(AIRLOCK_OPENING)
 			frame_state = AIRLOCK_FRAME_OPENING
 			light_state = AIRLOCK_LIGHT_OPENING
+			if(!greyscale_config)
+				. += get_airlock_overlay("[airlock_material]_opening", icon , src, em_block = FALSE)
 
 	if(lights && hasPower())
 		. += get_airlock_overlay("lights_[light_state]", overlays_file, src, em_block = FALSE)
@@ -2001,11 +2009,15 @@
 	name = "glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
+	greyscale_colors = "#a5a7ac#a5a7ac#969696#969696#5ea52c#6d6565"
+
 
 /obj/machinery/door/airlock/glass/incinerator
 	autoclose = FALSE
 	heat_proof = TRUE
 	req_access = list(ACCESS_SYNDICATE)
+	greyscale_colors = "#a5a7ac#a5a7ac#969696#969696#5ea52c#6d6565"
 
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior
 	name = "Turbine Interior Airlock"
@@ -2020,11 +2032,13 @@
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 400
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/engineering/glass
 	name = "engineering glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/engineering/glass/critical
 	critical_machine = TRUE //stops greytide virus from opening & bolting doors in critical positions, such as the SM chamber.
@@ -2034,21 +2048,25 @@
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 400
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/medical/glass
 	name = "medical glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/hydroponics/glass //Uses same icon as medical/glass, maybe update it with its own unique icon one day?
 	name = "hydroponics glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/research/glass
 	name = "research glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/research/glass/incinerator
 	autoclose = FALSE
@@ -2066,11 +2084,13 @@
 	name = "mining glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/atmos/glass
 	name = "atmospheric glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/atmos/glass/critical
 	critical_machine = TRUE //stops greytide virus from opening & bolting doors in critical positions, such as the SM chamber.
@@ -2079,16 +2099,19 @@
 	name = "science glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/virology/glass
 	name = "virology glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/maintenance/glass
 	name = "maintainence glass airlock"
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/maintenance/external/glass
 	name = "maintainence external glass airlock"
@@ -2200,12 +2223,14 @@
 /obj/machinery/door/airlock/uranium/glass
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/uranium/safe
 	actually_radioactive = FALSE
 
 /obj/machinery/door/airlock/uranium/glass/safe
 	actually_radioactive = FALSE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/plasma
 	name = "plasma airlock"
@@ -2226,6 +2251,7 @@
 /obj/machinery/door/airlock/plasma/glass
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/bananium
 	name = "bananium airlock"
@@ -2238,6 +2264,7 @@
 /obj/machinery/door/airlock/bananium/glass
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/sandstone
 	name = "sandstone airlock"
@@ -2248,6 +2275,7 @@
 /obj/machinery/door/airlock/sandstone/glass
 	opacity = FALSE
 	glass = TRUE
+	greyscale_config = /datum/greyscale_config/airlocks/window
 
 /obj/machinery/door/airlock/wood
 	name = "wooden airlock"
