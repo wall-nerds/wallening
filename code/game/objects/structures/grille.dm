@@ -137,11 +137,11 @@
 
 			//checks if its a valid build direction
 			if(!initial(window_path.fulltile))
-				if(!valid_build_direction(loc, user.dir, is_fulltile = FALSE))
+				if(!valid_build_direction(loc, rcd_data["[RCD_BUILD_DIRECTION]"], is_fulltile = FALSE))
 					balloon_alert(user, "window already here!")
 					return FALSE
 
-			var/obj/structure/window/WD = new window_path(T, user.dir)
+			var/obj/structure/window/WD = new window_path(T, rcd_data["[RCD_BUILD_DIRECTION]"])
 			WD.set_anchored(TRUE)
 			return TRUE
 	return FALSE

@@ -29,7 +29,8 @@
 	var/construction_mode
 	/// The path of the structure the rcd is currently creating
 	var/atom/movable/rcd_design_path
-
+	///our currently selected direction
+	var/selected_direction
 	/// Owner of this rcd. It can either be a construction console, player, or mech.
 	var/atom/owner
 	/// used by arcd, can this rcd work from a range
@@ -95,7 +96,7 @@
 	mode = RCD_TURF
 	user.visible_message(span_suicide("[user] sets the RCD to 'Wall' and points it down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide!"))
 	if(checkResource(16, user)) // It takes 16 resources to construct a wall
-		var/success = T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
+		var/success = T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd, "[RCD_BUILD_DIRECTION]" = selected_direction))
 		T = get_turf(user)
 		// If the RCD placed a floor instead of a wall, having a wall without plating under it is cursed
 		// There isn't an easy programmatical way to check if rcd_act will place a floor or a wall, so just repeat using it for free
@@ -215,6 +216,7 @@
 		return FALSE
 	rcd_results["[RCD_DESIGN_MODE]"] = mode
 	rcd_results["[RCD_DESIGN_PATH]"] = rcd_design_path
+	rcd_results["[RCD_BUILD_DIRECTION]"] = selected_direction || user.dir
 
 	var/delay = rcd_results["delay"] * delay_mod
 	if (
@@ -332,6 +334,7 @@
 	//main categories
 	data["selected_category"] = design_category
 	data["selected_design"] = design_title
+	data["selected_direction"] = dir2text(selected_direction)
 
 	//merge airlock_electronics ui data with this
 	var/list/airlock_data = airlock_electronics.ui_data(user)
@@ -348,6 +351,11 @@
 			if(GLOB.rcd_designs[new_root] != null) //is a valid category
 				root_category = new_root
 				update_static_data_for_all_viewers()
+
+		if("select_direction")
+			var/new_dir = text2dir(params["selected_direction"])
+			selected_direction = (isnull(new_dir) || new_dir == selected_direction) ? null : new_dir
+			return TRUE
 
 		if("design")
 			//read and validate params from UI

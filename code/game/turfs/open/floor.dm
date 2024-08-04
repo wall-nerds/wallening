@@ -283,10 +283,10 @@
 
 			//allow directional windows to be built without grills
 			if(!initial(window_path.fulltile))
-				if(!valid_build_direction(src, user.dir, is_fulltile = FALSE))
+				if(!valid_build_direction(src, rcd_data["[RCD_BUILD_DIRECTION]"], is_fulltile = FALSE))
 					balloon_alert(user, "window already here!")
 					return FALSE
-				var/obj/structure/window/WD = new window_path(src, user.dir)
+				var/obj/structure/window/WD = new window_path(src, rcd_data["[RCD_BUILD_DIRECTION]"])
 				WD.set_anchored(TRUE)
 				return TRUE
 
@@ -300,7 +300,7 @@
 			var/obj/machinery/door/airlock_type = rcd_data["[RCD_DESIGN_PATH]"]
 
 			if(ispath(airlock_type, /obj/machinery/door/window))
-				if(!valid_build_direction(src, user.dir, is_fulltile = FALSE))
+				if(!valid_build_direction(src, rcd_data["[RCD_BUILD_DIRECTION]"], is_fulltile = FALSE))
 					balloon_alert(user, "there's already a windoor!")
 					return FALSE
 				for(var/obj/machinery/door/door in src)
@@ -309,7 +309,7 @@
 					balloon_alert(user, "there's already a door!")
 					return FALSE
 				//create the assembly and let it finish itself
-				var/obj/structure/windoor_assembly/assembly = new (src, user.dir)
+				var/obj/structure/windoor_assembly/assembly = new (src, rcd_data["[RCD_BUILD_DIRECTION]"])
 				assembly.secure = ispath(airlock_type, /obj/machinery/door/window/brigdoor)
 				assembly.electronics = the_rcd.airlock_electronics.create_copy(assembly)
 				assembly.finish_door()
@@ -328,8 +328,10 @@
 			else
 				assembly.airlock_type = airlock_type
 			assembly.electronics = the_rcd.airlock_electronics.create_copy(assembly)
-			assembly.finish_door()
+			var/atom/new_door = assembly.finish_door()
+			new_door?.setDir(rcd_data["[RCD_BUILD_DIRECTION]"])
 			return TRUE
+
 		if(RCD_STRUCTURE)
 			var/atom/movable/design_type = rcd_data["[RCD_DESIGN_PATH]"]
 
@@ -352,7 +354,7 @@
 				/obj/structure/bed,
 			)
 			if(is_path_in_list(locate_type, dir_types))
-				design.setDir(user.dir)
+				design.setDir(rcd_data["[RCD_BUILD_DIRECTION]"])
 			return TRUE
 		if(RCD_DECONSTRUCT)
 			if(rcd_proof)
