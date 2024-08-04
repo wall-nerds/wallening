@@ -410,7 +410,6 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name)
 	icon = 'icons/obj/machines/request_console.dmi'
 	icon_state = "req_comp_off"
 	result_path = /obj/machinery/requests_console/auto_name
-	pixel_shift = 30
 
 #undef REQ_EMERGENCY_SECURITY
 #undef REQ_EMERGENCY_ENGINEERING

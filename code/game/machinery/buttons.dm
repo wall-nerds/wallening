@@ -601,4 +601,3 @@ BUTTON_DIRECTIONAL_HELPERS(/obj/machinery/button/crematorium/indestructible)
 	icon_state = "button"
 	result_path = /obj/machinery/button
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
-	pixel_shift = 24

@@ -173,4 +173,3 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 	icon = 'icons/obj/extinguisher.dmi'
 	icon_state = "cabinet"
 	result_path = /obj/structure/extinguisher_cabinet
-	pixel_shift = 29 // wallening todo: is this like... ok?

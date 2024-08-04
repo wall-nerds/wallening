@@ -71,7 +71,6 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine)
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "ticketmachine_off"
 	result_path = /obj/machinery/ticket_machine
-	pixel_shift = 32
 
 ///Increments the counter by one, if there is a ticket after the current one we are serving.
 ///If we have a current ticket, remove it from the top of our tickets list and replace it with the next one if applicable
