@@ -20,6 +20,9 @@
 	if(!ismovable(target))
 		return COMPONENT_INCOMPATIBLE
 
+	if(!isliving(target))
+		target.pixel_z = WALLENING_OFFSET
+
 	if(component_type == /datum/component/riding)
 		stack_trace("Tried attaching a ridable element to [target] with basic/abstract /datum/component/riding component type. Please designate a specific riding component subtype when adding the ridable element.")
 		return COMPONENT_INCOMPATIBLE
@@ -35,6 +38,8 @@
 		RegisterSignal(target, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 
 /datum/element/ridable/Detach(atom/movable/target)
+	if(!isliving(target))
+		target.pixel_z = target.base_pixel_z
 	target.can_buckle = initial(target.can_buckle)
 	UnregisterSignal(target, list(COMSIG_MOVABLE_PREBUCKLE, COMSIG_SPEED_POTION_APPLIED, COMSIG_MOB_STATCHANGE))
 	return ..()
