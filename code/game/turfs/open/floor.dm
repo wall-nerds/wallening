@@ -326,7 +326,8 @@
 			else
 				assembly.airlock_type = airlock_type
 			assembly.electronics = the_rcd.airlock_electronics.create_copy(assembly)
-			assembly.finish_door()
+			var/obj/machinery/door/door = assembly.finish_door()
+			door.setDir(get_dir(src, user))
 			return TRUE
 		if(RCD_STRUCTURE)
 			var/atom/movable/design_type = rcd_data["[RCD_DESIGN_PATH]"]
