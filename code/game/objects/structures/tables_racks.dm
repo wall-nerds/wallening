@@ -69,7 +69,8 @@
 	if(mapload)
 		auto_offset()
 
-// Wallening hack to make tables automatically determine if they need to be offset to be flush with a wall, window, or similar
+// Wallening hack to make tables automatically determine
+// if they need to be offset to be flush with a wall, window, or similar
 /obj/structure/table/proc/auto_offset()
 	for(var/dir in list(NORTH, EAST))
 		var/turf/left_turf = get_step(loc, dir)
@@ -77,14 +78,20 @@
 		var/left_block = left_turf.density || auto_offset_check_blocker(left_turf)
 		var/right_block = right_turf.density || auto_offset_check_blocker(right_turf)
 		if(left_block && right_block)
-			base_pixel_z += WALL_OFFSET
-			pixel_z += WALL_OFFSET
+			base_pixel_z = WALL_OFFSET
+			pixel_z = WALL_OFFSET
 			return
 
 /obj/structure/table/proc/auto_offset_check_blocker(turf/checking)
-	for(var/atom/movable/blocker in checking)
-		// ignore other tables (unless they too are offset)
-		if(istype(blocker, /obj/structure/table) && blocker.base_pixel_z > WALL_OFFSET)
+	PRIVATE_PROC(TRUE)
+	for(var/obj/blocker in checking)
+		// ignore other tables (unless they, too, are offset)
+		// really only works for two wide tables, but three wide "inwall" tables are either uncommon
+		// or should be manually set (implying not everything should be manually set)
+		if(istype(blocker, /obj/structure/table) && blocker.base_pixel_z != WALL_OFFSET)
+			continue
+		// too flakey to rely on
+		if(!blocker.anchored || (blocker.flags_1 & ON_BORDER_1))
 			continue
 		if(blocker.density)
 			return TRUE

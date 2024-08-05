@@ -370,5 +370,6 @@
 
 /// Shifts "flat" sprites up on their tile, to give the illusion of depth
 #define DEPTH_OFFSET 0
-/// Offset for walls, to give the illusion of depth
+/// Offset for walls, to give the illusion of depth.
+/// Applied to walls themselves, as well as things which inline walls (windows/tables), and wall mounts
 #define WALL_OFFSET -10
