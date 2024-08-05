@@ -154,21 +154,25 @@
 	return ITEM_INTERACT_SUCCESS
 
 
+/obj/structure/window_frame/welder_act_secondary(mob/living/user, obj/item/tool)
+	. = ..()
+
+	add_fingerprint(user)
+
+	if(!tool.tool_start_check(user, amount = 0))
+		return ITEM_INTERACT_BLOCKING
+	balloon_alert(user, "Cutting...")
+	if(!tool.use_tool(src, user, 70, volume = 50))
+		return ITEM_INTERACT_BLOCKING
+
+	balloon_alert(user, "Deconstructed")
+	deconstruct(TRUE)
+
+	return ITEM_INTERACT_SUCCESS
+
 /obj/structure/window_frame/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
 	add_fingerprint(user)
-
-	if(user.combat_mode)
-		if(!tool.tool_start_check(user, amount = 0))
-			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "Cutting...")
-		if(!tool.use_tool(src, user, 70, volume = 50))
-			return ITEM_INTERACT_BLOCKING
-
-		balloon_alert(user, "Deconstructed")
-		deconstruct(TRUE)
-
-		return ITEM_INTERACT_SUCCESS
 
 	if(atom_integrity >= max_integrity)
 		to_chat(user, span_warning("[src] is already in good condition!"))
