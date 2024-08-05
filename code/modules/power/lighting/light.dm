@@ -1,5 +1,6 @@
 // the standard tube light fixture
 /obj/machinery/light
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube"

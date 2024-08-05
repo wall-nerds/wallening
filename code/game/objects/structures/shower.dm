@@ -92,15 +92,15 @@ SHOWER_DIRECTIONAL_HELPERS(/obj/machinery/shower)
 	pixel_y = 0
 	switch(direction)
 		if(NORTH)
-			pixel_z = 32
+			pixel_z = 32 + WALL_OFFSET
 		if(SOUTH)
-			pixel_z = -4
+			pixel_z = -4 + WALL_OFFSET
 		if(EAST)
 			pixel_x = 16
-			pixel_z = 12
+			pixel_z = 12 + WALL_OFFSET
 		if(WEST)
 			pixel_x = -16
-			pixel_z = 12
+			pixel_z = 12 + WALL_OFFSET
 
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)

@@ -1740,15 +1740,15 @@
 	pixel_z = 0
 	switch(direction)
 		if(NORTH)
-			pixel_z = -8
+			pixel_z = -8 + WALL_OFFSET
 		if(SOUTH)
-			pixel_z = 35
+			pixel_z = 35 + WALL_OFFSET
 		if(EAST)
 			pixel_x = -11
-			pixel_z = 16
+			pixel_z = 16 + WALL_OFFSET
 		if(WEST)
 			pixel_x = 11
-			pixel_z = 16
+			pixel_z = 16 + WALL_OFFSET
 
 /// Returns true if we should layer in common with the general game
 /// If false, render over the frill plane insted

@@ -15,6 +15,7 @@
 #define APC_CHANNEL_ALARM_TRESHOLD 75
 
 /obj/machinery/power/apc
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "area power controller"
 	desc = "A control terminal for the area's electrical systems."
 

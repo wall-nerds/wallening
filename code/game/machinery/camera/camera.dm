@@ -15,6 +15,7 @@
 	wall_external = TRUE
 
 /obj/machinery/camera
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "security camera"
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/camera.dmi'
@@ -345,15 +346,15 @@ CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray)
 	pixel_z = 0
 	switch(direction)
 		if(NORTH, NORTHWEST)
-			pixel_z = 16
+			pixel_z = 16 + WALL_OFFSET
 		if(SOUTH, NORTHEAST)
-			pixel_z = 35
+			pixel_z = 35 + WALL_OFFSET
 		if(EAST, SOUTHEAST)
 			pixel_x = -11
-			pixel_z = 16
+			pixel_z = 16 + WALL_OFFSET
 		if(WEST, SOUTHWEST)
 			pixel_x = 11
-			pixel_z = 16
+			pixel_z = 16 + WALL_OFFSET
 
 /obj/machinery/camera/wall_mount_common_plane(direction)
 	if(direction == SOUTH || direction == NORTHEAST)

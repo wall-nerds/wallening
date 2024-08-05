@@ -19,6 +19,7 @@
 #define SCANGATE_ZOMBIE "zombie"
 
 /obj/machinery/scanner_gate
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "scanner gate"
 	desc = "A gate able to perform mid-depth scans on any organisms who pass under it."
 	icon = 'icons/obj/machines/scangate.dmi'

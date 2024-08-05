@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(diagonal_junctions, generate_splitvis_lookup())
 	vis.color = color
 	vis.pixel_x = pixel_x
 	vis.pixel_y = pixel_y
+	vis.pixel_z += WALL_OFFSET
 	SET_PLANE_W_SCALAR(vis, plane, z_offset)
 	vis.layer = layer
 

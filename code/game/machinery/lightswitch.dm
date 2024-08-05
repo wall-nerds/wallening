@@ -1,5 +1,6 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "light switch"
 	icon = 'icons/obj/machines/lightswitch.dmi'
 	icon_state = "light-nopower"

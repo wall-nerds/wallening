@@ -369,4 +369,6 @@
 #define MAX_EXPECTED_Z_DEPTH 3
 
 /// Shifts "flat" sprites up on their tile, to give the illusion of depth
-#define DEPTH_OFFSET 12
+#define DEPTH_OFFSET 0
+/// Offset for walls, to give the illusion of depth
+#define WALL_OFFSET -10

@@ -1,5 +1,6 @@
 #define DOOR_CLOSE_WAIT 60 ///Default wait until doors autoclose
 /obj/machinery/door
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "door"
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/doorint.dmi'

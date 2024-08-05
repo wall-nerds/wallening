@@ -2,6 +2,7 @@
 //  SmartFridge.  Much todo
 // -------------------------
 /obj/machinery/smartfridge
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "smartfridge"
 	desc = "Keeps cold things cold and hot things cold."
 	icon = 'icons/obj/machines/smartfridge.dmi'

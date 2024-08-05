@@ -1,4 +1,5 @@
 /obj/structure/window_frame
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "window frame"
 	desc = "A frame section to place a window on top."
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_normal.dmi'

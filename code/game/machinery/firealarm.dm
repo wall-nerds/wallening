@@ -10,6 +10,7 @@
 	result_path = /obj/machinery/firealarm
 
 /obj/machinery/firealarm
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "fire alarm"
 	desc = "Pull this in case of emergency. Thus, keep pulling it forever."
 	icon = 'icons/obj/machines/firealarm.dmi'

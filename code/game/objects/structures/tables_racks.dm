@@ -62,6 +62,34 @@
 	AddElement(/datum/element/give_turf_traits, give_turf_traits)
 	register_context()
 
+	if(mapload && !manual_align)
+		. = INITIALIZE_HINT_LATELOAD
+
+/obj/structure/table/LateInitialize(mapload)
+	if(mapload)
+		auto_offset()
+
+// Wallening hack to make tables automatically determine if they need to be offset to be flush with a wall, window, or similar
+/obj/structure/table/proc/auto_offset()
+	for(var/dir in list(NORTH, EAST))
+		var/turf/left_turf = get_step(loc, dir)
+		var/turf/right_turf = get_step(loc, REVERSE_DIR(dir))
+		var/left_block = left_turf.density || auto_offset_check_blocker(left_turf)
+		var/right_block = right_turf.density || auto_offset_check_blocker(right_turf)
+		if(left_block && right_block)
+			base_pixel_z += WALL_OFFSET
+			pixel_z += WALL_OFFSET
+			return
+
+/obj/structure/table/proc/auto_offset_check_blocker(turf/checking)
+	for(var/atom/movable/blocker in checking)
+		// ignore other tables (unless they too are offset)
+		if(istype(blocker, /obj/structure/table) && blocker.base_pixel_z > WALL_OFFSET)
+			continue
+		if(blocker.density)
+			return TRUE
+	return FALSE
+
 ///Adds the element used to make the object climbable, and also the one that shift the mob buckled to it up.
 /obj/structure/table/proc/make_climbable()
 	AddElement(/datum/element/climbable)

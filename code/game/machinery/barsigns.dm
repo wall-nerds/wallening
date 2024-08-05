@@ -51,9 +51,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	pixel_z = 0
 	switch(direction)
 		if(NORTH)
-			pixel_z = 32
+			pixel_z = 32 + WALL_OFFSET
 		if(SOUTH)
-			pixel_z = -32
+			pixel_z = -32 + WALL_OFFSET
 
 /obj/machinery/barsign/update_icon_state()
 	if(!(machine_stat & BROKEN) && (!(machine_stat & NOPOWER) || machine_stat & EMPED) && chosen_sign && chosen_sign.icon_state)

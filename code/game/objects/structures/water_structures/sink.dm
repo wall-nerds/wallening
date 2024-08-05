@@ -51,17 +51,17 @@ SINK_DIRECTIONAL_HELPERS(/obj/structure/sink)
 	pixel_y = 0
 	switch(direction)
 		if(NORTH)
-			pixel_z = 16
+			pixel_z = 16 + WALL_OFFSET
 		if(SOUTH)
-			pixel_z = 24
+			pixel_z = 24 + WALL_OFFSET
 			// shift down so we layer correctly
 			pixel_y = -32
 		if(EAST)
 			pixel_x = 16
-			pixel_z = 12
+			pixel_z = 12 + WALL_OFFSET
 		if(WEST)
 			pixel_x = -16
-			pixel_z = 12
+			pixel_z = 12 + WALL_OFFSET
 
 /obj/structure/sink/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

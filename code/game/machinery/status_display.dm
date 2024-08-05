@@ -17,6 +17,7 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /// Status display which can show images and scrolling text.
 /obj/machinery/status_display
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "status display"
 	desc = null
 	icon = 'icons/obj/machines/status_display.dmi'

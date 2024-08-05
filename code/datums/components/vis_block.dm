@@ -205,6 +205,7 @@
 		mask = make_mutable_appearance_directional(mask)
 		mask.dir = check_dir
 		mask.pixel_w = -5
+		mask.pixel_z = atom_parent.pixel_z
 		switch(check_dir)
 			if(NORTH)
 				mask.pixel_y = -32

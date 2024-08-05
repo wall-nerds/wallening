@@ -26,6 +26,8 @@ GLOBAL_LIST_EMPTY(window_appearances)
 		state = "alt-[state]"
 	vis.icon_state = state
 	vis.pixel_y = pixel_y
+	vis.pixel_z += WALL_OFFSET
+	vis.layer = 3.55
 	SET_PLANE_W_SCALAR(vis, plane, z_offset)
 
 	GLOB.window_appearances[key] = vis

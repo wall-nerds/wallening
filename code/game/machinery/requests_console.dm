@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 #define ANNOUNCEMENT_COOLDOWN_TIME (30 SECONDS)
 
 /obj/machinery/requests_console
+	SET_BASE_VISUAL_PIXEL(0, WALL_OFFSET)
 	name = "requests console"
 	desc = "A console intended to send requests to different departments on the station."
 	icon = 'icons/obj/machines/request_console.dmi'
