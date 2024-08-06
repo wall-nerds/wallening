@@ -271,24 +271,26 @@
 			var/delay = 0
 
 			if(!has_grille)
-				cost = 2
-				delay = 2 SECONDS
+				return rcd_result_with_memory(
+					list("delay" = delay, "cost" = cost),
+					get_turf(src), RCD_MEMORY_WINDOWGRILLE
+				)
+
+			var/obj/structure/window/window_path = the_rcd.rcd_design_path
+			if(!ispath(window_path))
+				stack_trace("invalid window path passed to rcd_vals: [window_path]")
+				return FALSE
+
+			if(initial(window_path.fulltile))
+				cost = 8
+				delay = 3 SECONDS
 			else
-				var/obj/structure/window/window_path = the_rcd.rcd_design_path
-				if(!ispath(window_path))
-					stack_trace("invalid window path passed to rcd_vals: [window_path]")
-					return FALSE
+				cost = 4
+				delay = 2 SECONDS
 
-				if(initial(window_path.fulltile))
-					cost = 8
-					delay = 3 SECONDS
-				else
-					cost = 4
-					delay = 2 SECONDS
-
-				if(initial(window_path.reinf))
-					cost *= 1.5
-					delay *= 1.5
+			if(initial(window_path.reinf))
+				cost *= 1.5
+				delay *= 1.5
 
 
 			if(!cost)
