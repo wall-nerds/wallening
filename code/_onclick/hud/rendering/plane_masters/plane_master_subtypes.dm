@@ -584,3 +584,11 @@
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_MASTER)
 	offsetting_flags = BLOCKS_PLANE_OFFSETTING|OFFSET_RELAYS_MATCH_HIGHEST
+
+/atom/movable/screen/plane_master/wallmount_balloons
+	name = "Wallmount Balloons"
+	documentation = "The balloons that appear above wallmounts when holding shift."
+	plane = WALLMOUNT_BALLOONS_PLANE
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
+	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
+	alpha = 0

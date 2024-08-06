@@ -78,6 +78,7 @@ BUTTON_DIRECTIONAL_HELPERS(/obj/machinery/button/indestructible)
 	update_glow()
 	if(!on_table)
 		find_and_hang_on_wall()
+		AddComponent(/datum/component/examine_balloon)
 	register_context()
 
 /obj/machinery/button/Destroy()
