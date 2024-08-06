@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(window_appearances)
 	reset_icon()
 	RegisterSignal(parent, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE, PROC_REF(on_junction_change))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON, PROC_REF(update_icon))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 
 /datum/component/window_smoothing/proc/reset_icon()
 	var/atom/parent_atom = parent
@@ -66,7 +67,12 @@ GLOBAL_LIST_EMPTY(window_appearances)
 
 /datum/component/window_smoothing/proc/add_smoothing(new_junction)
 	var/atom/parent = src.parent
+
+	if(!parent.loc) //we shouldnt add frills if we're in nullspace
+		return
+
 	var/junction = new_junction
+
 	if(isnull(junction))
 		junction = parent.smoothing_junction
 
@@ -80,8 +86,8 @@ GLOBAL_LIST_EMPTY(window_appearances)
 	// a SMOOTHING TARGET to the south.
 	// This ensures we only use the alt display if there's a wall there, AND we're smoothing into it
 	var/wall_below = (isclosedturf(get_step(our_turf, SOUTH)) && (!ignored_turf || !istype(get_step(our_turf, SOUTH), ignored_turf))) || \
-		(junction & (SOUTH) && isclosedturf(get_step(our_turf, SOUTHEAST)) && (!ignored_turf || !istype(get_step(our_turf, SOUTHWEST), ignored_turf))) || \
-		(junction & (SOUTH) && isclosedturf(get_step(our_turf, SOUTHWEST)) && (!ignored_turf || !istype(get_step(our_turf, SOUTHWEST), ignored_turf)))
+		((junction & SOUTH) && isclosedturf(get_step(our_turf, SOUTHEAST)) && (!ignored_turf || !istype(get_step(our_turf, SOUTHWEST), ignored_turf))) || \
+		((junction & SOUTH) && isclosedturf(get_step(our_turf, SOUTHWEST)) && (!ignored_turf || !istype(get_step(our_turf, SOUTHWEST), ignored_turf)))
 	// If there's a wall below us, we render different
 	our_appearances += get_window_appearance(offset, icon_path, junction, "lower", wall_below)
 
@@ -96,7 +102,7 @@ GLOBAL_LIST_EMPTY(window_appearances)
 	if(isclosedturf(paired_turf) && (!ignored_turf || !istype(paired_turf, ignored_turf)))
 		our_appearances += get_window_appearance(offset, icon_path, junction, "upper", TRUE, pixel_y = 32)
 		UnregisterSignal(paired_turf, COMSIG_QDELETING)
-	else if(!(NORTH & junction))
+	else if(!(junction & NORTH))
 		// Draw to the turf above you so this can be seen without seeing the window's turf. Oh and draw this as a frill
 		// We use the parent's pixel y as a part of this to ensure everything lines up proper when the parent is all shifted around
 		appearance_above = get_window_appearance(offset, icon_path, junction, "upper", FALSE, pixel_y = parent.pixel_y, plane = FRILL_PLANE)
@@ -129,6 +135,11 @@ GLOBAL_LIST_EMPTY(window_appearances)
 	reset_icon()
 
 /datum/component/window_smoothing/proc/tied_turf_deleted(turf/source)
+	SIGNAL_HANDLER
+	remove_smoothing()
+	add_smoothing()
+
+/datum/component/window_smoothing/proc/on_moved(atom/movable/parent, turf/old_turf, dir)
 	SIGNAL_HANDLER
 	remove_smoothing()
 	add_smoothing()

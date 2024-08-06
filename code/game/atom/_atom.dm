@@ -991,22 +991,23 @@ But it should behave like you expect
 
 ///What to connect with by default. Used by /atom/proc/auto_align(). This can be overriden
 GLOBAL_LIST_INIT(default_connectables, typecacheof(list(
-		/obj/machinery/door/airlock,
-		/obj/machinery/door/poddoor,
-		/obj/machinery/smartfridge,
-		/obj/structure/girder/reinforced,
-		/obj/structure/plasticflaps,
-		/obj/machinery/power/shieldwallgen,
-		/obj/structure/door_assembly,
-	)))
+	/obj/machinery/door/airlock,
+	/obj/machinery/door/poddoor,
+	/obj/machinery/smartfridge,
+	/obj/structure/girder/reinforced,
+	/obj/structure/plasticflaps,
+	/obj/machinery/power/shieldwallgen,
+	/obj/structure/door_assembly,
+)))
+
 ///What to connect with at a lower priority by default. Used for stuff that we want to consider, but only if we don't find anything else
 GLOBAL_LIST_INIT(lower_priority_connectables, typecacheof(list(
-		/obj/machinery/door/firedoor,
-		/obj/machinery/door/window,
-		/obj/structure/table,
-		/obj/structure/window,
-		/obj/structure/girder,
-	)))
+	/obj/machinery/door/firedoor,
+	/obj/machinery/door/window,
+	/obj/structure/table,
+	/obj/structure/window,
+	/obj/structure/girder,
+)))
 
 // Wallening todo:
 // Rip this out. It's useful, but it also needs to be done manually in most places
@@ -1028,7 +1029,7 @@ GLOBAL_LIST_INIT(lower_priority_connectables, typecacheof(list(
 		if(turf_to_check.density) //Dense turfs are connectable
 			dirs_usable -= dir_to_check
 			continue
-		for(var/atom/movable/thing_to_check in turf_to_check)
+		for(var/atom/movable/thing_to_check as anything in turf_to_check)
 			if(is_type_in_typecache(thing_to_check, connectables_typecache))
 				dirs_usable -= dir_to_check //So are things in the default typecache
 				break
@@ -1037,11 +1038,11 @@ GLOBAL_LIST_INIT(lower_priority_connectables, typecacheof(list(
 
 	var/dirs_avalible = length(dirs_usable)
 	//Only continue if we've got ourself either a corner or a side piece. Only side pieces really work well here, since corners aren't really something we can fudge handling for
-	if(dirs_avalible <= 2 && dirs_avalible != 0)
+	if(dirs_avalible && dirs_avalible <= 2)
 		setDir(dirs_usable[1]) //Just take the first dir avalible
 		return
 	dirs_usable &= dirs_secondary_priority //Only consider dirs we both share
 	dirs_avalible = length(dirs_usable)
-	if(dirs_avalible <= 2 && dirs_avalible != 0)
-		setDir(dirs_usable[1]) //Just take the first dir avalible
+	if(dirs_avalible && dirs_avalible <= 2)
+		setDir(dirs_usable[1])
 		return

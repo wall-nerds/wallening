@@ -168,9 +168,9 @@
 	var/middragtime = 0
 	//Middle-mouse-button clicked object control for aimbot exploit detection. Weakref
 	var/datum/weakref/middle_drag_atom_ref
-	//When we started the currently active drag
+	///When we started the currently active drag
 	var/drag_start = 0
-	//The params we were passed at the start of the drag, in list form
+	///The params we were passed at the start of the drag, in list form
 	var/list/drag_details
 
 
@@ -256,9 +256,6 @@
 
 	/// Whether or not this client has standard hotkeys enabled
 	var/hotkeys = TRUE
-
-	///Do we see the top part of tall walls when looming over floors?
-	var/frills_over_floors = TRUE
 
 	/// Whether or not this client has the combo HUD enabled
 	var/combo_hud_enabled = FALSE

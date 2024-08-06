@@ -8,11 +8,10 @@
 	smoothing_flags = SMOOTH_BITMASK|SMOOTH_OBJ
 	smoothing_groups = SMOOTH_GROUP_WINDOW_FRAMES
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FRAMES
-	pass_flags_self = PASSTABLE | LETPASSTHROW
+	pass_flags_self = PASSTABLE | LETPASSTHROW | PASSGRILLE | PASSWINDOW
 	opacity = FALSE
 	density = TRUE
 	rad_insulation = null
-	frill_icon = null // we dont have a frill, our window does
 	armor_type = /datum/armor/window_frame
 	max_integrity = 50
 	anchored = TRUE
@@ -40,6 +39,9 @@
 	var/sheet_type = /obj/item/stack/sheet/iron
 	var/sheet_amount = 2
 
+	/// Whether or not we're disappearing but dramatically
+	var/dramatically_disappearing = FALSE
+
 /datum/armor/window_frame
 	melee = 50
 	bullet = 70
@@ -57,7 +59,7 @@
 	AddElement(/datum/element/climbable, on_try_climb_procpath = TYPE_PROC_REF(/obj/structure/window_frame/, on_try_climb))
 
 	if(mapload && start_with_window)
-		create_structure_window(window_type, TRUE)
+		create_structure_window(window_type)
 
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
@@ -102,7 +104,7 @@
 	if(!isliving(AM))
 		return
 	var/mob/living/potential_victim = AM
-	if(potential_victim.movement_type & (FLOATING|FLYING))
+	if(potential_victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND)
 		return
 	try_shock(potential_victim, 100)
 
@@ -146,7 +148,7 @@
 	if(!tool.use_tool(src, user, 0, volume = 50))
 		return
 	tool.play_tool_sound(src, 100)
-	to_chat(user, "<span class='notice'>You cut the grille on [src].</span>")
+	balloon_alert(user, "Grille Cut!")
 	has_grille = FALSE
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -157,21 +159,21 @@
 	add_fingerprint(user)
 	if(atom_integrity >= max_integrity)
 		to_chat(user, span_warning("[src] is already in good condition!"))
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(!tool.tool_start_check(user, amount = 0))
-		return
+		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You begin repairing [src]..."))
+	balloon_alert(user, "Repairing...")
 	if(!tool.use_tool(src, user, 40, volume = 50))
-		return
+		return ITEM_INTERACT_BLOCKING
 
 	atom_integrity = max_integrity
-	to_chat(user, span_notice("You repair [src]."))
+	balloon_alert(user, "Repaired!")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 ///creates a window from the typepath given from window_type, which is either a glass sheet typepath or a /obj/structure/window subtype
-/obj/structure/window_frame/proc/create_structure_window(window_material_type, start_anchored = TRUE)
+/obj/structure/window_frame/proc/create_structure_window(window_material_type)
 	var/obj/structure/window/our_window
 
 	if(ispath(window_material_type, /obj/structure/window))
@@ -201,11 +203,8 @@
 	if(ispath(window_material_type, /obj/item/stack/sheet/paperframes))
 		our_window = new /obj/structure/window/paperframe(loc)
 
-	if(!start_anchored)
-		our_window.set_anchored(FALSE)
-		our_window.state = WINDOW_OUT_OF_FRAME
-
 	our_window.update_appearance()
+	return our_window
 
 /obj/structure/window_frame/attackby(obj/item/attacking_item, mob/living/user, params)
 	add_fingerprint(user)
@@ -219,7 +218,9 @@
 				return
 
 			to_chat(user, "<span class='notice'>You add [stack_name] to [src].")
-			create_structure_window(adding_stack.type, FALSE)
+			var/obj/structure/window/our_window = create_structure_window(adding_stack.type)
+			our_window.state = WINDOW_OUT_OF_FRAME
+			our_window.set_anchored(FALSE)
 
 		else if(istype(adding_stack, /obj/item/stack/rods) && !has_grille && adding_stack.use(sheet_amount))
 			has_grille = TRUE
@@ -251,7 +252,9 @@
 
 /obj/structure/window_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_DECONSTRUCT)
-		to_chat(user, "<span class='notice'>You deconstruct the window frame.</span>")
+		var/turf/home = get_turf(src)
+		// No thing to display on if we get deleted
+		home.balloon_alert(user, "Deconstructed!")
 		qdel(src)
 		return TRUE
 	return FALSE
@@ -291,6 +294,31 @@
 	create_grill_overlays(.)
 	create_frame_overlay(.)
 
+/obj/structure/window_frame/proc/temporary_shatter(time_to_go = 0 SECONDS, time_to_return = 4 SECONDS)
+	if(dramatically_disappearing)
+		return
+
+	//dissapear in 1 second
+	dramatically_disappearing = TRUE
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, moveToNullspace)), time_to_go) //woosh
+
+	// come back in 1 + 4 seconds
+	addtimer(VARSET_CALLBACK(src, atom_integrity, atom_integrity), time_to_go + time_to_return) //set the health back (icon is updated on move)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, forceMove), loc), time_to_go + time_to_return) //we back boys
+	addtimer(VARSET_CALLBACK(src, dramatically_disappearing, FALSE), time_to_go + time_to_return) //also set the var back
+
+/// Do some very specific checks to see if we *would* get shocked. Returns TRUE if it's shocked
+/obj/structure/window_frame/proc/is_shocked()
+	var/turf/turf = get_turf(src)
+	var/obj/structure/cable/cable = turf.get_cable_node()
+	var/list/powernet_info = get_powernet_info_from_source(cable)
+
+	if(!powernet_info)
+		return FALSE
+
+	var/datum/powernet/powernet = powernet_info["powernet"]
+	return !!powernet.get_electrocute_damage()
+
 /obj/structure/window_frame/grille
 	has_grille = TRUE
 
@@ -322,7 +350,7 @@
 
 /obj/structure/window_frame/reinforced/damaged/Initialize(mapload)
 	. = ..()
-	var/obj/structure/window/our_window = locate(/obj/structure/window) in get_turf(src)
+	var/obj/structure/window/our_window = locate() in get_turf(src)
 	if(!our_window)
 		return
 

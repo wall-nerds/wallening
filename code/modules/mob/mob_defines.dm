@@ -7,7 +7,7 @@
  * Has a lot of the creature game world logic, such as health etc
  */
 /mob
-	SET_BASE_VISUAL_PIXEL(0, WALLENING_OFFSET)
+	SET_BASE_VISUAL_PIXEL(0, DEPTH_OFFSET)
 	density = TRUE
 	layer = MOB_LAYER
 	animate_movement = SLIDE_STEPS
@@ -188,6 +188,9 @@
 	/// A mock client, provided by tests and friends
 	var/datum/client_interface/mock_client
 
+	///Decides how to handle clicks on turfs
+	var/turf_click_type = TURF_CLICK_FLAT
+	
 	var/interaction_range = 0 //how far a mob has to be to interact with something without caring about obsctruction, defaulted to 0 tiles
 
 	///the icon currently used for the typing indicator's bubble

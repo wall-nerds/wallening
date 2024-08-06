@@ -132,7 +132,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/syndicate
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_SYNDICATE_WALLS
-	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
+	canSmoothWith = SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
@@ -187,7 +187,9 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/fakeglass
 	name = "window"
 	icon = MAP_SWITCH('icons/obj/smooth_structures/windows/reinforced_window.dmi', 'icons/obj/smooth_structures/structure_variations.dmi')
-	MAP_SWITCH(, icon_state = "fake_window")
+#ifdef MAP_EDITOR
+	icon_state = "fake_window"
+#endif
 	layer = ABOVE_OBJ_LAYER
 	opacity = FALSE
 	use_splitvis = FALSE
@@ -212,11 +214,13 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/opsglass
 	name = "window"
 	icon = MAP_SWITCH('icons/obj/smooth_structures/windows/reinforced_window.dmi', 'icons/obj/smooth_structures/structure_variations.dmi')
-	MAP_SWITCH(, icon_state = "fake_window")
+#ifdef MAP_EDITOR
+	icon_state = "fake_window"
+#endif
 	layer = ABOVE_OBJ_LAYER
 	opacity = FALSE
 	use_splitvis = FALSE
-	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM
+	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM
 
 /turf/closed/indestructible/opsglass/Initialize(mapload)
@@ -260,12 +264,13 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
-/// Wallening todo need a new state for
 /turf/closed/indestructible/rock/snow
 	name = "mountainside"
 	desc = "An extremely densely-packed rock, sheeted over with centuries worth of ice and snow."
 	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
-	MAP_SWITCH(,icon_state = "mountainrock")
+#ifdef MAP_EDITOR
+	icon_state = "mountainrock"
+#endif
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
 
@@ -317,7 +322,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	desc = "A thick, seemingly indestructible stone wall."
 	icon = 'icons/turf/walls/boss_wall.dmi'
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_BOSS_WALLS
-	canSmoothWith = SMOOTH_GROUP_BOSS_WALLS
+	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_BOSS_WALLS
 	explosive_resistance = 50
 	baseturfs = /turf/closed/indestructible/riveted/boss
 

@@ -61,6 +61,7 @@
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
 #define DARKNESS_MASK_PLANE 12
+#define DARKNESS_MASK_RENDER_TARGET "DARKNESS_MASK_PLANE"
 
 #define EMISSIVE_PLANE 13
 /// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
@@ -369,4 +370,5 @@
 /// If you modify this, you'll need to modify the tsx file too
 #define MAX_EXPECTED_Z_DEPTH 3
 
-#define WALLENING_OFFSET 12
+/// Shifts "flat" sprites up on their tile, to give the illusion of depth
+#define DEPTH_OFFSET 12

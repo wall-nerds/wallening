@@ -8,7 +8,6 @@
 	icon = 'icons/obj/machines/firealarm.dmi'
 	icon_state = "fire_bitem"
 	result_path = /obj/machinery/firealarm
-	pixel_shift = 26
 
 /obj/machinery/firealarm
 	name = "fire alarm"
@@ -252,7 +251,7 @@
 	soundloop.start() //Manually pulled fire alarms will make the sound, rather than the doors.
 	SEND_SIGNAL(src, COMSIG_FIREALARM_ON_TRIGGER)
 	update_use_power(ACTIVE_POWER_USE)
-	update_appearance() // Wallening todo: check if this actually does anything
+	update_appearance()
 
 /**
  * Resets all firelocks in the area. Also tells the area to disable alarm lighting, if it was enabled.
@@ -274,7 +273,7 @@
 	soundloop.stop()
 	SEND_SIGNAL(src, COMSIG_FIREALARM_ON_RESET)
 	update_use_power(IDLE_POWER_USE)
-	update_appearance() // Wallening todo: check if this actually does anything
+	update_appearance()
 
 /obj/machinery/firealarm/attack_hand(mob/user, list/modifiers)
 	if(buildstage != FIRE_ALARM_BUILD_SECURED)
@@ -407,7 +406,7 @@
 	return FALSE
 
 /obj/machinery/firealarm/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data["[RCD_DESIGN_MODE]"])
+	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_WALLFRAME)
 			balloon_alert(user, "circuit installed")
 			buildstage = FIRE_ALARM_BUILD_NO_WIRES

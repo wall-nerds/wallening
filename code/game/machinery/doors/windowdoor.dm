@@ -167,8 +167,8 @@
 		return
 
 	if(old_hitbox_directions)
-		RemoveElement(/datum/element/render_over_keep_hitbox, BELOW_OBJ_LAYER, TRUE, old_hitbox_directions)
-	AddElement(/datum/element/render_over_keep_hitbox, BELOW_OBJ_LAYER, TRUE, hitbox_up_directions)
+		RemoveElement(/datum/element/render_over_keep_hitbox, BELOW_OBJ_LAYER, /* use_position_layering = */ TRUE, old_hitbox_directions)
+	AddElement(/datum/element/render_over_keep_hitbox, BELOW_OBJ_LAYER, /* use_position_layering = */ TRUE, hitbox_up_directions)
 
 /obj/machinery/door/window/proc/open_and_close()
 	if(!open())
@@ -510,7 +510,7 @@
 	return FALSE
 
 /obj/machinery/door/window/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	if(rcd_data["[RCD_DESIGN_MODE]"] == RCD_DECONSTRUCT)
+	if(rcd_data[RCD_DESIGN_MODE] == RCD_DECONSTRUCT)
 		qdel(src)
 		return TRUE
 	return FALSE
@@ -539,6 +539,19 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/machinery/door/window/right)
 /obj/machinery/door/window/right
 	icon_state = "right"
 	base_state = "right"
+
+
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/machinery/door/window/half/left)
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/machinery/door/window/half/right)
+
+/obj/machinery/door/window/half
+	can_atmos_pass = ATMOS_PASS_YES
+	icon = 'icons/obj/doors/windoor_half.dmi'
+
+/obj/machinery/door/window/half/right
+	icon_state = "right"
+	base_state = "right"
+
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/machinery/door/window/brigdoor/left)
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/machinery/door/window/brigdoor/right)
