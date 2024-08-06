@@ -2,47 +2,62 @@
 /datum/component/examine_balloon
 	/// Offset applied on the hologram
 	var/pixel_y_offset
+	/// Our x and y size is multiplied by this, for small sprites like buttons
+	var/size_upscaling = 1
 
 	/// Offset applied on the bubble
-	var/pixel_y_offset_arrow = 4
+	var/pixel_y_offset_arrow = 16
+	/// The alpha we apply to the hologram
+	var/hologram_alpha = 200
+	/// Add a hologram when we're in these directions
+	var/draw_in_dirs = NORTH | EAST | WEST
 
-/datum/component/examine_balloon/Initialize(pixel_y_offset = 32)
+/datum/component/examine_balloon/Initialize(pixel_y_offset = 28, pixel_y_offset_arrow = 16, size_upscaling = 1)
 	. = ..()
 
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.pixel_y_offset = pixel_y_offset
+	src.size_upscaling = size_upscaling
+	src.pixel_y_offset_arrow = pixel_y_offset_arrow
 
 	var/atom/atom_parent = parent
 
-	RegisterSignal(atom_parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
+	RegisterSignal(atom_parent, COMSIG_ATOM_UPDATE_ICON, PROC_REF(on_update_icon))
+	// We use UPDATED_ICON specifically because we need to be last in the icon chain, even if UPDATE_OVERLAYS would otherwise be more apt
+	RegisterSignal(atom_parent, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_updated_icon))
+
 	atom_parent.update_icon(UPDATE_OVERLAYS)
 
-/datum/component/examine_balloon/proc/on_update_overlays(atom/movable/parent, list/overlays)
+/datum/component/examine_balloon/proc/on_update_icon(atom/movable/parent, updates)
 	SIGNAL_HANDLER
 
-	var/mutable_appearance/hologram = new(parent.appearance)
+	if(!(updates & UPDATE_OVERLAYS))
+		return
+
+	parent.overlays.Cut() //Clear all previous overlays, so we don't infinitely stack with our own overlays
+
+/datum/component/examine_balloon/proc/on_updated_icon(atom/movable/parent, updates)
+	SIGNAL_HANDLER
+
+	if(!(updates & UPDATE_OVERLAYS))
+		return
+
+	// Generally south facing directions are already obvious, so we dont add a hologram (south is the default exception dont shoot me)
+	if(!(parent.dir & draw_in_dirs))
+		return
+
+	var/mutable_appearance/hologram = make_mutable_appearance_directional(new /mutable_appearance (parent), SOUTH)
 	SET_PLANE_EXPLICIT(hologram, WALLMOUNT_BALLOONS_PLANE, parent)
-	hologram.dir = SOUTH
-	hologram.blend_mode = BLEND_INSET_OVERLAY
 
 	hologram.pixel_w = 0
 	hologram.pixel_x = 0
-	hologram.pixel_y = 0
+	hologram.pixel_y = pixel_y_offset
 	hologram.pixel_z = 0
 
-	hologram.appearance_flags = null
-	hologram.overlays = parent.overlays.Copy() //we add a miror as overlay to the object, which loops infinitely... so dont
-
-	var/mutable_appearance/examine_backdrop = mutable_appearance( //alpha 1 backdrop with inset overlay to turn the sprite south
-		'icons/effects/effects.dmi',
-		"examine_backdrop",
-	)
-
-	examine_backdrop.pixel_y = pixel_y_offset
-	examine_backdrop.overlays += hologram
-	SET_PLANE_EXPLICIT(examine_backdrop, WALLMOUNT_BALLOONS_PLANE, parent)
+	hologram.transform = hologram.transform.Scale(size_upscaling, size_upscaling)
+	hologram.alpha = hologram_alpha
 
 	var/mutable_appearance/examine_arrow = mutable_appearance(
 		'icons/effects/effects.dmi',
@@ -53,5 +68,5 @@
 
 	SET_PLANE_EXPLICIT(examine_arrow, WALLMOUNT_BALLOONS_PLANE, parent)
 
-	overlays += examine_backdrop
-	overlays += examine_arrow
+	parent.add_overlay(hologram)
+	parent.add_overlay(examine_arrow)

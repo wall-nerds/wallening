@@ -18,24 +18,24 @@
 #define GRAVITY_PULSE_RENDER_TARGET "*GRAVPULSE_RENDER_TARGET"
 
 #define RENDER_PLANE_TRANSPARENT -18 //Transparent plane that shows openspace underneath the floor
-#define TRANSPARENT_FLOOR_PLANE -15
+#define TRANSPARENT_FLOOR_PLANE -14
 
-#define FLOOR_PLANE -14
+#define FLOOR_PLANE -13
 #define FLOOR_PLANE_RENDER_TARGET "*FLOOR_PLANE"
-#define WALL_PLANE -13
-#define OVER_TILE_PLANE -12
-#define GAME_PLANE -11
-#define ABOVE_GAME_PLANE -10
-#define HIDDEN_WALL_PLANE -9
-#define FRILL_PLANE -8
-#define RENDER_PLANE_WALL_WEATHER_MASK -7
+#define WALL_PLANE -12
+#define OVER_TILE_PLANE -11
+#define GAME_PLANE -10
+#define ABOVE_GAME_PLANE -9
+#define HIDDEN_WALL_PLANE -8
+#define FRILL_PLANE -7
+#define RENDER_PLANE_WALL_WEATHER_MASK -6
 #define WALL_WEATHER_MASK_RENDER_TARGET "*RENDER_PLANE_WALL_WEATHER_MASK"
-#define FRILL_MASK_PLANE -6
-#define RENDER_PLANE_FRILL -5
+#define FRILL_MASK_PLANE -5
+#define RENDER_PLANE_FRILL -4
 #define FRILL_MASK_RENDER_TARGET "*FRILL_MASK_PLANE"
-#define OVER_FRILL_PLANE -4
+#define OVER_FRILL_PLANE -3
 ///Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees
-#define SEETHROUGH_PLANE -3
+#define SEETHROUGH_PLANE -2
 
 #define RENDER_PLANE_GAME_WORLD -1
 

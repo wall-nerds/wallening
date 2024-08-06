@@ -590,6 +590,7 @@
 	name = "Wallmount Balloons"
 	documentation = "The balloons that appear above wallmounts when holding shift."
 	plane = WALLMOUNT_BALLOONS_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
 	alpha = 0
