@@ -154,7 +154,7 @@
 	return TRUE
 
 /datum/keybinding/living/toggle_examine_balloons
-	hotkey_keys = list("shift")
+	hotkey_keys = list("Shift")
 	name = "toggle_examine_balloons"
 	full_name = "Examine wallmounts"
 	description = "Held down to view wallmounts more closely, release to stop"
