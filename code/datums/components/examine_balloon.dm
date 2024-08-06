@@ -3,7 +3,7 @@
 	/// Offset applied on the hologram
 	var/pixel_y_offset
 	/// Our x and y size is multiplied by this, for small sprites like buttons
-	var/size_upscaling = 1
+	var/size_upscaling
 
 	/// Offset applied on the bubble
 	var/pixel_y_offset_arrow = 16
@@ -48,6 +48,7 @@
 	if(!(parent.dir & draw_in_dirs))
 		return
 
+	// Make a copy of the wallmount and force it south
 	var/mutable_appearance/hologram = make_mutable_appearance_directional(new /mutable_appearance (parent), SOUTH)
 	SET_PLANE_EXPLICIT(hologram, WALLMOUNT_BALLOONS_PLANE, parent)
 
