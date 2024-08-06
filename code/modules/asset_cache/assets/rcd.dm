@@ -1,3 +1,4 @@
+
 /datum/asset/spritesheet/rcd
 	name = "rcd-tgui"
 
@@ -14,10 +15,10 @@
 			var/sprite_name
 			var/icon/sprite_icon
 			for(var/list/design as anything in designs)
-				var/atom/movable/path = design[RCD_DESIGN_PATH]
+				var/atom/path = design[RCD_DESIGN_PATH]
 				if(!ispath(path))
 					continue
-				sprite_name = initial(path.rcd_spritesheet_override) || initial(path.name)
+				sprite_name = RCD_SPRITESHEET_PATH_KEY(path)
 
 				//icon for windows are blended with frames if required and loaded from radial menu
 				if(ispath(path, /obj/structure/window))

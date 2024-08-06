@@ -126,10 +126,6 @@
 	/// Example: If req_one_access = list(ACCESS_ENGINE, ACCESS_CE)- then the user must have either ACCESS_ENGINE or ACCESS_CE in order to use the object.
 	var/list/req_one_access
 
-	/// if truthy, rcd spritesheets will use this as the key to this movable's cached icon
-	/// instead of its name.
-	var/rcd_spritesheet_override = ""
-
 /mutable_appearance/emissive_blocker
 
 /mutable_appearance/emissive_blocker/New()
