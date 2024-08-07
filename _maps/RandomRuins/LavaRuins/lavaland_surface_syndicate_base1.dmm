@@ -108,10 +108,6 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_lava_base/dormitories)
-"aW" = (
-/obj/structure/sign/warning/secure_area/directional/north,
-/turf/open/lava/smooth/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "bi" = (
 /obj/machinery/firealarm/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5435,7 +5431,7 @@ mT
 mT
 mT
 mT
-aW
+ab
 ab
 ab
 ab
@@ -5535,7 +5531,7 @@ mT
 mT
 mT
 mT
-aW
+ab
 ab
 ab
 ab

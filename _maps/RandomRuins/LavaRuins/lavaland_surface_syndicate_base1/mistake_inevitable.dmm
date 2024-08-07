@@ -227,6 +227,10 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/testlab)
+"wc" = (
+/obj/structure/extinguisher_cabinet/directional/east,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_lava_base/testlab)
 "xI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
@@ -239,7 +243,6 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_lava_base/testlab)
 "yU" = (
-/obj/structure/extinguisher_cabinet/directional/east,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -492,7 +495,7 @@ Rp
 oo
 lR
 ol
-kE
+wc
 aA
 aA
 "}
