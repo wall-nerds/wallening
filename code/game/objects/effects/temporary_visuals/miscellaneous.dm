@@ -489,7 +489,7 @@
 	duration = 2 SECONDS
 
 /obj/effect/constructing_effect
-	icon = 'icons/effects/rcd.dmi'
+	icon = 'icons/effects/rcd_tall.dmi'
 	icon_state = ""
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
