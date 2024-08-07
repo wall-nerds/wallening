@@ -37,6 +37,7 @@
 		return
 
 	parent.overlays.Cut() //Clear all previous overlays, so we don't infinitely stack with our own overlays
+	parent.managed_overlays.Cut()
 
 /datum/component/examine_balloon/proc/on_updated_icon(atom/movable/parent, updates)
 	SIGNAL_HANDLER
