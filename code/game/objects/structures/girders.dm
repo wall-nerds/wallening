@@ -391,7 +391,7 @@
 	var/remains = pick(/obj/item/stack/rods, /obj/item/stack/sheet/iron)
 	new remains(loc)
 
-/obj/structure/girder/update_icon()
+/obj/structure/girder/update_icon_state()
 	. = ..()
 	switch(state)
 		if(GIRDER_NORMAL)
@@ -491,7 +491,7 @@
 	return FALSE
 
 /obj/structure/girder/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data["[RCD_DESIGN_MODE]"])
+	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_TURF)
 			if(the_rcd.rcd_design_path != /turf/open/floor/plating/rcd)
 				return FALSE

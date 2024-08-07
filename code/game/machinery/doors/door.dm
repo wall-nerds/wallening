@@ -68,7 +68,7 @@
 	var/elevator_status
 	/// What specific lift ID do we link with?
 	var/transport_linked_id
-	/// Icon state prefix to use for masks from airlock_mask.dmi
+	/// Icon state prefix to use for masks from vis_mask.dmi
 	var/dir_mask = "standard"
 	/// Similar to the above but used for cases where walls are adjacent
 	var/edge_dir_mask = "standard"
@@ -489,6 +489,7 @@
 	if(operating)
 		return FALSE
 	operating = TRUE
+	SEND_SIGNAL(src, COSMIG_DOOR_OPENING)
 	use_energy(active_power_usage)
 	run_animation(DOOR_OPENING_ANIMATION)
 	set_opacity(0)
@@ -528,6 +529,7 @@
 				return FALSE
 
 	operating = TRUE
+	SEND_SIGNAL(src, COSMIG_DOOR_CLOSING)
 
 	run_animation(DOOR_CLOSING_ANIMATION)
 	layer = closingLayer

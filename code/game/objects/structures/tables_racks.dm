@@ -14,7 +14,7 @@
 
 /obj/structure/table
 	// Shift tables down to avoid layering headaches
-	SET_BASE_PIXEL(0, -8)
+	SET_BASE_PIXEL_NOMAP(0, -8)
 	SET_BASE_VISUAL_PIXEL(0, 8)
 	name = "table"
 	desc = "A square piece of iron standing on four metal legs. It can not move."
@@ -354,7 +354,7 @@
 	return FALSE
 
 /obj/structure/table/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	if(rcd_data["[RCD_DESIGN_MODE]"] == RCD_DECONSTRUCT)
+	if(rcd_data[RCD_DESIGN_MODE] == RCD_DECONSTRUCT)
 		qdel(src)
 		return TRUE
 	return FALSE
@@ -406,7 +406,7 @@
 ///Table on wheels
 /obj/structure/table/rolling
 	SET_BASE_PIXEL(0, 0)
-	SET_BASE_VISUAL_PIXEL(0, WALLENING_OFFSET)
+	SET_BASE_VISUAL_PIXEL(0, DEPTH_OFFSET)
 	name = "Rolling table"
 	desc = "An NT brand \"Rolly poly\" rolling table. It can and will move."
 	anchored = FALSE

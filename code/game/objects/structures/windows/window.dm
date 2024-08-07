@@ -72,7 +72,7 @@
 	else
 		smoothing_flags = SMOOTH_BITMASK|SMOOTH_BORDER_OBJECT|SMOOTH_OBJ
 		setDir(dir)
-		AddElement(/datum/element/render_over_keep_hitbox, BELOW_OBJ_LAYER, TRUE)
+		AddElement(/datum/element/render_over_keep_hitbox, BELOW_OBJ_LAYER, /* use_position_layering = */ TRUE)
 
 	//windows only block while reinforced and fulltile
 	if(!reinf || !fulltile)
@@ -126,7 +126,7 @@
 	return FALSE
 
 /obj/structure/window/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	if(rcd_data["[RCD_DESIGN_MODE]"] == RCD_DECONSTRUCT)
+	if(rcd_data[RCD_DESIGN_MODE] == RCD_DECONSTRUCT)
 		qdel(src)
 		return TRUE
 	return FALSE
@@ -694,6 +694,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/spawner, 0)
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/unanchored/spawner)
 
+/obj/structure/window/half
+	can_atmos_pass = ATMOS_PASS_YES
+	icon = 'icons/obj/smooth_structures/windows/half_thindow.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half)
+
+/obj/structure/window/half/unanchored
+	anchored = FALSE
+
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half/unanchored)
+
 /obj/structure/window/reinforced
 	name = "reinforced window"
 	desc = "A window that is reinforced with metal rods."
@@ -826,6 +837,18 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/spawner)
 	state = WINDOW_OUT_OF_FRAME
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/unanchored/spawner)
+
+/obj/structure/window/reinforced/half
+	can_atmos_pass = ATMOS_PASS_YES
+	icon = 'icons/obj/smooth_structures/windows/reinforced_half_thindow.dmi'
+
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/half)
+
+/obj/structure/window/reinforced/half/unanchored
+	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
+
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/half/unanchored)
 
 // You can't rust glass! So only reinforced glass can be impacted.
 /obj/structure/window/reinforced/rust_heretic_act()

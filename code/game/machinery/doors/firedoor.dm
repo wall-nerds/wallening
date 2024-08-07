@@ -92,6 +92,16 @@
 
 	RegisterSignal(src, COMSIG_MACHINERY_POWER_RESTORED, PROC_REF(on_power_restore))
 	RegisterSignal(src, COMSIG_MACHINERY_POWER_LOST, PROC_REF(on_power_loss))
+	AddComponent(/datum/component/conditionally_transparent, \
+		transparent_signals = list(COSMIG_DOOR_OPENING), \
+		opaque_signals = list(COSMIG_DOOR_CLOSING), \
+ 		start_transparent = !density, \
+		transparency_delay = 0 SECONDS, \
+ 		in_midpoint_alpha = 215, \
+		transparent_alpha = 64, \
+		opacity_delay = 0 SECONDS, \
+		out_midpoint_alpha = 104, \
+	)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/door/firedoor/setDir(new_dir)
@@ -761,7 +771,7 @@
 	// Needed because render targets seem to shift larger then 32x32 icons down constantly. This is a known side effect that should? be changed by 516
 	pixel_y = 0
 	pixel_z = 12
-	AddElement(/datum/element/render_over_keep_hitbox, 0, TRUE, NORTH|WEST|EAST)
+	AddElement(/datum/element/render_over_keep_hitbox, 0, /* use_position_layering = */ TRUE, NORTH|WEST|EAST)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/machinery/door/firedoor/border_only/animation_length(animation)
@@ -957,7 +967,7 @@
 	return FALSE
 
 /obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data["[RCD_DESIGN_MODE]"])
+	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
 			user.balloon_alert(user, "circuit installed")
 			constructionStep = CONSTRUCTION_PANEL_OPEN

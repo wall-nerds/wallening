@@ -16,7 +16,7 @@
 	flags_ricochet = RICOCHET_HARD
 
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WALLS
 
 	rcd_memory = RCD_MEMORY_WALL
@@ -340,9 +340,9 @@
 	return FALSE
 
 /turf/closed/wall/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data["[RCD_DESIGN_MODE]"])
+	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_WALLFRAME)
-			var/obj/item/wallframe/wallmount = rcd_data["[RCD_DESIGN_PATH]"]
+			var/obj/item/wallframe/wallmount = rcd_data[RCD_DESIGN_PATH]
 			var/obj/item/wallframe/new_wallmount = new wallmount(user.drop_location())
 			return try_wallmount(new_wallmount, user, src)
 		if(RCD_DECONSTRUCT)
