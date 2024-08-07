@@ -606,7 +606,6 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/light/directional/north,
 /turf/open/floor/iron/white/side{
 	dir = 9
 	},
@@ -718,6 +717,7 @@
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/white/side{
 	dir = 5
 	},
@@ -797,6 +797,9 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/threshold{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/cargo)
 "gg" = (
@@ -809,6 +812,9 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/cargo)
@@ -2005,14 +2011,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/dormitories)
 "pO" = (
-/obj/machinery/turretid/directional/south{
-	ailock = 1;
-	control_area = "/area/ruin/syndicate_lava_base/main";
-	icon_state = "control_kill";
-	lethal = 1;
-	name = "Base turret controls";
-	req_access = list("syndicate")
-	},
 /obj/structure/sign/warning/explosives/alt/directional/north,
 /turf/open/floor/circuit/red,
 /area/ruin/syndicate_lava_base/main)
@@ -2041,14 +2039,15 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/airlock_sensor/incinerator_syndicatelava{
-	pixel_x = 22
-	},
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/engine,
 /area/ruin/syndicate_lava_base/engineering)
 "qd" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/button/door/incinerator_vent_syndicatelava_main/directional/east{
+	id = "syndicatelava_mainvent_outer";
+	name = "turbine exhaust chamber vent control"
+	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/engineering)
 "qf" = (
@@ -2548,6 +2547,13 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/engineering)
 "yv" = (
+/obj/machinery/turretid/directional/south{
+	ailock = 1;
+	control_area = "/area/ruin/syndicate_lava_base/main";
+	lethal = 1;
+	name = "Base turret controls";
+	req_access = list("syndicate")
+	},
 /turf/open/floor/circuit/red,
 /area/ruin/syndicate_lava_base/main)
 "yA" = (
@@ -3722,11 +3728,6 @@
 	mapping_id = "syndie_lavaland_incineratorturbine"
 	},
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/button/door/incinerator_vent_syndicatelava_main{
-	pixel_y = -23;
-	id = "syndicatelava_mainvent_outer";
-	name = "turbine exhaust chamber vent control"
-	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/engineering)
 "Oq" = (
@@ -3973,6 +3974,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/machinery/airlock_sensor/incinerator_syndicatelava/directional/west,
 /turf/open/floor/engine,
 /area/ruin/syndicate_lava_base/engineering)
 "SA" = (
