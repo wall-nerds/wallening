@@ -272,7 +272,7 @@
 
 			if(!has_grille)
 				return rcd_result_with_memory(
-					list("delay" = delay, "cost" = cost),
+					list("delay" = 2 SECONDS, "cost" = 2),
 					get_turf(src), RCD_MEMORY_WINDOWGRILLE
 				)
 
