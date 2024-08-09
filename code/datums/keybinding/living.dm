@@ -164,12 +164,12 @@
 	. = ..()
 
 	var/datum/hud/our_hud = user.mob.hud_used
-	for(var/atom/movable/screen/plane_master/balloons in our_hud.get_true_plane_masters(WALLMOUNT_BALLOONS_PLANE))
+	for(var/atom/movable/screen/plane_master/balloons in our_hud.get_true_plane_masters(EXAMINE_BALLOONS_PLANE))
 		animate(balloons, 0.2 SECONDS, alpha = 255)
 
 /datum/keybinding/living/toggle_examine_balloons/up(client/user)
 	. = ..()
 
 	var/datum/hud/our_hud = user.mob.hud_used
-	for(var/atom/movable/screen/plane_master/balloons in our_hud.get_true_plane_masters(WALLMOUNT_BALLOONS_PLANE))
+	for(var/atom/movable/screen/plane_master/balloons in our_hud.get_true_plane_masters(EXAMINE_BALLOONS_PLANE))
 		animate(balloons, 0.2 SECONDS, alpha = 0)

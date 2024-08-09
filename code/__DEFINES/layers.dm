@@ -108,7 +108,7 @@
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 31
 /// Plane for the wallmount balloons
-#define WALLMOUNT_BALLOONS_PLANE 32
+#define EXAMINE_BALLOONS_PLANE 32
 
 //-------------------- HUD ---------------------
 //HUD layer defines

@@ -36,7 +36,7 @@
 	if(!(updates & UPDATE_OVERLAYS))
 		return
 
-	parent.overlays.Cut() //Clear all previous overlays, so we don't infinitely stack with our own overlays
+	parent.cut_overlays()
 	parent.managed_overlays.Cut()
 
 /datum/component/examine_balloon/proc/on_updated_icon(atom/movable/parent, updates)
@@ -50,13 +50,23 @@
 		return
 
 	// Make a copy of the wallmount and force it south
-	var/mutable_appearance/hologram = make_mutable_appearance_directional(new /mutable_appearance (parent), SOUTH)
-	SET_PLANE_EXPLICIT(hologram, WALLMOUNT_BALLOONS_PLANE, parent)
+	var/mutable_appearance/hologram = make_mutable_appearance_directional(new /mutable_appearance(parent), SOUTH)
+	SET_PLANE_EXPLICIT(hologram, EXAMINE_BALLOONS_PLANE, parent)
 
 	hologram.pixel_w = 0
 	hologram.pixel_x = 0
 	hologram.pixel_y = pixel_y_offset
 	hologram.pixel_z = 0
+
+	// We need to set all our overlay's planes to the wallmount balloons plane, or we get stuff like emissives sticking through the lighting plane
+	var/list/new_overlays = list()
+	for(var/mutable_appearance/immutable_appearance as anything in parent.overlays)
+		var/mutable_appearance/actually_mutable_appearance = new(immutable_appearance)
+		if(PLANE_TO_TRUE(actually_mutable_appearance.plane) == EMISSIVE_PLANE)
+			continue
+		new_overlays += actually_mutable_appearance
+
+	hologram.overlays = new_overlays
 
 	hologram.transform = hologram.transform.Scale(size_upscaling, size_upscaling)
 	hologram.alpha = hologram_alpha
@@ -68,7 +78,7 @@
 
 	examine_arrow.pixel_y = pixel_y_offset_arrow
 
-	SET_PLANE_EXPLICIT(examine_arrow, WALLMOUNT_BALLOONS_PLANE, parent)
+	SET_PLANE_EXPLICIT(examine_arrow, EXAMINE_BALLOONS_PLANE, parent)
 
 	parent.add_overlay(hologram)
 	parent.add_overlay(examine_arrow)
