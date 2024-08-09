@@ -163,16 +163,16 @@
 	switch(dir)
 		if(NORTH)
 			offset_old = pixel_z
-			pixel_z = APC_PIXEL_OFFSET
+			pixel_z = 35
 		if(SOUTH)
 			offset_old = pixel_z
 			pixel_z = -APC_PIXEL_OFFSET
 		if(EAST)
 			offset_old = pixel_x
-			pixel_x = APC_PIXEL_OFFSET
+			pixel_x = 11
 		if(WEST)
 			offset_old = pixel_x
-			pixel_x = -APC_PIXEL_OFFSET
+			pixel_x = -11
 
 	hud_list = list(
 		MALF_APC_HUD = image(icon = 'icons/mob/huds/hud.dmi', icon_state = "apc_hacked", pixel_x = src.pixel_x, pixel_y = src.pixel_y)
