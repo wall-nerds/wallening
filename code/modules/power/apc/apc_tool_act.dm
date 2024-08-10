@@ -160,7 +160,6 @@
 	locked = FALSE
 	balloon_alert(user, "board installed")
 	qdel(installing_board)
-	set_machine_stat(machine_stat & ~MAINT)
 	return ITEM_INTERACT_SUCCESS
 
 /// Called when we interact with the APC with an electroadaptive pseudocircuit, used by cyborgs to install a board or weak cell
@@ -305,7 +304,7 @@
 	. = TRUE
 
 	//You can only touch the electronics if the panel and tray are open, and the terminal is yoten
-	if(!opened || !panel_open || terminal)
+	if((!opened || !panel_open || terminal) && !(machine_stat & MAINT))
 		if(obj_flags & EMAGGED)
 			balloon_alert(user, "interface is broken!")
 			return
