@@ -1,5 +1,7 @@
 /// Adds clickable balloons whenever someone holds the examine key (is it still shift in the future?)
 /datum/component/examine_balloon
+	/// Store the overlays applied in the previous turn and clean them up (because of how managed_overlays checks for changes we need to do this manually)
+	var/list/previous_overlays
 	/// Offset applied on the hologram
 	var/pixel_y_offset
 	/// Our x and y size is multiplied by this, for small sprites like buttons
@@ -24,20 +26,10 @@
 
 	var/atom/atom_parent = parent
 
-	RegisterSignal(atom_parent, COMSIG_ATOM_UPDATE_ICON, PROC_REF(on_update_icon))
 	// We use UPDATED_ICON specifically because we need to be last in the icon chain, even if UPDATE_OVERLAYS would otherwise be more apt
 	RegisterSignal(atom_parent, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_updated_icon))
 
 	atom_parent.update_icon(UPDATE_OVERLAYS)
-
-/datum/component/examine_balloon/proc/on_update_icon(atom/movable/parent, updates)
-	SIGNAL_HANDLER
-
-	if(!(updates & UPDATE_OVERLAYS))
-		return
-
-	parent.cut_overlays()
-	parent.managed_overlays.Cut()
 
 /datum/component/examine_balloon/proc/on_updated_icon(atom/movable/parent, updates)
 	SIGNAL_HANDLER
@@ -48,6 +40,8 @@
 	// Generally south facing directions are already obvious, so we dont add a hologram (south is the default exception dont shoot me)
 	if(!(parent.dir & draw_in_dirs))
 		return
+
+	parent.cut_overlay(previous_overlays)
 
 	// Make a copy of the wallmount and force it south
 	var/mutable_appearance/hologram = make_mutable_appearance_directional(new /mutable_appearance(parent), SOUTH)
@@ -62,7 +56,7 @@
 	var/list/new_overlays = list()
 	for(var/mutable_appearance/immutable_appearance as anything in parent.overlays)
 		var/mutable_appearance/actually_mutable_appearance = new(immutable_appearance)
-		if(PLANE_TO_TRUE(actually_mutable_appearance.plane) == EMISSIVE_PLANE)
+		if(PLANE_TO_TRUE(actually_mutable_appearance.plane) != FLOAT_PLANE)
 			continue
 		new_overlays += actually_mutable_appearance
 
@@ -80,5 +74,7 @@
 
 	SET_PLANE_EXPLICIT(examine_arrow, EXAMINE_BALLOONS_PLANE, parent)
 
-	parent.add_overlay(hologram)
-	parent.add_overlay(examine_arrow)
+	previous_overlays = list(hologram, examine_arrow)
+
+	parent.add_overlay(previous_overlays)
+
