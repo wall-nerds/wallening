@@ -60,7 +60,7 @@
 		balloon_alert(user, "cell already installed!")
 		return ITEM_INTERACT_BLOCKING
 	if(machine_stat & MAINT)
-		balloon_alert(user, "no connector for a cell!")
+		balloon_alert(user, "no connector for a cell!") //We are stuck here
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(new_cell, src))
 		return ITEM_INTERACT_BLOCKING
@@ -160,6 +160,7 @@
 	locked = FALSE
 	balloon_alert(user, "board installed")
 	qdel(installing_board)
+	set_machine_stat(machine_stat & ~MAINT)
 	return ITEM_INTERACT_SUCCESS
 
 /// Called when we interact with the APC with an electroadaptive pseudocircuit, used by cyborgs to install a board or weak cell
