@@ -65,9 +65,10 @@
 	design_category = GLOB.rcd_designs[root_category][1]
 	var/list/design = GLOB.rcd_designs[root_category][design_category][1]
 
-	rcd_design_path = design[RCD_DESIGN_PATH]
-	design_title = initial(rcd_design_path.name)
-	mode = design[RCD_DESIGN_MODE]
+	rcd_design_path = design["[RCD_DESIGN_PATH]"]
+	design_title = RCD_SPRITESHEET_PATH_KEY(rcd_design_path)
+	mode = design["[RCD_DESIGN_MODE]"]
+
 	construction_mode = mode
 
 	GLOB.rcd_list += src
@@ -135,11 +136,11 @@
 			var/is_full_tile = initial(window_type.fulltile)
 
 			var/list/structures_to_ignore
-			if(istype(target, /obj/structure/grille))
+			if(istype(target, /obj/structure/window_frame))
 				if(is_full_tile) //if we are trying to build full-tile windows we ignore the grille
-					structures_to_ignore = list(/obj/structure/grille)
+					structures_to_ignore = list(/obj/structure/window_frame)
 				else //when building directional windows we ignore the grill and other directional windows
-					structures_to_ignore = list(/obj/structure/grille, /obj/structure/window)
+					structures_to_ignore = list(/obj/structure/window_frame, /obj/structure/window)
 			else //for directional windows we ignore other directional windows as they can be in diffrent directions on the turf.
 				structures_to_ignore = list(/obj/structure/window)
 
@@ -305,6 +306,8 @@
 		data["root_categories"] += category
 	data["selected_root"] = root_category
 
+	var/datum/asset/spritesheet/rcd/rcd_sheet = get_asset_datum(/datum/asset/spritesheet/rcd)
+
 	data["categories"] = list()
 	for(var/sub_category as anything in GLOB.rcd_designs[root_category])
 		var/list/target_category =  GLOB.rcd_designs[root_category][sub_category]
@@ -321,9 +324,9 @@
 		for(var/list/design as anything in target_category)
 			var/atom/movable/design_path = design[RCD_DESIGN_PATH]
 
-			var/design_name = initial(design_path.name)
-
-			designs += list(list("title" = design_name, "icon" = sanitize_css_class_name(design_name)))
+			var/design_name = RCD_SPRITESHEET_PATH_KEY(design_path)
+			var/icon_id = rcd_sheet.icon_size_id(sanitize_css_class_name(design_name))
+			designs += list(list("title" = design_name, "icon" = sanitize_css_class_name(design_name), "icon_id" = icon_id))
 		data["categories"] += list(list("cat_name" = sub_category, "designs" = designs))
 
 	return data
@@ -387,7 +390,7 @@
 			mode = design[RCD_DESIGN_MODE]
 			construction_mode = mode
 			rcd_design_path = design[RCD_DESIGN_PATH]
-			design_title = initial(rcd_design_path.name)
+			design_title = RCD_SPRITESHEET_PATH_KEY(rcd_design_path)
 			blueprint_changed = TRUE
 
 		else
