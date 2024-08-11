@@ -51,11 +51,11 @@
 /// Directional helpers for things that use the wall_mount element
 #define WALL_MOUNT_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 35, -8, 11, -11, 16)
 
-#define SHOWER_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 32, -4, 16, -16, 12)
+#define SHOWER_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 20, -4, -16, 16, 12)
 
 // Sinks need to be shifted down so they layer correctly when north due to their unique status
 #define SINK_DIRECTIONAL_HELPERS(path) \
-_WALL_MOUNT_DIRECTIONAL_HELPERS(path, 16, 24, 16, -16, 12) \
+_WALL_MOUNT_DIRECTIONAL_HELPERS(path, 12, 0, -14, 14, 12) \
 ##path/directional/north {\
 	pixel_y = -32; \
 }
@@ -162,3 +162,39 @@ _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 16, 24, 16, -16, 12) \
 	base_icon_state = parent_type::icon_state + "_table"; \
 } \
 WALL_MOUNT_DIRECTIONAL_HELPERS(path)
+
+
+/// Directional helpers that generate all arrow directions as well as subdivide sign directions.
+#define DIRECTIONAL_SIGNS_DIRECTIONAL_HELPERS(path) \
+##path/north_arrow {\
+	sign_arrow_direction = SIGN_DIR_NORTH; \
+} \
+##path/south_arrow {\
+	sign_arrow_direction = SIGN_DIR_SOUTH; \
+} \
+##path/east_arrow {\
+	sign_arrow_direction = SIGN_DIR_EAST; \
+} \
+##path/west_arrow {\
+	sign_arrow_direction = SIGN_DIR_WEST; \
+} \
+##path/northeast_arrow {\
+	sign_arrow_direction = SIGN_DIR_NORTHEAST; \
+} \
+##path/northwest_arrow {\
+	sign_arrow_direction = SIGN_DIR_NORTHWEST; \
+} \
+##path/southeast_arrow {\
+	sign_arrow_direction = SIGN_DIR_SOUTHEAST; \
+} \
+##path/southwest_arrow {\
+	sign_arrow_direction = SIGN_DIR_SOUTHWEST; \
+} \
+WALL_MOUNT_DIRECTIONAL_HELPERS(path/north_arrow)\
+WALL_MOUNT_DIRECTIONAL_HELPERS(path/south_arrow)\
+WALL_MOUNT_DIRECTIONAL_HELPERS(path/east_arrow)\
+WALL_MOUNT_DIRECTIONAL_HELPERS(##path/west_arrow)\
+WALL_MOUNT_DIRECTIONAL_HELPERS(##path/northeast_arrow)\
+WALL_MOUNT_DIRECTIONAL_HELPERS(##path/northwest_arrow)\
+WALL_MOUNT_DIRECTIONAL_HELPERS(##path/southeast_arrow)\
+WALL_MOUNT_DIRECTIONAL_HELPERS(##path/southwest_arrow)
