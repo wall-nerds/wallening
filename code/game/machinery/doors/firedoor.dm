@@ -668,7 +668,7 @@
 		if(DOOR_OPENING_ANIMATION)
 			return 0.9 SECONDS
 		if(DOOR_CLOSING_ANIMATION)
-			return 1 SECONDS
+			return 1.1 SECONDS
 		if(DOOR_DENY_ANIMATION)
 			return 0.3 SECONDS
 
@@ -681,7 +681,7 @@
 		if(DOOR_CLOSING_UNPASSABLE)
 			return 0.2 SECONDS
 		if(DOOR_CLOSING_FINISHED)
-			return 1 SECONDS
+			return 1.1 SECONDS
 
 /obj/machinery/door/firedoor/update_overlays()
 	. = ..()
