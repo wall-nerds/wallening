@@ -33,7 +33,9 @@
 /area/centcom/syndicate_mothership/control)
 "ay" = (
 /obj/structure/table/reinforced,
-/obj/item/papercutter,
+/obj/item/papercutter{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -44,22 +46,11 @@
 /obj/structure/fence/cut/medium,
 /turf/open/misc/asteroid/snow/airless,
 /area/centcom/syndicate_mothership)
-"aK" = (
-/obj/structure/chair/sofa/bench/left{
-	dir = 8
-	},
-/obj/structure/sign/poster/contraband/punch_shit/directional/south,
-/turf/open/floor/mineral/titanium,
-/area/centcom/syndicate_mothership/control)
 "aM" = (
 /obj/machinery/microwave,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
-/area/centcom/syndicate_mothership/control)
-"aX" = (
-/obj/machinery/shower/directional/south,
-/turf/open/floor/iron/freezer,
 /area/centcom/syndicate_mothership/control)
 "bf" = (
 /obj/effect/turf_decal/siding/purple{
@@ -71,9 +62,12 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom/syndicate_mothership/expansion_chemicalwarfare)
 "bo" = (
-/obj/structure/sink/directional/west,
-/obj/structure/mirror/directional/east,
-/turf/open/floor/mineral/titanium,
+/obj/structure/toilet/greyscale{
+	dir = 8
+	},
+/obj/structure/window/reinforced/half/directional/north,
+/obj/machinery/door/window/half/left/directional/west,
+/turf/open/floor/catwalk_floor/titanium,
 /area/centcom/syndicate_mothership/control)
 "bp" = (
 /obj/machinery/light/cold/directional/north,
@@ -112,9 +106,14 @@
 	},
 /obj/structure/table/reinforced/plasmarglass,
 /obj/item/surgery_tray/full{
-	pixel_y = -11
+	pixel_y = -3
 	},
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_y = 18
+	},
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom/syndicate_mothership/control)
 "bF" = (
@@ -155,11 +154,6 @@
 "cl" = (
 /turf/open/lava/plasma/ice_moon,
 /area/centcom/syndicate_mothership/control)
-"cw" = (
-/obj/structure/sign/poster/contraband/c20r/directional/south,
-/obj/structure/cable,
-/turf/open/floor/iron/smooth,
-/area/centcom/syndicate_mothership/control)
 "cA" = (
 /obj/machinery/portable_atmospherics/pump/lil_pump{
 	desc = "A betrayer to pump-kind."
@@ -188,7 +182,6 @@
 	pixel_x = 9;
 	pixel_y = -7
 	},
-/obj/structure/sign/poster/contraband/lizard/directional/west,
 /obj/structure/sign/poster/contraband/kudzu/directional/north,
 /obj/item/reagent_containers/spray/plantbgone{
 	pixel_x = 10;
@@ -245,12 +238,13 @@
 "du" = (
 /obj/structure/chair/stool/directional/north,
 /obj/effect/landmark/start/nukeop,
-/obj/structure/sign/poster/contraband/donk_co/directional/south,
 /turf/open/floor/wood/tile,
 /area/centcom/syndicate_mothership/control)
 "dw" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	pixel_y = 8
+	},
 /turf/open/floor/carpet,
 /area/centcom/syndicate_mothership/control)
 "dx" = (
@@ -265,7 +259,6 @@
 	pixel_x = 9;
 	pixel_y = 18
 	},
-/obj/structure/sign/poster/contraband/syndiemoth/directional/west,
 /obj/item/storage/box/beakers{
 	pixel_x = -4;
 	pixel_y = 17
@@ -348,10 +341,6 @@
 /obj/item/stack/sheet/animalhide/carp/five,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership)
-"ec" = (
-/obj/structure/sign/poster/contraband/cc64k_ad,
-/turf/closed/indestructible/syndicate,
-/area/centcom/syndicate_mothership/control)
 "ee" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
@@ -397,7 +386,7 @@
 "er" = (
 /obj/structure/table/wood,
 /obj/item/food/syndicake{
-	pixel_y = 3
+	pixel_y = 11
 	},
 /turf/open/floor/wood/tile,
 /area/centcom/syndicate_mothership/control)
@@ -482,11 +471,6 @@
 /obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
-"fu" = (
-/obj/machinery/shower/directional/south,
-/obj/machinery/light/floor,
-/turf/open/floor/iron/freezer,
-/area/centcom/syndicate_mothership/control)
 "fv" = (
 /obj/machinery/light/small/directional/south,
 /obj/machinery/igniter/incinerator_ordmix{
@@ -532,6 +516,7 @@
 /area/centcom/syndicate_mothership/control)
 "fA" = (
 /obj/item/kirbyplants/random,
+/obj/structure/sign/poster/contraband/bountyhunters/directional/north,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/centcom/syndicate_mothership/control)
 "fK" = (
@@ -575,7 +560,11 @@
 /area/centcom/syndicate_mothership/control)
 "gs" = (
 /obj/structure/extinguisher_cabinet/directional/west,
-/turf/open/floor/mineral/titanium,
+/obj/machinery/door/window/half/left/directional/north,
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/turf/open/floor/iron/freezer,
 /area/centcom/syndicate_mothership/control)
 "gw" = (
 /obj/machinery/light/small/directional/west,
@@ -622,22 +611,23 @@
 	dir = 1;
 	name = "Ordnance Chamber Monitor"
 	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("nukie")
+	},
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "gL" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	name = "Tinted Window"
-	},
+/obj/structure/window/reinforced/half/directional/south,
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 6
 	},
 /obj/structure/table/reinforced/plasmarglass,
-/obj/item/reagent_containers/cup/bottle/epinephrine,
-/obj/item/reagent_containers/cup/bottle/multiver{
-	pixel_x = 6
+/obj/item/reagent_containers/cup/bottle/epinephrine{
+	pixel_y = 8
 	},
-/obj/item/reagent_containers/syringe{
-	pixel_y = 15
+/obj/item/reagent_containers/cup/bottle/multiver{
+	pixel_x = 6;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom/syndicate_mothership/control)
@@ -717,9 +707,9 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/showcase/machinery/tv{
 	desc = "Static fills the screen. If you can find the VCR, you might be able to watch those old Heist Movies again.";
-	name = "\improper Static Filled Tube(TM) Television"
+	name = "\improper Static Filled Tube(TM) Television";
+	pixel_y = 8
 	},
-/obj/structure/sign/poster/contraband/rip_badger/directional/east,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -797,7 +787,9 @@
 /area/centcom/syndicate_mothership/control)
 "is" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/drinkingglasses,
+/obj/item/storage/box/drinkingglasses{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -902,7 +894,11 @@
 /area/centcom/syndicate_mothership/control)
 "jC" = (
 /obj/machinery/vending/boozeomat,
-/turf/closed/indestructible/syndicate,
+/obj/effect/turf_decal/siding/wideplating,
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/centcom/syndicate_mothership/control)
 "jO" = (
 /obj/machinery/camera/autoname/directional/south{
@@ -913,8 +909,8 @@
 "jT" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/bottle/beer{
-	pixel_x = 5;
-	pixel_y = -2
+	pixel_x = 7;
+	pixel_y = 7
 	},
 /obj/item/toy/cards/deck/syndicate{
 	pixel_x = -6;
@@ -946,10 +942,6 @@
 	dir = 4
 	},
 /turf/open/misc/asteroid/snow/icemoon,
-/area/centcom/syndicate_mothership/control)
-"km" = (
-/obj/structure/sign/poster/contraband/lizard/directional/west,
-/turf/open/floor/mineral/titanium,
 /area/centcom/syndicate_mothership/control)
 "kq" = (
 /obj/structure/lattice/catwalk,
@@ -985,7 +977,6 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 9
 	},
-/obj/structure/sign/poster/contraband/gorlex_recruitment/directional/north,
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner,
 /turf/open/floor/mineral/plastitanium,
 /area/centcom/syndicate_mothership/control)
@@ -1067,16 +1058,12 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership)
 "lA" = (
-/obj/machinery/door/window/survival_pod/left/directional/west{
-	name = "Toilet Door"
+/obj/structure/window/reinforced/half/directional/north,
+/obj/item/soap/syndie,
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
 	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
-	name = "Frosted Window"
-	},
-/obj/structure/toilet/greyscale{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron/freezer,
 /area/centcom/syndicate_mothership/control)
 "lB" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -1095,13 +1082,6 @@
 /turf/open/floor/iron/smooth_half{
 	dir = 1
 	},
-/area/centcom/syndicate_mothership/control)
-"lF" = (
-/obj/structure/sign/poster/contraband/bountyhunters/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer5,
-/turf/open/floor/iron/smooth,
 /area/centcom/syndicate_mothership/control)
 "lO" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
@@ -1156,10 +1136,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
-"mJ" = (
-/obj/structure/sign/poster/contraband/free_key,
-/turf/closed/indestructible/syndicate,
-/area/centcom/syndicate_mothership/control)
 "mK" = (
 /obj/structure/table/wood,
 /obj/item/pai_card,
@@ -1255,7 +1231,6 @@
 /area/centcom/syndicate_mothership/control)
 "nU" = (
 /obj/machinery/oven/range,
-/obj/structure/sign/poster/contraband/eat/directional/west,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -1275,7 +1250,8 @@
 "oh" = (
 /obj/structure/table/reinforced,
 /obj/item/syndicatedetonator{
-	desc = "This gaudy button can be used to instantly detonate syndicate bombs that have been activated on the station. It is also fun to press."
+	desc = "This gaudy button can be used to instantly detonate syndicate bombs that have been activated on the station. It is also fun to press.";
+	pixel_y = 8
 	},
 /turf/open/floor/carpet,
 /area/centcom/syndicate_mothership/control)
@@ -1372,8 +1348,8 @@
 /area/centcom/syndicate_mothership/control)
 "pa" = (
 /obj/machinery/light/small/directional/south,
-/obj/structure/sign/poster/contraband/moffuchis_pizza/directional/west,
-/turf/open/floor/mineral/titanium,
+/obj/machinery/shower/directional/north,
+/turf/open/floor/iron/freezer,
 /area/centcom/syndicate_mothership/control)
 "pf" = (
 /obj/machinery/light/small/directional/south,
@@ -1514,7 +1490,9 @@
 /area/centcom/syndicate_mothership/control)
 "qE" = (
 /obj/structure/table/rolling,
-/obj/item/reagent_containers/cup/glass/bottle/juice/tomatojuice,
+/obj/item/reagent_containers/cup/glass/bottle/juice/tomatojuice{
+	pixel_y = 8
+	},
 /turf/open/floor/mineral/titanium,
 /area/centcom/syndicate_mothership/control)
 "qI" = (
@@ -1559,10 +1537,12 @@
 "rb" = (
 /obj/effect/turf_decal/siding/red,
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	pixel_y = 8
+	},
 /obj/item/stack/spacecash/c10{
 	pixel_x = -19;
-	pixel_y = 10
+	pixel_y = 16
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/syndicate_mothership/control)
@@ -1571,20 +1551,21 @@
 /area/centcom/syndicate_mothership/control)
 "rk" = (
 /obj/structure/table/rolling,
-/obj/item/reagent_containers/condiment/soymilk,
+/obj/item/reagent_containers/condiment/soymilk{
+	pixel_y = 8
+	},
 /turf/open/floor/mineral/titanium,
 /area/centcom/syndicate_mothership/control)
 "rm" = (
-/obj/structure/sign/plaques/kiddie/badger{
-	desc = "A list of names is engraved on this plaque. 'May their heroic sacrifices inspire your bravery' is carved at the bottom.";
-	name = "\improper Operative Remembrance Plaque";
-	pixel_y = 27
-	},
 /obj/structure/bed/dogbed/cayenne,
 /mob/living/basic/carp/pet/cayenne,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer5,
+/obj/structure/sign/plaques/kiddie/badger/directional/north{
+	desc = "A list of names is engraved on this plaque. 'May their heroic sacrifices inspire your bravery' is carved at the bottom.";
+	name = "\improper Operative Remembrance Plaque"
+	},
 /turf/open/floor/iron/smooth,
 /area/centcom/syndicate_mothership/control)
 "ru" = (
@@ -1607,7 +1588,6 @@
 "rJ" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/knife/kitchen,
-/obj/structure/sign/poster/contraband/self_ai_liberation/directional/west,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -1721,8 +1701,12 @@
 /obj/item/stack/spacecash/c20{
 	pixel_y = 9
 	},
-/obj/item/assembly/flash/handheld,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/item/reagent_containers/cup/glass/bottle/rum{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/item/assembly/flash/handheld,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
 "sU" = (
@@ -1755,8 +1739,6 @@
 /turf/open/misc/asteroid/snow/icemoon,
 /area/centcom/syndicate_mothership/control)
 "tn" = (
-/obj/machinery/airalarm/directional/west,
-/obj/effect/mapping_helpers/airalarm/unlocked,
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 1
 	},
@@ -1775,8 +1757,12 @@
 "tv" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/red/corner,
-/obj/item/folder/red,
-/obj/item/pen/red,
+/obj/item/folder/red{
+	pixel_y = 8
+	},
+/obj/item/pen/red{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/syndicate_mothership/control)
 "tz" = (
@@ -1830,7 +1816,6 @@
 	dir = 6
 	},
 /obj/structure/extinguisher_cabinet/directional/east,
-/obj/structure/sign/poster/contraband/gorlex_recruitment/directional/south,
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 1
 	},
@@ -1852,12 +1837,6 @@
 /turf/open/floor/iron/smooth_half{
 	dir = 4
 	},
-/area/centcom/syndicate_mothership/control)
-"uN" = (
-/obj/machinery/door/window/survival_pod/left/directional/south{
-	name = "Frosted Door"
-	},
-/turf/open/floor/iron/freezer,
 /area/centcom/syndicate_mothership/control)
 "uT" = (
 /turf/open/misc/asteroid/snow/airless,
@@ -1981,13 +1960,6 @@
 	},
 /turf/open/misc/asteroid/snow/airless,
 /area/centcom/syndicate_mothership)
-"wC" = (
-/obj/structure/chair/sofa/bench/right{
-	dir = 4
-	},
-/obj/structure/sign/poster/contraband/rebels_unite/directional/south,
-/turf/open/floor/mineral/titanium,
-/area/centcom/syndicate_mothership/control)
 "wG" = (
 /turf/open/floor/iron/smooth_half{
 	dir = 1
@@ -2007,7 +1979,6 @@
 /obj/machinery/chem_dispenser/drinks{
 	dir = 1
 	},
-/obj/structure/sign/poster/contraband/andromeda_bitters/directional/south,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -2212,7 +2183,6 @@
 /obj/structure/closet/crate/freezer{
 	name = "pantry crate"
 	},
-/obj/structure/sign/poster/contraband/moffuchis_pizza/directional/south,
 /obj/item/reagent_containers/condiment/rice{
 	pixel_y = 12
 	},
@@ -2270,9 +2240,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "Ax" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	name = "Tinted Window"
-	},
+/obj/structure/window/reinforced/half/directional/south,
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 10
 	},
@@ -2280,9 +2248,7 @@
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom/syndicate_mothership/control)
 "AA" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	name = "Tinted Window"
-	},
+/obj/structure/window/reinforced/half/directional/south,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -2437,7 +2403,10 @@
 "Cf" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/west,
-/obj/item/reagent_containers/cup/glass/shaker,
+/obj/item/reagent_containers/cup/glass/shaker{
+	pixel_y = 8;
+	pixel_x = 5
+	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -2514,7 +2483,8 @@
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "Dq" = (
-/obj/structure/sign/poster/contraband/gorlex_recruitment/directional/west,
+/obj/structure/sink/directional/south,
+/obj/structure/mirror/directional/north,
 /turf/open/floor/mineral/titanium,
 /area/centcom/syndicate_mothership/control)
 "Du" = (
@@ -2567,9 +2537,9 @@
 	pixel_y = -30
 	},
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/camera/autoname/directional/south{
-	network = list("nukie")
-	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/unlocked,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "DV" = (
@@ -2583,15 +2553,15 @@
 /obj/machinery/light/warm/directional/north,
 /obj/item/reagent_containers/cup/glass/bottle/whiskey{
 	pixel_x = -4;
-	pixel_y = 14
+	pixel_y = 21
 	},
 /obj/item/toy/cards/deck{
 	pixel_x = 3;
-	pixel_y = 6
+	pixel_y = 11
 	},
 /obj/item/cigarette/robust{
 	pixel_x = -4;
-	pixel_y = 1
+	pixel_y = 9
 	},
 /obj/effect/decal/cleanable/ash{
 	pixel_x = 12;
@@ -2599,7 +2569,7 @@
 	},
 /obj/effect/spawner/random/entertainment/lighter{
 	pixel_x = 9;
-	pixel_y = -3
+	pixel_y = 5
 	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
@@ -2624,11 +2594,13 @@
 /area/centcom/syndicate_mothership/control)
 "El" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/fancy/cigarettes/cigars/havana,
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 8
+	},
 /obj/item/toy/plush/nukeplushie{
 	name = "Sir Flash Nukedon";
 	pixel_x = -2;
-	pixel_y = 14
+	pixel_y = 21
 	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
@@ -2655,7 +2627,6 @@
 /turf/open/lava/plasma/ice_moon,
 /area/centcom/syndicate_mothership/control)
 "EL" = (
-/obj/structure/sign/poster/contraband/masked_men/directional/east,
 /obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/centcom/syndicate_mothership/expansion_chemicalwarfare)
@@ -2681,8 +2652,12 @@
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 8
 	},
-/obj/item/folder/red,
-/obj/item/pen/red,
+/obj/item/folder/red{
+	pixel_y = 8
+	},
+/obj/item/pen/red{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/syndicate_mothership/control)
 "Fp" = (
@@ -2691,7 +2666,9 @@
 /area/centcom/syndicate_mothership/control)
 "Fq" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	pixel_y = 8
+	},
 /turf/open/floor/carpet,
 /area/centcom/syndicate_mothership/control)
 "FB" = (
@@ -2838,15 +2815,12 @@
 /obj/machinery/light/small/directional/south,
 /obj/structure/table/reinforced,
 /obj/item/knife/combat/survival{
-	pixel_x = 7;
+	pixel_x = 2;
 	pixel_y = 17
 	},
-/obj/item/reagent_containers/cup/glass/bottle/rum{
-	pixel_x = -5;
-	pixel_y = 17
+/obj/machinery/recharger{
+	pixel_y = 8
 	},
-/obj/structure/sign/poster/contraband/red_rum/directional/east,
-/obj/machinery/recharger,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -2897,9 +2871,7 @@
 /area/centcom/syndicate_mothership/control)
 "GS" = (
 /obj/effect/turf_decal/siding/thinplating,
-/obj/machinery/door/window/survival_pod/left/directional/south{
-	name = "Surgery"
-	},
+/obj/machinery/door/window/half/left/directional/south,
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/centcom/syndicate_mothership/control)
 "GU" = (
@@ -2910,6 +2882,12 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
+/area/centcom/syndicate_mothership/control)
+"GW" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/obj/structure/sign/poster/contraband/free_key/directional/north,
+/turf/open/floor/iron/smooth_half,
 /area/centcom/syndicate_mothership/control)
 "Hc" = (
 /turf/open/floor/plating/icemoon,
@@ -2968,7 +2946,7 @@
 /obj/structure/table/glass/plasmaglass,
 /obj/item/folder/white{
 	pixel_x = 4;
-	pixel_y = -3
+	pixel_y = 5
 	},
 /obj/item/reagent_containers/syringe{
 	pixel_x = -5;
@@ -3100,7 +3078,7 @@
 /obj/effect/turf_decal/siding/red,
 /obj/item/toy/nuke{
 	pixel_x = -5;
-	pixel_y = 1
+	pixel_y = 9
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/syndicate_mothership/control)
@@ -3115,6 +3093,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer5,
+/obj/structure/sink/directional/south,
+/obj/structure/mirror/directional/north,
 /turf/open/floor/mineral/titanium,
 /area/centcom/syndicate_mothership/control)
 "IV" = (
@@ -3129,7 +3109,6 @@
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 1
 	},
-/obj/structure/sign/poster/contraband/space_cube/directional/south,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -3167,7 +3146,6 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 5
 	},
-/obj/structure/sign/poster/contraband/rip_badger/directional/east,
 /obj/machinery/biogenerator,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
@@ -3337,8 +3315,12 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
-/obj/item/folder/red,
-/obj/item/pen/red,
+/obj/item/folder/red{
+	pixel_y = 8
+	},
+/obj/item/pen/red{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/syndicate_mothership/control)
 "LM" = (
@@ -3381,12 +3363,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden/layer5,
 /turf/open/floor/catwalk_floor/titanium,
-/area/centcom/syndicate_mothership/control)
-"Mh" = (
-/obj/structure/sign/poster/contraband/lamarr/directional/south,
-/turf/open/floor/iron/smooth_half{
-	dir = 1
-	},
 /area/centcom/syndicate_mothership/control)
 "Mn" = (
 /obj/structure/sign/poster/contraband/syndiemoth/directional/east,
@@ -3479,7 +3455,6 @@
 /obj/structure/chair/sofa/right/brown{
 	dir = 4
 	},
-/obj/structure/sign/poster/contraband/revolver/directional/west,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
@@ -3755,11 +3730,7 @@
 	},
 /area/centcom/syndicate_mothership/control)
 "Qh" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	name = "Frosted Window"
-	},
-/obj/item/soap/syndie,
-/obj/structure/sign/poster/contraband/got_wood/directional/east,
+/obj/machinery/shower/directional/north,
 /turf/open/floor/iron/freezer,
 /area/centcom/syndicate_mothership/control)
 "Qk" = (
@@ -3773,46 +3744,43 @@
 /turf/open/lava/plasma/ice_moon,
 /area/centcom/syndicate_mothership/control)
 "Ql" = (
-/obj/structure/sign/poster/contraband/fun_police/directional/west,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	name = "Tinted Window"
-	},
 /obj/machinery/light/cold/directional/west,
 /obj/structure/table/reinforced/plasmarglass,
 /obj/item/assembly/timer{
 	pixel_x = 12;
-	pixel_y = -9
+	pixel_y = -1
 	},
 /obj/item/assembly/timer{
-	pixel_x = 15
+	pixel_x = 15;
+	pixel_y = 7
 	},
 /obj/item/assembly/timer{
 	pixel_x = 18;
-	pixel_y = 5
+	pixel_y = 16
 	},
 /obj/item/assembly/signaler{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -1;
+	pixel_y = 3
 	},
 /obj/item/assembly/signaler{
 	pixel_x = 2;
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/assembly/signaler{
 	pixel_x = 5;
-	pixel_y = 10
+	pixel_y = 18
 	},
 /obj/item/assembly/prox_sensor{
-	pixel_x = -6;
-	pixel_y = -4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -2;
+	pixel_x = -8;
 	pixel_y = 3
 	},
 /obj/item/assembly/prox_sensor{
+	pixel_x = -2;
+	pixel_y = 15
+	},
+/obj/item/assembly/prox_sensor{
 	pixel_x = -6;
-	pixel_y = 4
+	pixel_y = 12
 	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -3839,11 +3807,11 @@
 /area/centcom/syndicate_mothership/control)
 "Qy" = (
 /obj/structure/table/wood,
-/obj/item/food/nachos{
-	pixel_x = 7;
-	pixel_y = -14
-	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/item/food/nachos{
+	pixel_x = 3;
+	pixel_y = 4
+	},
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
 "QD" = (
@@ -3858,7 +3826,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/structure/sign/poster/contraband/c20r/directional/east,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/plating,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
@@ -3955,7 +3922,6 @@
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "RQ" = (
 /obj/structure/closet/cardboard,
-/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/east,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/centcom/syndicate_mothership/control)
 "RT" = (
@@ -4171,7 +4137,9 @@
 /area/centcom/syndicate_mothership/control)
 "TG" = (
 /obj/structure/table/wood,
-/obj/item/pizzabox,
+/obj/item/pizzabox{
+	pixel_y = 8
+	},
 /obj/item/storage/crayons{
 	pixel_x = -2;
 	pixel_y = 5
@@ -4289,16 +4257,17 @@
 	},
 /area/centcom/syndicate_mothership/control)
 "VF" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	name = "Tinted Window"
-	},
 /obj/structure/table/reinforced/plasmarglass,
 /obj/item/transfer_valve{
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 8
 	},
-/obj/item/transfer_valve,
 /obj/item/transfer_valve{
-	pixel_x = 5
+	pixel_y = 8
+	},
+/obj/item/transfer_valve{
+	pixel_x = 5;
+	pixel_y = 8
 	},
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
@@ -4402,10 +4371,6 @@
 /obj/structure/sign/poster/contraband/syndicate_pistol/directional/north,
 /turf/open/floor/mineral/titanium,
 /area/centcom/syndicate_mothership/control)
-"WI" = (
-/obj/structure/sign/poster/contraband/revolver/directional/south,
-/turf/open/floor/mineral/titanium,
-/area/centcom/syndicate_mothership/control)
 "WR" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/red{
@@ -4443,7 +4408,9 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/syndicate_mothership/control)
 "Xk" = (
@@ -4543,9 +4510,7 @@
 /turf/closed/indestructible/rock/snow,
 /area/centcom/syndicate_mothership)
 "Yk" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	name = "Tinted Window"
-	},
+/obj/structure/window/reinforced/half/directional/south,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -4616,7 +4581,6 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
-/obj/structure/sign/poster/contraband/fun_police/directional/west,
 /obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -6736,12 +6700,12 @@ ek
 ZE
 Yx
 dN
+VK
+Vm
 DZ
-fu
-uN
 Dq
 gw
-km
+ZZ
 gs
 pa
 RD
@@ -6839,13 +6803,13 @@ DZ
 GF
 DZ
 DZ
-aX
-Qh
+YZ
+DZ
 IQ
 bo
 bo
 lA
-lA
+Qh
 DZ
 Ox
 Ox
@@ -7038,7 +7002,7 @@ ld
 ld
 KH
 Ez
-lF
+px
 px
 px
 Qr
@@ -7046,7 +7010,7 @@ Tn
 DZ
 Gr
 tc
-mJ
+DZ
 DY
 lQ
 Nb
@@ -7448,7 +7412,7 @@ DZ
 Lz
 Wp
 Wp
-cw
+Qr
 DZ
 Sv
 DZ
@@ -7656,8 +7620,8 @@ Mu
 DZ
 ad
 DZ
-pD
-Mh
+GW
+wG
 Ca
 wG
 pD
@@ -10089,7 +10053,7 @@ qw
 qw
 qw
 VH
-WI
+ZZ
 DZ
 WU
 dO
@@ -10293,7 +10257,7 @@ qw
 qw
 qw
 Rs
-wC
+Ka
 DZ
 Ld
 ol
@@ -10497,7 +10461,7 @@ qw
 UE
 Sg
 Py
-aK
+sp
 DZ
 Ld
 XL
@@ -10514,7 +10478,7 @@ dV
 dV
 lc
 lo
-ec
+DZ
 DZ
 DZ
 Ox

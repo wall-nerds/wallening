@@ -257,7 +257,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	canSmoothWith = null
 	smoothing_groups = null
 	/// What kind of turf should be visually represented under this door?
-	var/floor_to_copy = /turf/open/floor/plating
+	var/turf/floor_to_copy = /turf/open/floor/plating
 
 /turf/closed/indestructible/fakedoor/Initialize(mapload)
 	. = ..()
