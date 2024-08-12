@@ -264,7 +264,7 @@
 	wall_icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	mineral = /obj/item/stack/sheet/mineral/plastitanium
 	tram_wall_type = /obj/structure/tram/alt/plastitanium
-	smoothing_groups = SMOOTH_GROUP_PLASTITANIUM_WALLS
+	smoothing_groups = SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_TALL_WALLS
 	canSmoothWith = SMOOTH_GROUP_PLASTITANIUM_WALLS
 
 /obj/structure/tram/alt/gold
@@ -274,7 +274,7 @@
 	mineral = /obj/item/stack/sheet/mineral/gold
 	tram_wall_type = /obj/structure/tram/alt/gold
 	explosion_block = 0 //gold is a soft metal you dingus.
-	smoothing_groups = SMOOTH_GROUP_GOLD_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	smoothing_groups = SMOOTH_GROUP_GOLD_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_TALL_WALLS
 	canSmoothWith = SMOOTH_GROUP_GOLD_WALLS
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 2)
 
@@ -399,7 +399,7 @@
 	name = "bamboo tram"
 	desc = "A tram with a bamboo framing."
 	wall_icon = 'icons/turf/walls/bamboo_wall.dmi'
-	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_BAMBOO_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	smoothing_groups = SMOOTH_GROUP_BAMBOO_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_BAMBOO_WALLS
 	mineral = /obj/item/stack/sheet/mineral/bamboo
 	tram_wall_type = /obj/structure/tram/alt/bamboo

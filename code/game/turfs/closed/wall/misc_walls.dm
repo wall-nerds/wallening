@@ -98,6 +98,7 @@
 	smoothing_flags = NONE
 	canSmoothWith = null
 	smoothing_groups = null
+	use_splitvis = FALSE
 
 /turf/closed/wall/material/meat
 	name = "living wall"
