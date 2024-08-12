@@ -331,9 +331,7 @@
 /area/centcom/central_command_areas/holding)
 "hw" = (
 /obj/item/kirbyplants/organic/plant10,
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "hH" = (
@@ -364,9 +362,7 @@
 /turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "iH" = (
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/holding)
 "iQ" = (
@@ -447,9 +443,7 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "kl" = (
@@ -493,9 +487,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "lx" = (
@@ -673,9 +665,7 @@
 /obj/item/storage/fancy/candle_box,
 /obj/item/storage/fancy/candle_box,
 /obj/item/storage/box/lights/mixed,
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/catwalk_floor,
 /area/centcom/central_command_areas/holding)
 "pB" = (
@@ -758,7 +748,8 @@
 /area/centcom/central_command_areas/holding)
 "qE" = (
 /turf/closed/indestructible/fakedoor{
-	name = "Guest House Back Entrance"
+	name = "Guest House Back Entrance";
+	dir = 4
 	},
 /area/centcom/central_command_areas/holding)
 "qF" = (
@@ -896,9 +887,7 @@
 /obj/item/xenos_claw,
 /obj/item/grown/log/bamboo,
 /obj/item/grown/log/bamboo,
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/holding)
 "uQ" = (
@@ -1177,9 +1166,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/carpet/black,
 /area/centcom/central_command_areas/holding)
 "CG" = (
@@ -1451,9 +1438,7 @@
 	},
 /area/centcom/central_command_areas/holding)
 "HV" = (
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /obj/effect/landmark/holding_facility,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/holding)
@@ -1676,9 +1661,7 @@
 /area/centcom/central_command_areas/holding)
 "My" = (
 /obj/item/kirbyplants/organic/plant10,
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/iron/sepia,
 /area/centcom/central_command_areas/holding)
 "Mz" = (
@@ -1818,10 +1801,6 @@
 /obj/structure/flora/bush/flowers_yw/style_random,
 /obj/structure/flora/tree/jungle/small/style_random,
 /turf/open/floor/grass,
-/area/centcom/central_command_areas/holding)
-"PB" = (
-/obj/structure/sign/poster/contraband/syndicate_recruitment/directional/south,
-/turf/open/floor/wood/large,
 /area/centcom/central_command_areas/holding)
 "PH" = (
 /obj/structure/chair/comfy/black{
@@ -1964,9 +1943,7 @@
 /turf/open/floor/iron/sepia,
 /area/centcom/central_command_areas/holding)
 "TO" = (
-/obj/structure/sign/painting/library{
-	pixel_y = 32
-	},
+/obj/structure/sign/painting/library/directional/north,
 /turf/open/floor/iron/sepia,
 /area/centcom/central_command_areas/holding)
 "TP" = (
@@ -3259,7 +3236,7 @@ dg
 dg
 dg
 iH
-PB
+mw
 dg
 dg
 dg
