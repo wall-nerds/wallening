@@ -258,21 +258,6 @@
 	if(auto_name)
 		name = "\improper [get_area_name(area, TRUE)] APC"
 
-/obj/machinery/power/apc/wall_mount_offset(direction)
-	. = ..()
-	switch(direction)
-		if(NORTH)
-			offset_old = pixel_z
-			pixel_z = 35
-		if(SOUTH)
-			offset_old = pixel_z
-			pixel_z = -APC_PIXEL_OFFSET
-		if(EAST)
-			offset_old = pixel_x
-			pixel_x = 11
-		if(WEST)
-			offset_old = pixel_x
-			pixel_x = -11
 
 /obj/machinery/power/apc/proc/assign_to_area(area/target_area = get_area(src))
 	if(area == target_area)
