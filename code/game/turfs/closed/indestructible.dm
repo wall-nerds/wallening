@@ -41,7 +41,6 @@
 	name = "paper wall"
 	desc = "Reinforced paper walling. Someone really doesn't want you to leave."
 	icon = 'icons/turf/walls/paperframe_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_CLOSED_TURFS
 
@@ -49,7 +48,6 @@
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	icon_state = "0-2"
 	baseturfs = /turf/closed/indestructible/sandstone
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
@@ -113,7 +111,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms. Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls/riveted_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WALLS
 
@@ -121,7 +118,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "reinforced titanium imitation wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms. Naturally, to cut down on costs, this is just a really good paint job to resemble titanium. Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
-	icon_state = "0-2"
 	base_icon_state = "shuttle_wall"
 
 /turf/closed/indestructible/reinforced/titanium/nodiagonal
@@ -130,25 +126,21 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
 /turf/closed/indestructible/syndicate
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 	canSmoothWith = SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
-	icon_state = "0-2"
 
 /turf/closed/indestructible/riveted/plastinum
 	name = "plastinum wall"
 	desc = "A luxurious wall made out of a plasma-platinum alloy. Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls/plastinum_wall.dmi'
-	icon_state = "0-2"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_PLASTINUM_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_PLASTINUM_WALLS
@@ -158,7 +150,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/wood
 	icon = 'icons/turf/walls/wood_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WOOD_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WOOD_WALLS
 
@@ -167,7 +158,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "alien wall"
 	desc = "A wall with alien alloy plating."
 	icon = 'icons/turf/walls/abductor_wall.dmi'
-	icon_state = "0-2"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_ABDUCTOR_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_ABDUCTOR_WALLS
@@ -180,7 +170,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound. Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls/cult_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WALLS
 
@@ -188,7 +177,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/abductor
 	name = "alien wall"
 	icon = 'icons/turf/walls/abductor_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_ABDUCTOR_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_ABDUCTOR_WALLS
 
@@ -284,7 +272,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "dense rock"
 	desc = "An extremely densely-packed rock, most mining tools or explosives would never get through this."
 	icon = 'icons/turf/walls/rock_wall2.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
@@ -316,7 +303,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "thick paper wall"
 	desc = "A wall layered with impenetrable sheets of paper."
 	icon = 'icons/turf/walls/paper_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
@@ -324,7 +310,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "necropolis wall"
 	desc = "A seemingly impenetrable wall."
 	icon = 'icons/turf/walls/necro_wall.dmi'
-	icon_state = "0-2"
 	explosive_resistance = 50
 	baseturfs = /turf/closed/indestructible/necropolis
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
@@ -339,7 +324,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "impervious iron wall"
 	desc = "A wall with tough iron plating."
 	icon = 'icons/turf/walls/iron_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_IRON_WALLS + SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_IRON_WALLS
 	opacity = FALSE
@@ -348,7 +332,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "necropolis wall"
 	desc = "A thick, seemingly indestructible stone wall."
 	icon = 'icons/turf/walls/boss_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_BOSS_WALLS + SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS
 	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_BOSS_WALLS
 	explosive_resistance = 50
@@ -370,21 +353,18 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "wall"
 	desc = "A wall made out of a strange metal. The squares on it pulse in a predictable pattern."
 	icon = 'icons/turf/walls/hierophant_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_HIERO_WALL
 	canSmoothWith = SMOOTH_GROUP_HIERO_WALL
 
 /turf/closed/indestructible/resin
 	name = "resin wall"
 	icon = 'icons/obj/smooth_structures/alien/resin_wall_1.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_ALIEN_WALLS
 	canSmoothWith = SMOOTH_GROUP_ALIEN_WALLS
 
 /turf/closed/indestructible/resin/membrane
 	name = "resin membrane"
 	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
-	icon_state = "0-2"
 	icon_state = "resin_membrane-0"
 	base_icon_state = "resin_membrane"
 	opacity = FALSE
@@ -415,6 +395,5 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "dense meat wall"
 	desc = "A huge chunk of dense, packed meat. Effectively impervious to conventional methods of destruction."
 	icon = 'icons/turf/walls/meat_wall.dmi'
-	icon_state = "0-2"
 	smoothing_groups = SMOOTH_GROUP_TALL_WALL + SMOOTH_GROUP_WALLS
 	canSmoothWith = SMOOTH_GROUP_WALLS
