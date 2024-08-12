@@ -1,5 +1,6 @@
 // Camera mob, used by AI camera and blob.
 /mob/camera
+	SET_BASE_VISUAL_PIXEL(0, 0) // These are selecting floor tiles
 	name = "camera mob"
 	density = FALSE
 	move_force = INFINITY
