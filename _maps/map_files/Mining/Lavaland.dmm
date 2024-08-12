@@ -2657,14 +2657,10 @@
 /turf/open/floor/iron/dark,
 /area/mine/production)
 "nl" = (
-/obj/structure/railing/corner{
-	dir = 1
+/obj/structure/sign/directions/security/right/directional/north{
+	dir = 4
 	},
-/obj/structure/lattice/catwalk/mining,
-/obj/structure/sign/directions/lavaland/directional/north{
-	dir = 8
-	},
-/turf/open/lava/smooth/lava_land_surface,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "nm" = (
 /turf/closed/wall,
@@ -5147,6 +5143,16 @@
 /obj/effect/turf_decal/trimline/brown/filled/warning,
 /turf/open/floor/iron/dark,
 /area/mine/mechbay)
+"CI" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk/mining,
+/obj/structure/sign/directions/lavaland/directional/north{
+	dir = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "CM" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark/textured_large,
@@ -5174,11 +5180,9 @@
 /area/mine/maintenance/public/north)
 "CU" = (
 /obj/structure/toilet{
-	dir = 8;
-	pixel_y = 6
+	dir = 8
 	},
 /obj/structure/window/reinforced/half/directional/south,
-/obj/structure/curtain,
 /turf/open/floor/iron/freezer,
 /area/mine/living_quarters)
 "CV" = (
@@ -8220,12 +8224,6 @@
 	},
 /turf/open/floor/iron/checker,
 /area/mine/laborcamp)
-"UN" = (
-/obj/structure/sign/directions/security/right/directional/north{
-	dir = 4
-	},
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "UQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -34868,7 +34866,7 @@ pU
 nT
 ol
 pU
-UN
+nl
 pU
 pU
 aj
@@ -37179,7 +37177,7 @@ kY
 pU
 aj
 FH
-nl
+CI
 NL
 aj
 aj
