@@ -7,7 +7,7 @@
 	name = "firelock"
 	desc = "Apply crowbar."
 	icon = 'icons/obj/doors/doorfireglass.dmi'
-	icon_state = "door_open"
+	icon_state = "door_open_map"
 	dir_mask = "firelock_mask"
 	edge_dir_mask = "shutter"
 	inner_transparent_dirs = EAST|WEST
@@ -751,12 +751,13 @@
 	register_adjacent_turfs()
 
 /obj/machinery/door/firedoor/closed
-	icon_state = "door_closed"
+	icon_state = "door_closed_map"
 	density = TRUE
 	alarm_type = FIRELOCK_ALARM_TYPE_GENERIC
 
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
+	icon_state = "door_open"
 	// Disable directional opacity please (we are always transparent)
 	dir_mask = ""
 	edge_dir_mask = ""
@@ -845,7 +846,7 @@
 	name = "firelock frame"
 	desc = "A partially completed firelock."
 	icon = 'icons/obj/doors/Doorfire.dmi'
-	icon_state = "frame1"
+	icon_state = "frame1_map"
 	base_icon_state = "frame"
 	anchored = FALSE
 	density = TRUE
@@ -863,8 +864,14 @@
 			. += span_notice("There are no <i>firelock electronics</i> in the frame. The frame could be <b>welded</b> apart .")
 
 /obj/structure/firelock_frame/update_icon_state()
-	icon_state = "[base_icon_state][constructionStep]"
+	icon_state = "[base_icon_state][constructionStep]_top"
 	return ..()
+
+/obj/structure/firelock_frame/update_overlays()
+	. = ..()
+	var/working_icon_state = "[base_icon_state][constructionStep]_bottom"
+	. += mutable_appearance(icon, working_icon_state, ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
+	. += emissive_blocker(icon, working_icon_state, src, ABOVE_MOB_LAYER)
 
 /obj/structure/firelock_frame/attackby(obj/item/attacking_object, mob/user)
 	switch(constructionStep)
