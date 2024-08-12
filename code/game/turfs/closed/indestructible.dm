@@ -125,6 +125,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	base_icon_state = "shuttle_wall"
 
 /turf/closed/indestructible/reinforced/titanium/nodiagonal
+	icon_state = "12-2"
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/riveted
@@ -172,6 +173,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	canSmoothWith = SMOOTH_GROUP_ABDUCTOR_WALLS
 
 /turf/closed/indestructible/alien/nodiagonal
+	icon_state = "12-2"
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/cult
