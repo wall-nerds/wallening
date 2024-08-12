@@ -565,7 +565,6 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/painting)
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
 	SSpersistent_paintings.painting_frames += src
-	find_and_hang_on_wall()
 
 /obj/structure/sign/painting/Destroy()
 	. = ..()
