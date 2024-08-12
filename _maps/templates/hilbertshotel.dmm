@@ -35,7 +35,7 @@
 /area/misc/hilbertshotel)
 "de" = (
 /obj/machinery/light/small/directional/west,
-/turf/closed/indestructible/hotelwall,
+/turf/open/indestructible/hoteltile,
 /area/misc/hilbertshotel)
 "dP" = (
 /obj/structure/railing{
@@ -133,6 +133,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
+/obj/machinery/light/small/directional/west,
 /turf/open/indestructible/hoteltile,
 /area/misc/hilbertshotel)
 "Bb" = (
@@ -435,8 +436,8 @@ ol
 aP
 ag
 Av
+ez
 de
-ag
 ag
 ez
 cW

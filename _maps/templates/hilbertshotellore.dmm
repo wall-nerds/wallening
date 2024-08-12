@@ -187,6 +187,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small/directional/west,
 /turf/open/indestructible/hoteltile,
 /area/misc/hilbertshotel)
 "be" = (
@@ -205,8 +206,9 @@
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
 "bh" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/directional/west,
-/turf/closed/indestructible/hotelwall,
+/turf/open/indestructible/hoteltile,
 /area/misc/hilbertshotel)
 "bi" = (
 /obj/structure/table/wood,
@@ -402,8 +404,8 @@ au
 az
 ap
 bb
+ab
 bh
-aZ
 ap
 ab
 aa
