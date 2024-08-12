@@ -25,7 +25,6 @@
 		layer = BELOW_MOB_LAYER,
 		appearance_flags = KEEP_APART | RESET_TRANSFORM | RESET_COLOR
 	)
-	shadow.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	shadow.pixel_x = shadow_offset_x - movable_parent.pixel_x
 	update_shadow_position()
 
