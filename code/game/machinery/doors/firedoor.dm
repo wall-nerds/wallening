@@ -27,6 +27,8 @@
 
 	COOLDOWN_DECLARE(activation_cooldown)
 
+	///If we split up our sprite into top and bottom parts or not
+	var/use_split_sprites = TRUE
 	///X offset for the overlay lights, so that they line up with the thin border firelocks
 	var/light_xoffset = 0
 	///Y offset for the overlay lights, so that they line up with the thin border firelocks
@@ -639,20 +641,25 @@
 	if(active)
 		addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
 
+/// Returns the base icon state we're currently using
+/obj/machinery/door/firedoor/proc/get_base_state()
+	if(animation)
+		return "[base_icon_state]_[animation]"
+	return "[base_icon_state]_[density ? "closed" : "open"]"
+
 /obj/machinery/door/firedoor/update_icon_state()
 	. = ..()
-	if(animation)
-		icon_state = "[base_icon_state]_[animation]_top"
+	if(use_split_sprites)
+		icon_state = "[get_base_state()]_top"
 	else
-		icon_state = "[base_icon_state]_[density ? "closed" : "open"]_top"
+		icon_state = get_base_state()
 
 /obj/machinery/door/firedoor/update_overlays()
 	. = ..()
-	var/working_icon_state
-	if(animation)
-		working_icon_state = "[base_icon_state]_[animation]_bottom"
-	else
-		working_icon_state = "[base_icon_state]_[density ? "closed" : "open"]_bottom"
+	if(!use_split_sprites)
+		return
+
+	var/working_icon_state = "[get_base_state()]_bottom"
 	. += mutable_appearance(icon, working_icon_state, ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
 	. += emissive_blocker(icon, working_icon_state, src, ABOVE_MOB_LAYER)
 
@@ -756,6 +763,7 @@
 	can_crush = FALSE
 	flags_1 = ON_BORDER_1
 	can_atmos_pass = ATMOS_PASS_PROC
+	use_split_sprites = FALSE
 
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
