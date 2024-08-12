@@ -413,20 +413,24 @@
 	},
 /obj/machinery/reagentgrinder{
 	pixel_x = 7;
-	pixel_y = 5
+	pixel_y = 12
 	},
 /obj/structure/noticeboard/directional/east,
 /obj/item/grenade/chem_grenade{
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 5
 	},
 /obj/item/grenade/chem_grenade{
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 5
 	},
 /obj/item/grenade/chem_grenade{
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 5
 	},
 /obj/item/grenade/chem_grenade{
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 5
 	},
 /obj/machinery/light/cold/directional/east,
 /turf/open/floor/mineral/titanium/tiled/yellow,
@@ -1027,7 +1031,8 @@
 /area/centcom/syndicate_mothership/control)
 "lg" = (
 /turf/closed/indestructible/fakedoor{
-	name = "BUNKER 4337"
+	name = "BUNKER 4337";
+	dir = 4
 	},
 /area/centcom/syndicate_mothership)
 "lj" = (
@@ -1255,9 +1260,7 @@
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
 "oc" = (
-/obj/structure/fence{
-	dir = 4
-	},
+/obj/structure/fence,
 /turf/open/misc/asteroid/snow/icemoon,
 /area/centcom/syndicate_mothership/control)
 "oe" = (
@@ -1448,7 +1451,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom/syndicate_mothership/expansion_chemicalwarfare)
 "pY" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
+/obj/structure/window/reinforced/half/directional/east,
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/mineral/titanium/tiled,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
@@ -1636,9 +1639,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom/syndicate_mothership/control)
 "sb" = (
-/obj/structure/fence/cut/medium{
-	dir = 4
-	},
+/obj/structure/fence/cut/medium,
 /turf/open/misc/asteroid/snow/icemoon,
 /area/centcom/syndicate_mothership/control)
 "sc" = (
@@ -1953,7 +1954,7 @@
 /area/centcom/syndicate_mothership/control)
 "wg" = (
 /obj/structure/fence/corner{
-	dir = 6
+	dir = 4
 	},
 /turf/open/misc/asteroid/snow/airless,
 /area/centcom/syndicate_mothership)
@@ -2176,7 +2177,8 @@
 	pixel_x = 5
 	},
 /obj/item/circuitboard/computer/overwatch{
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/centcom/syndicate_mothership)
@@ -2427,7 +2429,6 @@
 /turf/closed/wall/mineral/wood,
 /area/centcom/syndicate_mothership/control)
 "Ce" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 6
 	},
@@ -2463,27 +2464,27 @@
 /obj/structure/table/glass/plasmaglass,
 /obj/item/reagent_containers/syringe{
 	pixel_x = -5;
-	pixel_y = 12
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/syringe{
 	pixel_x = -2;
-	pixel_y = 13
+	pixel_y = 17
 	},
 /obj/item/reagent_containers/syringe{
 	pixel_x = 1;
-	pixel_y = 14
+	pixel_y = 19
 	},
 /obj/item/reagent_containers/dropper{
 	pixel_x = -4;
-	pixel_y = -6
+	pixel_y = -3
 	},
 /obj/item/storage/box/monkeycubes{
 	pixel_x = -6;
-	pixel_y = 5
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/cup/bottle/formaldehyde{
 	pixel_x = 8;
-	pixel_y = 4
+	pixel_y = 9
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
@@ -2760,7 +2761,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "Gl" = (
-/obj/structure/fence,
+/obj/structure/fence{
+	dir = 4
+	},
 /obj/effect/light_emitter{
 	set_cap = 1;
 	set_luminosity = 4
@@ -4075,7 +4078,8 @@
 /area/centcom/syndicate_mothership/control)
 "Ta" = (
 /turf/closed/indestructible/fakedoor{
-	name = "Sub-Laboratory Elevator"
+	name = "Sub-Laboratory Elevator";
+	dir = 4
 	},
 /area/centcom/syndicate_mothership/control)
 "Tb" = (
@@ -4629,7 +4633,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom/syndicate_mothership/control)
 "Zi" = (
-/obj/structure/fence/cut/large,
+/obj/structure/fence/cut/large{
+	dir = 4
+	},
 /obj/effect/light_emitter{
 	set_cap = 1;
 	set_luminosity = 4
@@ -5689,7 +5695,7 @@ KU
 pl
 uT
 uT
-ds
+Ef
 wW
 KU
 KU
@@ -5791,7 +5797,7 @@ Kq
 uT
 Oz
 bT
-wv
+SK
 HW
 HW
 Ws
@@ -5893,7 +5899,7 @@ Kq
 Kq
 uT
 uT
-ds
+Ef
 HW
 HW
 HW
@@ -6097,7 +6103,7 @@ Xk
 yA
 tO
 uT
-ds
+Ef
 HW
 HW
 nk
@@ -6199,7 +6205,7 @@ lg
 Kq
 Kq
 Sc
-ds
+Ef
 HW
 HW
 HW
@@ -6301,7 +6307,7 @@ CX
 os
 Kq
 vI
-ds
+Ef
 HW
 HW
 HW
@@ -6403,7 +6409,7 @@ lg
 Kq
 Kq
 vI
-ds
+Ef
 HW
 HW
 TX
@@ -6505,7 +6511,7 @@ bB
 bB
 bB
 YX
-Mo
+aJ
 HW
 HW
 bT
@@ -6599,14 +6605,14 @@ Zi
 Gl
 Gl
 Kq
-Ef
-aJ
+ds
+Mo
 Kq
-Ef
-Ef
-SK
-Ef
-Ef
+ds
+ds
+wv
+ds
+ds
 wg
 HW
 HW

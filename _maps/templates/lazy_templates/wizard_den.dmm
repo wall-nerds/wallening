@@ -28,16 +28,13 @@
 /area/centcom/wizard_station)
 "cF" = (
 /obj/structure/table/wood,
-/obj/item/radio/intercom,
 /turf/open/floor/carpet/red,
 /area/centcom/wizard_station)
 "dk" = (
 /obj/machinery/power/shuttle_engine/heater{
 	resistance_flags = 3
 	},
-/obj/structure/window/reinforced/spawner/directional/north{
-	resistance_flags = 3
-	},
+/obj/structure/window/reinforced/half/directional/north,
 /turf/open/lava,
 /area/centcom/wizard_station)
 "dp" = (
@@ -93,10 +90,10 @@
 /obj/structure/table,
 /obj/item/extinguisher{
 	pixel_x = 7;
-	pixel_y = -6
+	pixel_y = 8
 	},
 /obj/item/clothing/suit/wizrobe/red{
-	pixel_y = 3;
+	pixel_y = 11;
 	pixel_x = -6
 	},
 /turf/open/floor/engine/cult,
@@ -199,7 +196,7 @@
 	},
 /obj/item/clothing/head/wizard/red{
 	pixel_x = 6;
-	pixel_y = -10
+	pixel_y = 2
 	},
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/engine/cult,
@@ -348,7 +345,8 @@
 	desc = "Everything you need to know to be a wizard."
 	},
 /obj/item/stack/medical/bruise_pack{
-	pixel_x = -12
+	pixel_x = -12;
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/cup/glass/mug/coco{
 	pixel_x = -11;
@@ -378,6 +376,10 @@
 	pixel_x = 6
 	},
 /turf/open/floor/engine/cult,
+/area/centcom/wizard_station)
+"rD" = (
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/carpet/red,
 /area/centcom/wizard_station)
 "sx" = (
 /obj/structure/flora/bush/flowers_pp/style_random,
@@ -572,7 +574,7 @@
 /turf/open/floor/engine/cult,
 /area/centcom/wizard_station)
 "Dy" = (
-/obj/machinery/door/window/right/directional/east,
+/obj/structure/window/reinforced/half/directional/east,
 /turf/open/floor/engine/cult,
 /area/centcom/wizard_station)
 "DX" = (
@@ -591,14 +593,14 @@
 /obj/machinery/power/shuttle_engine/heater{
 	resistance_flags = 3
 	},
-/obj/structure/window/reinforced/spawner/directional/north{
-	resistance_flags = 3
-	},
+/obj/structure/window/reinforced/half/directional/north,
 /turf/open/floor/engine/cult,
 /area/centcom/wizard_station)
 "HD" = (
 /obj/structure/table/wood,
-/obj/item/storage/photo_album,
+/obj/item/storage/photo_album{
+	pixel_y = 8
+	},
 /turf/open/floor/engine/cult,
 /area/centcom/wizard_station)
 "HX" = (
@@ -661,7 +663,7 @@
 /turf/open/floor/iron,
 /area/centcom/wizard_station)
 "JW" = (
-/obj/machinery/door/window/left/directional/east,
+/obj/machinery/door/window/half/left/directional/east,
 /turf/open/floor/engine/cult,
 /area/centcom/wizard_station)
 "KL" = (
@@ -740,7 +742,7 @@
 "RR" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/wizard{
-	pixel_y = 2;
+	pixel_y = 10;
 	pixel_x = -5
 	},
 /turf/open/floor/engine/cult,
@@ -1574,7 +1576,7 @@ op
 op
 op
 op
-TG
+VB
 Ol
 kZ
 kZ
@@ -1625,7 +1627,7 @@ cF
 LU
 LU
 LU
-LU
+rD
 LU
 LU
 Pb
@@ -1758,7 +1760,7 @@ op
 op
 op
 op
-TG
+VB
 Ol
 kZ
 kZ

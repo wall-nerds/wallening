@@ -256,6 +256,12 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_flags = NONE
 	canSmoothWith = null
 	smoothing_groups = null
+	/// What kind of turf should be visually represented under this door?
+	var/floor_to_copy = /turf/open/floor/plating
+
+/turf/closed/indestructible/fakedoor/Initialize(mapload)
+	. = ..()
+	underlays += mutable_appearance(floor_to_copy.icon, floor_to_copy.icon_state, offset_spokesman = src, plane = FLOOR_PLANE)
 
 /turf/closed/indestructible/fakedoor/maintenance
 	icon = 'icons/obj/doors/airlocks/tall/hatch/maintenance.dmi'
