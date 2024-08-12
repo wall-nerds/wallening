@@ -262,11 +262,10 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	icon_state = "closed" // Ditto
 	opacity = FALSE
 
+/// WALLENING TODO: Needs additional work; the base airlock it's meant to mimic is a GAGS-Generated sprite.
 /turf/closed/indestructible/fakedoor/engineering
 	icon = 'icons/obj/doors/airlocks/station/engineering.dmi'
-	greyscale_config = /datum/greyscale_config/airlocks/custom
-	greyscale_colors = "#d8a81b#d8a81b#c2940d#c2940d#7f292f#6d6565#997715"
-	icon_state = "closed" // Ditto
+	icon_state = "closed"
 
 /turf/closed/indestructible/rock
 	name = "dense rock"
