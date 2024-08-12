@@ -225,9 +225,9 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/opsglass
 	name = "window"
-	icon = MAP_SWITCH('icons/obj/smooth_structures/windows/reinforced_window.dmi', 'icons/obj/smooth_structures/structure_variations.dmi')
+	icon = MAP_SWITCH('icons/obj/smooth_structures/windows/plastitanium_window.dmi', 'icons/obj/smooth_structures/plastitanium_window.dmi')
 #ifdef MAP_EDITOR
-	icon_state = "fake_window"
+	icon_state = "plastitanium_window-0"
 #endif
 	layer = ABOVE_OBJ_LAYER
 	opacity = FALSE
