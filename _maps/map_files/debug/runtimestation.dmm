@@ -251,6 +251,7 @@
 /area/station/hallway/primary/central)
 "bF" = (
 /obj/machinery/computer/rdconsole,
+/obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/iron,
 /area/station/science)
 "bI" = (
@@ -862,10 +863,6 @@
 /obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
-"fj" = (
-/obj/structure/sign/warning/docking,
-/turf/closed/wall/r_wall,
-/area/station/hallway/secondary/entry)
 "fl" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -881,11 +878,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/storage)
-"fn" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum/external,
-/turf/open/floor/plating,
-/area/station/hallway/secondary/entry)
 "fo" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "cargoload"
@@ -1512,6 +1504,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"vV" = (
+/obj/structure/sign/warning/docking/directional/north,
+/turf/open/space/basic,
+/area/space)
 "wa" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -1632,8 +1628,8 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
 "zo" = (
-/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/south,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "zS" = (
@@ -1936,6 +1932,11 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
+"Hy" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/sign/warning/vacuum/external/directional/north,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "HW" = (
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/unlocked,
@@ -2152,6 +2153,10 @@
 /obj/machinery/rnd/production/protolathe/department,
 /turf/open/floor/iron,
 /area/station/science)
+"On" = (
+/obj/structure/sign/warning/docking/directional/north,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "Ot" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -2560,7 +2565,6 @@
 "Yy" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/rnd/production/circuit_imprinter/department,
-/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/science)
@@ -4784,14 +4788,14 @@ lc
 wB
 eh
 gF
-fj
+dY
+vV
 aa
 aa
 aa
 aa
-aa
-fj
-eh
+dY
+On
 eh
 en
 aa
@@ -5522,12 +5526,12 @@ eh
 BM
 dY
 dY
-fn
+en
 fs
 en
 dY
 dY
-BM
+Hy
 eh
 dY
 aa
