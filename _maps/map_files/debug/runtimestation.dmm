@@ -463,7 +463,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/machinery/shower/directional/east,
 /turf/open/floor/iron,
 /area/station/construction)
 "db" = (
@@ -618,7 +617,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/machinery/shower/directional/west,
 /turf/open/floor/iron,
 /area/station/construction)
 "dP" = (
@@ -1287,11 +1285,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/construction)
-"oD" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/shower/directional/north,
-/turf/open/floor/iron,
-/area/station/construction)
 "oK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -1731,13 +1724,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/gravity_generator)
-"Br" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/shower/directional/south,
-/turf/open/floor/iron,
-/area/station/construction)
 "Bz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/stripes/line{
@@ -1825,15 +1811,6 @@
 /obj/machinery/component_printer,
 /turf/open/floor/iron/dark,
 /area/station/science/explab)
-"Da" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/sink/directional/south{
-	pixel_y = -10
-	},
-/turf/open/floor/iron,
-/area/station/construction)
 "Df" = (
 /obj/machinery/light/directional/east,
 /obj/item/integrated_circuit/loaded/hello_world,
@@ -2031,13 +2008,6 @@
 /obj/machinery/rnd/production/techfab/department,
 /turf/open/floor/iron,
 /area/station/science)
-"Ig" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/sink/directional/east,
-/turf/open/floor/iron,
-/area/station/construction)
 "Ih" = (
 /obj/machinery/camera/directional/north,
 /turf/open/floor/iron,
@@ -2088,13 +2058,6 @@
 /obj/structure/sign/warning/vacuum/directional/north,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
-"IN" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/sink/directional/west,
-/turf/open/floor/iron,
-/area/station/construction)
 "IV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -2389,13 +2352,6 @@
 /obj/structure/sign/warning/vacuum/directional/north,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
-"Qr" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/sink/directional/north{
-	pixel_y = 18
-	},
-/turf/open/floor/iron,
-/area/station/construction)
 "Qu" = (
 /obj/docking_port/stationary/mining_home{
 	dir = 8
@@ -6144,7 +6100,7 @@ bE
 cN
 Sg
 dm
-IN
+dy
 ii
 dX
 dy
@@ -6694,7 +6650,7 @@ Hc
 QV
 hp
 cN
-Qr
+cY
 dn
 dn
 dn
@@ -6786,7 +6742,7 @@ Hc
 QV
 bE
 cN
-oD
+cY
 dn
 dn
 dn
@@ -6797,7 +6753,7 @@ dn
 dn
 dn
 dn
-Da
+dL
 cN
 Tt
 bL
@@ -6889,7 +6845,7 @@ dn
 dn
 dn
 dn
-Br
+dL
 cN
 Tt
 bL
@@ -7156,7 +7112,7 @@ bE
 cN
 dK
 do
-Ig
+dz
 EG
 gy
 dz
