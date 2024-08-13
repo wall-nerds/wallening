@@ -82,7 +82,7 @@ _INVERTED_WALL_MOUNT_OFFSET(path, offset, 0, -offset, offset, -offset, 0)
 #define SHOWER_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 18, 0, -10, 16, -16, 12)
 
 // Sinks need to be shifted down so they layer correctly when north due to their unique status
-#define SINK_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 18, 0, 24, 16, -16, 12)
+#define SINK_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 18, 0, -10, 16, -16, 12)
 
 #define _WALL_MOUNT_DIRECTIONAL_HELPERS(path, north_offset, physical_north_offset, south_offset, east_offset, west_offset, horizontal_up_offset) \
 ##path/directional/north {\
