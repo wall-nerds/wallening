@@ -138,38 +138,6 @@
 	icon_state = "stairs_small"
 	destroy_paired = FALSE
 
-/obj/structure/tall_stairs/start/north
-	dir = NORTH
-
-/obj/structure/tall_stairs/start/south
-	dir = SOUTH
-
-/obj/structure/tall_stairs/start/east
-	dir = EAST
-
-/obj/structure/tall_stairs/start/west
-	dir = WEST
-
-/obj/structure/tall_stairs/end/north
-	dir = NORTH
-
-/obj/structure/tall_stairs/end/south
-	dir = SOUTH
-
-/obj/structure/tall_stairs/end/east
-	dir = EAST
-
-/obj/structure/tall_stairs/end/west
-	dir = WEST
-
-/obj/structure/tall_stairs/small/north
-	dir = NORTH
-
-/obj/structure/tall_stairs/small/south
-	dir = SOUTH
-
-/obj/structure/tall_stairs/small/east
-	dir = EAST
-
-/obj/structure/tall_stairs/small/west
-	dir = WEST
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/tall_stairs/start)
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/tall_stairs/end)
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/tall_stairs/small)
