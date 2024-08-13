@@ -1744,6 +1744,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/machinery/button/ignition/incinerator/ordmix/directional/west{
+	id = "syn_ordmix_igniter"
+	},
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "tu" = (
@@ -2527,11 +2530,6 @@
 	id = "syn_ordmix_vent";
 	pixel_x = 5;
 	pixel_y = -29
-	},
-/obj/machinery/button/ignition/incinerator/ordmix{
-	id = "syn_ordmix_igniter";
-	pixel_x = -6;
-	pixel_y = -30
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm/directional/south,
