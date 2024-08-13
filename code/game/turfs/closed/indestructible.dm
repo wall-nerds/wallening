@@ -236,7 +236,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	. = ..()
 	. += mutable_appearance('icons/obj/smooth_structures/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
 	. += mutable_appearance('icons/obj/smooth_structures/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
-	. += mutable_appearance('icons/obj/smooth_structures/window_frames/frame_faces/window_frame_normal.dmi', "window_frame_normal-[smoothing_junction]", BELOW_OBJ_LAYER, appearance_flags = KEEP_APART)
+	. += mutable_appearance('icons/obj/smooth_structures/window_frames/frame_faces/window_frame_plastitanium.dmi', "window_frame_plastitanium-[smoothing_junction]", BELOW_OBJ_LAYER, appearance_flags = KEEP_APART)
 
 /turf/closed/indestructible/fakedoor
 	name = "airlock"
