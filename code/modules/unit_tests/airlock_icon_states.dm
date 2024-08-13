@@ -25,7 +25,7 @@
 		var/icon/airlock_icon = icon(real_lock.icon)
 		var/list/existing_icon_states = required_icon_states.Copy()
 		// Remove this someday
-		if(short_rendering)
+		if(real_lock.short_rendering)
 			existing_icon_states = legacy_required_states.Copy()
 			short_found = TRUE
 

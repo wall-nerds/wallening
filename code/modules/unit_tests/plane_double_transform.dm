@@ -21,7 +21,7 @@
 		/atom/movable/screen/plane_master/weather_frill,
 		/atom/movable/screen/plane_master/weather_glow,
 		/atom/movable/screen/plane_master/weather_frill_glow,
-		/atom/movable/screen/plane_master/wall_weather_mask,
+		/atom/movable/screen/plane_master/rendering_plate/wall_weather_mask,
 	))
 
 	// Generates a list of render target -> PM for future use

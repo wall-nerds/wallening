@@ -163,7 +163,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/upload/left)
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/dorms)
 
 /obj/structure/sign/directions/dorms/right
-	icon_state = "direction_mdorms_right"
+	icon_state = "direction_dorms_right"
 
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/directions/dorms/right)
 /obj/structure/sign/directions/dorms/left
