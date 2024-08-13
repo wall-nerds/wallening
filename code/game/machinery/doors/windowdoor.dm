@@ -146,6 +146,8 @@
 	refresh_hitbox_rendering()
 
 /obj/machinery/door/window/proc/refresh_hitbox_rendering()
+	if(QDELETED(src))
+		return
 	if(!use_hitbox_render)
 		return
 	var/old_hitbox_directions = hitbox_up_directions
@@ -547,6 +549,7 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/machinery/door/window/half/right)
 /obj/machinery/door/window/half
 	can_atmos_pass = ATMOS_PASS_YES
 	icon = 'icons/obj/doors/windoor_half.dmi'
+	rcd_spritesheet_override = "half window"
 
 /obj/machinery/door/window/half/right
 	icon_state = "right"

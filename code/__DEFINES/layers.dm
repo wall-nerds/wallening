@@ -18,12 +18,11 @@
 #define GRAVITY_PULSE_RENDER_TARGET "*GRAVPULSE_RENDER_TARGET"
 
 #define RENDER_PLANE_TRANSPARENT -18 //Transparent plane that shows openspace underneath the floor
-#define TRANSPARENT_FLOOR_PLANE -14
+#define TRANSPARENT_FLOOR_PLANE -13
 
-#define FLOOR_PLANE -13
+#define FLOOR_PLANE -12
 #define FLOOR_PLANE_RENDER_TARGET "*FLOOR_PLANE"
-#define WALL_PLANE -12
-#define OVER_TILE_PLANE -11
+#define WALL_PLANE -11
 #define GAME_PLANE -10
 #define ABOVE_GAME_PLANE -9
 #define HIDDEN_WALL_PLANE -8
@@ -107,6 +106,8 @@
 #define RUNECHAT_PLANE 30
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 31
+/// Plane for the wallmount balloons
+#define EXAMINE_BALLOONS_PLANE 32
 
 //-------------------- HUD ---------------------
 //HUD layer defines
