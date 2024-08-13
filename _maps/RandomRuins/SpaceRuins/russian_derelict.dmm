@@ -7466,8 +7466,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/ks13/command/bridge)
 "Wt" = (
+/obj/structure/table_frame,
 /obj/machinery/light/small/directional/north,
-/turf/open/floor/iron/airless,
+/turf/open/floor/plating/airless,
 /area/ruin/space/ks13/service/kitchen)
 "Wu" = (
 /obj/effect/mapping_helpers/burnt_floor,
@@ -10305,7 +10306,7 @@ MW
 Hm
 Vr
 Jr
-Sp
+Wt
 ZO
 rh
 Kh
@@ -10418,7 +10419,7 @@ Jr
 Ut
 Ww
 MW
-Wt
+Vk
 Sp
 pK
 WC
