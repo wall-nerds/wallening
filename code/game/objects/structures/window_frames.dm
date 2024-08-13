@@ -4,7 +4,6 @@
 	icon = 'icons/obj/smooth_structures/window_frames/window_frame_normal.dmi'
 	icon_state = "window_frame_normal-0"
 	base_icon_state = "window_frame_normal"
-	plane = OVER_TILE_PLANE //otherwise they will mask windows
 	smoothing_flags = SMOOTH_BITMASK|SMOOTH_OBJ
 	smoothing_groups = SMOOTH_GROUP_WINDOW_FRAMES
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FRAMES
@@ -148,7 +147,7 @@
 	if(!tool.use_tool(src, user, 0, volume = 50))
 		return
 	tool.play_tool_sound(src, 100)
-	balloon_alert(user, "Grille Cut!")
+	balloon_alert(user, "grille cut!")
 	has_grille = FALSE
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -161,11 +160,11 @@
 
 	if(!tool.tool_start_check(user, amount = 0))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "Cutting...")
+	balloon_alert(user, "cutting...")
 	if(!tool.use_tool(src, user, 70, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "Deconstructed")
+	balloon_alert(user, "deconstructed")
 	deconstruct(TRUE)
 
 	return ITEM_INTERACT_SUCCESS
@@ -180,12 +179,12 @@
 	if(!tool.tool_start_check(user, amount = 0))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "Repairing...")
+	balloon_alert(user, "repairing...")
 	if(!tool.use_tool(src, user, 40, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
 	atom_integrity = max_integrity
-	balloon_alert(user, "Repaired!")
+	balloon_alert(user, "repaired!")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -307,7 +306,7 @@
 		if(RCD_DECONSTRUCT)
 			var/turf/home = get_turf(src)
 			// No thing to display on if we get deleted
-			home.balloon_alert(user, "Deconstructed!")
+			home.balloon_alert(user, "deconstructed!")
 			qdel(src)
 			return TRUE
 		if(RCD_WINDOWGRILLE)
@@ -356,14 +355,14 @@
 	if(!has_grille || !return_list)
 		return
 
-	return_list += mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src)
 	return_list += mutable_appearance(grille_black_icon, "[grille_icon_state]_black-[smoothing_junction]")
+	return_list += mutable_appearance(grille_icon, "[grille_icon_state]-[smoothing_junction]")
 
 /// if this frame has a valid frame icon, creates it. this is what obscures the cable if it goes through the frame
 /obj/structure/window_frame/proc/create_frame_overlay(list/return_list)
 	if(!frame_icon || !return_list)
 		return
-	return_list += mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", plane = GAME_PLANE, offset_spokesman = src, appearance_flags = KEEP_APART)
+	return_list += mutable_appearance(frame_icon, "[base_icon_state]-[smoothing_junction]", appearance_flags = KEEP_APART)
 
 /obj/structure/window_frame/update_overlays()
 	. = ..()
