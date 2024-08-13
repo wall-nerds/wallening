@@ -209,11 +209,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/bridge)
-"bb" = (
-/obj/structure/lattice,
-/obj/item/stack/sheet/iron,
-/turf/template_noop,
-/area/space/nearstation)
 "be" = (
 /obj/structure/window/reinforced/half/directional/north,
 /obj/structure/window/reinforced/half/directional/west,
@@ -404,12 +399,6 @@
 	},
 /turf/open/floor/iron/white/textured,
 /area/ruin/space/ancientstation/delta/proto)
-"bX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron/white/textured,
-/area/ruin/space/ancientstation/delta/proto)
 "bZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -422,6 +411,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/delta/rnd)
+"cb" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/iron,
+/turf/template_noop,
+/area/space/nearstation)
 "cd" = (
 /obj/machinery/door/airlock/command{
 	name = "Beta Station Access"
@@ -551,11 +545,10 @@
 	},
 /area/ruin/space/ancientstation/delta/hall)
 "ct" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron,
-/area/ruin/space/ancientstation/charlie/hall)
+/obj/structure/table,
+/obj/machinery/door/window/half/left/directional/east,
+/turf/open/floor/iron/dark,
+/area/ruin/space/ancientstation/delta/ai)
 "cw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/transit_tube/station/reverse/flipped,
@@ -575,7 +568,7 @@
 /area/ruin/space/ancientstation/beta/supermatter)
 "cz" = (
 /obj/structure/table,
-/obj/machinery/door/window/half/left/directional/east,
+/obj/structure/window/reinforced/half/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "cA" = (
@@ -617,7 +610,9 @@
 "cJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/paper/fluff/ruins/oldstation/protoinv,
+/obj/item/paper/fluff/ruins/oldstation/protoinv{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/white/textured,
 /area/ruin/space/ancientstation/delta/proto)
 "cK" = (
@@ -1270,6 +1265,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/hall)
+"fp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/white/textured,
+/area/ruin/space/ancientstation/delta/proto)
 "fq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -1577,11 +1578,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/hall)
-"gX" = (
-/obj/structure/table,
-/obj/structure/window/reinforced/half/directional/east,
-/turf/open/floor/iron/dark,
-/area/ruin/space/ancientstation/delta/ai)
 "gY" = (
 /turf/closed/wall/rust,
 /area/ruin/space/ancientstation/charlie/kitchen)
@@ -1757,6 +1753,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/engie)
+"hM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/ruin/space/ancientstation/charlie/hall)
 "hN" = (
 /obj/item/stack/rods,
 /obj/structure/lattice,
@@ -2222,7 +2224,9 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/directional/east,
-/obj/item/paper/fluff/ruins/oldstation,
+/obj/item/paper/fluff/ruins/oldstation{
+	pixel_y = 8
+	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/dorms)
@@ -10299,7 +10303,7 @@ oB
 oF
 KA
 lW
-bb
+cb
 Jg
 UP
 UP
@@ -12402,7 +12406,7 @@ as
 as
 as
 hi
-ct
+hM
 jJ
 bZ
 ey
@@ -13062,7 +13066,7 @@ ak
 ak
 ak
 aT
-ct
+hM
 OT
 WW
 cQ
@@ -14508,8 +14512,8 @@ aM
 NS
 dT
 nG
+ct
 cz
-gX
 ad
 ad
 aa
@@ -14666,7 +14670,7 @@ wx
 ST
 cD
 uj
-bX
+fp
 UJ
 tf
 UJ
