@@ -79,7 +79,6 @@
 "aA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/firecloset/full,
-/obj/structure/sign/poster/contraband/pwr_game/directional/north,
 /turf/open/floor/plating,
 /area/ruin/space/ancientstation/charlie/hall)
 "aF" = (
@@ -159,9 +158,11 @@
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/bridge)
 "aS" = (
-/obj/structure/sign/poster/official/nanotrasen_logo,
-/turf/closed/wall,
-/area/ruin/space/ancientstation/charlie/bridge)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/ruin/space/ancientstation/charlie/hall)
 "aT" = (
 /turf/closed/wall,
 /area/ruin/space/ancientstation/charlie/hall)
@@ -411,11 +412,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/delta/rnd)
-"cb" = (
-/obj/structure/lattice,
-/obj/item/stack/sheet/iron,
-/turf/template_noop,
-/area/space/nearstation)
 "cd" = (
 /obj/machinery/door/airlock/command{
 	name = "Beta Station Access"
@@ -544,11 +540,6 @@
 	initial_gas_mix = "co2=6;o2=16;n2=82;TEMP=293.15"
 	},
 /area/ruin/space/ancientstation/delta/hall)
-"ct" = (
-/obj/structure/table,
-/obj/machinery/door/window/half/left/directional/east,
-/turf/open/floor/iron/dark,
-/area/ruin/space/ancientstation/delta/ai)
 "cw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/transit_tube/station/reverse/flipped,
@@ -568,7 +559,7 @@
 /area/ruin/space/ancientstation/beta/supermatter)
 "cz" = (
 /obj/structure/table,
-/obj/structure/window/reinforced/half/directional/east,
+/obj/machinery/door/window/half/left/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "cA" = (
@@ -1265,12 +1256,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/hall)
-"fp" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron/white/textured,
-/area/ruin/space/ancientstation/delta/proto)
 "fq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -1578,6 +1563,11 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/hall)
+"gX" = (
+/obj/structure/table,
+/obj/structure/window/reinforced/half/directional/east,
+/turf/open/floor/iron/dark,
+/area/ruin/space/ancientstation/delta/ai)
 "gY" = (
 /turf/closed/wall/rust,
 /area/ruin/space/ancientstation/charlie/kitchen)
@@ -1753,12 +1743,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/engie)
-"hM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron,
-/area/ruin/space/ancientstation/charlie/hall)
 "hN" = (
 /obj/item/stack/rods,
 /obj/structure/lattice,
@@ -2868,8 +2852,12 @@
 "mg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/toy/seashell,
-/obj/item/toy/seashell,
+/obj/item/toy/seashell{
+	pixel_y = 8
+	},
+/obj/item/toy/seashell{
+	pixel_y = 8
+	},
 /obj/machinery/light/small/directional/north,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/iron/white,
@@ -3020,10 +3008,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
-/area/ruin/space/ancientstation/beta/mining)
-"mO" = (
-/obj/machinery/mineral/processing_unit_console,
-/turf/closed/wall,
 /area/ruin/space/ancientstation/beta/mining)
 "mP" = (
 /obj/machinery/door/airlock/external/glass/ruin,
@@ -3663,6 +3647,10 @@
 	},
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
+	},
+/obj/machinery/mineral/processing_unit_console{
+	pixel_y = 20;
+	density = 0
 	},
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/beta/mining)
@@ -4488,6 +4476,7 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 1
 	},
+/obj/structure/sign/poster/official/nanotrasen_logo/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/bridge)
 "wm" = (
@@ -4766,6 +4755,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/space/ancientstation/charlie/hall)
+"yq" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/iron,
+/turf/template_noop,
+/area/space/nearstation)
 "yr" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/rust,
@@ -5079,6 +5073,7 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
+/obj/structure/sign/poster/official/nanotrasen_logo/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/bridge)
 "AC" = (
@@ -6593,6 +6588,12 @@
 /obj/item/stack/cable_coil/five,
 /turf/open/floor/plating/airless,
 /area/ruin/space/ancientstation/beta/hall)
+"Kx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/white/textured,
+/area/ruin/space/ancientstation/delta/proto)
 "KA" = (
 /obj/structure/closet/crate/bin,
 /obj/effect/spawner/random/trash/garbage,
@@ -8038,10 +8039,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/hall)
-"Uj" = (
-/obj/structure/girder,
-/turf/closed/mineral/random,
-/area/ruin/space/ancientstation/beta/hall)
 "Ul" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -10227,7 +10224,7 @@ aa
 UP
 UP
 UP
-Uj
+Td
 gV
 Zq
 AK
@@ -10303,7 +10300,7 @@ oB
 oF
 KA
 lW
-cb
+yq
 Jg
 UP
 UP
@@ -11545,7 +11542,7 @@ aa
 Hf
 mD
 TM
-mO
+ga
 mU
 WI
 uR
@@ -12406,7 +12403,7 @@ as
 as
 as
 hi
-hM
+aS
 jJ
 bZ
 ey
@@ -12529,7 +12526,7 @@ aa
 aa
 aa
 aa
-aS
+as
 wl
 bg
 aQ
@@ -12925,7 +12922,7 @@ aa
 aa
 aa
 aa
-aS
+as
 AA
 ax
 aW
@@ -13066,7 +13063,7 @@ ak
 ak
 ak
 aT
-hM
+aS
 OT
 WW
 cQ
@@ -14512,8 +14509,8 @@ aM
 NS
 dT
 nG
-ct
 cz
+gX
 ad
 ad
 aa
@@ -14670,7 +14667,7 @@ wx
 ST
 cD
 uj
-fp
+Kx
 UJ
 tf
 UJ
