@@ -946,12 +946,12 @@
 /turf/open/floor/iron/edge,
 /area/mine/lounge)
 "fM" = (
-/obj/structure/sink/kitchen/directional/west{
-	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
-	name = "old sink"
-	},
 /obj/machinery/light/small/directional/south,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/toilet{
+	dir = 8;
+	pixel_y = 6
+	},
 /turf/open/floor/iron/freezer,
 /area/mine/laborcamp/quarters)
 "fO" = (
@@ -3104,12 +3104,12 @@
 /turf/closed/wall,
 /area/mine/eva)
 "pL" = (
-/obj/structure/toilet{
-	dir = 8;
-	pixel_y = 6
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/official/cleanliness/directional/north,
+/obj/structure/sink/kitchen/directional/west{
+	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
+	name = "old sink"
+	},
 /turf/open/floor/iron/freezer,
 /area/mine/laborcamp/quarters)
 "pM" = (
@@ -4711,16 +4711,6 @@
 /obj/structure/lattice/catwalk/mining,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"zw" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/ripped/directional/south,
-/turf/open/floor/iron/smooth_edge{
-	dir = 1
-	},
-/area/mine/laborcamp)
 "zA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -9090,7 +9080,7 @@
 "Zw" = (
 /obj/structure/curtain,
 /obj/structure/window/reinforced/half/directional/south,
-/obj/machinery/shower/directional/south,
+/obj/machinery/shower/directional/north,
 /obj/item/soap,
 /turf/open/floor/iron/freezer,
 /area/mine/living_quarters)
@@ -26639,7 +26629,7 @@ uC
 aO
 sh
 by
-zw
+Vi
 Ge
 Ge
 Ex
