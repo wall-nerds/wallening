@@ -40,7 +40,7 @@
 /obj/item/canvas
 	name = "canvas"
 	desc = "Draw out your soul on this canvas!"
-	icon = 'icons/obj/art/artstuff.dmi'
+	icon = 'icons/obj/art/painting_frames.dmi'
 	icon_state = "11x11"
 	flags_1 = UNPAINTABLE_1
 	resistance_flags = FLAMMABLE
