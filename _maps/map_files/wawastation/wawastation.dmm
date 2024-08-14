@@ -8223,6 +8223,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable/layer1,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "cXL" = (
@@ -15662,6 +15663,7 @@
 	name = "Cooling Loop to Gas"
 	},
 /obj/effect/turf_decal/stripes,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "fEu" = (
@@ -19342,9 +19344,6 @@
 /obj/item/target/syndicate,
 /turf/open/floor/engine,
 /area/station/science/explab)
-"gTe" = (
-/turf/open/space/basic,
-/area/station/asteroid)
 "gTf" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder{
@@ -26502,6 +26501,7 @@
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/mail_sorting/service/hop_office,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
 "jwI" = (
@@ -27216,6 +27216,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "jHD" = (
@@ -36669,6 +36670,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "mWB" = (
@@ -53447,7 +53449,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/mail_sorting/service/hop_office,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
 "sPV" = (
@@ -53788,6 +53789,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable/multilayer/connected,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "sWT" = (
@@ -57903,6 +57905,7 @@
 /obj/machinery/modular_computer/preset/engineering{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "ura" = (
@@ -60078,6 +60081,7 @@
 /obj/structure/sign/warning/vacuum/external/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "vfM" = (
@@ -62849,6 +62853,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable/layer1,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "wfl" = (
@@ -114765,7 +114770,7 @@ dUc
 cLf
 cLf
 cLf
-gTe
+cLf
 vxX
 vxX
 dUc

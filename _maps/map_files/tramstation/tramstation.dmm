@@ -42438,10 +42438,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/office)
-"nJZ" = (
-/obj/machinery/power/apc/auto_name/directional/east,
-/turf/closed/mineral/random/stationside/asteroid/porus,
-/area/station/asteroid)
 "nKb" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -62739,10 +62735,6 @@
 /obj/item/canvas/twentythree_twentythree,
 /turf/open/floor/iron/grimy,
 /area/station/service/library/lounge)
-"uJE" = (
-/obj/machinery/power/apc/auto_name/directional/east,
-/turf/closed/mineral/random/stationside/asteroid/porus,
-/area/station/medical/chemistry)
 "uJH" = (
 /turf/open/floor/iron/white,
 /area/station/science/robotics/lab)
@@ -168378,7 +168370,7 @@ qgt
 aap
 aac
 aac
-nJZ
+aaa
 aaa
 aaa
 pMW
@@ -168893,7 +168885,7 @@ oGJ
 oGJ
 qgt
 oGJ
-uJE
+oGJ
 aaa
 pMW
 pMW
