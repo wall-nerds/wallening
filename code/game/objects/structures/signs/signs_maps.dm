@@ -1,14 +1,3 @@
-#define SIGN_DIR_NORTH "n"
-#define SIGN_DIR_SOUTH "s"
-#define SIGN_DIR_EAST "e"
-#define SIGN_DIR_WEST "w"
-#define SIGN_DIR_NORTHEAST "ne"
-#define SIGN_DIR_NORTHWEST "nw"
-#define SIGN_DIR_SOUTHEAST "se"
-#define SIGN_DIR_SOUTHWEST "sw"
-#define SUPPORT_LEFT "left"
-#define SUPPORT_RIGHT "right"
-
 // //map and direction signs
 
 /obj/structure/sign/map
