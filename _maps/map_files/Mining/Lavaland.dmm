@@ -2655,9 +2655,20 @@
 /turf/open/floor/iron/dark,
 /area/mine/production)
 "nl" = (
-/obj/structure/sign/directions/security/left/east_arrow/directional/west,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/obj/item/kirbyplants/random,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/mine/lounge)
 "nm" = (
 /turf/closed/wall,
 /area/mine/maintenance/production)
@@ -3428,9 +3439,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/sand/plating/volcanic,
-/obj/structure/sign/directions/arrival/north_arrow/directional/north{
-	dir = 4
-	},
+/obj/structure/sign/directions/arrival/east_arrow/directional/north,
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
 "rH" = (
@@ -6867,20 +6876,9 @@
 /turf/open/floor/iron/checker,
 /area/mine/cafeteria)
 "MQ" = (
-/obj/item/kirbyplants/random,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/yellow{
-	dir = 4
-	},
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron/edge{
-	dir = 4
-	},
-/area/mine/lounge)
+/obj/structure/sign/directions/security/left/east_arrow/directional/west,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "MS" = (
 /turf/open/floor/carpet/executive,
 /area/mine/lounge)
@@ -34848,7 +34846,7 @@ pU
 pU
 nT
 ol
-nl
+MQ
 pU
 pU
 pU
@@ -42310,7 +42308,7 @@ Rt
 EE
 Xi
 ez
-MQ
+nl
 XB
 Zb
 Zq
