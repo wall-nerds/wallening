@@ -2213,9 +2213,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 2
 	},
-/obj/structure/sign/directions/supply/directional/north{
-	dir = 1
-	},
+/obj/structure/sign/directions/supply/north_arrow/directional/north,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
@@ -2658,9 +2656,7 @@
 /turf/open/floor/iron/dark,
 /area/mine/production)
 "nl" = (
-/obj/structure/sign/directions/security/right/directional/north{
-	dir = 4
-	},
+/obj/structure/sign/directions/security/left/east_arrow/directional/west,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "nm" = (
@@ -3433,7 +3429,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/sand/plating/volcanic,
-/obj/structure/sign/directions/arrival/directional/north{
+/obj/structure/sign/directions/arrival/north_arrow/directional/north{
 	dir = 4
 	},
 /turf/open/floor/plating/lavaland_atmos,
@@ -4357,9 +4353,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/sign/directions/dorms/directional/north{
-	dir = 1
-	},
+/obj/structure/sign/directions/dorms/north_arrow/directional/north,
 /obj/effect/turf_decal/sand/plating/volcanic,
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
@@ -5139,9 +5133,7 @@
 	dir = 1
 	},
 /obj/structure/lattice/catwalk/mining,
-/obj/structure/sign/directions/lavaland/directional/north{
-	dir = 8
-	},
+/obj/structure/sign/directions/lavaland/west_arrow/directional/north,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "CM" = (
@@ -6875,13 +6867,6 @@
 	},
 /turf/open/floor/iron/checker,
 /area/mine/cafeteria)
-"MQ" = (
-/obj/effect/turf_decal/sand/plating/volcanic,
-/obj/structure/sign/directions/lavaland/right/directional/north{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_atmos,
-/area/lavaland/surface/outdoors)
 "MS" = (
 /turf/open/floor/carpet/executive,
 /area/mine/lounge)
@@ -6923,6 +6908,7 @@
 /obj/structure/railing/corner{
 	dir = 4
 	},
+/obj/structure/sign/directions/lavaland/north_arrow/directional/east,
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
 "Nh" = (
@@ -7713,9 +7699,7 @@
 /area/mine/maintenance/labor)
 "RF" = (
 /obj/effect/turf_decal/sand/plating/volcanic,
-/obj/structure/sign/directions/supply/directional/north{
-	dir = 1
-	},
+/obj/structure/sign/directions/supply/north_arrow/directional/north,
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
 "RG" = (
@@ -8596,9 +8580,6 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
-/obj/structure/sign/directions/evac/right/directional/north{
-	dir = 4
-	},
 /turf/open/floor/iron/edge{
 	dir = 8
 	},
@@ -9087,9 +9068,7 @@
 /area/mine/living_quarters)
 "Zx" = (
 /obj/effect/turf_decal/sand/plating/volcanic,
-/obj/structure/sign/directions/dorms/directional/north{
-	dir = 8
-	},
+/obj/structure/sign/directions/dorms/west_arrow/directional/north,
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
 "Zz" = (
@@ -9144,9 +9123,7 @@
 /turf/open/floor/iron/smooth,
 /area/mine/laborcamp/production)
 "ZP" = (
-/obj/structure/sign/directions/engineering/directional/north{
-	dir = 1
-	},
+/obj/structure/sign/directions/engineering/north_arrow/directional/north,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/mine/maintenance/living/north)
@@ -34856,8 +34833,8 @@ pU
 pU
 nT
 ol
-pU
 nl
+pU
 pU
 pU
 aj
@@ -35368,7 +35345,7 @@ VK
 VK
 VK
 Nf
-MQ
+BP
 BP
 ol
 pU
