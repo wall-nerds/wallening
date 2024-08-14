@@ -13,17 +13,24 @@
 
 /obj/structure/sign/directions
 	icon = 'icons/obj/directional_signs.dmi'
-	/// Temp variable, are we using arrows and support overlays to build the image as opposed to using a static directions sign.
-	var/build_overlays = TRUE
 	/// What direction is the arrow on the sign pointing?
 	var/sign_arrow_direction = null
 	/// If this sign has a support on the left or right, which side? null if niether
 	var/support_side = null
 
+/obj/structure/sign/directions/Initialize(mapload)
+	. = ..()
+	update_appearance()
+
+/obj/structure/sign/directions/update_icon_state()
+	. = ..()
+	if(support_side)
+		icon_state = "[initial(icon_state)]_[support_side]"
+	else
+		icon_state = "[initial(icon_state)]"
+
 /obj/structure/sign/directions/update_overlays()
 	. = ..()
-	if(!build_overlays)
-		return
 	if(sign_arrow_direction)
 		. += "arrow_[sign_arrow_direction]"
 
