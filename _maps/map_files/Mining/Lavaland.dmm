@@ -3997,7 +3997,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
-/obj/machinery/light/small/directional/east,
+/obj/structure/sign/directions/evac/north_arrow/directional/east,
 /turf/open/floor/iron/edge{
 	dir = 8
 	},
@@ -7139,6 +7139,7 @@
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 1
 	},
+/obj/machinery/light/small/directional/south,
 /turf/open/floor/iron,
 /area/mine/lounge)
 "Oo" = (
