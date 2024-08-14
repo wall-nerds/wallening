@@ -5147,7 +5147,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/button/directional/north{
 	id = "bridgespace";
-	name = BridgeBlastDoors;
+	name = "Bridge Blast Doors";
 	pixel_y = 38
 	},
 /turf/open/floor/iron/stairs/left{

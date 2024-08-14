@@ -59167,7 +59167,6 @@
 "tEa" = (
 /obj/machinery/light/dim/directional/south,
 /obj/structure/table/reinforced,
-/obj/structure/table/reinforced,
 /obj/item/table_clock{
 	pixel_y = 8
 	},

@@ -427,10 +427,6 @@
 /obj/item/paper_bin,
 /turf/open/indestructible/paper,
 /area/misc/testroom)
-"eO" = (
-/obj/structure/camera_assembly,
-/turf/open/floor/iron,
-/area/misc/testroom)
 "eP" = (
 /obj/structure/grille,
 /turf/open/floor/iron,
@@ -616,10 +612,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/misc/testroom)
-"hh" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/open/floor/iron,
-/area/misc/testroom)
 "hi" = (
 /obj/structure/fluff/paper/stack,
 /turf/open/indestructible/paper,
@@ -704,7 +696,6 @@
 	dir = 8
 	},
 /obj/machinery/status_display/ai/directional/north,
-/obj/machinery/keycard_auth/directional/east,
 /turf/open/floor/wood,
 /area/misc/testroom)
 "id" = (
@@ -884,12 +875,6 @@
 "kb" = (
 /turf/closed/wall/mineral/diamond,
 /area/misc/testroom)
-"kc" = (
-/obj/machinery/door/window{
-	dir = 1
-	},
-/turf/open/floor/iron,
-/area/misc/testroom)
 "kf" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -1001,23 +986,19 @@
 /area/misc/testroom)
 "ln" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 1;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk";
-	req_access = list("hop")
-	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Reception Window"
-	},
 /obj/machinery/door/poddoor/preopen{
 	id = "hop";
 	name = "Privacy Shutters"
 	},
 /obj/structure/cable,
+/obj/machinery/door/window/left/directional/south{
+	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor/right/directional/north{
+	name = "Head of Personnel's Desk";
+	req_access = list("hop")
+	},
 /turf/open/floor/iron,
 /area/misc/testroom)
 "lo" = (
@@ -1061,10 +1042,14 @@
 /turf/open/floor/iron,
 /area/misc/testroom)
 "lV" = (
-/obj/structure/grille/tram,
-/obj/structure/grille/tram,
-/turf/open/floor/iron,
-/area/misc/testroom)
+/obj/structure/lattice,
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching output from station security cameras.";
+	name = "Security Camera Monitor";
+	network = list("ss13")
+	},
+/turf/open/space,
+/area/space)
 "ma" = (
 /obj/machinery/door/window/brigdoor/right/directional/south,
 /turf/open/floor/iron,
@@ -1310,7 +1295,6 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/item/clothing/mask/cigarette/cigar,
 /obj/item/reagent_containers/cup/glass/flask/gold,
 /turf/open/floor/carpet,
 /area/misc/testroom)
@@ -1494,11 +1478,6 @@
 	},
 /turf/open/lava/plasma/ice_moon,
 /area/icemoon/underground/explored)
-"qB" = (
-/obj/structure/grille,
-/obj/structure/grille,
-/turf/open/floor/iron,
-/area/misc/testroom)
 "qG" = (
 /obj/machinery/door/password,
 /turf/open/floor/iron,
@@ -1744,10 +1723,6 @@
 /obj/machinery/door/window/brigdoor/security/holding/left/directional/north,
 /turf/open/floor/iron,
 /area/misc/testroom)
-"tv" = (
-/obj/machinery/keycard_auth/directional/north,
-/turf/open/floor/wood,
-/area/misc/testroom)
 "tx" = (
 /obj/structure/fluff/paper,
 /obj/structure/fluff/paper/corner{
@@ -1908,9 +1883,7 @@
 /turf/open/floor/iron,
 /area/misc/testroom)
 "vs" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 8
-	},
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /turf/open/floor/iron,
 /area/misc/testroom)
 "vt" = (
@@ -2141,7 +2114,7 @@
 /turf/open/floor/iron,
 /area/misc/testroom)
 "xC" = (
-/obj/machinery/door/window/survival_pod,
+/obj/machinery/door/window/survival_pod/left/directional/south,
 /turf/open/floor/iron,
 /area/misc/testroom)
 "xE" = (
@@ -2282,9 +2255,7 @@
 /turf/open/floor/carpet,
 /area/misc/testroom)
 "zn" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 4
-	},
+/obj/machinery/door/window/survival_pod/left/directional/east,
 /turf/open/floor/iron,
 /area/misc/testroom)
 "zx" = (
@@ -2899,19 +2870,11 @@
 /area/misc/testroom)
 "FL" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/left/directional/west{
-	base_state = "right";
-	icon_state = "right";
-	name = "Outer Window"
-	},
-/obj/machinery/door/window/brigdoor{
-	dir = 4;
-	name = "Security Desk";
-	req_access = list("security")
-	},
 /obj/item/folder/red,
 /obj/item/pen,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/window/left/directional/east,
+/obj/machinery/door/window/right/directional/west,
 /turf/open/floor/iron,
 /area/misc/testroom)
 "FO" = (
@@ -3196,12 +3159,6 @@
 /obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/wood,
 /area/misc/testroom)
-"Ix" = (
-/obj/machinery/door/window{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/misc/testroom)
 "IC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -3271,15 +3228,11 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching output from station security cameras.";
-	name = "Security Camera Monitor";
-	network = list("ss13")
-	},
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 1
 	},
 /obj/machinery/light/small/directional/north,
+/obj/machinery/computer/security/telescreen/normal/directional/north,
 /turf/open/floor/iron,
 /area/misc/testroom)
 "Jl" = (
@@ -3581,10 +3534,6 @@
 /obj/machinery/door/window/brigdoor/right/directional/north,
 /turf/open/floor/iron,
 /area/misc/testroom)
-"Mt" = (
-/obj/machinery/door/unpowered,
-/turf/open/floor/iron,
-/area/misc/testroom)
 "Mv" = (
 /obj/structure/fluff/paper/corner,
 /obj/structure/fluff/paper/stack{
@@ -3876,8 +3825,7 @@
 /turf/open/floor/iron,
 /area/misc/testroom)
 "Pn" = (
-/obj/machinery/door/window{
-	dir = 1;
+/obj/machinery/door/window/left/directional/north{
 	name = "Captain's Bedroom";
 	req_access = list("captain")
 	},
@@ -4002,9 +3950,7 @@
 /turf/open/floor/iron,
 /area/misc/testroom)
 "QW" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
+/obj/machinery/door/window/survival_pod/left/directional/north,
 /turf/open/floor/iron,
 /area/misc/testroom)
 "QY" = (
@@ -4084,12 +4030,6 @@
 /area/misc/testroom)
 "Rz" = (
 /obj/structure/table/wood,
-/obj/machinery/door/window{
-	base_state = "right";
-	icon_state = "right";
-	name = "Captain's Desk";
-	req_access = list("captain")
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4098,6 +4038,10 @@
 	pixel_y = 9
 	},
 /obj/item/pen,
+/obj/machinery/door/window/right/directional/south{
+	name = "Captain's Desk";
+	req_access = list("captain")
+	},
 /turf/open/floor/wood,
 /area/misc/testroom)
 "RD" = (
@@ -4241,10 +4185,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/wood,
 /area/misc/testroom)
-"Tm" = (
-/obj/machinery/keycard_auth/directional/east,
-/turf/open/floor/carpet,
-/area/misc/testroom)
 "To" = (
 /turf/closed/mineral/snowmountain,
 /area/misc/testroom)
@@ -4263,12 +4203,6 @@
 /area/misc/testroom)
 "Tu" = (
 /obj/machinery/door/window/elevator/left/directional/south,
-/turf/open/floor/iron,
-/area/misc/testroom)
-"Tv" = (
-/obj/machinery/door/window{
-	dir = 8
-	},
 /turf/open/floor/iron,
 /area/misc/testroom)
 "Tw" = (
@@ -6136,7 +6070,7 @@ oL
 aV
 Ft
 oL
-tv
+gC
 gC
 oL
 at
@@ -9477,7 +9411,7 @@ at
 at
 oj
 kL
-Tm
+mV
 NT
 Ux
 oj
@@ -12045,7 +11979,7 @@ at
 at
 Sa
 qj
-qj
+lV
 qj
 oj
 oj
@@ -19679,7 +19613,7 @@ co
 co
 oL
 co
-eO
+co
 co
 co
 co
@@ -19928,16 +19862,16 @@ at
 oL
 co
 oL
-eO
+co
 co
 co
 co
 co
 SV
 co
-eO
+co
 oL
-eO
+co
 co
 co
 co
@@ -20176,7 +20110,7 @@ co
 eP
 eP
 co
-qB
+eP
 eP
 eP
 co
@@ -20193,7 +20127,7 @@ Kn
 oL
 PP
 co
-eO
+co
 co
 co
 co
@@ -25570,7 +25504,7 @@ co
 oL
 oL
 co
-lV
+nn
 nn
 co
 nn
@@ -46162,7 +46096,7 @@ vB
 oL
 co
 oL
-Mt
+co
 oL
 co
 co
@@ -46418,9 +46352,9 @@ vB
 co
 vB
 co
-Mt
 co
-Mt
+co
+co
 co
 co
 co
@@ -46676,7 +46610,7 @@ vB
 oL
 co
 oL
-Mt
+co
 oL
 co
 co
@@ -47190,7 +47124,7 @@ pM
 oL
 co
 oL
-hh
+co
 oL
 co
 co
@@ -47446,9 +47380,9 @@ pM
 co
 pM
 co
-hh
 co
-hh
+co
+co
 co
 co
 co
@@ -47704,7 +47638,7 @@ pM
 oL
 co
 oL
-hh
+co
 oL
 co
 co
@@ -48198,7 +48132,7 @@ at
 oL
 co
 oL
-Tv
+Ia
 oL
 co
 oL
@@ -48454,7 +48388,7 @@ oL
 at
 oL
 co
-kc
+KG
 co
 VT
 co
@@ -48712,7 +48646,7 @@ at
 oL
 co
 oL
-Ix
+zb
 oL
 co
 oL
