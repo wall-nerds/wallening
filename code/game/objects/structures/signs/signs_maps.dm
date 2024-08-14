@@ -49,6 +49,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/map/left/metastation)
 	icon_state = "map-right-MS"
 
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/map/right/metastation)
+
 /obj/structure/sign/directions
 	icon = 'icons/obj/directional_signs.dmi'
 	/// Temp variable, are we using arrows and support overlays to build the image as opposed to using a static directions sign.
