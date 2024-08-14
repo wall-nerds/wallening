@@ -1285,6 +1285,9 @@
 	pixel_x = -7;
 	pixel_y = 3
 	},
+/obj/machinery/button/door/directional/east{
+	id = "qmroom"
+	},
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/qm)
 "azZ" = (
@@ -1949,11 +1952,6 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/west,
-/obj/machinery/button/door/directional/west{
-	id = "qmroom";
-	name = "Privacy Blast Doors Control";
-	pixel_y = -7
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
@@ -2221,9 +2219,15 @@
 /area/station/service/kitchen)
 "aNQ" = (
 /obj/structure/table,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/medical/mesh,
-/obj/item/stack/medical/suture,
+/obj/item/stack/medical/gauze{
+	pixel_y = 8
+	},
+/obj/item/stack/medical/mesh{
+	pixel_y = 8
+	},
+/obj/item/stack/medical/suture{
+	pixel_y = 8
+	},
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
@@ -3307,6 +3311,12 @@
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/light/small/directional/west,
 /obj/machinery/computer/security/telescreen/med_sec/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -8
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "bgS" = (
@@ -3528,6 +3538,7 @@
 	},
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/light_switch/directional/north,
+/obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/cryo)
 "bjP" = (
@@ -4933,16 +4944,20 @@
 /obj/item/pen,
 /obj/structure/table/reinforced,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/east,
-/obj/item/folder/red,
+/obj/item/folder/red{
+	pixel_y = 8
+	},
 /obj/item/book/manual/wiki/security_space_law{
 	pixel_x = 3;
-	pixel_y = 4
+	pixel_y = 12
 	},
 /obj/machinery/newscaster/directional/north,
 /obj/item/screwdriver{
-	pixel_y = 10
+	pixel_y = 18
 	},
-/obj/item/radio/off,
+/obj/item/radio/off{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
@@ -4953,7 +4968,7 @@
 /obj/structure/table,
 /obj/item/storage/box/bodybags{
 	pixel_x = 3;
-	pixel_y = 2
+	pixel_y = 10
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
@@ -5358,15 +5373,27 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
+/obj/item/grenade/chem_grenade{
+	pixel_y = 8
+	},
+/obj/item/grenade/chem_grenade{
+	pixel_y = 8
+	},
+/obj/item/grenade/chem_grenade{
+	pixel_y = 8
+	},
+/obj/item/grenade/chem_grenade{
+	pixel_y = 8
+	},
+/obj/item/stack/cable_coil{
+	pixel_y = 8
+	},
+/obj/item/stack/cable_coil{
+	pixel_y = 8
+	},
 /obj/item/screwdriver{
 	pixel_x = -2;
-	pixel_y = 6
+	pixel_y = 14
 	},
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/requests_console/directional/west{
@@ -5402,11 +5429,13 @@
 "bTm" = (
 /obj/structure/table/reinforced,
 /obj/item/wheelchair{
-	pixel_y = -3
+	pixel_y = 5
 	},
-/obj/item/wheelchair,
 /obj/item/wheelchair{
-	pixel_y = 3
+	pixel_y = 8
+	},
+/obj/item/wheelchair{
+	pixel_y = 13
 	},
 /obj/structure/window/spawner/directional/north,
 /obj/structure/window/spawner/directional/west,
@@ -5895,7 +5924,6 @@
 	dir = 4
 	},
 /obj/machinery/firealarm/directional/east,
-/obj/machinery/light/small/directional/east,
 /obj/structure/bed{
 	pixel_z = 0
 	},
@@ -7582,10 +7610,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/iron/grimy,
 /area/station/tcommsat/computer)
-"cJL" = (
-/obj/structure/sign/directions/evac,
-/turf/closed/wall/r_wall,
-/area/station/medical/chemistry)
 "cKd" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
@@ -7857,11 +7881,11 @@
 /obj/machinery/light_switch/directional/north,
 /obj/item/storage/briefcase/secure{
 	pixel_x = 3;
-	pixel_y = 5
+	pixel_y = 13
 	},
 /obj/item/storage/medkit/regular{
 	pixel_x = -3;
-	pixel_y = -3
+	pixel_y = 5
 	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 1
@@ -8251,13 +8275,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
-"cXH" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 4
-	},
-/obj/structure/sign/poster/official/safety_eye_protection/directional/east,
-/turf/open/floor/iron/white,
-/area/station/medical/chemistry)
 "cXP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/engine,
@@ -8297,12 +8314,12 @@
 /obj/structure/table/reinforced,
 /obj/item/folder/white{
 	pixel_x = 4;
-	pixel_y = -3
+	pixel_y = 8
 	},
 /obj/machinery/door/firedoor,
 /obj/item/folder/white{
 	pixel_x = 4;
-	pixel_y = -3
+	pixel_y = 5
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 1;
@@ -8310,7 +8327,8 @@
 	name = "Pharmacy Shutters"
 	},
 /obj/structure/desk_bell{
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/machinery/door/window/left/directional/north{
 	name = "Pharmacy Desk";
@@ -8387,6 +8405,7 @@
 "daa" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/records/medical/laptop,
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "dac" = (
@@ -9176,10 +9195,10 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder{
 	pixel_x = 2;
-	pixel_y = 9
+	pixel_y = 17
 	},
 /obj/item/stack/sheet/mineral/plasma{
-	pixel_y = 3
+	pixel_y = 11
 	},
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/white,
@@ -10171,10 +10190,6 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
-"dKl" = (
-/obj/structure/sign/warning/pods,
-/turf/closed/wall/r_wall,
-/area/station/maintenance/department/engine)
 "dKm" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/iron/white,
@@ -11064,11 +11079,11 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/fitness/recreation)
 "dYG" = (
-/obj/structure/sign/poster/official/anniversary_vintage_reprint/directional/north,
 /obj/machinery/light/directional/north,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 1
 	},
+/obj/structure/sign/poster/official/periodic_table,
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
 "dYK" = (
@@ -21148,12 +21163,6 @@
 /area/station/command/heads_quarters/rd)
 "hBb" = (
 /obj/machinery/chem_dispenser,
-/obj/machinery/button/door/directional/north{
-	id = "pharmacy_shutters";
-	name = "pharmacy shutters control";
-	pixel_x = 24;
-	req_access = list("medical")
-	},
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -22354,40 +22363,40 @@
 "hYA" = (
 /obj/item/assembly/timer{
 	pixel_x = -3;
-	pixel_y = 3
+	pixel_y = 11
 	},
 /obj/item/assembly/timer{
 	pixel_x = -3;
-	pixel_y = 3
+	pixel_y = 11
 	},
 /obj/item/assembly/igniter{
 	pixel_x = 3;
-	pixel_y = -7
+	pixel_y = 1
 	},
 /obj/item/assembly/igniter{
 	pixel_x = 3;
-	pixel_y = -7
+	pixel_y = 1
 	},
 /obj/item/assembly/igniter{
 	pixel_x = 3;
-	pixel_y = -7
+	pixel_y = 1
 	},
 /obj/item/assembly/igniter{
 	pixel_x = 3;
-	pixel_y = -7
+	pixel_y = 1
 	},
 /obj/item/assembly/timer{
 	pixel_x = -3;
-	pixel_y = 3
+	pixel_y = 11
 	},
 /obj/item/assembly/timer{
 	pixel_x = -3;
-	pixel_y = 3
+	pixel_y = 11
 	},
 /obj/structure/table/glass,
 /obj/item/storage/pill_bottle/epinephrine{
 	pixel_x = 8;
-	pixel_y = 5
+	pixel_y = 13
 	},
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron/white,
@@ -25865,9 +25874,15 @@
 /area/station/science/ordnance/storage)
 "jeL" = (
 /obj/structure/table/glass,
-/obj/item/book/manual/wiki/medicine,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/wrench/medical,
+/obj/item/book/manual/wiki/medicine{
+	pixel_y = 8
+	},
+/obj/item/clothing/neck/stethoscope{
+	pixel_y = 8
+	},
+/obj/item/wrench/medical{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -26620,18 +26635,26 @@
 "jsh" = (
 /obj/structure/table/glass,
 /obj/item/folder/white{
-	pixel_y = 2
+	pixel_y = 10
 	},
 /obj/item/screwdriver{
 	pixel_x = -2;
-	pixel_y = 6
+	pixel_y = 14
 	},
-/obj/item/radio/headset/headset_med,
+/obj/item/radio/headset/headset_med{
+	pixel_y = 8
+	},
 /obj/structure/extinguisher_cabinet/directional/east,
 /obj/machinery/firealarm/directional/south,
-/obj/item/hand_labeler,
-/obj/item/stack/package_wrap,
-/obj/item/stack/package_wrap,
+/obj/item/hand_labeler{
+	pixel_y = 6
+	},
+/obj/item/stack/package_wrap{
+	pixel_y = 8
+	},
+/obj/item/stack/package_wrap{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -26849,9 +26872,15 @@
 /area/station/maintenance/disposal/incinerator)
 "jvr" = (
 /obj/structure/table/glass,
-/obj/item/folder/blue,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/clothing/glasses/hud/health,
+/obj/item/folder/blue{
+	pixel_y = 8
+	},
+/obj/item/clothing/neck/stethoscope{
+	pixel_y = 8
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
@@ -26956,25 +26985,28 @@
 /obj/structure/cable,
 /obj/item/reagent_containers/cup/beaker/cryoxadone{
 	pixel_x = -6;
-	pixel_y = 10
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/cup/beaker/cryoxadone{
 	pixel_x = 6;
-	pixel_y = 10
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/cup/beaker/cryoxadone{
 	pixel_x = -6;
-	pixel_y = 6
+	pixel_y = 14
 	},
 /obj/item/reagent_containers/cup/beaker/cryoxadone{
 	pixel_x = 6;
-	pixel_y = 6
+	pixel_y = 14
 	},
-/obj/item/storage/pill_bottle/mannitol,
+/obj/item/storage/pill_bottle/mannitol{
+	pixel_y = 8
+	},
 /obj/item/reagent_containers/dropper{
-	pixel_y = 6
+	pixel_y = 14
 	},
 /obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/cryo)
 "jws" = (
@@ -27063,10 +27095,18 @@
 /area/station/science/ordnance/freezerchamber)
 "jxm" = (
 /obj/structure/table,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/construction/plumbing,
-/obj/item/construction/plumbing,
+/obj/item/stack/sheet/iron/fifty{
+	pixel_y = 6
+	},
+/obj/item/stack/sheet/iron/fifty{
+	pixel_y = 8
+	},
+/obj/item/construction/plumbing{
+	pixel_y = 6
+	},
+/obj/item/construction/plumbing{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
 	},
@@ -27587,9 +27627,34 @@
 /area/station/maintenance/starboard/lesser)
 "jGw" = (
 /obj/structure/table/glass,
-/obj/machinery/computer/records/medical/laptop,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
+	},
+/obj/machinery/button/door/table{
+	pixel_x = -8;
+	pixel_y = 10;
+	id = "cmoprivacy";
+	name = "CMO Privacy Shutters"
+	},
+/obj/item/pen{
+	pixel_x = -7;
+	pixel_y = 16
+	},
+/obj/item/folder/blue{
+	pixel_x = 6;
+	pixel_y = 14
+	},
+/obj/item/folder/white{
+	pixel_y = 10;
+	pixel_x = 6
+	},
+/obj/item/computer_disk/medical{
+	pixel_y = 6;
+	pixel_x = 6
+	},
+/obj/item/computer_disk/medical{
+	pixel_y = 8;
+	pixel_x = 6
 	},
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
@@ -28039,9 +28104,11 @@
 /obj/structure/table,
 /obj/item/storage/medkit/regular{
 	pixel_x = 4;
-	pixel_y = 4
+	pixel_y = 12
 	},
-/obj/item/storage/medkit/regular,
+/obj/item/storage/medkit/regular{
+	pixel_y = 8
+	},
 /obj/machinery/airalarm/directional/south,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/light/cold/directional/south,
@@ -29374,20 +29441,22 @@
 /obj/structure/table,
 /obj/item/reagent_containers/cup/bottle/epinephrine{
 	pixel_x = 7;
-	pixel_y = -3
+	pixel_y = 5
 	},
 /obj/item/reagent_containers/cup/bottle/multiver{
 	pixel_x = -4;
-	pixel_y = -3
+	pixel_y = 5
 	},
 /obj/item/reagent_containers/syringe/epinephrine{
 	pixel_x = 3;
-	pixel_y = -2
+	pixel_y = 6
 	},
-/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper{
+	pixel_y = 8
+	},
 /obj/item/reagent_containers/cup/beaker{
 	pixel_x = 8;
-	pixel_y = 2
+	pixel_y = 10
 	},
 /obj/structure/sign/warning/no_smoking{
 	pixel_y = 28
@@ -29775,7 +29844,7 @@
 /area/station/maintenance/starboard/greater)
 "ksZ" = (
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 12
 	},
 /obj/machinery/camera/directional/north{
 	c_tag = "Security Post - Medbay";
@@ -29976,7 +30045,6 @@
 /area/station/engineering/atmos)
 "kxa" = (
 /obj/machinery/chem_master,
-/obj/structure/noticeboard/directional/south,
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -30701,13 +30769,15 @@
 "kKT" = (
 /obj/item/reagent_containers/cup/bottle/multiver{
 	pixel_x = 7;
-	pixel_y = 12
+	pixel_y = 20
 	},
 /obj/item/reagent_containers/cup/bottle/epinephrine{
 	pixel_x = -4;
-	pixel_y = 12
+	pixel_y = 20
 	},
-/obj/item/reagent_containers/cup/beaker/large,
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 8
+	},
 /obj/item/reagent_containers/cup/beaker{
 	pixel_x = 8;
 	pixel_y = 2
@@ -30804,23 +30874,28 @@
 "kMk" = (
 /obj/item/book/manual/wiki/chemistry{
 	pixel_x = -4;
-	pixel_y = 4
+	pixel_y = 12
 	},
-/obj/item/book/manual/wiki/grenades,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/clothing/glasses/science,
-/obj/item/clothing/glasses/science,
+/obj/item/book/manual/wiki/grenades{
+	pixel_y = 8
+	},
+/obj/item/stack/cable_coil{
+	pixel_y = 6
+	},
+/obj/item/stack/cable_coil{
+	pixel_y = 8
+	},
 /obj/item/book/manual/wiki/plumbing{
 	pixel_x = 4;
-	pixel_y = -4
+	pixel_y = 4
 	},
-/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper{
+	pixel_y = 8
+	},
 /obj/structure/table,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
 	},
-/obj/structure/sign/poster/official/periodic_table/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
 "kMl" = (
@@ -31385,12 +31460,6 @@
 	},
 /turf/closed/wall,
 /area/station/hallway/secondary/command)
-"kWO" = (
-/obj/structure/sign/directions/medical{
-	pixel_y = -7
-	},
-/turf/closed/wall,
-/area/station/medical/pharmacy)
 "kWP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -33699,10 +33768,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
-"lRT" = (
-/obj/structure/sign/directions/evac,
-/turf/closed/wall/r_wall,
-/area/station/maintenance/department/medical/central)
 "lSw" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -36867,19 +36932,23 @@
 /area/station/engineering/atmospherics_engine)
 "mVf" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper{
+	pixel_y = 8
+	},
 /obj/item/reagent_containers/cup/beaker{
 	pixel_x = 8;
-	pixel_y = 2
+	pixel_y = 10
 	},
-/obj/item/reagent_containers/cup/beaker/large,
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 8
+	},
 /obj/item/reagent_containers/cup/bottle/epinephrine{
 	pixel_x = -4;
-	pixel_y = 12
+	pixel_y = 20
 	},
 /obj/item/reagent_containers/cup/bottle/multiver{
 	pixel_x = 7;
-	pixel_y = 12
+	pixel_y = 20
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -41020,10 +41089,6 @@
 /turf/open/space,
 /area/space/nearstation)
 "osH" = (
-/obj/structure/secure_safe/hos{
-	pixel_x = 36;
-	pixel_y = 28
-	},
 /obj/machinery/status_display/evac/directional/north,
 /obj/structure/cable,
 /turf/open/floor/carpet,
@@ -41766,10 +41831,14 @@
 	},
 /obj/item/folder/red{
 	pixel_x = 4;
-	pixel_y = 2
+	pixel_y = 10
 	},
-/obj/item/paper,
-/obj/item/pen,
+/obj/item/paper{
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_y = 8
+	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
 "oFH" = (
@@ -43992,12 +44061,6 @@
 /obj/machinery/keycard_auth/wall_mounted/directional/south{
 	pixel_x = 6
 	},
-/obj/machinery/button/door/directional/south{
-	id = "cmoprivacy";
-	name = "CMO Privacy Shutters";
-	pixel_x = -8;
-	req_access = list("cmo")
-	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 8
 	},
@@ -44294,10 +44357,10 @@
 /area/station/commons/lounge)
 "pBs" = (
 /obj/structure/sign/warning/cold_temp/directional/north{
-	name = "\improper CRYOGENICS"
+	name = "\improper CRYOGENICS";
+	pixel_y = -4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
-/obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/cryo)
 "pBG" = (
@@ -45435,10 +45498,16 @@
 /obj/structure/table,
 /obj/effect/turf_decal/siding/white/corner,
 /obj/machinery/firealarm/directional/north,
-/obj/item/clipboard,
-/obj/item/paper,
-/obj/item/pen,
-/obj/machinery/light/small/directional/north,
+/obj/item/clipboard{
+	pixel_y = 8
+	},
+/obj/item/paper{
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_y = 8
+	},
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/medical/office)
 "pUS" = (
@@ -46809,10 +46878,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/port)
-"qwI" = (
-/obj/structure/sign/departments/chemistry/pharmacy,
-/turf/closed/wall,
-/area/station/medical/pharmacy)
 "qwK" = (
 /obj/structure/chair/stool/directional/west,
 /turf/open/floor/iron,
@@ -47145,10 +47210,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/commons/locker)
-"qCY" = (
-/obj/structure/sign/directions/evac,
-/turf/closed/wall,
-/area/station/maintenance/department/science/central)
 "qDa" = (
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/iron,
@@ -47487,9 +47548,12 @@
 /area/station/security/prison/visit)
 "qJn" = (
 /obj/machinery/chem_master,
-/obj/structure/noticeboard/directional/east,
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/machinery/light/small/directional/east,
+/obj/machinery/button/door/directional/east{
+	name = "pharmacy shutters control";
+	id = "pharmacy_shutters"
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
 "qJt" = (
@@ -47565,11 +47629,16 @@
 "qLk" = (
 /obj/structure/table/glass,
 /obj/item/paper_bin,
-/obj/item/clipboard,
-/obj/item/toy/figure/cmo,
+/obj/item/clipboard{
+	pixel_y = 8
+	},
+/obj/item/toy/figure/cmo{
+	pixel_y = 8
+	},
 /obj/structure/cable,
 /obj/item/stamp/head/cmo{
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 8
 	},
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
@@ -48576,6 +48645,11 @@
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/button/door/directional/north{
+	id = "hosspace";
+	name = "Space Shutters Control";
+	pixel_y = -5
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
 "qZn" = (
@@ -48703,9 +48777,15 @@
 "rbs" = (
 /obj/structure/cable,
 /obj/structure/table,
-/obj/item/stack/medical/mesh,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh{
+	pixel_y = 8
+	},
+/obj/item/stack/medical/gauze{
+	pixel_y = 8
+	},
+/obj/item/stack/medical/suture{
+	pixel_y = 8
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
@@ -49169,8 +49249,12 @@
 /obj/machinery/airalarm/directional/south,
 /obj/structure/cable,
 /obj/structure/table/glass,
-/obj/item/clothing/glasses/science,
-/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/science{
+	pixel_y = 6
+	},
+/obj/item/clothing/glasses/science{
+	pixel_y = 8
+	},
 /obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -49849,7 +49933,7 @@
 	},
 /obj/structure/desk_bell{
 	pixel_x = -3;
-	pixel_y = 2
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
@@ -50388,17 +50472,7 @@
 /area/station/security/checkpoint/science)
 "rHk" = (
 /obj/structure/table/glass,
-/obj/item/folder/blue{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/folder/white,
-/obj/item/pen{
-	pixel_x = -7;
-	pixel_y = 8
-	},
-/obj/item/computer_disk/medical,
-/obj/item/computer_disk/medical,
+/obj/machinery/computer/records/medical/laptop,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
 "rHn" = (
@@ -51002,7 +51076,6 @@
 /turf/open/floor/iron/dark,
 /area/station/science/genetics)
 "rRR" = (
-/obj/structure/sign/warning/vacuum/external/directional/south,
 /obj/machinery/light/small/directional/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -51337,9 +51410,11 @@
 	},
 /obj/item/book/manual/wiki/chemistry{
 	pixel_x = -4;
-	pixel_y = 4
+	pixel_y = 12
 	},
-/obj/item/book/manual/wiki/grenades,
+/obj/item/book/manual/wiki/grenades{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 8
 	},
@@ -51860,7 +51935,7 @@
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
 	pixel_x = -2;
-	pixel_y = 6
+	pixel_y = 14
 	},
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron,
@@ -55734,12 +55809,14 @@
 /area/station/medical/medbay/central)
 "tzI" = (
 /obj/structure/table/reinforced,
-/obj/item/emergency_bed,
 /obj/item/emergency_bed{
-	pixel_y = 3
+	pixel_y = 8
 	},
 /obj/item/emergency_bed{
-	pixel_y = 6
+	pixel_y = 11
+	},
+/obj/item/emergency_bed{
+	pixel_y = 14
 	},
 /obj/structure/window/spawner/directional/west,
 /turf/open/floor/iron/dark,
@@ -57440,17 +57517,21 @@
 /obj/structure/table,
 /obj/item/reagent_containers/cup/beaker{
 	pixel_x = 8;
-	pixel_y = 2
+	pixel_y = 10
 	},
-/obj/item/reagent_containers/cup/beaker/large,
-/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = 8
+	},
 /obj/item/reagent_containers/cup/bottle/epinephrine{
 	pixel_x = -4;
-	pixel_y = 12
+	pixel_y = 20
 	},
 /obj/item/reagent_containers/cup/bottle/multiver{
 	pixel_x = 7;
-	pixel_y = 12
+	pixel_y = 20
 	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /obj/machinery/light/small/directional/south,
@@ -57928,12 +58009,6 @@
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/computer/records/security{
 	dir = 4
-	},
-/obj/machinery/button/door/directional/west{
-	id = "MedbayFoyer";
-	name = "Medbay Doors Control";
-	normaldoorcontrol = 1;
-	pixel_y = -9
 	},
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/iron/dark,
@@ -59703,7 +59778,9 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/transit_tube)
 "uUb" = (
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
 	},
@@ -60340,7 +60417,8 @@
 /obj/structure/cable,
 /obj/machinery/fax{
 	fax_name = "Chief Medical Officer's Office";
-	name = "Chief Medical Officer's Fax Machine"
+	name = "Chief Medical Officer's Fax Machine";
+	pixel_y = 8
 	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
@@ -60517,9 +60595,11 @@
 /obj/machinery/door/firedoor,
 /obj/item/folder/white{
 	pixel_x = 4;
-	pixel_y = -3
+	pixel_y = 5
 	},
-/obj/item/pen,
+/obj/item/pen{
+	pixel_y = 8
+	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4;
 	id = "pharmacy_shutters_2";
@@ -61436,7 +61516,6 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 8
 	},
-/obj/machinery/light/small/directional/north,
 /obj/item/surgery_tray/full/morgue,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 8
@@ -65374,12 +65453,18 @@
 /turf/open/floor/iron/dark,
 /area/station/security/lockers)
 "wPH" = (
-/obj/structure/sign/warning/electric_shock/directional/east,
 /obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/clothing/head/utility/welding,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
+	},
+/obj/item/clothing/glasses/science{
+	pixel_y = 8
+	},
+/obj/item/clothing/glasses/science{
+	pixel_y = 8
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
@@ -65517,6 +65602,7 @@
 	dir = 6
 	},
 /obj/structure/dresser,
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/qm)
 "wRD" = (
@@ -67362,10 +67448,17 @@
 /obj/item/stack/ducts/fifty,
 /obj/item/stack/ducts/fifty,
 /obj/item/stack/ducts/fifty,
-/obj/item/plunger,
-/obj/item/plunger,
+/obj/item/plunger{
+	pixel_y = 6
+	},
+/obj/item/plunger{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
+	},
+/obj/item/clothing/head/utility/welding{
+	pixel_y = 16
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
@@ -67650,7 +67743,7 @@
 "xCR" = (
 /obj/item/folder/white{
 	pixel_x = 4;
-	pixel_y = -3
+	pixel_y = 5
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -67969,21 +68062,26 @@
 "xJI" = (
 /obj/machinery/light_switch/directional/west,
 /obj/structure/table/glass,
-/obj/item/reagent_containers/cup/beaker/large,
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 8
+	},
 /obj/item/reagent_containers/cup/beaker{
 	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/dropper,
-/obj/item/stack/sheet/mineral/plasma{
 	pixel_y = 10
 	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = 8
+	},
 /obj/item/stack/sheet/mineral/plasma{
-	pixel_y = 10
+	pixel_y = 18
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	pixel_y = 18
 	},
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 1
 	},
+/obj/structure/noticeboard/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
 "xJK" = (
@@ -68463,7 +68561,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/sign/clock/directional/west,
 /obj/item/radio/intercom/directional/north,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/iron/dark,
@@ -69173,9 +69270,9 @@
 /obj/machinery/button/door/directional/north{
 	id = "hosspace";
 	name = "Space Shutters Control";
-	pixel_x = -11;
-	pixel_y = -5
+	pixel_y = 0
 	},
+/obj/structure/secure_safe/hos,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
 "yfg" = (
@@ -69390,10 +69487,10 @@
 	},
 /obj/machinery/fax{
 	fax_name = "Medical";
-	name = "Medical Fax Machine"
+	name = "Medical Fax Machine";
+	pixel_y = 8
 	},
 /obj/structure/noticeboard/directional/north,
-/obj/structure/sign/clock/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/office)
 "yiJ" = (
@@ -69501,15 +69598,21 @@
 	req_access = list("medical")
 	},
 /obj/item/clothing/glasses/blindfold{
-	pixel_y = 3
+	pixel_y = 11
 	},
 /obj/item/clothing/glasses/blindfold,
 /obj/item/clothing/ears/earmuffs{
-	pixel_y = 3
+	pixel_y = 11
 	},
-/obj/item/clothing/ears/earmuffs,
-/obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/suit/jacket/straight_jacket,
+/obj/item/clothing/ears/earmuffs{
+	pixel_y = 8
+	},
+/obj/item/clothing/glasses/eyepatch{
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/jacket/straight_jacket{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/office)
 "ylt" = (
@@ -94896,7 +94999,7 @@ asm
 kqm
 vLf
 kXD
-kWO
+rvE
 rvE
 whx
 cIK
@@ -95153,7 +95256,7 @@ xEX
 hYr
 qAf
 lrR
-qwI
+rvE
 xJI
 tIx
 wmT
@@ -95944,7 +96047,7 @@ iqz
 iqz
 sTW
 cYx
-cXH
+pbz
 joj
 dWI
 hZV
@@ -96449,7 +96552,7 @@ lLq
 lLq
 eIO
 qbZ
-lRT
+fvE
 bqX
 bqX
 bqX
@@ -96457,7 +96560,7 @@ pJV
 bqX
 bqX
 bqX
-cJL
+bqX
 fjq
 wvh
 iEv
@@ -97485,7 +97588,7 @@ fma
 fma
 kor
 aQS
-qCY
+kor
 kQe
 qYt
 qDa
@@ -113369,7 +113472,7 @@ fJy
 fJy
 fJy
 pnJ
-dKl
+fJy
 fJy
 byR
 iFh
