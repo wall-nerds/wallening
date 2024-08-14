@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;falsewall_floating - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/falsewall_floating.html#var">Var Details</a> - <a href="obj/effect/falsewall_floating.html#proc">Proc Details</a></header>
+<main>
+<h1>falsewall_floating <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/falsewall_floating.html">effect/falsewall_floating</a></aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/objects/structures/false_walls.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;false_walls.dm 35"/></a></h1>
+
+<p>Duplicates our parent falsewall's rendering behavior
+But renders walls as overlays instead of with splitvis
+In viscontents to make separation of concerns easier</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/falsewall_floating.html#var/fake_icon">fake_icon</a></th><td>The icon to fake ourselves as</td></tr>
+            <tr><th><a href="obj/effect/falsewall_floating.html#var/opaque_darkness">opaque_darkness</a></th><td>If darkness in our sprite is visible or not
+Exists so we can make falsewalls fall &quot;into&quot; the floor
+Potentially breaks art but the usecase is so minimal I will accept it</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/falsewall_floating.html#proc/trim_base">trim_base</a></th><td>Runs an animation that masks off the bottom of our sprite</td></tr>
+            <tr><th><a href="obj/effect/falsewall_floating.html#proc/untrim_base">untrim_base</a></th><td>Runs an animation that slowly reveals the bottom of our sprite</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/fake_icon"><aside class="declaration">var </aside>fake_icon
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/objects/structures/false_walls.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;false_walls.dm 39"/></a></h3>
+        <p>The icon to fake ourselves as</p><h3 id="var/opaque_darkness"><aside class="declaration">var </aside>opaque_darkness
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/objects/structures/false_walls.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;false_walls.dm 43"/></a></h3>
+        <p>If darkness in our sprite is visible or not
+Exists so we can make falsewalls fall &quot;into&quot; the floor
+Potentially breaks art but the usecase is so minimal I will accept it</p><h2 id="proc">Proc Details</h2><h3 id="proc/trim_base"><aside class="declaration">proc </aside>trim_base<aside>(delay) 
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/objects/structures/false_walls.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;false_walls.dm 63"/></a></aside>
+        </h3>
+        <p>Runs an animation that masks off the bottom of our sprite</p><h3 id="proc/untrim_base"><aside class="declaration">proc </aside>untrim_base<aside>(delay) 
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/objects/structures/false_walls.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;false_walls.dm 71"/></a></aside>
+        </h3>
+        <p>Runs an animation that slowly reveals the bottom of our sprite</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/wall-nerds/wallening/tree/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5">cff5df2</a>
+        (stable) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

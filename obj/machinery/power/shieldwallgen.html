@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;shieldwallgen - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/power/shieldwallgen.html#var">Var Details</a> - <a href="obj/machinery/power/shieldwallgen.html#proc">Proc Details</a></header>
+<main>
+<h1>shieldwallgen <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/shieldwallgen.html">shieldwallgen</a></aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 284"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#var/active">active</a></th><td>whether the shield generator is active, ACTIVE_SETUPFIELDS will make it search for generators on process, and if that is successful, is set to ACTIVE_HASFIELDS</td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#var/active_directions">active_directions</a></th><td>List of directions in which we have active walls</td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#var/attached">attached</a></th><td>the attached cable under us</td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#var/locked">locked</a></th><td>are we locked?</td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#var/shield_range">shield_range</a></th><td>how far do we seek another generator in our cardinal directions</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#proc/activate">activate</a></th><td>Turn the machine on with side effects</td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#proc/cleanup_field">cleanup_field</a></th><td>cleans up fields in the specified direction if they belong to this generator</td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#proc/deactivate">deactivate</a></th><td>Turn the machine off with side effects</td></tr>
+            <tr><th><a href="obj/machinery/power/shieldwallgen.html#proc/setup_field">setup_field</a></th><td>Constructs the actual field walls in the specified direction, cleans up old/stuck shields before doing so</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 307"/></a></h3>
+        <p>whether the shield generator is active, ACTIVE_SETUPFIELDS will make it search for generators on process, and if that is successful, is set to ACTIVE_HASFIELDS</p><h3 id="var/active_directions"><aside class="declaration">var </aside>active_directions
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L305">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 305"/></a></h3>
+        <p>List of directions in which we have active walls</p><h3 id="var/attached"><aside class="declaration">var </aside>attached
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/cable.html">cable</a></aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 315"/></a></h3>
+        <p>the attached cable under us</p><h3 id="var/locked"><aside class="declaration">var </aside>locked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 309"/></a></h3>
+        <p>are we locked?</p><h3 id="var/shield_range"><aside class="declaration">var </aside>shield_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L311">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 311"/></a></h3>
+        <p>how far do we seek another generator in our cardinal directions</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>() 
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L559">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 559"/></a></aside>
+        </h3>
+        <p>Turn the machine on with side effects</p><h3 id="proc/cleanup_field"><aside class="declaration">proc </aside>cleanup_field<aside>(direction) 
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 444"/></a></aside>
+        </h3>
+        <p>cleans up fields in the specified direction if they belong to this generator</p><h3 id="proc/deactivate"><aside class="declaration">proc </aside>deactivate<aside>() 
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L564">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 564"/></a></aside>
+        </h3>
+        <p>Turn the machine off with side effects</p><h3 id="proc/setup_field"><aside class="declaration">proc </aside>setup_field<aside>(direction) 
+        
+    
+            <a href="https://github.com/wall-nerds/wallening/blob/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5/code/game/machinery/shieldgen.dm#L410">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;shieldgen.dm 410"/></a></aside>
+        </h3>
+        <p>Constructs the actual field walls in the specified direction, cleans up old/stuck shields before doing so</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/wall-nerds/wallening/tree/cff5df2e3d45a18afe5619a8c130e1ba50ab4ef5">cff5df2</a>
+        (stable) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
