@@ -16,10 +16,12 @@
  * This is just so you can apply the animation to things which can be animated but are not movables (like images)
  */
 #define STOP_FLOATING_ANIM(target) \
-	var/datum/decompose_matrix/decomposed_target_matrix = target.transform.decompose();\
-	var/matrix/original_matrix = matrix().Turn(decomposed_target_matrix.rotation);\
-	original_matrix = original_matrix.Scale(decomposed_target_matrix.scale_x, decomposed_target_matrix.scale_y);\
-	animate(target, transform = original_matrix, time = 1 SECONDS);\
+	do { \
+		var/datum/decompose_matrix/_decomposed_target_matrix = target.transform.decompose();\
+		var/matrix/_original_matrix = matrix().Turn(_decomposed_target_matrix.rotation);\
+		_original_matrix = _original_matrix.Scale(_decomposed_target_matrix.scale_x, _decomposed_target_matrix.scale_y);\
+		animate(target, transform = _original_matrix, time = 1 SECONDS);\
+	} while(FALSE)
 
 /// The duration of the animate call in mob/living/update_transform
 #define UPDATE_TRANSFORM_ANIMATION_TIME (0.2 SECONDS)
