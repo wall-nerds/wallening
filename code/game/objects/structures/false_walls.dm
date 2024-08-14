@@ -445,6 +445,18 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 	smoothing_groups = SMOOTH_GROUP_MEAT_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_MEAT_WALLS
 
+/obj/structure/falsewall/meat
+	name = "pepperoni wallzza"
+	desc = "It's a delicious pepperoni wallzza!"
+	fake_icon = 'icons/turf/walls/pizza_wall.dmi'
+	icon_state = "pizza_wall-open"
+	base_icon_state = "pizza_wall"
+	mineral = /obj/item/stack/sheet/pizza
+	walltype = /turf/closed/wall/mineral/pizza
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_PIZZA_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_PIZZA_WALLS
+
 /obj/structure/falsewall/iron
 	name = "rough iron wall"
 	desc = "A wall with rough metal plating."
