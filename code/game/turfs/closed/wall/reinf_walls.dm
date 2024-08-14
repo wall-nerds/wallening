@@ -18,12 +18,12 @@
 	var/d_state = INTACT
 	///List of icons for deconstruction steps, indexed by d_state
 	var/static/list/decon_icons = list(
-		'icons/turf/walls/reinforced_wall_decon1.dmi',
-		'icons/turf/walls/reinforced_wall_decon2.dmi',
-		'icons/turf/walls/reinforced_wall_decon3.dmi',
-		'icons/turf/walls/reinforced_wall_decon4.dmi',
-		'icons/turf/walls/reinforced_wall_decon5.dmi',
-		'icons/turf/walls/reinforced_wall_decon6.dmi',
+		SUPPORT_LINES = 'icons/turf/walls/reinforced_wall_decon1.dmi',
+		COVER = 'icons/turf/walls/reinforced_wall_decon2.dmi',
+		CUT_COVER = 'icons/turf/walls/reinforced_wall_decon3.dmi',
+		ANCHOR_BOLTS = 'icons/turf/walls/reinforced_wall_decon4.dmi',
+		SUPPORT_RODS = 'icons/turf/walls/reinforced_wall_decon5.dmi',
+		SHEATH = 'icons/turf/walls/reinforced_wall_decon6.dmi',
 		)
 
 /turf/closed/wall/r_wall/deconstruction_hints(mob/user)
@@ -189,7 +189,7 @@
 	else
 		RemoveElement(/datum/element/split_visibility, icon)
 	d_state = new_state
-	icon = (d_state ? decon_icons[d_state] : initial(icon_state))
+	icon = (d_state != INTACT ? decon_icons[d_state] : initial(icon))
 	if(color)
 		AddElement(/datum/element/split_visibility, icon, color)
 	else
