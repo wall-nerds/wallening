@@ -79,6 +79,16 @@ _INVERTED_WALL_MOUNT_OFFSET(path, offset, 0, -offset, offset, -offset, 0)
 /// Directional helpers for things that use the wall_mount element
 #define WALL_MOUNT_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 35, 0, -8, 11, -11, 16)
 
+#define TELESCREEN_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 35, 0, -8, 11, -11, 16) \
+##path/table {\
+	dir = SOUTH; \
+	base_pixel_z = 10; \
+	pixel_z = 10; \
+} \
+##path/table/wall_mount_offset(direction) { \
+	return; \
+}
+
 #define SHOWER_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, 32, 0, -4, 16, -16, 12)
 
 // Sinks need to be shifted down so they layer correctly when north due to their unique status

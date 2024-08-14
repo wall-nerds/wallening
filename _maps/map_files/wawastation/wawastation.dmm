@@ -5421,11 +5421,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "bVA" = (
-/obj/structure/sign/poster/official/random/directional/east{
-	pixel_x = 0
-	},
-/turf/closed/wall,
-/area/station/commons/storage/primary)
+/obj/structure/lattice/catwalk,
+/obj/structure/sign/poster/contraband/communist_state/directional/north,
+/turf/open/space/basic,
+/area/space/nearstation)
 "bVY" = (
 /obj/machinery/holopad{
 	pixel_x = 1
@@ -6795,12 +6794,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/central)
-"cyC" = (
-/obj/structure/sign/poster/official/cleanliness/directional/north{
-	pixel_y = 0
-	},
-/turf/closed/wall,
-/area/station/hallway/primary/fore)
 "cyF" = (
 /obj/machinery/camera/autoname/directional/east,
 /obj/effect/turf_decal/tile/neutral,
@@ -10182,11 +10175,12 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/engineering/main)
 "dFM" = (
-/obj/structure/sign/poster/official/report_crimes/directional/north{
-	pixel_y = 0
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
-/turf/closed/wall,
-/area/station/security/courtroom)
+/obj/structure/sign/poster/official/report_crimes/directional/north,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central)
 "dFY" = (
 /obj/machinery/duct,
 /turf/open/floor/plating,
@@ -12107,8 +12101,8 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
-/obj/machinery/vending/wardrobe/engi_wardrobe,
 /obj/machinery/camera/autoname/directional/west,
+/obj/machinery/vending/wardrobe/engi_wardrobe,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "eoQ" = (
@@ -24735,11 +24729,14 @@
 /turf/open/floor/wood/tile,
 /area/station/service/chapel)
 "iOc" = (
-/obj/structure/sign/poster/contraband/blood_geometer/directional/east{
-	pixel_x = 0
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
 	},
-/turf/closed/wall/r_wall,
-/area/station/security/lockers)
+/obj/structure/sign/poster/official/random/directional/north,
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "iOE" = (
 /obj/item/pickaxe/mini,
 /turf/open/misc/asteroid,
@@ -39224,13 +39221,6 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron,
 /area/station/medical/coldroom)
-"nTN" = (
-/obj/structure/sign/poster/contraband/communist_state/directional/east{
-	pixel_x = 0;
-	pixel_y = -6
-	},
-/turf/closed/wall,
-/area/station/commons/storage/art)
 "nTT" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -46075,6 +46065,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/structure/sign/poster/contraband/blood_geometer/directional/north,
 /turf/open/floor/iron/half,
 /area/station/security/breakroom)
 "qqy" = (
@@ -50762,6 +50753,7 @@
 /obj/structure/closet/secure_closet/freezer/empty/open,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small/dim/directional/west,
+/obj/structure/sign/poster/official/cleanliness/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/service/cafeteria)
 "rWh" = (
@@ -55651,15 +55643,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
-"tCM" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 8
-	},
-/obj/machinery/newscaster/directional/north,
-/obj/machinery/newscaster/directional/north,
-/obj/machinery/newscaster/directional/north,
-/turf/open/floor/iron,
-/area/station/engineering/main)
 "tDa" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -86708,7 +86691,7 @@ meQ
 fAR
 keQ
 ftK
-iOc
+jza
 qqq
 pWB
 jiy
@@ -87242,7 +87225,7 @@ ydk
 xNq
 tqN
 bPZ
-cyC
+aSZ
 rWf
 lsJ
 nVT
@@ -88832,8 +88815,8 @@ tCE
 kJT
 vkM
 kJT
-nTN
-uuN
+kJT
+bVA
 uHL
 uuN
 cLf
@@ -90076,8 +90059,8 @@ gUq
 oGB
 qyz
 ahI
+rjX
 dFM
-kmu
 tHF
 tCE
 bAw
@@ -101674,8 +101657,8 @@ oZK
 kag
 kag
 kag
-bVA
-dct
+kag
+iOc
 dgX
 iin
 iin
@@ -173387,7 +173370,7 @@ aWD
 aWD
 hux
 eoO
-tCM
+ugV
 ugV
 lke
 sNJ

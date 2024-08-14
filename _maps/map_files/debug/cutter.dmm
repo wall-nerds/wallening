@@ -1041,15 +1041,6 @@
 /obj/structure/mirror/directional/east,
 /turf/open/floor/iron,
 /area/misc/testroom)
-"lV" = (
-/obj/structure/lattice,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching output from station security cameras.";
-	name = "Security Camera Monitor";
-	network = list("ss13")
-	},
-/turf/open/space,
-/area/space)
 "ma" = (
 /obj/machinery/door/window/brigdoor/right/directional/south,
 /turf/open/floor/iron,
@@ -11979,7 +11970,7 @@ at
 at
 Sa
 qj
-lV
+qj
 qj
 oj
 oj

@@ -51219,9 +51219,7 @@
 /area/station/commons/dorms)
 "qSE" = (
 /obj/structure/table,
-/obj/machinery/computer/security/telescreen/interrogation{
-	pixel_y = 10
-	},
+/obj/machinery/computer/security/telescreen/interrogation/table,
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
 "qSQ" = (
