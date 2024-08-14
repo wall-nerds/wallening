@@ -55,8 +55,6 @@
 #define _INVERTED_WALL_MOUNT_OFFSET(path, north_offset, physical_north_offset, south_offset, east_offset, west_offset, horizontal_up_offset) \
 _WALL_MOUNT_OFFSET(path, south_offset, north_offset, physical_north_offset, west_offset, east_offset, horizontal_up_offset)
 
-// Wallening todo: temporary helper, until we finish fleshing things out and can convert the main one
-// Why are we not just changing the sprites agian?
 #define INVERT_MAPPING_DIRECTIONAL_HELPERS(path, offset) \
 ##path/directional/north {\
 	dir = SOUTH; \
