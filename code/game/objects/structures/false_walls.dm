@@ -445,7 +445,7 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 	smoothing_groups = SMOOTH_GROUP_MEAT_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_MEAT_WALLS
 
-/obj/structure/falsewall/meat
+/obj/structure/falsewall/pizza
 	name = "pepperoni wallzza"
 	desc = "It's a delicious pepperoni wallzza!"
 	fake_icon = 'icons/turf/walls/pizza_wall.dmi'
