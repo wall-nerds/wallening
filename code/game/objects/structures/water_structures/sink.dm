@@ -33,7 +33,7 @@ SINK_DIRECTIONAL_HELPERS(/obj/structure/sink)
 	create_reagents(100, NO_REACT)
 	if(src.has_water_reclaimer)
 		reagents.add_reagent(dispensedreagent, 100)
-	AddComponent(/datum/component/plumbing/simple_demand, extend_pipe_to_edge = TRUE)
+	AddComponent(/datum/component/plumbing/inverted_simple_demand, extend_pipe_to_edge = TRUE, invert_demand = TRUE)
 	find_and_hang_on_wall()
 
 /obj/structure/sink/examine(mob/user)
@@ -44,24 +44,6 @@ SINK_DIRECTIONAL_HELPERS(/obj/structure/sink)
 
 /obj/structure/sink/wall_mount_common_plane(direction)
 	return TRUE
-
-/obj/structure/sink/wall_mount_offset(direction)
-	pixel_x = 0
-	pixel_z = 0
-	pixel_y = 0
-	switch(direction)
-		if(NORTH)
-			pixel_z = 16
-		if(SOUTH)
-			pixel_z = 24
-			// shift down so we layer correctly
-			pixel_y = -32
-		if(EAST)
-			pixel_x = 16
-			pixel_z = 12
-		if(WEST)
-			pixel_x = -16
-			pixel_z = 12
 
 /obj/structure/sink/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

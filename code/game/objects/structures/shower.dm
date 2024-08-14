@@ -71,7 +71,7 @@ SHOWER_DIRECTIONAL_HELPERS(/obj/machinery/shower)
 	if(src.has_water_reclaimer)
 		reagents.add_reagent(reagent_id, reagent_capacity)
 	soundloop = new(src, FALSE)
-	AddComponent(/datum/component/plumbing/simple_demand, extend_pipe_to_edge = TRUE)
+	AddComponent(/datum/component/plumbing/inverted_simple_demand, extend_pipe_to_edge = TRUE, invert_demand = TRUE)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
@@ -85,22 +85,6 @@ SHOWER_DIRECTIONAL_HELPERS(/obj/machinery/shower)
 		. += span_notice("A water recycler is installed. It looks like you could pry it out.")
 	. += span_notice("The auto shut-off is programmed to [GLOB.shower_mode_descriptions["[mode]"]].")
 	. += span_notice("[reagents.total_volume]/[reagents.maximum_volume] liquids remaining.")
-
-/obj/machinery/shower/wall_mount_offset(direction)
-	pixel_x = 0
-	pixel_z = 0
-	pixel_y = 0
-	switch(direction)
-		if(NORTH)
-			pixel_z = 32
-		if(SOUTH)
-			pixel_z = -4
-		if(EAST)
-			pixel_x = 16
-			pixel_z = 12
-		if(WEST)
-			pixel_x = -16
-			pixel_z = 12
 
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)

@@ -122,8 +122,6 @@
 	var/mob/remote_control_user = null
 	///Represents a signel source of power alarms for this apc
 	var/datum/alarm_handler/alarm_manager
-	/// Offsets the object by APC_PIXEL_OFFSET (defined in apc_defines.dm) pixels in the direction we want it placed in. This allows the APC to be embedded in a wall, yet still inside an area (like mapping).
-	var/offset_old
 	/// Used for apc helper called cut_AI_wire to make apc's wore responsible for ai connectione mended.
 	var/cut_AI_wire = FALSE
 	/// Used for apc helper called unlocked to make apc unlocked.
@@ -159,20 +157,7 @@
 		SSmachines.processing_apcs += src
 
 	//Pixel offset its appearance based on its direction
-	dir = ndir
-	switch(dir)
-		if(NORTH)
-			offset_old = pixel_z
-			pixel_z = APC_PIXEL_OFFSET
-		if(SOUTH)
-			offset_old = pixel_z
-			pixel_z = -APC_PIXEL_OFFSET
-		if(EAST)
-			offset_old = pixel_x
-			pixel_x = APC_PIXEL_OFFSET
-		if(WEST)
-			offset_old = pixel_x
-			pixel_x = -APC_PIXEL_OFFSET
+	setDir(ndir)
 
 	hud_list = list(
 		MALF_APC_HUD = image(icon = 'icons/mob/huds/hud.dmi', icon_state = "apc_hacked", pixel_x = src.pixel_x, pixel_y = src.pixel_y)
@@ -210,9 +195,6 @@
 			cell = new cell_type(src)
 			cell.charge = start_charge * cell.maxcharge / 100 // (convert percentage to actual value)
 		make_terminal()
-		///This is how we test to ensure that mappers use the directional subtypes of APCs, rather than use the parent and pixel-shift it themselves.
-		if(abs(offset_old) != APC_PIXEL_OFFSET)
-			log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([dir] | [uppertext(dir2text(dir))]) has pixel_[dir & (WEST|EAST) ? "x" : "z"] value [offset_old] - should be [dir & (SOUTH|EAST) ? "-" : ""][APC_PIXEL_OFFSET]. Use the directional/ helpers!")
 	// For apcs created during the round players need to configure them from scratch
 	else
 		opened = APC_COVER_OPENED
@@ -271,6 +253,7 @@
 	. = ..()
 	if(auto_name)
 		name = "\improper [get_area_name(area, TRUE)] APC"
+
 
 /obj/machinery/power/apc/proc/assign_to_area(area/target_area = get_area(src))
 	if(area == target_area)
